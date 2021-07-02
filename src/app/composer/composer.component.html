@@ -1,0 +1,19 @@
+<div class="">
+    <div class="">
+        <!--VISTA DE CONTENT TEMPLATE INICIO-->
+        <div *ngIf="article && state == 0">
+            <div class="uk-panel uk-background-default">
+                <button type="button" class="uk-button uk-button-primary" (click)="openedit()">OPEN EDIT</button>
+            </div>
+        </div>
+        <!--VISTA DE CONTENT TEMPLATE FIN-->
+
+        <!--VISTA DE EDITABLE TEMPLATE INICIO-->
+        <div *ngIf="article && state == 1">
+            <pre>{{article | json}}</pre>
+            <app-editable-template (reloadingData)="updateAfterEdit()" [article]="article" (stateEdit)="state=$event"></app-editable-template>
+        </div>
+
+        <!--VISTA DE EDITABLE TEMPLATE FIN-->
+    </div>
+</div>

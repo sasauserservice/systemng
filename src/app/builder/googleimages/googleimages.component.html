@@ -1,0 +1,57 @@
+<div>
+    <div class="uk-card uk-card-default uk-padding-small">
+        <form (ngSubmit)="searchGo()">
+            <div class="uk-grid-collapse" uk-grid>
+                <div class="uk-width-expand">
+                    <input [(ngModel)]="query" name="query" type="search" class="uk-input uk-width-1-1" placeholder="Search..." />
+                </div>
+                <div class="uk-width-auto">
+                    <button type="submit" class="uk-button uk-button-primary">
+                        <span *ngIf="stateLoading === 0 || stateLoading === 3" uk-icon="icon: search"></span>
+                        <span *ngIf="stateLoading === 1" uk-spinner></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <ul *ngIf="pagination.length > 0" class="uk-pagination uk-flex-center uk-light" uk-margin>
+        <li [ngClass]="{'uk-disabled': ((pageQuery - 1) == 0)}">
+            <button class="uk-button uk-button-primary" type="button" (click)="goToPage( (pageQuery-1), getStartByPage(pageQuery-1) )"><span uk-pagination-previous></span></button>
+        </li>
+        <li *ngFor="let page of pagination">
+            <button type="button" [ngClass]="{'uk-active': (page.page == pageQuery), 'uk-disabled': (page.page == 0), 'uk-disbaled': (page.page == pageQuery)}" class="uk-button uk-button-primary" [disabled]="page.page == pageQuery" (click)="goToPage(page.page, page.start)">{{page.title}}</button>
+        </li>
+        <li [ngClass]="{'uk-disabled': ((pageQuery + 1) == totalPages)}">
+            <button class="uk-button uk-button-primary" type="button" (click)="goToPage( (pageQuery+1), getStartByPage(pageQuery+1) )">
+                <span uk-pagination-next></span>
+            </button>
+        </li>
+    </ul>
+
+    <div *ngIf="receivedImages.length == 0 && stateLoading == 1" #resultloading>
+        <div class="uk-flex uk-flex-column uk-flex-center uk-flex-middle uk-height-medium">
+            <h2>Searching...</h2>
+            <div uk-spinner="ratio: 5"></div>
+        </div>
+    </div>
+
+    <div *ngIf="receivedImages.length > 0 && stateLoading == 3" #resultsearch>
+        <div class="uk-child-width-1-4 uk-grid-small uk-margin-large-top" uk-grid="masonry: true">
+            <div *ngFor="let image of receivedImages">
+                <div class="">
+                    <a (click)="selectPhoto(image.link)" href="javascript:void(0)">
+                        <img [src]="image.link" appGoogleimages />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="receivedImages.length == 0 && stateLoading == 3" #resultloading>
+        <div class="uk-flex uk-flex-column uk-flex-center uk-flex-middle uk-height-medium">
+            <h2>Data no found...</h2>
+            <div uk-icon="icon: info; ratio: 5"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<a *ngIf="position > 0" href="javascript:void(0)" (click)="changePosition(true)" class="uk-margin-small-right uk-icon-button" uk-tooltip="UP">
+    <span uk-icon="icon: triangle-up"></span>
+</a>
+
+<a *ngIf="position + 1 < arrayDatos.length" href="javascript:void(0)" (click)="changePosition(false)" class="uk-margin-small-right uk-icon-button" uk-tooltip="DOWN"><span uk-icon="icon: triangle-down"></span></a>
+<button (click)="deletecontent(position)" style="color: #8a94a8 !important" type="button" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="REMOVE"></button>

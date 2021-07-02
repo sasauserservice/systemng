@@ -1,0 +1,29 @@
+<div [appSasamasonry]="grid==2" [ngClass]="{'uk-child-width-1-1':(grid == 0),'uk-child-width-1-2':(grid == 1), 'uk-child-width-1-2@s':(grid ==2)}">
+    <div class="uk-card" *ngFor="let content of data; let i = index">
+
+        <div *ngIf="data.length > 0">
+            <div *ngIf="content.type">
+                <div [ngSwitch]="content.type">
+                    <div *ngSwitchCase="'text'">
+                        <app-textinsert (asyncData)="dataAsinc($event)" [contenido]="data" [attr]="content" [position]="i"></app-textinsert>
+                    </div>
+                    <div *ngSwitchCase="'video'">
+                        <app-videogenerator (receiveVideo)="content.attrs = $event"></app-videogenerator>
+                    </div>
+                    <div *ngSwitchCase="'image'">
+                        <app-image-parrafo [alias]="alias" [parentid]="i" [contenido]="data" [attr]="content" [position]="i" [identity]="alias+'_'+i+'_'+parendid" path="/media/clientuploads" (target)="content.attrs.src = $event"></app-image-parrafo>
+                    </div>
+                    <div *ngSwitchCase="'link'">
+                        <h2>LINK</h2>
+                    </div>
+                    <div *ngSwitchCase="'convertion'">
+                        <h2>CONVERTION</h2>
+                    </div>
+                    <div *ngSwitchCase="'visual'">
+                        <h2>VISUAL</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

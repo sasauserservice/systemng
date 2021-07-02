@@ -1,0 +1,29 @@
+<div class="">
+    <div class="">
+        <div>
+            <h1>Edit your landing</h1>
+            <button (click)="closeEdition()" type="button" class="uk-button uk-button-secondary">
+                Close
+            </button>
+        </div>
+        <div class="uk-panel uk-panel-scrollable">
+            <pre>
+                {{articleData | json}}
+            </pre>
+        </div>
+        <form (ngSubmit)="updateArticle()" *ngIf="article != null">
+            <pre>
+                ARTICLE ID: {{articleData.id}}
+            </pre>
+            <div id="sasa-body-content">
+                <app-parrafos [alias]="articleData.alias" (parrafosContent)="articleData.parrafos = $event"></app-parrafos>
+            </div>
+
+            <div class="uk-margin">
+                <button type="submit" class="uk-button uk-button-primary">Update</button>
+            </div>
+
+            <!---->
+        </form>
+    </div>
+</div>

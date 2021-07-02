@@ -1,0 +1,61 @@
+
+<div class="uk-grid-small uk-child-width-auto uk-text-center uk-flex uk-flex-center" uk-grid>
+    <div>
+        <a class="uk-icon-button" href="javascript:void(0)" (click)="openModalUpload()" uk-tooltip="title:UPLOAD; pos:bottom"><span uk-icon="icon: push"></span></a>
+    </div>
+    <div>
+        <a class="uk-icon-button" href="javascript:void(0)" (click)="openModalExternal()" uk-tooltip="title:GALLERY; pos:bottom"><span uk-icon="icon: album"></span></a>
+    </div>
+    <div>
+        <a class="uk-icon-button" href="javascript:void(0)" (click)="openModalGoogle()" uk-tooltip="title:SEARCH; pos:bottom"><span uk-icon="icon: search"></span></a>
+    </div>
+    <div>
+        <a class="uk-icon-button" href="javascript:void(0)" (click)="cleanImage()" uk-tooltip="title:DELETE; pos:bottom"><span uk-icon="icon: trash"></span></a>
+    </div>
+</div>
+
+<!--UPLOAD MINIFY-->
+<div uk-modal #uploadminifyimages>
+    <div class="uk-modal-dialog uk-margin-auto-vertical uk-padding-small">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-padding-small">
+            <div>
+                <!--COMPONENTE PEXELS SEARCH-->
+                <app-uploadminify [file]="identity" path="/media/clientuploads/parrafos" (receiveImages)="asyncValue($event)"></app-uploadminify>
+                <!--COMPONENTE PEXELS SEARCH-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--UPLOAD MINIFY-->
+
+<!--EXTERNAL IMAGES FROM PEXELS AND UNSPLASH-->
+<div uk-modal #imagenexter>
+    <div class=" uk-modal-dialog uk-margin-auto-vertical uk-padding-small">
+        <button class="uk-modal-close-default " type="button " uk-close></button>
+        <div class="uk-padding-small ">
+            <div>
+                <!--COMPONENTE PEXELS SEARCH-->
+                <app-pexelsimages apiKey="563492ad6f917000010000015651d4bc59424a6db5bb79426b00e5ee " (receiveImages)="asyncValue($event) "></app-pexelsimages>
+                <!--COMPONENTE PEXELS SEARCH-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--EXTERNAL IMAGES FROM PEXELS AND UNSPLASH-->
+
+<!--EXTERNAL IMAGES FROM PEXELS AND UNSPLASH-->
+<div uk-modal #imagengoogle>
+    <div class="uk-modal-dialog uk-margin-auto-vertical uk-padding-small">
+        <button class="uk-modal-close-default " type="button " uk-close></button>
+        <div class="uk-padding-small ">
+            <div>
+                <!--COMPONENTE PEXELS SEARCH-->
+
+                <app-googleimages (receiveImage)="asyncValue($event) "></app-googleimages>
+                <!--COMPONENTE PEXELS SEARCH-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--EXTERNAL IMAGES FROM PEXELS AND UNSPLASH-->

@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} !^/index\.html
+RewriteCond %{REQUEST_FILE} !-d
+RewriteCond %{REQUEST_FILE} !-f
+RewriteRule ^([a-zA-Z0-9/]+)$ index.html [QSA]

@@ -1,0 +1,44 @@
+<div class="uk-card" *ngFor="let parrafo of parrafos ; let i = index">
+    <div class="uk-card ">
+        <div class="uk-card uk-padding-small">
+            <div class="" uk-grid uk-height-match="target: > div > div">
+                <div class="uk-width-expand@l">
+                    <div class="uk-inline uk-width-1-1">
+                        <a *ngIf="i != 0" (click)="changeOrder(i,true)" class="uk-margin-small-right uk-icon-button" uk-tooltip="UP"><span uk-icon="icon: triangle-up"></span></a>
+                        <a *ngIf="i + 1 < parrafos.length" (click)="changeOrder(i,false)" class="uk-margin-small-right uk-icon-button" uk-tooltip="DOWN"><span uk-icon="icon: triangle-down"></span></a>
+                    </div>
+                </div>
+                <div class="uk-width-auto@l">
+                    <button (click)="changeStyle(parrafo)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon: paint-bucket" uk-tooltip="STYLE"></button>
+                    <button (click)="cambiarGrid(parrafo)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon: grid" uk-tooltip="GRID"></button>
+                    <button (click)="deleteparrafo(i)" style="color: #8a94a8 !important" type="button" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="REMOVE"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-card uk-card-default uk-padding-small">
+            <div class="uk-grid-small uk-grid-divider" uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <button (click)="addElement('text',i)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon:  tumblr" uk-tooltip="TITLE"></button>
+                    <button (click)="addElement('image',i)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon: image" uk-tooltip="IMAGE"></button>
+                    <button (click)="addElement('visual',i)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon: album" uk-tooltip="VISUAL"></button>
+                    <button (click)="addElement('video',i)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon: video-camera" uk-tooltip="VIDEO"></button>
+                    <button (click)="addElement('link',i)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon:  link" uk-tooltip="LINK"></button>
+                    <button (click)="addElement('convertion',i)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon:  bolt" uk-tooltip="CONVERTION"></button>
+                </div>
+                <div class="uk-width-expand uk-margin-auto-vertical uk-text-right">
+                    <button style="color: #8a94a8 !important" type="button" class="uk-icon-button" uk-icon="icon: mail" uk-tooltip="FORM"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PARAGRPAH CONTENT -->
+    <div [ngClass]="{'uk-card-primary':(parrafo.style == 2), 'uk-card-secondary':(parrafo.style == 3), 'uk-card-default':(parrafo.style == 1), 'uk-card-body':(parrafo.style != 4)}">
+        <div>
+            <app-backendelements [grid]="parrafo.grid" [parendid]="i" [alias]="alias" [data]="parrafo.content" (asyncData)="parrafo.content = $event"></app-backendelements>
+        </div>
+    </div>
+    <!-- PARAGRPAH CONTENT END -->
+</div>
+
+<button type="button" (click)="addParrafo()" class="uk-button uk-button-primary uk-width-1-1 uk-margin">ADD PARRAFO</button>

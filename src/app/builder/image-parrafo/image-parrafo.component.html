@@ -1,0 +1,32 @@
+<div class="uk-card  uk-padding-small">
+    <div class="" uk-grid uk-height-match="target: > div > div">
+        <div class="uk-width-expand@l">
+            <div class="uk-inline uk-width-1-1">
+
+                <a (click)="changeFrame()" class="uk-margin-small-right uk-icon-button" uk-tooltip="FRAME"><span uk-icon="icon: move "></span></a>
+                <a (click)="changeBorder()" class="uk-margin-small-right uk-icon-button" uk-tooltip="BORDER"><span uk-icon="icon: settings "></span></a>
+                <a (click)="changePos()" class="uk-margin-small-right uk-icon-button" uk-tooltip="POS"><span uk-icon="icon: code "></span></a>
+
+
+            </div>
+        </div>
+        <div class="uk-width-auto@l">
+            <app-contenthead (syncData)="sincronizar($event)" [arrayDatos]="contenido" [current]="attr" [position]="position"></app-contenthead>
+
+        </div>
+    </div>
+</div>
+
+<div [ngClass]="{'field-contentsol': (frame == 1),'imageTo16-9': (frame == 2),'uk-border-15': (border == 1),'uk-border-circle': (border == 2),'uk-position-top': (pos == 1),'uk-position-center': (pos == 2),'uk-position-bottom': (pos == 3)}" class="uk-inline uk-width-1-1">
+ 
+
+
+
+    <img [src]="imagen || 'assets/default_photocover.jpg'" style="width: 100%" />
+ 
+    <div class="uk-overlay uk-overlay-default uk-position-center">
+        <p class="uk-text-center uk-text-uppercase uk-text-small uk-margin-remove">SELECT SOURCE</p>
+        <app-imagesmanager (asyncData)="sincronizar($event)" (target)="emitTarget($event)" [contenido]="contenido" [attr]="attr" [position]="position" [identity]="alias+'_'+position+'_'+parentid" path="/media/clientuploads">
+        </app-imagesmanager>
+    </div>
+</div>

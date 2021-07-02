@@ -1,0 +1,23 @@
+<div>
+    <form (ngSubmit)="placeVideo()">
+        <div class="uk-grid-collapse" uk-grid>
+            <div class="uk-width-auto" *ngIf="videodata.id != null || videodata.id != undefined">
+                <button (click)="deleteVideo()" type="button" class="uk-button uk-button-danger">
+                    <span uk-icon="icon: trash"></span>
+                </button>
+            </div>
+            <div class="uk-width-expand">
+                <input [(ngModel)]="urivideo" name="urivideo" type="url" class="uk-input" placeholder="Put URL Video" />
+            </div>
+            <div class="uk-width-auto">
+                <button type="submit" class="uk-button uk-button-primary">
+                    <span uk-icon="icon: check"></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <app-videodisplay [videodata]="videodata"></app-videodisplay>
+</div>

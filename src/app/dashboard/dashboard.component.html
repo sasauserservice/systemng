@@ -1,0 +1,29 @@
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="#">SASA PLATFORM</a></li>
+        </ul>
+
+    </div>
+    <div class="uk-navbar-right">
+
+        <ul class="uk-navbar-nav">
+            <li>
+                <a href="#">Manager</a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li><a href="javascript:void()" (click)="createPost()">CREATE POWERSITE</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="uk-container">
+    <div class="uk-card uk-card-default uk-card-body">
+        <app-articlelist></app-articlelist>
+    </div>
+</div>
