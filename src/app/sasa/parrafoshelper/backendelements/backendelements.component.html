@@ -1,25 +1,25 @@
-<div [appSasamasonry]="grid==2" [ngClass]="{'uk-child-width-1-1':(grid == 0),'uk-child-width-1-2':(grid == 1), 'uk-child-width-1-2@s':(grid ==2)}">
+<div class="uk-margin-small" [appSasamasonry]="grid" [ngClass]="{'':(grid == 0),'uk-child-width-1-2':(grid == 1), 'uk-child-width-1-2@s':(grid ==2),'uk-grid':(grid != 0)}">
     <div class="uk-card" *ngFor="let content of data; let i = index">
 
         <div *ngIf="data.length > 0">
             <div *ngIf="content.type">
                 <div [ngSwitch]="content.type">
-                    <div *ngSwitchCase="'text'">
-                        <app-textinsert (asyncData)="dataAsinc($event)" [contenido]="data" [attr]="content" [position]="i"></app-textinsert>
+                    <div [ngClass]="{'uk-grid-margin':(grid != 0)}" *ngSwitchCase="'text'">
+                        <app-textinsert (setStyle)="content.attrs.style = $event" (receiveText)="content.attrs.text = $event" (asyncData)="dataAsinc($event)" [contenido]="data" [attr]="content" [position]="i"></app-textinsert>
                     </div>
-                    <div *ngSwitchCase="'video'">
+                    <div [ngClass]="{'uk-grid-margin':(grid != 0)}" *ngSwitchCase="'video'">
                         <app-videogenerator (receiveVideo)="content.attrs = $event"></app-videogenerator>
                     </div>
-                    <div *ngSwitchCase="'image'">
-                        <app-image-parrafo [alias]="alias" [parentid]="i" [contenido]="data" [attr]="content" [position]="i" [identity]="alias+'_'+i+'_'+parendid" path="/media/clientuploads" (target)="content.attrs.src = $event"></app-image-parrafo>
+                    <div [ngClass]="{'uk-grid-margin':(grid != 0)}" *ngSwitchCase="'image'">
+                        <app-image-parrafo [alias]="alias" [parentid]="i" [contenido]="data" [attr]="content" [position]="i" [identity]="alias+'_'+i+'_'+parendid" path="/media/clientuploads" (target)="content.attrs.src = $event" (setStyle)="content.attrs.style=$event"></app-image-parrafo>
                     </div>
-                    <div *ngSwitchCase="'link'">
+                    <div [ngClass]="{'uk-grid-margin':(grid != 0)}" *ngSwitchCase="'link'">
                         <h2>LINK</h2>
                     </div>
-                    <div *ngSwitchCase="'convertion'">
+                    <div [ngClass]="{'uk-grid-margin':(grid != 0)}" *ngSwitchCase="'convertion'">
                         <h2>CONVERTION</h2>
                     </div>
-                    <div *ngSwitchCase="'visual'">
+                    <div [ngClass]="{'uk-grid-margin':(grid != 0)}" *ngSwitchCase="'visual'">
                         <h2>VISUAL</h2>
                     </div>
                 </div>

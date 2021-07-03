@@ -26,6 +26,7 @@ import { ContentheadComponent } from './sasa/parrafoshelper/contenthead/contenth
 import { SasamasonryDirective } from './directives/sasamasonry.directive';
 import { ImageParrafoComponent } from './builder/image-parrafo/image-parrafo.component';
 import { ShowingDirective } from './directives/showing.directive';
+import { BannerEditableViewComponent } from './builder/banner/banner-editable-view/banner-editable-view.component';
 
 
 
@@ -55,7 +56,8 @@ import { ShowingDirective } from './directives/showing.directive';
     ContentheadComponent,
     SasamasonryDirective,
     ImageParrafoComponent,
-    ShowingDirective
+    ShowingDirective,
+    BannerEditableViewComponent
   ],
   imports: [
     BrowserModule,

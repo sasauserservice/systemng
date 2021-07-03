@@ -6,17 +6,10 @@
                 Close
             </button>
         </div>
-        <div class="uk-panel uk-panel-scrollable">
-            <pre>
-                {{articleData | json}}
-            </pre>
-        </div>
         <form (ngSubmit)="updateArticle()" *ngIf="article != null">
-            <pre>
-                ARTICLE ID: {{articleData.id}}
-            </pre>
-            <div id="sasa-body-content">
-                <app-parrafos [alias]="articleData.alias" (parrafosContent)="articleData.parrafos = $event"></app-parrafos>
+            <app-banner-editable-view></app-banner-editable-view>
+            <div>
+                <app-parrafos [alias]="articleData.alias" [receiveParrafos]="articleData.parrafos" (parrafosContent)="articleData.parrafos = $event"></app-parrafos>
             </div>
 
             <div class="uk-margin">

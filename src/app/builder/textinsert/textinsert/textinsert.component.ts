@@ -1,16 +1,18 @@
-import { Component, OnInit ,Input, ViewChild, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ViewChild, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-textinsert',
   templateUrl: './textinsert.component.html',
   styleUrls: ['./textinsert.component.scss']
 })
-export class TextinsertComponent implements OnInit {
+export class TextinsertComponent implements OnInit, OnChanges {
   @Input() contenido : Array<any> = [];
-  @Input() attr : object = {};
+  @Input() attr : any = {};
   @Input() position : any = 0;
 
   @Output() asyncData = new EventEmitter<any>();
+  @Output() receiveText = new EventEmitter<any>();
+  @Output() setStyle = new EventEmitter<any>();
 
 
   @ViewChild('textarepa') textareaPa : any;
@@ -21,12 +23,27 @@ export class TextinsertComponent implements OnInit {
   public bold : boolean = false;
   public align: number = 0;
 
+
+  asyncStyle(){
+    this.setStyle.emit({
+      size: this.size,
+      bold: this.bold,
+      align: this.align
+    });
+  }
+
   changeBold(){
     if(this.bold){
       this.bold = false;
     }else{
       this.bold =  true;
     }
+
+    this.asyncStyle();
+  }
+
+  sendText(){
+    this.receiveText.emit(this.text);
   }
 
   sincronizar(val:any){
@@ -38,8 +55,6 @@ export class TextinsertComponent implements OnInit {
 
     event.target.classList.add('uk-hidden');
     this.textoPre.nativeElement.classList.remove('uk-hidden');
-   
-
   }
 
   onFocusInEvent(event:any){
@@ -74,6 +89,8 @@ export class TextinsertComponent implements OnInit {
       break; 
 
     }
+
+    this.asyncStyle();
   }
   
 
@@ -111,12 +128,22 @@ export class TextinsertComponent implements OnInit {
       break; 
 
     }
+
+    this.asyncStyle();
   }
 
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(){
+    console.log(this.attr.attrs);
+    this.text = this.attr.attrs.text || '';
+    this.size = this.attr.attrs.style.size || 0;
+    this.align = this.attr.attrs.style.align || 0;
+    this.bold = this.attr.attrs.style.bold || false;
   }
  
 }

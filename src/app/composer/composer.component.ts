@@ -37,7 +37,7 @@ export class ComposerComponent implements OnInit {
       } )
       .catch( (error:any) => {
         if(error){
-          let texto : string = error.error.Message;
+          let texto : string = (error.error) ? error.error.Message : '';
           if(error.status === 400){
             Swal.fire({
               title: 'Info!',

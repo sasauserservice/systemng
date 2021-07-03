@@ -1,11 +1,11 @@
-import { Component, OnInit , Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit , OnChanges, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-backendelements',
   templateUrl: './backendelements.component.html',
   styleUrls: ['./backendelements.component.scss']
 })
-export class BackendelementsComponent implements OnInit {
+export class BackendelementsComponent implements OnInit, OnChanges {
   
   @Input() data  : Array<any> = [];
   @Input() alias : string     = '';
@@ -19,6 +19,10 @@ export class BackendelementsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
+  }
+
+  ngOnChanges(): void {
+
   }
 
   dataAsinc(val:any){

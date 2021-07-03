@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter, OnChanges } from '@angular/core';
 import { ContentService } from '../../services/content.service';
 import { ParagrapElement } from 'src/app/shared/paragrap-element.model';
 
@@ -8,10 +8,13 @@ import { ParagrapElement } from 'src/app/shared/paragrap-element.model';
   templateUrl: './parrafos.component.html',
   styleUrls: ['./parrafos.component.scss']
 })
-export class ParrafosComponent implements OnInit {
+export class ParrafosComponent implements OnInit, OnChanges {
 
   @Output() parrafosContent = new EventEmitter<any>();
+  
   @Input()  alias : any = '';
+
+  @Input() receiveParrafos : any = [];
 
   public parrafos : any[] = [];
 
@@ -20,6 +23,16 @@ export class ParrafosComponent implements OnInit {
   public id : number = 0;
 
   public grid : number = 0;
+
+  changeWidth(parrafo: any){
+    if(parrafo.width === 0){
+      parrafo.width = 1;
+    } else {
+      parrafo.width = 0;
+    }
+
+    this.updateAsync();
+  }
 
   public gridclass : object ={
     'uk-width-1-1':(this.grid == 0),
@@ -49,6 +62,12 @@ export class ParrafosComponent implements OnInit {
   constructor(private Content : ContentService) { }
 
   ngOnInit(): void {
+    
+  }
+
+  ngOnChanges(): void {
+    this.parrafos = this.receiveParrafos || [];
+    console.log(this.receiveParrafos);
   }
 
   updateAsync(){

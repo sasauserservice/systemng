@@ -1,6 +1,6 @@
-<div class="uk-card" *ngFor="let parrafo of parrafos ; let i = index">
-    <div class="uk-card ">
-        <div class="uk-card uk-padding-small">
+<div [ngClass]="{'sasa-body-content': (!parrafo.width || parrafo.width == 0)}" class="uk-card" *ngFor="let parrafo of parrafos ; let i = index">
+    <div class="uk-card">
+        <div class="uk-card uk-card-default uk-margin-small-top uk-padding-small">
             <div class="" uk-grid uk-height-match="target: > div > div">
                 <div class="uk-width-expand@l">
                     <div class="uk-inline uk-width-1-1">
@@ -9,6 +9,7 @@
                     </div>
                 </div>
                 <div class="uk-width-auto@l">
+                    <button (click)="changeWidth(parrafo)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon: expand" uk-tooltip="WITDH"></button>
                     <button (click)="changeStyle(parrafo)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon: paint-bucket" uk-tooltip="STYLE"></button>
                     <button (click)="cambiarGrid(parrafo)" style="color: #8a94a8 !important" type="button" class="uk-icon-button uk-margin-small-right" uk-icon="icon: grid" uk-tooltip="GRID"></button>
                     <button (click)="deleteparrafo(i)" style="color: #8a94a8 !important" type="button" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="REMOVE"></button>
@@ -33,7 +34,7 @@
         </div>
     </div>
     <!-- PARAGRPAH CONTENT -->
-    <div [ngClass]="{'uk-card-primary':(parrafo.style == 2), 'uk-card-secondary':(parrafo.style == 3), 'uk-card-default':(parrafo.style == 1), 'uk-card-body':(parrafo.style != 4)}">
+    <div class="uk-card" [ngClass]="{'uk-card-primary':(parrafo.style == 2), 'uk-card-secondary':(parrafo.style == 3), 'uk-card-default':(parrafo.style == 1), 'uk-card-body':(parrafo.style != 4)}">
         <div>
             <app-backendelements [grid]="parrafo.grid" [parendid]="i" [alias]="alias" [data]="parrafo.content" (asyncData)="parrafo.content = $event"></app-backendelements>
         </div>

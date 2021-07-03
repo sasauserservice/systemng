@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { ImagesmanagerService } from '../imagesmanager/imagesmanager.service';
 import { Article } from 'src/app/shared/article.model';
 import { ContentService } from 'src/app/services/content.service';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   templateUrl: './editable-template.component.html',
   styleUrls: ['./editable-template.component.scss']
 })
-export class EditableTemplateComponent implements OnInit {
+export class EditableTemplateComponent implements OnInit, OnChanges {
 
   @Input() article : any = {};
   @Output() stateEdit = new EventEmitter<number>();
@@ -30,8 +30,13 @@ export class EditableTemplateComponent implements OnInit {
   ngOnInit(): void {
     this.articleData.id = this.article.id;
     this.articleData.alias = this.article.alias;
+    this.articleData.parrafos = this.article.parrafos || [];
     console.log(this.article)
     this.filename = this.filename + "_" + this.article.alias;
+  }
+
+  ngOnChanges(): void {
+
   }
 
   closeEdition(){

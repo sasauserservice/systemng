@@ -1,24 +1,38 @@
-import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-image-parrafo',
   templateUrl: './image-parrafo.component.html',
   styleUrls: ['./image-parrafo.component.scss']
 })
-export class ImageParrafoComponent implements OnInit {
+export class ImageParrafoComponent implements OnInit, OnChanges {
 
 
   public imagen : any = '';
+
+  @Output() setStyle = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  ngOnChanges(): void {
+    console.log(this.attr);
+    this.imagen = this.attr.attrs.src || '';
+  }
+
   public frame  : number = 0;
   public border : number = 0;
   public pos    : number = 0;
 
+  asyncStyle(){
+    this.setStyle.emit({
+      border: this.border,
+      frame: this.frame,
+      pos: this.pos
+    });
+  }
 
   changePos(){
     switch(this.pos){
@@ -35,6 +49,8 @@ export class ImageParrafoComponent implements OnInit {
       break; 
 
     }
+
+    this.asyncStyle();
   }
   changeBorder(){
     switch(this.border){
@@ -51,6 +67,8 @@ export class ImageParrafoComponent implements OnInit {
       break; 
 
     }
+
+    this.asyncStyle();
   }
   changeFrame(){
     switch(this.frame){
@@ -67,6 +85,8 @@ export class ImageParrafoComponent implements OnInit {
       break; 
 
     }
+
+    this.asyncStyle();
   }
  
 
@@ -78,7 +98,7 @@ export class ImageParrafoComponent implements OnInit {
 
    // outputs 
    @Input() contenido : Array<any> = [];
-   @Input() attr : object = {};
+   @Input() attr : any = {};
    @Input() position : any = 0;
 
    @Output() target  = new EventEmitter<any>();

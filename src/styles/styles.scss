@@ -3,26 +3,31 @@
  @import "variables-theme.scss";
  @import "mixins-theme.scss";
  @media screen and (min-width: 1920px) {
-     #sasa-body-content {
+     #sasa-body-content,
+     .sasa-body-content {
          max-width: 1200px !important;
          margin: auto;
+         transition: max-width 0.5s !important;
      }
  }
  
  @media screen and (max-width: 1900px) {
-     #sasa-body-content {
+     #sasa-body-content,
+     .sasa-body-content {
          max-width: 950px !important;
          margin: auto;
+         transition: max-width 0.5s !important;
      }
  }
-
+ 
  .uk-border-15 img {
      border-radius: 15px;
  }
  
  .uk-border-circle img {
-    border-radius: 500px;
-} 
+     border-radius: 500px;
+ }
+ 
  .imageTo1-1 {
      width: 100%;
      padding-bottom: 100%;
@@ -232,3 +237,47 @@
      margin-bottom: -35px;
      z-index: 9;
  }
+
+
+.uk-card-hover {
+     transition: background-color 2s !important;
+}
+
+.uk-card-hover-dark {
+     transition: background-color 2s !important;
+}
+
+.uk-card-hover-dark:hover {
+     background-color: rgba(0,0,0,.75) !important;
+}
+
+.uk-card {
+     transition: all 0.5s !important;
+}
+
+.uk-grid {
+     transition: all 0.5s !important;
+}
+
+.uk-placeholder {
+     transition: all 0.5s !important;
+}
+
+.sasa-body-content {
+     transition: all 0.5s !important;
+}
+
+.uk-border-15, 
+.uk-border-circle,
+.field-contentsol,
+.imageTo16-9 {
+     transition: all 0.5s !important;
+}
+
+.uk-border-15 img, 
+.uk-border-circle img,
+.field-contentsol img,
+.imageTo16-9 img {
+     transition: all 0.5s !important;
+}
+
