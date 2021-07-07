@@ -1,0 +1,175 @@
+ 
+
+<div [ngSwitch]="bannerType" *ngIf="attrs.textStyle">
+    <div *ngSwitchCase="0">
+        <div id="sasa-body-content">
+            <div class="uk-child-width-1-2@l uk-flex-first" uk-grid>
+
+                <div class="uk-margin-auto-vertical">
+                    <div class="field-contentsol uk-visible@s">
+                        
+                            <img [src]="(image || '/assets/default_photocover.jpg')" />
+
+                            
+                        
+                    </div>
+                    <div class="imageTo16-9 uk-hidden@s">
+                        
+                            <img [src]="image || '/assets/default_photocover.jpg'" />
+
+                            
+                        
+
+                    </div>
+                </div>
+
+                <div class="uk-margin-auto-vertical uk-flex-first@l">
+                    <div class="uk-padding-small">
+                        
+                        <p *ngIf="attrs.textStyle.size == 0 || attrs.textStyle.size == 9" [ngClass]="{'uk-text-bold':attrs.textStyle.bold,'uk-text-small': (attrs.textStyle.size == 9)}" class="">{{attrs.text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</p>
+                        <h6 [ngClass]="{'uk-text-bold': attrs.textStyle.bold}" *ngIf="attrs.textStyle.size == 8" class="">{{attrs.text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h6>
+                        <h5 [ngClass]="{'uk-text-bold': attrs.textStyle.bold}" *ngIf="attrs.textStyle.size == 7" class="">{{attrs.text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h5>
+
+                        <h4 [ngClass]="{'uk-text-bold': attrs.textStyle.bold}" *ngIf="attrs.textStyle.size == 6" class="">{{attrs.text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h4>
+
+                        <h3 [ngClass]="{'uk-text-bold': attrs.textStyle.bold}" *ngIf="attrs.textStyle.size == 5" class="">{{attrs.text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h3>
+
+                        <h2 [ngClass]="{'uk-text-bold': attrs.textStyle.bold}" *ngIf="attrs.textStyle.size == 4" class="">{{attrs.text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h2>
+
+                        <h1 *ngIf="attrs.textStyle.size == 3 || attrs.textStyle.size == 2 || attrs.textStyle.size == 1" [ngClass]="{'uk-text-bold':attrs.textStyle.bold,'uk-heading-small': (attrs.textStyle.size == 2),'uk-heading-large': (attrs.textStyle.size == 1)}"
+                            class="">{{attrs.text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus.'}}</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div *ngSwitchCase="1">
+        <div ng-if="diagramacion == 1">
+
+            <div class="uk-visible@s">
+
+                <div class="portadasasa sasa_cover background-image uk-background-cover uk-background-muted uk-height-medium uk-panel " uk-height-viewport="offset-bottom: 20" [ngStyle]="{'background-image':'url(' +image || '/assets/default_photocover.jpg' + ')'}">
+                    <div class="uk-padding">
+                        <div class="cajita-portada uk-padding uk-width-3-4@s uk-width-1-2@xl uk-width-2-5@l">
+                            <h2 class="uk-margin-remove-bottom">
+                                Lorem ipsum dolor sit amet consectetur
+                            </h2>
+                            <p class="uk-margin-remove-top uk-margin-bottom-small uk-text-justify">
+                                Lorem ipsum dolor sit amet consectetur adipiscing elit erat, pellentesque tempus dis lobortis netus nisi risus bibendum.
+                            </p>
+                            <!-- PREVISUALIZACION DE CONVERSIONES-->
+
+                            <!-- PREVISUALIZACION DE CONVERSIONES FIN-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-hidden@s">
+
+                <div class="imageTo16-9">
+                    <img [src]="image || '/assets/default_photocover.jpg'" />
+                </div>
+                <div>
+                    <div class="uk-padding-small">
+                        <h2 class="uk-margin-remove-bottom">
+                            Lorem ipsum dolor sit amet consectetur
+                        </h2>
+                        <p class="uk-margin-remove-top uk-margin-bottom-small uk-text-justify">
+                            Lorem ipsum dolor sit amet consectetur adipiscing elit erat, pellentesque tempus dis lobortis netus nisi risus bibendum.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div *ngSwitchCase="2">
+        
+        <div class="uk-background-default uk-visible@s" uk-height-viewport>
+
+
+            <div class="uk-background-cover uk-panel uk-background-blend-multiply uk-background-primary" [ngStyle]="{'background-image': 'url(' + image || '/assets/default_photocover.jpg' + ')'}" style="height: 75vh !important;background-position-x: 50%">
+
+
+
+                <div class="ddd" uk-height-viewport>
+                    <div class="" style="margin-top: 23vh;" u`k-stickyXX="bottom: #stop">
+
+                        <div class="uk-width-1-2@xl uk-width-2-3@l uk-align-center">
+
+                            <div class="uk-card uk-card-secondary uk-padding-small" style="border-radius: 0px; border-top-left-radius: 5px;">
+                                <h2 class="uk-margin-remove-bottom">Lorem ipsum dolor sit amet consectetur</h2>
+                                <p class="uk-margin-remove-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde id voluptatem temporibus eos, fugiat debitis illum at odio</p>
+
+                            </div>
+
+                            <div class="uk-background-cover" [ngStyle]="{'background-image': 'url(' + image || '/assets/default_photocover.jpg' + ')'}" style=" height: 40vh !important; border-bottom-right-radius: 20px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="uk-hidden@s">
+
+            <div class="imageTo16-9">
+                <img [src]="image || '/assets/default_photocover.jpg'" />
+            </div>
+            <div>
+                <div class="uk-padding-small">
+                    <h2 class="uk-margin-remove-bottom">Lorem ipsum dolor sit amet consectetur</h2>
+                    <p class="uk-margin-remove-top uk-margin-bottom-small uk-text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui consequatur architecto reiciendis unde quaerat exercitationem doloribus eveniet aspernatur nemo sequi </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngSwitchCase="3">
+        <div class="uk-background-default uk-visible@s" uk-height-viewport>
+
+
+            <div class="uk-background-cover uk-panel uk-background-blend-multiply uk-background-primary" [ngStyle]="{'background-image': 'url(' + image || '/assets/default_photocover.jpg' + ')'}" style="height: 100vh !important; background-position-x: 50%">
+
+                <div class="uk-position-bottom-center">
+                    <a href="#sasa-body-content" class="uk-button uk-button-text uk-margin" uk-scroll>MORE INFO <span uk-icon="icon: triangle-down"></span></a>
+                </div>
+
+                <div class="uk-height-1-1" uk-grid>
+                    <div class="uk-width-3-5 uk-margin-auto-vertical">
+                        <img src="/plugins/content/sasaviewsclientlanding_local/partials/images/default_broadcast2.jpg" uk-tooltip="BROADCAST">
+                    </div>
+
+                    <div class="uk-width-2-5 uk-flex uk-flex-middle uk-card">
+                        <div class="uk-width-4-5 uk-padding-small">
+                            <h2 class="uk-margin-remove-bottom">Lorem ipsum dolor sit </h2>
+                            <p class="uk-margin-remove-top">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt corporis quas expedita, explica</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="uk-hidden@s">
+
+            <div class="imageTo16-9">
+                <img [src]="image || '/assets/default_photocover.jpg'" />
+            </div>
+            <div>
+                <div class="uk-padding-small">
+                    <h2 class="uk-margin-remove-bottom">Lorem ipsum dolor sit </h2>
+                    <p class="uk-margin-remove-top uk-margin-bottom-small uk-text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt corporis quas expedita, explica</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

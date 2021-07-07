@@ -1,0 +1,147 @@
+<div>
+    <div class="uk-container uk-margin-large-top uk-card uk-card-body uk-card-default">
+        <h1 class="uk-heading-large">Parameter</h1>
+        <div>
+            <table class="uk-table-small uk-table-hover uk-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>PARAMETER</th>
+                        <th>DESCRIPTION</th>
+                        <th>
+                            <table>
+                                <tr>
+                                    <td colspan="2">CRITERIAS</td>
+                                </tr>
+                                <tr>
+                                    <td>NAME</td>
+                                    <td>POINTS</td>
+                                </tr>
+                            </table>
+                        </th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="params.length > 0">
+                    <tr *ngFor="let crit of params">
+                        <td>{{crit.id}}</td>
+                        <td>{{crit.title}}</td>
+                        <td>{{crit.description}}</td>
+                        <td>
+                            <table *ngIf="crit.criteria.length > 0">
+                                <tr *ngFor="let criterio of crit.criteria">
+                                    <td>{{criterio.title}}</td>
+                                    <td>{{criterio.points}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <div class="uk-button-group">
+                                <button (click)="delParam(crit.id)" type="button" class="uk-button uk-button-danger">
+                                    <span uk-icon="icon: trash"></span>
+                                </button>
+                                <button (click)="openEdit(crit)" class="uk-button uk-button-secondary">
+                                    <span uk-icon="icon: pencil"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <h1 class="uk-heading-large">Add parameter</h1>
+        <div>
+            <div class="uk-margin">
+                <div class="" uk-grid>
+                    <div class="uk-width-expand">
+                        <input placeholder="Title" type="text" class="uk-input" [(ngModel)]="paramTitle" />
+                    </div>
+                    <div class="uk-width-expand">
+                        <input placeholder="Description" type="text" class="uk-input" name="paramDesc" [(ngModel)]="paramDesc" />
+                    </div>
+                    <div *ngIf="paramTitle.length > 0" class="uk-width-auto">
+                        <button type="button" class="uk-button uk-button-default" (click)="addCriteria()">ADD</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div class="uk-margin" *ngFor="let crit of criterias; let i = index; trackBy: trackByIndex;">
+                        <div *ngIf="crit" class="" uk-grid>
+                            <div class="uk-width-expand">
+                                <input placeholder="Title" type="text" class="uk-input uk-width-1-1" [(ngModel)]="criterias[i].title">
+                            </div>
+                            <div class="uk-width-expand">
+                                <input placeholder="Points" type="number" class="uk-input uk-width-1-1" [(ngModel)]="crit.points">
+                            </div>
+                            <div class="uk-width-auto">
+                                <div>
+                                    <a href="javascript:void(0)" (click)="spliceParaCrear(i)" class="uk-icon-button">
+                                        <span uk-icon="icon: trash"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pre>{{criterias | json}}</pre>
+            <div class="uk-margin">
+                <button (click)="sendForm()" [disabled]="(criterias.length == 0)" type="button" class="uk-width-1-1 uk-button uk-button-primary">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div #modaledition uk-modal>
+        <div *ngIf="currentEdition != null" class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">Edit
+                <a (click)="pushParaEdit()" href="javascript:void(0)" class="uk-icon-button">
+                    <span uk-icon="icon: plus"></span>
+                </a>
+            </h2>
+            <div>
+                <div>
+                    <div role="form">
+                        <div class="uk-margin">
+                            <div class="uk-grid-small" uk-grid>
+                                <div class="uk-width-expand">
+                                    <input placeholder="Title" type="text" class="uk-input" name="currentEdition.title" [(ngModel)]="currentEdition.title" />
+                                </div>
+                                <div class="uk-width-expand">
+                                    <input placeholder="Description" type="text" class="uk-input" name="currentEdition.description" [(ngModel)]="currentEdition.description" />
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="currentEdition.criteria.length > 0">
+                            <div>
+                                <div class="uk-margin" *ngFor="let crit of currentEdition.criteria; let i = index">
+                                    <div class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-expand">
+                                            <input type="text" class="uk-input uk-width-1-1" name="crit.title" [(ngModel)]="crit.title" />
+                                        </div>
+                                        <div class="uk-width-auto">
+                                            <input type="number" class="uk-input uk-width-1-1" name="crit.points" [(ngModel)]="crit.points" />
+                                        </div>
+                                        <div class="uk-width-auto">
+                                            <div>
+                                                <a href="javascript:void(0)" (click)="spliceParaEdit(i)" class="uk-icon-button">
+                                                    <span uk-icon="icon: trash"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                <button (click)="update()" [disabled]="(currentEdition.criteria.length == 0)" type="button" class="uk-width-1-1 uk-button uk-button-primary">SUBMIT</button>
+            </p>
+        </div>
+    </div>
+</div>

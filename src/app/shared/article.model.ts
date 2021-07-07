@@ -6,5 +6,6 @@ export interface Article {
     publish_up?: string,
     publish_down?: string,
     image?: string,
-    parrafos?: any[]
+    parrafos?: any[],
+    banner?: {}
 };

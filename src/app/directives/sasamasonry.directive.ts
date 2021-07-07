@@ -27,7 +27,7 @@ export class SasamasonryDirective implements OnChanges {
       this.el.nativeElement.style = null;
       this.el.nativeElement.classList.remove('uk-grid-margin');
       let self = this;
-      setTimeout(function(){  
+      setTimeout(function(){
         let childs = self.el.nativeElement.querySelectorAll('.uk-card');
         if(childs.length > 0){
           childs.forEach( (a:any, b:any) => {
@@ -35,7 +35,7 @@ export class SasamasonryDirective implements OnChanges {
             console.log(a);
           } );
         }
-      }, 800);
+      }, 1000);
     }
   }
 

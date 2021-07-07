@@ -1,0 +1,59 @@
+<div style="margin-bottom: -35px;" class="uk-card  uk-padding-small">
+    <div class="" uk-grid uk-height-match="target: > div > div">
+        <div class="uk-width-expand@l">
+            <div class="uk-inline uk-width-1-1">
+
+                <a (click)="changeSize(size)" class="uk-margin-small-right uk-icon-button" uk-tooltip="SIZE"><span uk-icon="icon: quote-right "></span></a>
+                <a (click)="changeBold()" class="uk-margin-small-right uk-icon-button" uk-tooltip="BOLD"><span uk-icon="icon: bold "></span></a>
+                <a (click)="changeAligment()" class="uk-margin-small-right uk-icon-button" uk-tooltip="ALIGN"><span uk-icon="icon: gitter "></span></a>
+
+
+            </div>
+        </div>
+        <div class="uk-width-auto@l">
+            <app-contenthead *ngIf="ordering" (syncData)="sincronizar($event)" [arrayDatos]="contenido" [current]="attr" [position]="position"></app-contenthead>
+
+        </div>
+    </div>
+</div>
+<label (click)="clickText()" [ngClass]="{'uk-text-left': (align == 0),'uk-text-right': (align == 1),'uk-text-center': (align == 2),'uk-text-justify': (align == 3)}">
+
+    <div #divtex uk-tooltip="textos">
+    <p *ngIf="size == 0 || size == 9" [ngClass]="{'uk-text-bold':bold,'uk-text-small': (size == 9)}" class="uk-placeholder uk-margin-remove">{{text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</p>
+
+        <h6 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 8" class="uk-placeholder uk-margin-remove">{{text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h6>
+        <h5 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 7" class="uk-placeholder uk-margin-remove">{{text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h5>
+
+        <h4 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 6" class="uk-placeholder uk-margin-remove">{{text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h4>
+
+        <h3 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 5" class="uk-placeholder uk-margin-remove">{{text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h3>
+
+        <h2 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 4" class="uk-placeholder uk-margin-remove">{{text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus.'}}</h2>
+
+        <h1 *ngIf="size == 3 || size == 2 || size == 1" [ngClass]="{'uk-text-bold':bold,'uk-heading-small': (size == 2),'uk-heading-large': (size == 1)}" class="uk-placeholder uk-margin-remove">{{text || 'Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus.'}}</h1>
+    </div>
+
+    <!--WRITABLE-->
+
+    <p *ngIf="size == 0 || size == 9" [ngClass]="{'uk-text-bold':bold,'uk-text-small': (size == 9)}" class="uk-placeholder uk-margin-remove">
+      <textarea appCalheight="p"  #textarepa (keyup)="sendText()"  (focusout)="onFocusOutEvent($event)" (focus)="onFocusInEvent($event)" [(ngModel)]="text"  placeholder="Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus" name="text" class="uk-hidden textarea-auto-heigth uk-width-1-1 uk-input" name="" id="" rows="50"></textarea>
+    </p>
+
+    <h6 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 8" class="uk-placeholder uk-margin-remove">
+      <textarea appCalheight="p" #textarepa (keyup)="sendText()"  (focusout)="onFocusOutEvent($event)" (focus)="onFocusInEvent($event)" [(ngModel)]="text"  placeholder="Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus" name="text" class="uk-hidden textarea-auto-heigth uk-width-1-1 uk-input" name="" id="" rows="50"></textarea></h6>
+
+    <h5 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 7" class="uk-placeholder uk-margin-remove">
+      <textarea appCalheight="p"  #textarepa (keyup)="sendText()"  (focusout)="onFocusOutEvent($event)" (focus)="onFocusInEvent($event)" [(ngModel)]="text"  placeholder="Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus" name="text" class="uk-hidden textarea-auto-heigth uk-width-1-1 uk-input" name="" id="" rows="50"></textarea></h5>
+
+    <h4 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 6" class="uk-placeholder uk-margin-remove">
+      <textarea appCalheight="p"  #textarepa (keyup)="sendText()"  (focusout)="onFocusOutEvent($event)" (focus)="onFocusInEvent($event)" [(ngModel)]="text"  placeholder="Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus" name="text" class="uk-hidden textarea-auto-heigth uk-width-1-1 uk-input" name="" id="" rows="50"></textarea></h4>
+
+    <h3 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 5" class="uk-placeholder uk-margin-remove">
+      <textarea appCalheight="p" #textarepa (keyup)="sendText()"  (focusout)="onFocusOutEvent($event)" (focus)="onFocusInEvent($event)" [(ngModel)]="text"  placeholder="Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus" name="text" class="uk-hidden textarea-auto-heigth uk-width-1-1 uk-input" name="" id="" rows="50"></textarea></h3>
+
+    <h2 [ngClass]="{'uk-text-bold': bold}" *ngIf="size == 4" class="uk-placeholder uk-margin-remove">
+      <textarea appCalheight="p"  #textarepa (keyup)="sendText()"  (focusout)="onFocusOutEvent($event)" (focus)="onFocusInEvent($event)" [(ngModel)]="text"  placeholder="Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus" name="text" class="uk-hidden textarea-auto-heigth uk-width-1-1 uk-input" name="" id="" rows="50"></textarea></h2>
+
+    <h1 *ngIf="size == 3 || size == 2 || size == 1" [ngClass]="{'uk-text-bold':bold,'uk-heading-small': (size == 2),'uk-heading-large': (size == 1)}" class="uk-placeholder uk-margin-remove">
+      <textarea appCalheight="p"  #textarepa (keyup)="sendText()"  (focusout)="onFocusOutEvent($event)" (focus)="onFocusInEvent($event)" [(ngModel)]="text"  placeholder="Lorem ipsum dolor sit amet consectetur adipiscing elit nam risus, et luctus morbi porta habitant lacus nascetur ligula vehicula, semper convallis eleifend hac dictum bibendum at ridiculus" name="text" class="uk-hidden textarea-auto-heigth uk-width-1-1 uk-textarea" name="" id="" rows="50"></textarea></h1>
+ </label>

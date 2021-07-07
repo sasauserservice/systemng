@@ -19,10 +19,11 @@
     "@angular/platform-browser": "~12.0.5",
     "@angular/platform-browser-dynamic": "~12.0.5",
     "@angular/router": "~12.0.5",
+    "angular-checkboxes": "^1.0.3",
     "rxjs": "~6.6.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.0.18",
-    "tslib": "^2.1.0",
+    "tslib": "^2.3.0",
     "uikit": "^3.6.22",
     "zone.js": "~0.11.4"
   },

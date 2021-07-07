@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     SasaAuthComponent
   ],
+  exports: [
+    SasaAuthComponent
+  ],
   imports: [
     CommonModule,
     FormsModule
