@@ -1,0 +1,47 @@
+<!-- CATEGORY CONTROL TABLE -->
+<div class=" uk-card uk-card-default uk-margin-top">
+    <div class="uk-card-header uk-card-secondary uk-card uk-padding-small">
+        <div uk-grid>
+            <div class="uk-width-expand uk-margin-auto-vertical">
+                <div class="uk-flex uk-flex-middle">
+                    <h5 class="uk-margin-remove">CATEGORY CONTROL</h5>
+                    <a class="uk-accordion-creator-parameter uk-margin-small-left" href="javascript:void(0)" (click)="add()" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
+                </div>
+            </div>
+            <div class="uk-width-auto uk-margin-auto-vertical">
+                <div class="uk-form">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: search"></span>
+                        <input [(ngModel)]="searchTerm" class="uk-input" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="uk-card-body uk-padding-small">
+        <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink">NAME</th>
+                    <th class="uk-width-expand">PARAMETERS</th>
+                    <th class="uk-table-shrink">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categoryList  | filter: searchTerm">
+                    <td class="uk-text-nowrap uk-text-small">{{category.title}}</td>
+                    <td class="uk-text-small">
+                        <p class="uk-text-smaller uk-margin-remove">{{category.description}}</p>
+                        <p class="uk-text-small uk-margin-remove"><span *ngFor="let parameter of category.parameters">{{parameter.title}}, </span></p>
+                    </td>
+                    <td class="uk-text-nowrap uk-text-small">
+                        <a (click)="openEdit(category)" class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
+                        <a (click)="deleteCategory(category.id)" class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- CATEGORY CONTROL TABLE END -->

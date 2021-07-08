@@ -1,6 +1,7 @@
 <div class="">
 
     <!--VISTA DE CONTENT TEMPLATE INICIO-->
+    {{article | json}}
     <div *ngIf="article && state == 0">
         <app-banner-frontend-view [image]="article.banner.image" [bannerType]="article.banner.type" [attrs]="article.banner"></app-banner-frontend-view>
         <div id="sasa-body-content">

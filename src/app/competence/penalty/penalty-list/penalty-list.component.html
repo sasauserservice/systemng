@@ -1,0 +1,53 @@
+
+<!-- PENALTY CONTROL TABLE -->
+<div class="uk-card uk-card-default uk-margin-top">
+    <div class="uk-card-header uk-card-secondary uk-card uk-padding-small">
+        <div uk-grid>
+            <div class="uk-width-expand uk-margin-auto-vertical">
+                <div class="uk-flex uk-flex-middle">
+                    <h5 class="uk-margin-remove">PENALTY CONTROL</h5>
+                    <a (click)="openCreateNew()" class="uk-accordion-creator-parameter uk-margin-small-left"  uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
+                </div>
+            </div>
+            <div class="uk-width-auto uk-margin-auto-vertical">
+                <div class="uk-form">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: search"></span>
+                        <input class="uk-input" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="uk-card-body uk-padding-small">
+        <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink">NAME</th>
+                    <th class="uk-width-expand">DESCRIPTION</th>
+                    <th class="uk-width-expand">VALUE</th>
+                    <th class="uk-table-shrink">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let penalty of penaltiesList">
+                    <td class="uk-text-nowrap uk-text-small">{{penalty.title}}</td>
+                    <td class="uk-text-small">
+                        <p class="uk-text-small uk-margin-remove">{{penalty.data.desc}}</p>
+                        
+                    </td>
+                    <td class="uk-text-small">
+                        
+                        <p class="uk-text-small uk-margin-remove">{{penalty.points}}</p>
+                    </td>
+                    <td class="uk-text-nowrap uk-text-small">
+                        <a (click)="openEdit(penalty)" class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
+                        <a href="javascript:void(0)" (click)="deletePenalty(penalty.id)" class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- PENALTY CONTROL TABLE END -->

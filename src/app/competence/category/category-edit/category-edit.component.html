@@ -1,0 +1,41 @@
+<!-- CATEGORY CREATION FORM -->
+<div class="uk-margin-small-bottom">
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
+            <div uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <div class="uk-flex uk-flex-middle">
+                        <a (click)="eventFinishEdit.emit()" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                        <p class="uk-margin-remove uk-text-small">EDIT CATEGORY</p>
+                    </div>
+                </div>
+                <div class="uk-width-auto uk-margin-auto-vertical">
+                    <a href="javascript:void(0)" (click)="editCategory()" class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="uk-card-body uk-padding-small">
+            <div>
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                    <input [(ngModel)]="editObjet.title" class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
+                </div>
+            </div>
+            <div>
+                <textarea [(ngModel)]="editObjet.description" class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+            </div>
+
+            <div>
+                <div class="uk-grid-small panel-check uk-child-width-auto@l" uk-grid>
+                    <div *ngFor="let parameter of parameters">
+                        <label class="check-element">
+                            <input [checked]="editObjet.paramsid.includes(parameter.id)" (change)="onCheckParameter($event)" [value]="parameter.id" type="checkbox" [value]="parameter.id">
+                            <p class="uk-margin-remove">{{parameter.title}}</p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CATEGORY CREATION FORM END -->

@@ -1,0 +1,42 @@
+<!-- PENALTY CREATION FORM -->
+<div class="uk-margin-small-bottom">
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
+            <div uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <div class="uk-flex uk-flex-middle">
+                        <a (click)="eventFinishEdit.emit()" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                        <p class="uk-margin-remove uk-text-small">EDIT PENALTY</p>
+                    </div>
+                </div>
+                <div class="uk-width-auto uk-margin-auto-vertical">
+
+                    <a (click)="update()"  class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="uk-card-body uk-padding-small">
+            <div>
+                <div  class="uk-grid-small" uk-grid>
+                    <div class="uk-width-expand">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                            <input [(ngModel)]="editObjet.title" type="text" class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%" uk-tooltip="title:NAME; pos: top">
+                        </div>
+                    </div>
+                    <div class="uk-width-1-4">
+                        <div class="uk-form">
+                            <input [(ngModel)]="editObjet.points" class="uk-input uk-input-square uk-width-1-1" placeholder="VAL*" type="number" style="width: 100%" uk-tooltip="title:VALUE; pos: top">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <textarea [(ngModel)]="editObjet.data.desc" class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PENALTY CREATION FORM END {{editObjet | json}}-->

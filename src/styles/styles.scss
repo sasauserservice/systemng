@@ -1,5 +1,5 @@
  /* UIKit */
-
+ 
  @import "variables-theme.scss";
  @import "mixins-theme.scss";
  @media screen and (min-width: 1920px) {
@@ -10,7 +10,7 @@
          transition: max-width 0.5s !important;
      }
  }
-
+ 
  @media screen and (max-width: 1900px) {
      #sasa-body-content,
      .sasa-body-content {
@@ -19,15 +19,15 @@
          transition: max-width 0.5s !important;
      }
  }
-
+ 
  .uk-border-15 img {
      border-radius: 15px;
  }
-
+ 
  .uk-border-circle img {
      border-radius: 500px;
  }
-
+ 
  .imageTo1-1 {
      width: 100%;
      padding-bottom: 100%;
@@ -35,7 +35,7 @@
      overflow: hidden;
      position: relative
  }
-
+ 
  .imageTo1-1 img {
      position: absolute;
      width: auto;
@@ -46,7 +46,7 @@
      height: 100%;
      left: 0
  }
-
+ 
  .video-responsive {
      position: relative;
      padding-bottom: 56.25%;
@@ -54,7 +54,7 @@
      height: 0;
      overflow: hidden;
  }
-
+ 
  .video-responsive iframe,
  .video-responsive object,
  .video-responsive embed {
@@ -64,7 +64,7 @@
      width: 100%;
      height: 100%;
  }
-
+ 
  .field-contentsol {
      width: 100%;
      padding-bottom: 100%;
@@ -72,7 +72,7 @@
      overflow: hidden;
      position: relative;
  }
-
+ 
  .field-contentsol img {
      position: absolute;
      width: auto;
@@ -81,21 +81,21 @@
      object-fit: cover;
      left: 0;
  }
-
+ 
  .uk-width-1-15 {
      width: calc(100% * 1 / 15);
  }
-
+ 
  .uk-child-width-1-15>* {
      width: calc(100% * 1 / 15);
  }
-
+ 
  .imageTo16-9 {
      position: relative;
      padding-bottom: 56.2%;
      display: block;
  }
-
+ 
  .imageTo16-9 img {
      position: absolute;
      object-fit: cover;
@@ -105,7 +105,7 @@
      top: 0;
      object-position: center;
  }
-
+ 
  .float-preview {
      position: fixed;
      /*width:120px !important;*/
@@ -114,7 +114,7 @@
      right: 0px;
      color: gray;
  }
-
+ 
  .float-wapp {
      position: fixed;
      /*width:120px !important;*/
@@ -123,7 +123,7 @@
      right: 10px;
      color: #FFF;
  }
-
+ 
  .float-cart {
      position: fixed;
      bottom: 60px;
@@ -133,7 +133,7 @@
      font-size: 20px!important;
      z-index: 100;
  }
-
+ 
  .float-cart-mobile {
      width: 100% !important;
      height: 7% !important;
@@ -144,7 +144,7 @@
      left: 0 !important;
      padding: .30rem;
  }
-
+ 
  .float-cart .crbc-currency.crbc-btn.crbc-btn-secondary.btn.btn-secondary,
  .float-cart .crbc-btn.crbc-btn-secondary.btn.btn-secondary,
  .float-cart-mobile .crbc-currency.crbc-btn.crbc-btn-secondary.btn.btn-secondary,
@@ -152,30 +152,30 @@
      font-size: 8px !important;
      padding: 0.1rem 0.3rem !important;
  }
-
+ 
  .float-cart-mobile .crbc.crbc-mod_breezingcommerce_currencies {
      width: auto !important;
      margin-bottom: 0 !important;
  }
-
+ 
  .float-cart-mobile #crbc-mod_breezingcommerce_minicart_210 a {
      width: 90% !important;
  }
-
+ 
  .my-float {
      margin-top: 16px !important;
  }
-
+ 
  .uk-card-medium {
      background: #ffffff90;
      color: #000000;
      border: 1px solid #ffffff;
  }
-
+ 
  .wk-subnav-pill>* {
      text-transform: uppercase !important;
  }
-
+ 
  .wk-subnav-pill>.wk-active>* {
      background: #000000 !important;
      color: #fff;
@@ -184,7 +184,7 @@
      text-transform: uppercase !important;
      padding: 3px 15px 3px 15px;
  }
-
+ 
  .wk-subnav-pill>*>:focus,
  .wk-subnav-pill>*>:hover {
      color: #444;
@@ -193,21 +193,21 @@
      box-shadow: 0 0 0 1px rgba(0, 0, 0, .15);
      border-radius: 500px;
  }
-
+ 
  .wk-accordion-title {
      background-color: #2d2d2d !important;
      border-radius: 500px !important;
  }
-
+ 
  .wk-overlay-panel {
      color: #000 !important;
  }
-
+ 
  .uk-text-smaller {
      font-size: 7px;
      line-height: normal;
  }
-
+ 
  .float-barcontrol {
      position: fixed;
      bottom: 45vh;
@@ -215,76 +215,114 @@
      text-align: center;
      z-index: 999999999;
  }
-
+ 
  .square {
      position: relative;
      width: 100%;
  }
-
+ 
  .square:after {
      content: "";
      display: block;
      padding-bottom: 100%;
  }
-
+ 
  .content {
      position: absolute;
      width: 100%;
      height: 100%;
  }
-
+ 
  .toolbar-superface {
      margin-bottom: -35px;
      z-index: 9;
  }
-
-
-.uk-card-hover {
+ 
+ .uk-card-hover {
      transition: background-color 2s !important;
-}
-
-.uk-card-hover-dark {
+ }
+ 
+ .uk-card-hover-dark {
      transition: background-color 2s !important;
-}
-
-.uk-card-hover-dark:hover {
-     background-color: rgba(0,0,0,.75) !important;
-}
-
-.uk-card {
+ }
+ 
+ .uk-card-hover-dark:hover {
+     background-color: rgba(0, 0, 0, .75) !important;
+ }
+ 
+ .uk-card {
      transition: all 0.5s !important;
-}
-
-.uk-grid {
+ }
+ 
+ .uk-grid {
      transition: all 0.5s !important;
-}
-
-.uk-placeholder {
+ }
+ 
+ .uk-placeholder {
      transition: all 0.5s !important;
-}
-
-.sasa-body-content {
+ }
+ 
+ .sasa-body-content {
      transition: all 0.5s !important;
-}
-
-.uk-border-15,
-.uk-border-circle,
-.field-contentsol,
-.imageTo16-9 {
+ }
+ 
+ .uk-border-15,
+ .uk-border-circle,
+ .field-contentsol,
+ .imageTo16-9 {
      transition: all 0.5s !important;
-}
-
-.uk-border-15 img,
-.uk-border-circle img,
-.field-contentsol img,
-.imageTo16-9 img {
+ }
+ 
+ .uk-border-15 img,
+ .uk-border-circle img,
+ .field-contentsol img,
+ .imageTo16-9 img {
      transition: all 0.5s !important;
-}
-
-.textarea-auto-heigth {
-  min-height: 100px;
-  overflow-y: auto;
-  word-wrap:break-word;
-  text-size-adjust: none;
-  line-height: 1.7;
-}
+ }
+ 
+ .textarea-auto-heigth {
+     min-height: 100px;
+     overflow-y: auto;
+     word-wrap: break-word;
+     text-size-adjust: none;
+     line-height: 1.7;
+ }
+ 
+ .uikit-modern .uk-card {
+     border-radius: 50px !important;
+ }
+ 
+ .uikit-modern-inner .uk-card {
+     border-radius: 40px !important;
+ }
+ 
+ .uk-input {
+     border-radius: 50px !important;
+ }
+ 
+ .uk-input-square {
+     border-radius: 5px !important;
+ }
+ 
+ .check-element {
+     cursor: pointer !important;
+ }
+ 
+ .check-element input[type="checkbox"]+p {
+     display: block;
+     border: solid #ccc 1px;
+     padding: 8px 10px;
+     border-radius: 30px;
+     font-size: 13px;
+     transition: all ease .5s;
+ }
+ 
+ .panel-check .check-element input[type="checkbox"] {
+     display: none;
+ }
+ 
+ .check-element input[type="checkbox"]:checked+p {
+     background: #1e87f0 !important;
+     color: white;
+     border-color: white;
+ }

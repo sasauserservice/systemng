@@ -5,8 +5,19 @@ import { PenaltiesComponent } from './penalties/penalties.component';
 import { ParamsComponent } from './params/params.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgSelect2Module } from 'ng-select2';
+
 import { CreatorComponent } from './category/creator/creator.component';
 import { CategoryCreatorComponent } from './category/category-creator/category-creator.component';
+import { ParameterCreatorComponent } from './parameter/parameter-creator/parameter-creator.component';
+import { ParameterListComponent } from './parameter/parameter-list/parameter-list.component';
+import { ParameterEditComponent } from './parameter/parameter-edit/parameter-edit.component';
+import { PenaltyCreatorComponent } from './penalty/penalty-creator/penalty-creator.component';
+import { PenaltyListComponent } from './penalty/penalty-list/penalty-list.component';
+import { PenaltyEditComponent } from './penalty/penalty-edit/penalty-edit.component';
+import { CategoryEditComponent } from './category/category-edit/category-edit.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
 
 
 @NgModule({
@@ -15,17 +26,37 @@ import { CategoryCreatorComponent } from './category/category-creator/category-c
     PenaltiesComponent,
     ParamsComponent,
     CreatorComponent,
-    CategoryCreatorComponent
+    CategoryCreatorComponent,
+    ParameterCreatorComponent,
+    ParameterListComponent,
+    ParameterEditComponent,
+    PenaltyCreatorComponent,
+    PenaltyListComponent,
+    PenaltyEditComponent,
+    CategoryEditComponent,
+    CategoryListComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2SearchPipeModule,
+    NgSelect2Module
   ],
   exports: [
     ManagerComponent,
     PenaltiesComponent,
-    ParamsComponent
+    ParamsComponent,
+    CreatorComponent,
+    CategoryCreatorComponent,
+    ParameterCreatorComponent,
+    ParameterListComponent,
+    ParameterEditComponent,
+    PenaltyCreatorComponent,
+    PenaltyListComponent,
+    PenaltyEditComponent,
+    CategoryListComponent,
+    CategoryEditComponent,
   ]
 })
 export class CompetenceModule { }

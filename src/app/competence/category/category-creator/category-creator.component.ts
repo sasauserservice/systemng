@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { ParamsService } from '../../params.service';
 import { CategoryService } from '../category.service';
 import Swal from 'sweetalert2';
@@ -12,6 +12,8 @@ declare var UIkit: any;
 export class CategoryCreatorComponent implements OnInit {
 
   @ViewChild('modaledition') modaledition : any;
+
+  @Output() eventFinishCreate = new EventEmitter<any>();
 
   constructor(private service: ParamsService , private servicecat: CategoryService) { }
 
@@ -68,8 +70,9 @@ export class CategoryCreatorComponent implements OnInit {
   }
 
   categoryCreator(){
-    
-    this.servicecat
+
+    if(this.newCategory.title != '' && this.newCategory.description != ''){
+      this.servicecat
     .sendCategory(this.newCategory)
     .then( (response: any) => {
       if(response){
@@ -80,7 +83,7 @@ export class CategoryCreatorComponent implements OnInit {
           showCancelButton: false,
           showConfirmButton: false
         });
-        //this.getCategories();
+        this.eventFinishCreate.emit();
       }
     }).catch((error: any) => {
       if(error){
@@ -93,6 +96,18 @@ export class CategoryCreatorComponent implements OnInit {
         });
       }
     } );
+    }else{
+      Swal.fire({ 
+        title: 'Info!',
+        text: 'Title and description required',
+        icon: 'info',
+        showCancelButton: false,
+        showConfirmButton: false
+      });
+
+    }
+    
+    
 
   }
 

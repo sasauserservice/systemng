@@ -11,6 +11,8 @@ import { SasaAuthModule } from './sasa-auth/sasa-auth.module';
 import { ArticlesComponent } from './articles/articles.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompetenceModule } from './competence/competence.module';
+import { MicrodashboardComponent } from './microdashboard/microdashboard.component';
+import { FiltersearchPipe } from './pipes/filtersearch.pipe';
 
 
 
@@ -20,7 +22,9 @@ import { CompetenceModule } from './competence/competence.module';
     AppComponent,
     HomepageComponent,
     ArticlesComponent,
-    DashboardComponent
+    DashboardComponent,
+    MicrodashboardComponent,
+    FiltersearchPipe
   ],
   imports: [
     BrowserModule,

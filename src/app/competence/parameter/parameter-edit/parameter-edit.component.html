@@ -1,0 +1,56 @@
+<!-- PARAMETER CREATION FORM -->
+<div class="uk-margin-small-bottom">
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-card-primary uk-card uk-padding-small">
+            <div uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <div class="uk-flex uk-flex-middle">
+                        <a (click)="eventFinishEdit.emit()" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                        <p class="uk-margin-remove uk-text-small">EDITING PARAMETER</p>
+                    </div>
+                </div>
+                <div class="uk-width-auto uk-margin-auto-vertical">
+                    <a href="javascript:void(0)" (click)="update()" class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="uk-card-body">
+            <!---- ---->
+            <div>
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                    <input [(ngModel)]="editObjet.title" class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
+                </div>
+            </div>
+            <div>
+                <textarea [(ngModel)]="editObjet.description" class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+            </div>
+
+            <div>
+                <div *ngFor="let crit of editObjet.criteria; let i = index" class="uk-grid-small" uk-grid>
+                    <div class="uk-width-expand uk-margin-auto-vertical">
+                        <div class="uk-form">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                                <input [(ngModel)]="crit.title" class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="CRITERIA*" type="text" style="width: 100%" uk-tooltip="title:CRITERIA; pos: top">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-4 uk-margin-auto-vertical">
+                        <div class="uk-form">
+                            <input [(ngModel)]="crit.points" class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="VAL*" type="number" style="width: 100%" uk-tooltip="title:VALUE; pos: top">
+                        </div>
+                    </div>
+                    <div class="uk-width-auto uk-margin-auto-vertical">
+                        <div class="uk-flex uk-flex-middle">
+                            <a href="javascript:void(0)" (click)="spliceParaEdit(i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                            <a href="javascript:void(0)" (click)="pushParaEdit()" class="uk-icon-button uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---- ---->
+        </div>
+    </div>
+</div>
+<!-- PARAMETER CREATION FORM END -->

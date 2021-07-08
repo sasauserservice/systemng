@@ -1,0 +1,111 @@
+<div class="uikit-modern">
+    <div class="uk-padding-large" uk-height-viewport>
+        <div class="uk-card uk-card-default" uk-height-viewport="offset-top: true; offset-bottom: 7.5">
+            <div class="uk-card uk-grid-collapse uk-background-primary" uk-grid uk-height-viewport="offset-top: true; offset-bottom: 7.5">
+                <div class="uk-width-auto uk-padding uk-text-center uk-light ">
+                    <div>
+                        <img src="/assets/sasa_systems_icon_white.png" alt="" style="max-width: 30px;">
+                    </div>
+
+                    <div class="uk-margin-top">
+                        <div class="uk-tab-left" uk-tab="swiping: true; animation: uk-animation-slide-left-small, uk-animation-slide-right-small; connect: *.contentcard">
+                            <div class="uk-active">
+                                <a href="#"><span uk-icon="icon: home" uk-tooltip="title: HOME; pos: right"></span></a>
+                            </div>
+                            <div class="uk-margin-top">
+                                <a href="#"><span uk-icon="icon: settings" uk-tooltip="title: SETTINGS; pos: right"></span></a>
+                            </div>
+                            <div class="uk-margin-top">
+                                <a href="#"><span uk-icon="icon: database" uk-tooltip="title: DATABASE; pos: right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-expand">
+                    <div class="uk-card uk-card-default uk-height-1-1">
+                        <div class="uk-card uk-grid-small uk-padding-small" uk-grid>
+
+                            <div class="uk-width-expand">
+                                <div class="uk-switcher contentcard uikit-modern-inner">
+
+                                    <div class="" style="overflow: auto;">
+                                        <!-- PARAMETER CONTROL TABLE -->
+                                        <!--COMPONENT JESUS-->
+                                        <div>
+                                            <!-- <pre>
+                                                statusReloadParams: {{statusReloadParams | json}}
+                                                statusReloadPenalties: {{statusReloadPenalties | json}}
+                                                statusReloadCategories: {{statusReloadCategories | json}}
+                                                statusRightBar : {{statusRightBar | json}}
+                                                currentEdition : {{currentEdition | json}}
+                                                
+                                            </pre> -->
+                                             
+                                            <app-parameter-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadParams = $event" [changes]="statusReloadParams"></app-parameter-list>
+                                        </div>
+                                        <!-- PARAMETER CONTROL TABLE END -->
+                                        <!--COMPONENT JESUS-->
+
+                                        <!-- PENALTY CONTROL TABLE -->
+                                        <!--COMPONENT JOSE-->
+                                        <div>
+                                            <app-penalty-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadPenalties = $event" [changes]="statusReloadPenalties"></app-penalty-list>
+                                        </div>
+                                        <!-- PENALTY CONTROL TABLE END -->
+                                        <!--COMPONENT JOSE-->
+
+                                        <!-- CATEGORY CONTROL TABLE -->
+                                        <div class="">
+                                            <app-category-list (currentEdit)="currentEdition = $event" (stateChange)="statusReloadCategories = $event" (stateChangeBar)="statuschange($event, 'nada')" [changes]="statusReloadCategories"></app-category-list>
+                                        </div>
+                                        <!-- CATEGORY CONTROL TABLE END -->
+                                    </div>
+
+
+
+                                    <div>
+                                        <h1>IS IT ME</h1>
+                                    </div>
+
+
+                                    <div>
+                                        <h1>YOUR LOOKING FOR</h1>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="uk-width-1-3">
+
+                                <div [ngSwitch]="statusRightBar">
+                                    <div *ngSwitchCase="0">
+                                        <p>NADA</p>
+                                    </div>
+                                    <div *ngSwitchCase="1">
+                                        <app-parameter-creator (eventFinishCreate)="statuschange(0,'reloadParameters')"></app-parameter-creator>
+                                    </div>
+                                    <div *ngSwitchCase="2">
+                                        <app-parameter-edit (eventFinishEdit)="statuschange(0,'reloadParameters')" [editObjet]="currentEdition"></app-parameter-edit>
+                                    </div>
+                                    <div *ngSwitchCase="3">
+                                        <app-penalty-creator (eventFinishCreate)="statuschange(0,'reloadPenalties')"></app-penalty-creator>
+                                    </div>
+                                    <div *ngSwitchCase="4">
+                                        <app-penalty-edit (eventFinishEdit)="statuschange(0,'reloadPenalties')" [editObjet]="currentEdition"></app-penalty-edit>
+                                    </div>
+                                    <div *ngSwitchCase="5">
+                                        <app-category-creator (eventFinishCreate)="statuschange(0,'reloadCategory')"></app-category-creator>
+                                    </div>
+                                    <div *ngSwitchCase="6">
+                                        <app-category-edit (eventFinishEdit)="statuschange(0,'reloadCategory')" [editObjet]="currentEdition"></app-category-edit>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

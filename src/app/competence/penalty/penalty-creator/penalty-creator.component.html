@@ -1,0 +1,63 @@
+<!-- PENALTY CREATION FORM -->
+<div class="uk-margin-small-bottom">
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-padding-small uk-card-primary uk-card uk-padding-small">
+            <div uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <div class="uk-flex uk-flex-middle">
+                        <a (click)="cancel()" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                        <p class=" uk-margin-remove uk-text-small">NEW PENALTY</p>
+                    </div>
+                </div>
+                <div class="uk-width-auto uk-margin-auto-vertical">
+                    <a (click)="addPenalty()" class="uk-hidden uk-icon-button" uk-tooltip="title: ADD PENALTY; pos: top"><span uk-icon="icon: plus"></span></a>
+                    <a (click)="sendPenalties()" class="uk-icon-button uk-margin-small-left" uk-tooltip="title: SAVE; pos: top"><span uk-icon="icon: cloud-upload"></span></a>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let penalty of penalties; let i=index" class="uk-card-body uk-padding-small">
+            <!---- ---->
+            <div>
+                <div  class="uk-grid-small" uk-grid>
+                    <div class="uk-width-expand">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                            <input [(ngModel)]="penalty.title" type="text" class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%" uk-tooltip="title: NAME; pos: top">
+                        </div>
+                    </div>
+                    <div class="uk-width-1-4">
+                        <div class="uk-form">
+                            <input [(ngModel)]="penalty.points" class="uk-input uk-input-square uk-width-1-1" placeholder="VAL*" type="number" style="width: 100%" uk-tooltip="title: VALUE; pos: top">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <textarea [(ngModel)]="penalty.json.desc" class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+            </div>
+            <!---- ---->
+        </div>
+    </div>
+</div>
+
+<!-- PENALTY CREATION FORM END -->
+
+<!--
+
+<button (click)="addPenalty()" class="uk-button uk-button-primary uk-width-1-1">
+    ADD PENALTY
+</button> 
+<div uk-grid class="uk-child-width-1-2">
+    <div *ngFor="let penalty of penalties; let i=index">
+        <div *ngIf="penalty" class="uk-margin">
+            <input placeholder="title"   [(ngModel)]="penalty.title" type="text"  class="uk-input">
+            <textarea placeholder="desc" [(ngModel)]="penalty.json.desc" name="" id="" cols="30" rows="10" class="uk-input"></textarea>
+            <input [(ngModel)]="penalty.points" type="number" class="uk-input">
+        </div>
+    </div>
+</div>
+<button *ngIf="penalties.length > 0" (click)="sendPenalties()" class="uk-button uk-button-primary uk-width-1-1">
+    SAVE
+</button>
+-->

@@ -1,13 +1,60 @@
-<h1>
-    Create a category
-</h1>
+<!-- CATEGORY CREATION FORM -->
+<div class="uk-margin-small-bottom">
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-padding-small uk-card-primary uk-card uk-padding-small">
+            <div uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <div class="uk-flex uk-flex-middle">
+                        <a (click)="eventFinishCreate.emit()" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                        <p class="uk-margin-remove uk-text-small">NEW CATEGORY</p>
+                    </div>
+                </div>
+                <div class="uk-width-auto uk-margin-auto-vertical">
+                    <a href="javascript:void(0)" (click)="categoryCreator()" class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="uk-card-body uk-padding-small">
+            <!---- ---->
+            <div>
+                <div class="uk-inline uk-width-1-1">
+                    <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                    <input [(ngModel)]="newCategory.title" class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
+                </div>
+            </div>
+            <div>
+                <textarea [(ngModel)]="newCategory.description" class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+            </div>
 
-<div>
-    <input class="uk-input" placeholder="TITLE" [(ngModel)]="newCategory.title" type="text">
-    <textarea  class="uk-input" placeholder="DESC" [(ngModel)]="newCategory.description" type="text"></textarea>
-    <H3>PARAMETERS </H3>
-    <div *ngFor="let parameter of parameters">
-        <label>
+            <div>
+                <div class="uk-grid-small panel-check uk-child-width-auto@l" uk-grid>
+                    <div *ngFor="let parameter of parameters">
+                        <label class="check-element">
+                            <input (change)="onCheckParameter($event)" [value]="parameter.id" type="checkbox">
+                            <p class="uk-margin-remove">{{parameter.title}}</p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!---- ---->
+        </div>
+    </div>
+</div>
+<!-- CATEGORY CREATION FORM END -->
+
+<div class="uk-hidden">
+
+
+    <h1>
+        Create a category
+    </h1>
+
+    <div>
+        <input class="uk-input" placeholder="TITLE" [(ngModel)]="newCategory.title" type="text">
+        <textarea class="uk-input" placeholder="DESC" [(ngModel)]="newCategory.description" type="text"></textarea>
+        <H3>PARAMETERS </H3>
+        <div *ngFor="let parameter of parameters">
+            <label>
             <input (change)="onCheckParameter($event)" [value]="parameter.id" type="checkbox">
         {{parameter.title}}
         <div *ngFor="let criteria of parameter.criteria">
@@ -15,11 +62,11 @@
         </div>
          
         </label>
-        
+
+        </div>
     </div>
-</div>
-<hr>
-<button (click)="categoryCreator()" class="uk-button uk-button-primary uk-width-1-1">SAVE</button>
+    <hr>
+    <button (click)="categoryCreator()" class="uk-button uk-button-primary uk-width-1-1">SAVE</button>
 
     <div class="uk-child-width-1-2" uk-grid>
         <div class="uk-card uk-card-body uk-card-primary" *ngFor="let category of categoryList">
@@ -42,22 +89,22 @@
                     </div>
                     <hr>
                 </div>
-            </div> 
-            
-            <button (click)="openEdit(category)"  type="button" uk-tooltip="EDIT"  class="uk-button-danger uk-icon-button"><i uk-icon="pencil"></i></button>
-            <button (click)="deleteCategory(category.id)"  type="button" uk-tooltip="DELETE"  class="uk-button-danger uk-icon-button"><i uk-icon="trash"></i></button>
+            </div>
+
+            <button (click)="openEdit(category)" type="button" uk-tooltip="EDIT" class="uk-button-danger uk-icon-button"><i uk-icon="pencil"></i></button>
+            <button (click)="deleteCategory(category.id)" type="button" uk-tooltip="DELETE" class="uk-button-danger uk-icon-button"><i uk-icon="trash"></i></button>
         </div>
     </div>
-        
-    
 
- 
+</div>
+
+
 <div #modaledition uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Edit
         </h2>
         <input class="uk-input" placeholder="TITLE" [(ngModel)]="currentEdition.title" type="text">
-        <textarea  class="uk-input" placeholder="DESC" [(ngModel)]="currentEdition.description" type="text"></textarea>
+        <textarea class="uk-input" placeholder="DESC" [(ngModel)]="currentEdition.description" type="text"></textarea>
         <H3>PARAMETERS </H3>
         <div *ngFor="let parameter of parameters">
             <label>
@@ -68,21 +115,20 @@
             </div>
              
             </label>
-             
-            
+
+
         </div>
 
-       
 
-           <pre>
+
+        <pre>
                {{selectedParameters | json}}
-           </pre> 
-        
-        
-             
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button (click)="editCategory()" class="uk-button uk-button-primary uk-modal-close" type="button">Submit</button>
-         
+           </pre>
+
+
+
+        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+        <button (click)="editCategory()" class="uk-button uk-button-primary uk-modal-close" type="button">Submit</button>
+
     </div>
 </div>
-  

@@ -22,7 +22,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   openArticle(alias:string){
-    this.router.navigate(['/'+alias]);
+    this.router.navigate(['/u/'+alias]);
   }
 
 }

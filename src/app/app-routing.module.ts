@@ -8,11 +8,12 @@ import { AuthorizatedGuard } from './guards/authorizated.guard';
 import { ManagerComponent } from './competence/manager/manager.component';
 import { ParamsComponent } from './competence/params/params.component';
 import { PenaltiesComponent } from './competence/penalties/penalties.component';
+import { MicrodashboardComponent } from './microdashboard/microdashboard.component';
 
 const routes: Routes = [
     {path: '', component: HomepageComponent},
     {path: 'dasboard', component: DashboardComponent, canActivate: [AuthorizatedGuard]},
-    {path: 'c/:alias', component: ComposerComponent, canActivate: [AuthorizatedGuard]},
+    {path: 'u/:alias', component: ComposerComponent, canActivate: [AuthorizatedGuard]},
     {
       path: 'match', 
       component: ManagerComponent,
@@ -21,7 +22,8 @@ const routes: Routes = [
         {path: 'penalties', component: PenaltiesComponent, canActivate: [AuthorizatedGuard]}
       ], 
       canActivate: [AuthorizatedGuard]
-    }
+    },
+    {path: 'development', component: MicrodashboardComponent, canActivate: [AuthorizatedGuard]},
 ];
 
 @NgModule({

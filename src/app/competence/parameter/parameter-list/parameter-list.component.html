@@ -1,0 +1,52 @@
+<!-- PARAMETER CONTROL TABLE -->
+<div class="uk-card uk-card-default">
+    <div class="uk-card-header uk-card-secondary uk-card uk-padding-small">
+        <div uk-grid>
+            <div class="uk-width-expand uk-margin-auto-vertical">
+                <div class="uk-flex uk-flex-middle">
+                    <h5 class="uk-margin-remove">PARAMETERS CONTROL</h5>
+                    <a href="javascript:void(0)" (click)="add()" class="uk-accordion-creator-parameter uk-margin-small-left" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
+                </div>
+            </div>
+            <div class="uk-width-auto uk-margin-auto-vertical">
+                <div class="uk-form">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: search"></span>
+                        <input class="uk-input" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="uk-card-body uk-padding-small">
+        <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink">NAME</th>
+                    <th class="uk-width-expand">CRITERIA</th>
+                    <th class="uk-table-shrink">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="Parameters.length > 0">
+                <tr [id]="'Parameter_'+Parameter.id" *ngFor="let Parameter of Parameters">
+                    <td class="uk-text-nowrap uk-text-small">{{Parameter.title}}</td>
+                    <td class="uk-text-small">
+                        <p class="uk-text-smaller uk-margin-remove">{{Parameter.description}}</p>
+                        <p class="uk-text-small uk-margin-remove">{{Parameter.strcri}}</p>
+                    </td>
+                    <td class="uk-text-nowrap uk-text-small">
+                        <a href="javascript:void(0)" (click)="edit(Parameter)" class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
+                        <a href="javascript:void(0)" (click)="del(Parameter.id)" class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="Parameters.length == 0">
+                <tr>
+                    <td colspan="3" class="uk-text-nowrap uk-text-small">PARAMETERS NOT FOUND</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- PARAMETER CONTROL TABLE END -->

@@ -14,6 +14,19 @@ export class ContentService {
   ) { }
 
 
+  getMatchToSelect2(){
+    return new Promise( (resolve, reject) => {
+      this.httpClient
+      .get<any>(BASEURI + 'matchpanel/events')
+      .subscribe( (response:any) => {
+        resolve(response);
+      }, (error:any) => {
+        reject(error);
+      } );
+    } );
+  }
+
+
   getArticles(){
     return new Promise( (resolve, reject) => {
       this.httpClient
@@ -24,6 +37,21 @@ export class ContentService {
         reject(error);
       } );
     } );
+  }
+
+  createMatchPost(title: string){
+    return new Promise( (resolve, reject) => {
+      let user = this.storage.loadSessionData();
+
+      var data   = JSON.stringify({title: title, createdBy: user.Data.id,ft:false});   
+
+      this.httpClient.post(BASEURI+'create-match', data).subscribe((done:any) => {
+        resolve(done);
+      }, (err:any) => {
+        reject(err);
+      });
+
+    });
   }
 
   createpost(title: string){

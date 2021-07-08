@@ -24,6 +24,9 @@ export class ComposerComponent implements OnInit {
   public state: number = 0;
 
   ngOnInit() {
+    if(!this.article.banner){
+      this.state = 1
+    }
     this.alias = this.route.snapshot.paramMap.get('alias');
     if(this.alias){
       this.Content
@@ -33,6 +36,7 @@ export class ComposerComponent implements OnInit {
         if(response){
           this.article = JSON.parse(response.Data.fulltext) || {};
           console.log(this.article);
+           
         }
       } )
       .catch( (error:any) => {
