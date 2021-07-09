@@ -36,15 +36,31 @@ export class ManagerComponent implements OnInit {
   async createPost(){
     const { value: titleArticle } = await Swal.fire({
       title: "Let's create a new Match",
-      input: 'text',
-      inputLabel: 'Write a title',
-      inputValue: '',
-      showCancelButton: true
+      html:
+        '<input placeholder="title" type="text" id="swal-input1" class="swal2-input">' +
+        '<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">'+
+            '<label><input value="1" class="uk-radio" type="radio" name="radio2" checked> PRECENSIAL</label>'+
+            '<label><input value="2" class="uk-radio" type="radio" name="radio2"> VIRTUAL</label>'+
+        '</div>',
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+           
+          document.getElementById('swal-input1'),
+          document.querySelector("input[name='radio2']")
+           
+        ]
+      }
     });
 
     if(titleArticle){
-      this.Contentserv.createMatchPost(titleArticle).then((done:any)=>{
-        console.log(done);
+      let titleField : any = titleArticle[0];
+      let typeField : any = titleArticle[1];
+      console.log(typeField.value);
+       
+      
+      this.Contentserv.createMatchPost(titleField.value,typeField.value).then((done:any)=>{
+         
         let texto : string = done.Message;
         Swal.fire({
           title: 'Info!',
@@ -57,7 +73,7 @@ export class ManagerComponent implements OnInit {
         });
 
         setTimeout( () => {
-          this.route.navigate(['/c/'+done.Data.alias]);
+          this.route.navigate(['/u/'+done.Data.alias]);
         }, 3000);
 
       }).catch((error:any) => {

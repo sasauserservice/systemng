@@ -1,0 +1,24 @@
+<div>
+    <div class="uk-card uk-card-body uk-placeholder">
+        <table class="uk-table uk-table-small">
+            <thead>
+                <tr>
+                    <th>ALIAS</th>
+                    <th>TITLE</th>
+                    <th>VIEW</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let article of articles">
+                    <td class="uk-text-small">{{article.alias}}</td>
+                    <td class="uk-text-small">{{article.title}}</td>
+                    <td class="uk-text-small">
+                        <button (click)="openArticle(article.alias)" class="uk-icon-button">
+                            <span uk-icon="icon: arrow-right"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> 

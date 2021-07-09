@@ -22,6 +22,8 @@ export class EditableTemplateComponent implements OnInit, OnChanges {
     id: 0,
     alias: '',
     image: '',
+    ft: false,
+    type: 0,
     parrafos: []
   };
 
@@ -30,9 +32,10 @@ export class EditableTemplateComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.articleData.id = this.article.id;
     this.articleData.alias = this.article.alias;
+    this.articleData.ft = this.article.ft || false;
     this.articleData.parrafos = this.article.parrafos || [];
     this.articleData.banner = this.article.banner || {};
-    console.log(this.article)
+    this.articleData.type = this.article.type || 0;
     this.filename = this.filename + "_" + this.article.alias;
   }
 

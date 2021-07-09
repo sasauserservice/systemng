@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
         });
 
         setTimeout( () => {
-          this.route.navigate(['/'+done.Data.alias]);
+          this.route.navigate(['/u/'+done.Data.alias]);
         }, 3000);
 
       }).catch((error:any) => {

@@ -33,7 +33,7 @@
                         <div class="uk-card uk-grid-small uk-padding-small" uk-grid>
 
                             <div class="uk-width-expand">
-                                <div class="uk-switcher contentcard uikit-modern-inner" style="">
+                                <div class="uk-switcher contentcard" style="">
 
                                     <!-- PRIME CARD TABS HOME -->
                                     <!-- PRIME CARD TABS HOME -->
@@ -348,7 +348,10 @@
                                         <div style="max-height: 83vh;">
                                             <div class="uk-content-card" style="height: 83vh;">
                                                 <div class="js-wrapper">
-                                                    <div class="uk-card uk-card-default">
+                                                    <div>
+                                                        <app-panels-list (stateChangeBar)="statuschange($event, 'nada')"></app-panels-list>
+                                                    </div>
+                                                    <div class="uk-card uk-card-default uk-hidden">
                                                         <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
                                                             <div uk-grid>
                                                                 <div class="uk-width-expand uk-margin-auto-vertical">
@@ -532,6 +535,7 @@
                                     <!-- FOURT CARD EVENTS -->
                                     <div>
                                         <h1>EVENTS CONTROL SYSTEM</h1>
+                                        <app-events-list></app-events-list>
                                     </div>
                                     <!-- FOURT CARD EVENTS END -->
                                     <!-- FOURT CARD EVENTS END -->
@@ -586,6 +590,9 @@
                                             </div>
                                             <div class="uk-card uk-padding-small" *ngSwitchCase="6">
                                                 <app-category-edit (eventFinishEdit)="statuschange(0,'reloadCategory')" [editObjet]="currentEdition"></app-category-edit>
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="7">
+                                                <app-panels-create></app-panels-create>
                                             </div>
                                         </div>
 
@@ -749,7 +756,7 @@
                                         <!-- CATEGORY CREATION FORM END -->
 
                                         <!-- PANEL CREATION FORM -->
-                                        <div class="uk-margin-small-bottom ">
+                                        <div class="uk-margin-small-bottom uk-hidden">
                                             <div class="uk-card uk-card-default">
                                                 <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
                                                     <div uk-grid>

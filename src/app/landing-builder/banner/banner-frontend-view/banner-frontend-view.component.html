@@ -1,7 +1,11 @@
  
 
+
+<div *ngIf="type == 1"> 
+    <app-team-control></app-team-control>
+</div> 
 <div [ngSwitch]="bannerType" *ngIf="attrs.textStyle">
-    <div *ngSwitchCase="0">
+    <div *ngSwitchCase="0"> 
         <div id="sasa-body-content">
             <div class="uk-child-width-1-2@l uk-flex-first" uk-grid>
 
@@ -20,8 +24,8 @@
                             
                         
 
-                    </div>
-                </div>
+                    </div> 
+                </div> 
 
                 <div class="uk-margin-auto-vertical uk-flex-first@l">
                     <div class="uk-padding-small">

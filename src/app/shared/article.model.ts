@@ -7,5 +7,7 @@ export interface Article {
     publish_down?: string,
     image?: string,
     parrafos?: any[],
-    banner?: {}
+    banner?: {},
+    ft?: boolean,
+    type?: number
 };

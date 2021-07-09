@@ -22,6 +22,7 @@ import { UpdateuriPipe } from '../pipes/updateuri.pipe';
 import { SasamasonryDirective } from '../directives/sasamasonry.directive';
 import { ShowingDirective } from '../directives/showing.directive';
 import { CalheightDirective } from '../directives/calheight.directive';
+import { CompetenceModule } from '../competence/competence.module';
 
 /**CUSTOM COMPONENTS**/
 /**CUSTOM COMPONENTS**/
@@ -73,7 +74,8 @@ import { CalheightDirective } from '../directives/calheight.directive';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    CompetenceModule
   ]
 })
 export class LandingBuilderModule { }

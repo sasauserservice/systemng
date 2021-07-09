@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompetenceModule } from './competence/competence.module';
 import { MicrodashboardComponent } from './microdashboard/microdashboard.component';
 import { FiltersearchPipe } from './pipes/filtersearch.pipe';
+import { TeamControlComponent } from './competence/landing/team-control/team-control.component';
 
 
 
@@ -33,7 +34,10 @@ import { FiltersearchPipe } from './pipes/filtersearch.pipe';
     HttpClientModule,
     SasaAuthModule,
     LandingBuilderModule,
-    CompetenceModule
+    CompetenceModule,
+  ],
+  exports: [
+    ArticlesComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

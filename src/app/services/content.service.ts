@@ -38,12 +38,12 @@ export class ContentService {
       } );
     } );
   }
-
-  createMatchPost(title: string){
+ 
+  createMatchPost(title: string,type:number){
     return new Promise( (resolve, reject) => {
       let user = this.storage.loadSessionData();
 
-      var data   = JSON.stringify({title: title, createdBy: user.Data.id,ft:false});   
+      var data   = JSON.stringify({title: title, createdBy: user.Data.id, type:type});   
 
       this.httpClient.post(BASEURI+'create-match', data).subscribe((done:any) => {
         resolve(done);

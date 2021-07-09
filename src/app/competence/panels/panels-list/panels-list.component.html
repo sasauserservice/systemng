@@ -1,0 +1,168 @@
+<div class="uk-card uk-card-default">
+    <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
+        <div uk-grid>
+            <div class="uk-width-expand uk-margin-auto-vertical">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-width-auto uk-margin-auto-vertical">
+                        <h5 class="uk-margin-remove">PANEL CONTROL CENTER</h5>
+                        <p class="uk-margin-remove uk-text-small">Build, edit and assign panels.</p>
+                    </div>
+                    <div class="uk-width-expand uk-margin-auto-vertical">
+                        <a href="javascript:void(0)" (click)="new()" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: top"></a>
+                        <span class="uk-icon-button uk-margin-small-left" uk-icon="icon: bookmark" uk-tooltip="title: ASSIGN; pos: top"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-auto uk-margin-auto-vertical">
+                <div class="uk-form">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: search"></span>
+                        <input class="uk-input" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
+        <div class="uk-card uk-card-default">
+            <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
+                <li>
+                    <div class="uk-padding-small">
+                        <div class="" uk-grid>
+                            <div class="uk-width-1-3">
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                        <span class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
+                                        <span class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
+                                    </div>
+                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                        <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener">ID: XXXXXXXXX</a>
+                                        <p class="uk-margin-remove uk-text-smaller">LAST USED: Event name last used, 2021 April 12</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="uk-width-expand">
+                                <div class="uk-flex uk-flex-right">
+                                    <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
+                                        <div class="uk-text-center">
+                                            <span class="uk-margin-remove" uk-icon="icon: calendar" uk-tooltip="title: CREATED; pos: top"></span>
+                                            <p class="uk-margin-remove uk-text-smaller">15/02/2021</p>
+                                        </div>
+                                        <div class="uk-text-center">
+                                            <span class="uk-margin-remove" uk-icon="icon: desktop" uk-tooltip="title: USED; pos: top"></span>
+                                            <p class="uk-margin-remove uk-text-smaller">EVENTS: 3</p>
+                                        </div>
+                                        <div class="uk-text-center">
+                                            <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
+                                            <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES: 3</p>
+                                        </div>
+                                        <div class="uk-text-center">
+                                            <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
+                                            <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY 2</p>
+                                        </div>
+                                        <div class="uk-text-center">
+                                            <div class="uk-flex uk-flex-middle">
+                                                <span class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></span>
+                                                <span class="uk-margin-small-left uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></span>
+                                                <span class="uk-margin-small-left uk-icon-button" uk-icon="icon: bookmark" uk-tooltip="title: ASSIGN; pos: top"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
+                        <!-- LISTA DE CATEGORIAS Y PENALTYS -->
+                        <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
+                            </div>
+                        </div>
+                        <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
+
+                        <!-- LISTA DE JUECES -->
+                        <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                            <div>
+                                <a class="uk-button uk-button-primary uk-button-small">
+                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
+                                    <p class="uk-margin-remove uk-text-smaller">MAIN JUDGE</p>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">
+                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
+                                    <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">
+                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
+                                    <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">
+                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
+                                    <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-small">
+                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
+                                    <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-danger uk-button-small">
+                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
+                                    <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-danger uk-button-small">
+                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
+                                    <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="uk-button uk-button-danger uk-button-small">
+                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
+                                    <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- LISTA DE JUECES END -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="uk-card-footer">
+        <p>Some content after the overflow auto container.</p>
+    </div>
+</div>

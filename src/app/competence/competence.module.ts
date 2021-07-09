@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ManagerComponent } from './manager/manager.component';
 import { PenaltiesComponent } from './penalties/penalties.component';
@@ -18,6 +18,11 @@ import { PenaltyListComponent } from './penalty/penalty-list/penalty-list.compon
 import { PenaltyEditComponent } from './penalty/penalty-edit/penalty-edit.component';
 import { CategoryEditComponent } from './category/category-edit/category-edit.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
+import { PanelsComponent } from './panels/panels.component';
+import { PanelsCreateComponent } from './panels/panels-create/panels-create.component';
+import { PanelsListComponent } from './panels/panels-list/panels-list.component';
+import { EventsListComponent } from './events-list/events-list.component';
+import { TeamControlComponent } from './landing/team-control/team-control.component';
 
 
 @NgModule({
@@ -35,6 +40,11 @@ import { CategoryListComponent } from './category/category-list/category-list.co
     PenaltyEditComponent,
     CategoryEditComponent,
     CategoryListComponent,
+    PanelsComponent,
+    PanelsCreateComponent,
+    PanelsListComponent,
+    EventsListComponent,
+    TeamControlComponent
   ],
   imports: [
     CommonModule,
@@ -57,6 +67,14 @@ import { CategoryListComponent } from './category/category-list/category-list.co
     PenaltyEditComponent,
     CategoryListComponent,
     CategoryEditComponent,
+    PanelsComponent,
+    PanelsCreateComponent,
+    PanelsListComponent,
+    EventsListComponent,
+    TeamControlComponent
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class CompetenceModule { }

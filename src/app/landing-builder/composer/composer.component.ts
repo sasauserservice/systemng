@@ -24,9 +24,7 @@ export class ComposerComponent implements OnInit {
   public state: number = 0;
 
   ngOnInit() {
-    if(!this.article.banner){
-      this.state = 1
-    }
+   
     this.alias = this.route.snapshot.paramMap.get('alias');
     if(this.alias){
       this.Content
@@ -36,7 +34,7 @@ export class ComposerComponent implements OnInit {
         if(response){
           this.article = JSON.parse(response.Data.fulltext) || {};
           console.log(this.article);
-           
+          this.ifFirstTime();
         }
       } )
       .catch( (error:any) => {
@@ -57,6 +55,19 @@ export class ComposerComponent implements OnInit {
     } else {
       alert('Article not found');
     }
+    
+     
+     
+      
+     
+  }
+
+  ifFirstTime(){
+    if(this.article.ft == false){
+      this.state = 1;
+      this.article.ft = true;
+    }
+    
   }
 
   openedit(){

@@ -1,0 +1,181 @@
+<div class="">
+    <!-- PANEL CREATION FORM -->
+    <div class="uk-margin-small-bottom ">
+        <div class="uk-card uk-card-default">
+            <div class="uk-card uk-card-header uk-padding-small uk-card-primary uk-card">
+                <div uk-grid>
+                    <div class="uk-width-expand uk-margin-auto-vertical">
+                        <div class="uk-flex uk-flex-middle">
+                            <a class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                            <p class="uk-margin-remove uk-text-small">NEW PANEL</p>
+                        </div>
+                    </div>
+                    <div class="uk-width-auto uk-margin-auto-vertical">
+                        <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left" href="javascript:void(0)" (click)="sendCreate()"><span uk-icon="icon: cloud-upload"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body uk-padding-small uikit-modern-inner">
+                <!---- TITULO DE PANEL ---->
+                <div class="uk-margin-small-bottom">
+                    <div class="uk-form">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon" uk-icon="icon: folder"></span>
+                            <input [(ngModel)]="panelname" class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="PANEL NAME" type="text" style="width: 100%">
+                        </div>
+                    </div>
+                </div>
+                <!---- TITULO DE PANEL END ---->
+                <!---- EVENT SELECTOR ---->
+                <div class="uk-margin-small-bottom">
+                    <div class="uk-form">
+                        <ng-select2 [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="eventselect" [data]="data" [placeholder]="'EVENT'">
+                        </ng-select2>
+                    </div>
+                </div>
+                <!---- EVENT SELECTOR END ---->
+
+                <!---- CATEGORIES SELECTOR ---->
+                <div class="uk-margin-small-bottom">
+                    <div class="uk-form">
+                        <ng-select2 (valueChanged)="whenCategoriesSelected($event)" [options]="{multiple: true, closeOnSelect: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judgesCategoriesselect" [data]="categories" [placeholder]="'CATEGORIES'">
+                        </ng-select2>
+                    </div>
+                </div>
+                <!---- CATEGORIES SELECTOR END ---->
+<hr>
+                <!---- MAIN JUDGE ---->
+                <h5 class="uk-margin-remove uk-margin-small-top">MAIN JUDGE</h5>
+                <div class="uk-margin-small-bottom">
+                    <div class="uk-form">
+                        <ng-select2 [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judgeselect" [data]="judges" [placeholder]="'MAIN JUDGE'">
+                        </ng-select2>
+                    </div>
+                </div>
+                <!---- MAIN JUDGE END ---->
+<hr>
+                <!---- GENERAL JUDGES ---->
+                <h5 class="uk-margin-remove uk-margin-small-top">GENERAL JUDGES</h5>
+                <div class="uk-margin-small-bottom">
+
+                    <ng-select2 class="uk-margin-small-bottom" (valueChanged)="whenChangeGeneralJudge($event)" [options]="{multiple: true,  closeOnSelect: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judgesGeneralelect" [data]="judges" [placeholder]="'GENERAL JUDGES'">
+                    </ng-select2>
+
+                    <!-- JUECES Y PARAMETROS -->
+                    <div class="uk-card uk-card-default" *ngFor="let judges of slotsToGeneral">
+                        <ul uk-accordion="toggle: *.uk-accordion-judge-oppener">
+                            <li [id]="judges.id">
+                                <div class="uk-padding-small">
+                                    <div class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                            <p class="uk-text-small">{{judges.id}}</p>
+                                        </div>
+                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                            <div class="uk-flex uk-flex-right">
+                                                <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
+                                                    <div class="uk-text-center">
+                                                        <p class="uk-margin-remove uk-text-small">06</p>
+                                                        <p class="uk-margin-remove uk-text-smaller">PARAM</p>
+                                                    </div>
+                                                    <div class="uk-text-center">
+                                                        <a class="uk-accordion-judge-oppener uk-icon-button" href="#" uk-icon="plus" uk-tooltip="title: ADD; pos: top"></a>                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="uk-accordion-content uk-padding-remove-top uk-margin-remove uk-card-body uk-padding-small">
+                                    <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                        <div *ngFor="let par of judges.params">
+                                            <label class="check-element">
+                                                <input [checked]="true" (change)="onChangeSelectsParams($event, judges.params)" type="checkbox" [value]="par.id" />
+                                                <p class="uk-margin-remove">{{par.title}}</p>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                        <div *ngFor="let par of paramentersAviable">
+                                            <label class="check-element">
+                                                <input [attr.data-label]="par.title" (change)="onChangeSelectsParams($event, judges.params)" type="checkbox" [value]="par.id" />
+                                                <p class="uk-margin-remove">{{par.title}}</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- JUECES Y PARAMETROS END -->
+
+
+                </div>
+                <!---- GENERAL JUDGES  END ---->
+<hr>
+                <!---- PENALTY JUDGES ---->
+                <h5 class="uk-margin-remove uk-margin-small-top">PENALTY JUDGES</h5>
+                <div class="uk-margin-small-bottom">
+
+                    <ng-select2 class="uk-margin-small-bottom" (valueChanged)="whenJudgePenalSelected($event)" [options]="{multiple: true,  closeOnSelect: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judgesPenaltyselect" [data]="judges" [placeholder]="'PENALTY'">
+                    </ng-select2>
+
+
+                    <!-- JUECES Y PENALTY -->
+                    <div class="uk-card uk-card-default" *ngFor="let judges of slotsToPenalty">
+                        <ul uk-accordion="toggle: *.uk-accordion-judge-oppener">
+                            <li [id]="'pe'+judges.id">
+                                <div class="uk-padding-small">
+                                    <div class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                            <p class="uk-text-small">{{judges.id}}</p>
+                                        </div>
+                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                            <div class="uk-flex uk-flex-right">
+                                                <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
+                                                    <div class="uk-text-center">
+                                                        <p class="uk-margin-remove uk-text-small">06</p>
+                                                        <p class="uk-margin-remove uk-text-smaller">PENAL</p>
+                                                    </div>
+                                                    <div class="uk-text-center">
+                                                        <a class="uk-accordion-judge-oppener uk-icon-button" href="#" uk-icon="plus" uk-tooltip="title: ADD; pos: top"></a>                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="uk-accordion-content uk-padding-remove-top uk-margin-remove uk-card-body uk-padding-small">
+                                    <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                        <div *ngFor="let par of judges.penalties">
+                                            <label class="check-element">
+                                                <input [checked]="true" (change)="onChangeSelectsPenalties($event, judges.penalties)" type="checkbox" [value]="par.id" />
+                                                <p class="uk-margin-remove">{{par.text}}</p>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                        <div *ngFor="let par of penaltiesAviable">
+                                            <label class="check-element">
+                                                <input [attr.data-label]="par.text" (change)="onChangeSelectsPenalties($event, judges.penalties)" type="checkbox" [value]="par.id" />
+                                                <p class="uk-margin-remove">{{par.text}}</p>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- JUECES Y PENALTY END -->
+                </div>
+                <!---- PENALTY END ---->               
+
+            </div>
+        </div>
+    </div>
+    <!-- PANEL CREATION FORM END -->
+</div>

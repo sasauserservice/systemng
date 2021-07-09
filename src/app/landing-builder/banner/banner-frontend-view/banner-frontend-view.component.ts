@@ -15,6 +15,7 @@ export class BannerFrontendViewComponent implements OnInit {
   @Input() image      : any = '';
   @Input() bannerType : number = 0;
   @Input() attrs      : any = {};
+  @Input() type      : any = 0;
 
 
 

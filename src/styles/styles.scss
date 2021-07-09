@@ -293,7 +293,7 @@
  }
  
  .uikit-modern-inner .uk-card {
-     border-radius: 40px !important;
+     border-radius: 25px !important;
  }
  
  .uk-input {
@@ -313,11 +313,11 @@
      border: solid #ccc 1px;
      padding: 8px 10px;
      border-radius: 30px;
-     font-size: 13px;
+     font-size: 10px;
      transition: all ease .5s;
  }
  
- .panel-check .check-element input[type="checkbox"] {
+ .check-element input[type="checkbox"] {
      display: none;
  }
  
