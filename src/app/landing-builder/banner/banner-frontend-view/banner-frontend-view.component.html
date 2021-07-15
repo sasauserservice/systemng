@@ -2,7 +2,8 @@
 
 
 <div *ngIf="type == 1"> 
-    <app-team-control></app-team-control>
+    
+    <app-team-control [landingId]="articleid"></app-team-control>
 </div> 
 <div [ngSwitch]="bannerType" *ngIf="attrs.textStyle">
     <div *ngSwitchCase="0"> 

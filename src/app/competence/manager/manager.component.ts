@@ -15,6 +15,10 @@ export class ManagerComponent implements OnInit {
   public statusReloadParams    : number = 0;
   public statusReloadPenalties : number = 0;
   public statusReloadCategories : number = 0;
+  public statusReloadPanels : number = 0;
+  public statusReloadEvents : number = 0;
+  public statusReloadUsers : number = 0;
+  public statusReloadCompetitors : number = 0;
   public currentEdition         : any    = {};
 
   @Output() reloadParameters = new EventEmitter<any>();
@@ -39,31 +43,34 @@ export class ManagerComponent implements OnInit {
       html:
         '<input placeholder="title" type="text" id="swal-input1" class="swal2-input">' +
         '<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">'+
-            '<label><input value="1" class="uk-radio" type="radio" name="radio2" checked> PRECENSIAL</label>'+
-            '<label><input value="2" class="uk-radio" type="radio" name="radio2"> VIRTUAL</label>'+
+            '<label><input id="radio1" value="1" class="uk-radio elementoTypeLanding" type="radio" name="radio2" checked="checked"> PRECENSIAL</label>'+
+            '<label><input id="radio2" value="2" class="uk-radio elementoTypeLanding" type="radio" name="radio2"> VIRTUAL</label>'+
         '</div>',
       focusConfirm: false,
       preConfirm: () => {
         return [
-           
           document.getElementById('swal-input1'),
-          document.querySelector("input[name='radio2']")
-           
-        ]
+          document.querySelectorAll('input[name="radio2"]')
+        ];
       }
     });
-
+ 
     if(titleArticle){
       let titleField : any = titleArticle[0];
       let typeField : any = titleArticle[1];
-      console.log(typeField.value);
+      let typeLanding : any = 1;
+     
+      typeField.forEach((a:any)=>{
+        if(a.checked){
+          typeLanding = a.value;
+        }
+      });
        
-      
-      this.Contentserv.createMatchPost(titleField.value,typeField.value).then((done:any)=>{
+      this.Contentserv.createMatchPost(titleField.value, typeLanding).then((done:any)=>{
          
         let texto : string = done.Message;
         Swal.fire({
-          title: 'Info!',
+          title: 'Info!', 
           text: texto,
           icon: 'success',
           showCancelButton: false,
@@ -94,9 +101,10 @@ export class ManagerComponent implements OnInit {
     }
 
   }
-
+ 
   statuschange(status:number,action:string){
     this.statusRightBar = status;
+    console.log(this.statusReloadUsers);
     if(action){
       // emit de accion
       if(action == 'reloadParameters'){
@@ -105,6 +113,15 @@ export class ManagerComponent implements OnInit {
         this.statusReloadPenalties = 1;
       } else if(action == 'reloadCategory'){
         this.statusReloadCategories = 1;
+      } else if(action == 'reloadPanels'){
+        this.statusReloadPanels = 1;
+        this.statusReloadEvents = 1;
+      } else if(action == 'reloadUsers'){
+        console.log(this.statusReloadUsers);
+        this.statusReloadUsers = 1; 
+      } else if(action == 'reloadCompetitors'){
+        console.log(this.statusReloadCompetitors);
+        this.statusReloadCompetitors = 1; 
       }
     }
   }

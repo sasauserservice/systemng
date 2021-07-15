@@ -1,0 +1,202 @@
+<pre class="uk-hidden">
+    <hr>paramentersSelected:{{paramentersSelected| json}}
+    <hr>paramentersAll:{{paramentersAll| json}}
+    <hr>paramentersAviable:{{paramentersAviable| json}}
+    <hr>paramentersAllIds:{{paramentersAllIds| json}}
+    <hr>slotsToGeneral:{{slotsToGeneral| json}}
+</pre>
+<div class="">
+    <!-- PANEL CREATION FORM -->
+    <div class="uk-margin-small-bottom ">
+        <div class="uk-card uk-card-default">
+            <div class="uk-card uk-card-header uk-padding-small uk-card-primary uk-card">
+                <div uk-grid>
+                    <div class="uk-width-expand uk-margin-auto-vertical">
+                        <div class="uk-flex uk-flex-middle">
+                            <a (click)="eventFinishEdit.emit()" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                            <p class="uk-margin-remove uk-text-small">EDIT PANEL</p>
+                        </div>
+                    </div>
+                    <div class="uk-width-auto uk-margin-auto-vertical">
+                        <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left" href="javascript:void(0)" (click)="sendCreate()"><span uk-icon="icon: cloud-upload"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body uk-padding-small uikit-modern-inner">
+                <!---- TITULO DE PANEL ---->
+                <div class="uk-margin-small-bottom">
+                    <div class="uk-form">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon" uk-icon="icon: folder"></span>
+                            <input [(ngModel)]="editObjet.name" class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="PANEL NAME" type="text" style="width: 100%">
+                        </div>
+                    </div>
+                </div>
+                <!---- TITULO DE PANEL END ---->
+                <!---- EVENT SELECTOR ---->
+                <div class="uk-margin-small-bottom">
+                    <div class="uk-form">
+                        <ng-select2 [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="editObjet.event_id" [data]="data" [placeholder]="'EVENT'">
+                        </ng-select2>
+                    </div>
+                </div>
+                <!---- EVENT SELECTOR END ---->
+
+                <!---- CATEGORIES SELECTOR ---->
+                <div class="uk-margin-small-bottom">
+                    <div class="uk-form">
+                        <ng-select2 (valueChanged)="whenCategoriesSelected($event)" [options]="{multiple: true, closeOnSelect: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judgesCategoriesselect" [data]="categories" [placeholder]="'CATEGORIES'">
+                        </ng-select2>
+                    </div>
+                </div>
+                <!---- CATEGORIES SELECTOR END ---->
+                <hr>
+                <!---- MAIN JUDGE ---->
+                <h5 class="uk-margin-remove uk-margin-small-top">MAIN JUDGE</h5>
+                <div class="uk-margin-small-bottom">
+                    <div class="uk-form">
+                        <ng-select2 [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judgeselect" [data]="judges" [placeholder]="'MAIN JUDGE'">
+                        </ng-select2>
+                    </div>
+                </div>
+                <!---- MAIN JUDGE END ---->
+                <hr>
+                <!---- GENERAL JUDGES ---->
+                <h5 class="uk-margin-remove uk-margin-small-top">GENERAL JUDGES
+                    <a href="javascript:void(0)" (click)="addNewSlot(0)" class="uk-icon-button uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
+                </h5>
+                <div class="uk-margin-small-bottom">
+                    <!--JUECES Y PARAMETROS-->
+                     
+                    <div class="uk-card uk-card-default" *ngFor="let judge of slotsToGeneral; let i = index;">
+                        <ul uk-accordion="toggle: *.uk-accordion-judge-oppener">
+                            <li [id]="'slot_general_'+i">
+                                <div class="uk-padding-small">
+                                     
+                                    <div class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                            <ng-select2 [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judge.user" [data]="judges" [placeholder]="'SELECT A JUDGE'">
+                                            </ng-select2>
+                                        </div>
+                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                            <div class="uk-flex uk-flex-right">
+                                                <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
+                                                    <div class="uk-text-center">
+                                                        <p class="uk-margin-remove uk-text-small">{{judge.params.length}}</p>
+                                                        <p class="uk-margin-remove uk-text-smaller">PARAM</p>
+                                                    </div>
+                                                    <div class="uk-text-center">
+                                                        <a class="uk-accordion-judge-oppener uk-icon-button" href="#" uk-icon="more" uk-tooltip="title: OPEN; pos: top"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                            <div class="uk-flex uk-flex-middle">
+                                                <a (click)="eraseSlot(0, i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-accordion-content uk-padding-remove-top uk-margin-remove uk-card-body uk-padding-small">
+                                    <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                        <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                            <div *ngFor="let par of judge.params">
+                                                <label class="check-element">
+                                                    <input [checked]="true" (change)="onChangeSelectsParams($event, judge.params)" type="checkbox" [value]="par.id" />
+                                                    <p class="uk-margin-remove">{{par.title}}</p>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                            <div *ngFor="let par of paramentersAviable">
+                                                <label class="check-element">
+                                                    <input [attr.data-label]="par.title" (change)="onChangeSelectsParams($event, judge.params)" type="checkbox" [value]="par.id" />
+                                                    <p class="uk-margin-remove">{{par.title}}</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--JUECES Y PARAMETROS-->
+
+                    <!---- PENALTY JUDGES ---->
+                    <h5 class="uk-margin-remove uk-margin-small-top">PENALTY JUDGES
+                        <a href="javascript:void(0)" (click)="addNewSlot(1)" class="uk-icon-button uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
+                    </h5>
+                    <div class="uk-margin-small-bottom">
+
+
+
+                        <!--JUECES PENALTY-->
+                        <div class="uk-card uk-card-default" *ngFor="let judge of slotsToPenalty; let i = index;">
+                            <ul uk-accordion="toggle: *.uk-accordion-judge-oppener">
+                                <li [id]="'slot_penalti_'+i">
+                                    <div class="uk-padding-small">
+                                        <div class="uk-grid-small" uk-grid>
+                                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                                <ng-select2 [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judge.user" [data]="judges" [placeholder]="'SELECT A JUDGE'">
+                                                </ng-select2>
+                                            </div>
+                                            <div class="uk-width-auto uk-margin-auto-vertical">
+                                                <div class="uk-flex uk-flex-right">
+                                                    <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
+                                                        <div class="uk-text-center">
+                                                            <p class="uk-margin-remove uk-text-small">{{judge.penalties.length}}</p>
+                                                            <p class="uk-margin-remove uk-text-smaller">PARAM</p>
+                                                        </div>
+                                                        <div class="uk-text-center">
+                                                            <a class="uk-accordion-judge-oppener uk-icon-button" href="#" uk-icon="more" uk-tooltip="title: OPEN; pos: top"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="uk-width-auto uk-margin-auto-vertical">
+                                                <div class="uk-flex uk-flex-middle">
+                                                    <a href="javascript:void(0)" (click)="eraseSlot(1, i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-accordion-content uk-padding-remove-top uk-margin-remove uk-card-body uk-padding-small">
+                                        <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                            <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                                <div *ngFor="let par of judge.penalties">
+                                                    <label class="check-element">
+                                                    <input [checked]="true" (change)="onChangeSelectsPenalties($event, judge.penalties)" type="checkbox" [value]="par.id" />
+                                                    <p class="uk-margin-remove">{{par.text}}</p>
+                                                </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="uk-grid-small uk-child-width-auto uk-margin-remove uk-grid-row-small" uk-grid>
+                                                <div *ngFor="let par of penaltiesAviable">
+                                                    <label class="check-element">
+                                                    <input [attr.data-label]="par.text" (change)="onChangeSelectsPenalties($event, judge.penalties)" type="checkbox" [value]="par.id" />
+                                                    <p class="uk-margin-remove">{{par.text}}</p>
+                                                </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--JUECES PENALTY-->
+
+                    </div>
+                </div>
+            </div>
+            <!-- PANEL CREATION FORM END -->
+        </div>
+
+        <pre class="uk-hidden" style="font-size: 9px;">selectedCategories:{{editObjet.toedit.selectedCategories | json}}
+            <hr>allparameters:{{editObjet.toedit.allparameters | json}}
+            <hr>allparameters:{{editObjet.toedit.allparameters | json}}
+            <hr>selectedParameters:{{editObjet.toedit.selectedParameters | json}}
+            <hr>selectedJudgeGeneral:{{editObjet.toedit.selectedJudgeGeneral | json}}
+        </pre> 

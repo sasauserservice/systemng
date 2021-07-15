@@ -36,7 +36,7 @@ export class ParameterEditComponent implements OnInit {
             if(response){
               Swal.fire({
                 title: 'Success!',
-                text: 'You must write a term to search',
+                text: 'Parameter updated',
                 icon: 'success',
                 showCancelButton: false,
                 showConfirmButton: false

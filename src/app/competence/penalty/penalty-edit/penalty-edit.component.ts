@@ -26,7 +26,7 @@ export class PenaltyEditComponent implements OnInit {
             if(response){
               Swal.fire({
                 title: 'Success!',
-                text: 'You must write a term to search',
+                text: 'Penalty updated',
                 icon: 'success',
                 showCancelButton: false,
                 showConfirmButton: false

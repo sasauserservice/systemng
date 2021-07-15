@@ -78,7 +78,7 @@ export class CategoryCreatorComponent implements OnInit {
       if(response){
         Swal.fire({
           title: 'Success!',
-          text: 'You must write a term to search',
+          text: '',
           icon: 'success',
           showCancelButton: false,
           showConfirmButton: false

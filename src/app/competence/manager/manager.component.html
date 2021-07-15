@@ -1,8 +1,16 @@
+<div class="uk-position-right uk-flex uk-flex-middle uk-padding-small" style="z-index: 9;">
+    <a id="" class="uk-icon-button uk-icon-button-small" uk-icon="icon: chevron-double-right" uk-toggle="target: #drawer_one; animation: uk-animation-slide-right-small" uk-tooltip="title: EXPAND; pos: left"></a>
+</div>
+
+<div class="uk-position-left uk-flex uk-flex-middle uk-padding-small" style="z-index: 9;">
+    <a id="" class="uk-icon-button uk-icon-button-small" uk-icon="icon: chevron-double-left" uk-toggle="target: #drawer_left; animation: uk-animation-slide-left-small" uk-tooltip="title: EXPAND; pos: right"></a>
+</div>
+
 <div class="uikit-modern">
     <div class="uk-padding" uk-height-viewport>
         <div class="uk-card uk-card-default" uk-height-viewport="offset-top: true; offset-bottom: 7.5">
             <div class="uk-card uk-grid-collapse uk-background-primary" uk-grid uk-height-viewport="offset-top: true; offset-bottom: 7.5">
-                <div class="uk-width-auto uk-padding uk-text-center uk-light ">
+                <div id="drawer_left" class="uk-width-auto uk-padding uk-text-center uk-light ">
                     <div>
                         <img src="/assets/sasa_systems_icon_white.png" alt="" style="max-width: 30px;">
                     </div>
@@ -22,7 +30,10 @@
                                 <a href="#"><span uk-icon="icon: desktop" uk-tooltip="title: MATCHES; pos: right"></span></a>
                             </div>
                             <div class="uk-margin-top">
-                                <a href="#"><span uk-icon="icon: database" uk-tooltip="title: USERS; pos: right"></span></a>
+                                <a href="#"><span uk-icon="icon: user" uk-tooltip="title: USERS; pos: right"></span></a>
+                            </div>
+                            <div class="uk-margin-top">
+                                <a href="#"><span uk-icon="icon: tag" uk-tooltip="title: ENTRY; pos: right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -46,8 +57,8 @@
                                                     <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
                                                         <div uk-grid>
                                                             <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                <p class="uk-margin-remove">HI USERNAME</p>
-                                                                <p class="uk-margin-remove uk-text-small">Welcome back, you have XX alerts</p>
+                                                                <p class="uk-margin-remove uk-text-small">HI USERNAME</p>
+                                                                <p class="uk-margin-remove uk-text-smaller">Welcome back, you have XX alerts</p>
                                                             </div>
                                                             <div class="uk-width-auto uk-margin-auto-vertical">
                                                                 <div class="uk-form">
@@ -64,43 +75,7 @@
                                                         <div>
                                                             <ng-select2 [options]="{multiple: true}" width="100%" [allowClear]="true" [(ngModel)]="fruit" [data]="data" [placeholder]="'Please select a fruit...'">
                                                             </ng-select2>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit fringilla penatibus, aliquet arcu posuere a nostra cubilia venenatis maecenas. Turpis vel morbi dis duis volutpat viverra faucibus iaculis,
-                                                                potenti vestibulum aliquet facilisis integer mattis porta quis est, nibh dui curabitur non euismod tempus eget. In maecenas nec auctor hac molestie facilisi turpis phasellus et lacinia ultrices,
-                                                                mollis ultricies curae fringilla sodales porttitor morbi eros justo sapien semper praesent, ac convallis suscipit pulvinar montes velit parturient taciti netus eu. Cum viverra est facilisi
-                                                                egestas inceptos quis euismod maecenas feugiat justo, mus mauris fusce erat faucibus venenatis blandit quisque sollicitudin, tincidunt et torquent etiam dapibus dictumst porttitor ultricies
-                                                                habitant. Vitae luctus neque auctor sem ligula ornare arcu bibendum, est erat dapibus mattis nullam praesent habitant augue rhoncus, nascetur class curae id scelerisque maecenas parturient
-                                                                senectus, eros sociis litora volutpat euismod eleifend nam. Nostra id porttitor scelerisque senectus eleifend egestas volutpat est sagittis imperdiet, per lobortis odio nunc ad varius orci
-                                                                inceptos fermentum.Lorem ipsum dolor sit amet consectetur adipiscing elit fringilla penatibus, aliquet arcu posuere a nostra cubilia venenatis maecenas. Turpis vel morbi dis duis volutpat
-                                                                viverra faucibus iaculis, potenti vestibulum aliquet facilisis integer mattis porta quis est, nibh dui curabitur non euismod tempus eget. In maecenas nec auctor hac molestie facilisi turpis
-                                                                phasellus et lacinia ultrices, mollis ultricies curae fringilla sodales porttitor morbi eros justo sapien semper praesent, ac convallis suscipit pulvinar montes velit parturient taciti netus
-                                                                eu. Cum viverra est facilisi egestas inceptos quis euismod maecenas feugiat justo, mus mauris fusce erat faucibus venenatis blandit quisque sollicitudin, tincidunt et torquent etiam dapibus
-                                                                dictumst porttitor ultricies habitant. Vitae luctus neque auctor sem ligula ornare arcu bibendum, est erat dapibus mattis nullam praesent habitant augue rhoncus, nascetur class curae id scelerisque
-                                                                maecenas parturient senectus, eros sociis litora volutpat euismod eleifend nam. Nostra id porttitor scelerisque senectus eleifend egestas volutpat est sagittis imperdiet, per lobortis odio
-                                                                nunc ad varius orci inceptos fermentum.Lorem ipsum dolor sit amet consectetur adipiscing elit fringilla penatibus, aliquet arcu posuere a nostra cubilia venenatis maecenas. Turpis vel morbi
-                                                                dis duis volutpat viverra faucibus iaculis, potenti vestibulum aliquet facilisis integer mattis porta quis est, nibh dui curabitur non euismod tempus eget. In maecenas nec auctor hac molestie
-                                                                facilisi turpis phasellus et lacinia ultrices, mollis ultricies curae fringilla sodales porttitor morbi eros justo sapien semper praesent, ac convallis suscipit pulvinar montes velit parturient
-                                                                taciti netus eu. Cum viverra est facilisi egestas inceptos quis euismod maecenas feugiat justo, mus mauris fusce erat faucibus venenatis blandit quisque sollicitudin, tincidunt et torquent
-                                                                etiam dapibus dictumst porttitor ultricies habitant. Vitae luctus neque auctor sem ligula ornare arcu bibendum, est erat dapibus mattis nullam praesent habitant augue rhoncus, nascetur class
-                                                                curae id scelerisque maecenas parturient senectus, eros sociis litora volutpat euismod eleifend nam. Nostra id porttitor scelerisque senectus eleifend egestas volutpat est sagittis imperdiet,
-                                                                per lobortis odio nunc ad varius orci inceptos fermentum.Lorem ipsum dolor sit amet consectetur adipiscing elit fringilla penatibus, aliquet arcu posuere a nostra cubilia venenatis maecenas.
-                                                                Turpis vel morbi dis duis volutpat viverra faucibus iaculis, potenti vestibulum aliquet facilisis integer mattis porta quis est, nibh dui curabitur non euismod tempus eget. In maecenas nec
-                                                                auctor hac molestie facilisi turpis phasellus et lacinia ultrices, mollis ultricies curae fringilla sodales porttitor morbi eros justo sapien semper praesent, ac convallis suscipit pulvinar
-                                                                montes velit parturient taciti netus eu. Cum viverra est facilisi egestas inceptos quis euismod maecenas feugiat justo, mus mauris fusce erat faucibus venenatis blandit quisque sollicitudin,
-                                                                tincidunt et torquent etiam dapibus dictumst porttitor ultricies habitant. Vitae luctus neque auctor sem ligula ornare arcu bibendum, est erat dapibus mattis nullam praesent habitant augue
-                                                                rhoncus, nascetur class curae id scelerisque maecenas parturient senectus, eros sociis litora volutpat euismod eleifend nam. Nostra id porttitor scelerisque senectus eleifend egestas volutpat
-                                                                est sagittis imperdiet, per lobortis odio nunc ad varius orci inceptos fermentum.Lorem ipsum dolor sit amet consectetur adipiscing elit fringilla penatibus, aliquet arcu posuere a nostra
-                                                                cubilia venenatis maecenas. Turpis vel morbi dis duis volutpat viverra faucibus iaculis, potenti vestibulum aliquet facilisis integer mattis porta quis est, nibh dui curabitur non euismod
-                                                                tempus eget. In maecenas nec auctor hac molestie facilisi turpis phasellus et lacinia ultrices, mollis ultricies curae fringilla sodales porttitor morbi eros justo sapien semper praesent,
-                                                                ac convallis suscipit pulvinar montes velit parturient taciti netus eu. Cum viverra est facilisi egestas inceptos quis euismod maecenas feugiat justo, mus mauris fusce erat faucibus venenatis
-                                                                blandit quisque sollicitudin, tincidunt et torquent etiam dapibus dictumst porttitor ultricies habitant. Vitae luctus neque auctor sem ligula ornare arcu bibendum, est erat dapibus mattis
-                                                                nullam praesent habitant augue rhoncus, nascetur class curae id scelerisque maecenas parturient senectus, eros sociis litora volutpat euismod eleifend nam. Nostra id porttitor scelerisque
-                                                                senectus eleifend egestas volutpat est sagittis imperdiet, per lobortis odio nunc ad varius orci inceptos fermentum.Lorem ipsum dolor sit amet consectetur adipiscing elit fringilla penatibus,
-                                                                aliquet arcu posuere a nostra cubilia venenatis maecenas. Turpis vel morbi dis duis volutpat viverra faucibus iaculis, potenti vestibulum aliquet facilisis integer mattis porta quis est,
-                                                                nibh dui curabitur non euismod tempus eget. In maecenas nec auctor hac molestie facilisi turpis phasellus et lacinia ultrices, mollis ultricies curae fringilla sodales porttitor morbi eros
-                                                                justo sapien semper praesent, ac convallis suscipit pulvinar montes velit parturient taciti netus eu. Cum viverra est facilisi egestas inceptos quis euismod maecenas feugiat justo, mus mauris
-                                                                fusce erat faucibus venenatis blandit quisque sollicitudin, tincidunt et torquent etiam dapibus dictumst porttitor ultricies habitant. Vitae luctus neque auctor sem ligula ornare arcu bibendum,
-                                                                est erat dapibus mattis nullam praesent habitant augue rhoncus, nascetur class curae id scelerisque maecenas parturient senectus, eros sociis litora volutpat euismod eleifend nam. Nostra
-                                                                id porttitor scelerisque senectus eleifend egestas volutpat est sagittis imperdiet, per lobortis odio nunc ad varius orci inceptos fermentum.</p>
+                                                            <p>Main area</p>
                                                         </div>
                                                     </div>
 
@@ -218,59 +193,6 @@
                                         </div>
                                         <!-- PARAMETER CONTROL TABLE END -->
 
-                                        <!-- PENALTY CONTROL TABLE -->
-                                        <div>
-                                            <app-penalty-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadPenalties = $event" [changes]="statusReloadPenalties"></app-penalty-list>
-                                        </div>
-
-                                        <div class="uk-card uk-card-default uk-margin-top uk-hidden">
-                                            <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
-                                                <div uk-grid>
-                                                    <div class="uk-width-expand uk-margin-auto-vertical">
-                                                        <div class="uk-flex uk-flex-middle">
-                                                            <h5 class="uk-margin-remove">PENALTY CONTROL</h5>
-                                                            <a class="uk-accordion-creator-parameter uk-margin-small-left" href="#" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="uk-width-auto uk-margin-auto-vertical">
-                                                        <div class="uk-form">
-                                                            <div class="uk-inline">
-                                                                <span class="uk-form-icon" uk-icon="icon: search"></span>
-                                                                <input class="uk-input" type="text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="uk-card-body uk-padding-small">
-                                                <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="uk-table-shrink">NAME</th>
-                                                            <th class="uk-table-expand">DESCRIPTION</th>
-                                                            <th class="uk-table-shrink">VALUE</th>
-                                                            <th class="uk-table-shrink">&nbsp;</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PENALTY</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-small uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                            </td>
-                                                            <td class="uk-text-small uk-text-right">15</td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <!-- PENALTY CONTROL TABLE END -->
-
                                         <!-- CATEGORY CONTROL TABLE -->
                                         <div class="">
                                             <app-category-list (currentEdit)="currentEdition = $event" (stateChange)="statusReloadCategories = $event" (stateChangeBar)="statuschange($event, 'nada')" [changes]="statusReloadCategories"></app-category-list>
@@ -334,6 +256,61 @@
                                         </div>
                                         <!-- CATEGORY CONTROL TABLE END -->
 
+                                        <!-- PENALTY CONTROL TABLE -->
+                                        <div>
+                                            <app-penalty-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadPenalties = $event" [changes]="statusReloadPenalties"></app-penalty-list>
+                                        </div>
+
+                                        <div class="uk-card uk-card-default uk-margin-top uk-hidden">
+                                            <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
+                                                <div uk-grid>
+                                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                                        <div class="uk-flex uk-flex-middle">
+                                                            <h5 class="uk-margin-remove">PENALTY CONTROL</h5>
+                                                            <a class="uk-accordion-creator-parameter uk-margin-small-left" href="#" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                                        <div class="uk-form">
+                                                            <div class="uk-inline">
+                                                                <span class="uk-form-icon" uk-icon="icon: search"></span>
+                                                                <input class="uk-input" type="text">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="uk-card-body uk-padding-small">
+                                                <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="uk-table-shrink">NAME</th>
+                                                            <th class="uk-table-expand">DESCRIPTION</th>
+                                                            <th class="uk-table-shrink">VALUE</th>
+                                                            <th class="uk-table-shrink">&nbsp;</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PENALTY</td>
+                                                            <td class="uk-text-small">
+                                                                <p class="uk-text-small uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
+                                                            </td>
+                                                            <td class="uk-text-small uk-text-right">15</td>
+                                                            <td class="uk-text-nowrap uk-text-small">
+                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
+                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- PENALTY CONTROL TABLE END -->
+
+
+
                                     </div>
                                     <!-- SECOND CARD TABS SETTINGS END -->
                                     <!-- SECOND CARD TABS SETTINGS END -->
@@ -349,7 +326,7 @@
                                             <div class="uk-content-card" style="height: 83vh;">
                                                 <div class="js-wrapper">
                                                     <div>
-                                                        <app-panels-list (stateChangeBar)="statuschange($event, 'nada')"></app-panels-list>
+                                                        <app-panels-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadPanels = $event" [changes]="statusReloadPanels"></app-panels-list>
                                                     </div>
                                                     <div class="uk-card uk-card-default uk-hidden">
                                                         <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
@@ -534,9 +511,9 @@
                                     <!-- FOURT CARD EVENTS -->
                                     <!-- FOURT CARD EVENTS -->
                                     <div>
-                                        <h1>EVENTS CONTROL SYSTEM</h1>
-                                        <app-events-list></app-events-list>
-                                    </div>
+                                        
+                                        <app-events-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadEvents = $event" [changes]="statusReloadEvents"></app-events-list>
+                                    </div> 
                                     <!-- FOURT CARD EVENTS END -->
                                     <!-- FOURT CARD EVENTS END -->
                                     <!-- FOURT CARD EVENTS END -->
@@ -548,8 +525,14 @@
                                     <!-- FIFTH CARD USERS -->
                                     <!-- FIFTH CARD USERS -->
                                     <div>
-                                        <h1>YOUR USERS</h1>
+                                        <app-user-management (stateChange)="statusReloadUsers = $event" [changes]="statusReloadUsers" (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-user-management>
+                                        <hr>
+                                        <app-competitor-list (stateChange)="statusReloadCompetitors = $event" [changes]="statusReloadCompetitors" (stateChangeBar)="statuschange($event, 'nada')" (currentEdit)="currentEdition = $event"></app-competitor-list>
                                     </div>
+                                    <div>
+                                        <app-entry-list-manager></app-entry-list-manager>
+                                    </div> 
+
                                     <!-- FIFTH CARD USERS END -->
                                     <!-- FIFTH CARD USERS END -->
                                     <!-- FIFTH CARD USERS END -->
@@ -562,14 +545,14 @@
                             <!-- EDITIING AND REPORT CENTER -->
                             <!-- EDITIING AND REPORT CENTER -->
                             <!-- EDITIING AND REPORT CENTER -->
-                            <div class="uk-width-1-3">
+                            <div id="drawer_one" class="uk-width-2-5 uk-width-1-3@xl">
                                 <div style="overflow-y: auto; max-height: 83vh;">
                                     <!-- EDITING AREA -->
                                     <!-- EDITING AREA -->
                                     <!-- EDITING AREA -->
                                     <!-- EDITING AREA -->
                                     <div id="createandedit" class="uk-hiddenXXXXXXXXXXXXX">
-
+                                        
                                         <div [ngSwitch]="statusRightBar">
                                             <div class="" *ngSwitchCase="0">
                                             </div>
@@ -592,9 +575,34 @@
                                                 <app-category-edit (eventFinishEdit)="statuschange(0,'reloadCategory')" [editObjet]="currentEdition"></app-category-edit>
                                             </div>
                                             <div class="uk-card uk-padding-small" *ngSwitchCase="7">
-                                                <app-panels-create></app-panels-create>
+                                                <app-panels-create (eventFinishCreate)="statuschange(0,'reloadPanels')"></app-panels-create>
                                             </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="8">
+                                                <app-panels-edit (eventFinishEdit)="statuschange(0,'reloadPanels')" [editObjet]="currentEdition"></app-panels-edit>
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="9">
+                                                <!-- USER CREATION FORM -->
+                                                <app-user-create-manager (eventFinishCreate)="statuschange(0,'reloadUsers')"></app-user-create-manager>
+                                                <!-- USER CREATION FORM END -->
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="10">
+                                                <!-- USER CREATION FORM -->
+                                                <app-user-edit-manager (eventFinishEdit)="statuschange(0,'reloadUsers')" [editObjet]="currentEdition"></app-user-edit-manager>
+                                                <!-- USER CREATION FORM END -->
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="11">
+                                                <!-- USER CREATION FORM -->
+                                                <app-competitor-create-manager (eventFinishCreate)="statuschange(0,'reloadCompetitors')"></app-competitor-create-manager>
+                                                <!-- USER CREATION FORM END -->
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="12">
+                                                <!-- USER CREATION FORM -->
+                                                <app-competitor-edit-manager (eventFinishEdit)="statuschange(0,'reloadCompetitors')" [editObjet]="currentEdition"></app-competitor-edit-manager>
+                                                <!-- USER CREATION FORM END -->
+                                            </div> 
                                         </div>
+                                         
+                                          
 
                                         <!-- PARAMETER CREATION FORM -->
                                         <div class="uk-margin-small-bottom uk-hidden">
@@ -878,6 +886,47 @@
                                             </div>
                                         </div>
                                         <!-- PANEL CREATION FORM END -->
+
+
+
+
+
+                                        <!-- PROFILE CREATION FORM -->
+                                        <div class="uk-margin-small-bottom uk-hidden">
+                                            <div class="uk-card uk-card-default">
+                                                <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
+                                                    <div uk-grid>
+                                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                                            <div class="uk-flex uk-flex-middle">
+                                                                <a class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: BOTTOM"><span uk-icon="icon: close"></span></a>
+                                                                <p class="uk-margin-remove uk-text-small">NEW PROFILE</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                                            <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="uk-card-body uk-padding-small">
+                                                    <div>
+                                                        <div class="uk-grid-small uk-margin-small" uk-grid>
+                                                            <div class="uk-width-auto uk-margin-auto-vertical">
+                                                                <span uk-icon="icon: user" uk-tooltip="USER"></span>
+                                                            </div>
+                                                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                                                <select class="uk-select" style="width: 100%">
+                                                                <option>BUSCADOR</option>
+                                                                <option>USER 1</option>
+                                                                <option>USER 2</option>
+                                                                <option>USER 3</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- PROFILE CREATION FORM END -->
                                     </div>
                                     <!-- EDITING AREA END-->
                                     <!-- EDITING AREA END-->
@@ -909,49 +958,6 @@
         </div>
     </div>
 </div>
-
-
-<style>
-    /* Tamaño del scroll */
-    
-     ::-webkit-scrollbar {
-        width: 6px;
-    }
-    /* Estilos barra (thumb) de scroll */
-    
-     ::-webkit-scrollbar-thumb {
-        background: #ccc;
-        border-radius: 4px;
-        height: 150px;
-    }
-    
-     ::-webkit-scrollbar-thumb:active {
-        background-color: #999999;
-    }
-    
-     ::-webkit-scrollbar-thumb:hover {
-        background: #b3b3b3;
-        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0);
-    }
-    /* Estilos track de scroll */
-    
-     ::-webkit-scrollbar-track {
-        background: #e1e1e1;
-        border-radius: 4px;
-        display: none;
-    }
-    
-     ::-webkit-scrollbar-track:hover,
-     ::-webkit-scrollbar-track:active {
-        background: #d4d4d4;
-    }
-    
-    .uk-button {
-        border-radius: 500px;
-    }
-</style>
-
-
 
 
 

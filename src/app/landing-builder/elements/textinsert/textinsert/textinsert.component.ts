@@ -25,6 +25,9 @@ export class TextinsertComponent implements OnInit, OnChanges {
   public align: number = 0;
 
 
+  texting = false;
+
+
   asyncStyle(){
     this.setStyle.emit({
       size: this.size,
@@ -52,24 +55,18 @@ export class TextinsertComponent implements OnInit, OnChanges {
   }
  
   onFocusOutEvent(event:any){
+    this.texting = false;
     console.log(event);
-
-    event.target.classList.add('uk-hidden');
-    this.textoPre.nativeElement.classList.remove('uk-hidden');
   }
 
   onFocusInEvent(event:any){
     console.log(event);
-    event.target.classList.remove('uk-hidden');
-    this.textoPre.nativeElement.classList.add('uk-hidden');
     
 
   }
 
   clickText(){
-    this.textareaPa.nativeElement.classList.remove('uk-hidden');
-    this.textoPre.nativeElement.classList.add('uk-hidden');
-    console.log(this.textoPre);
+    this.texting = true;
   }
 
   changeAligment(){

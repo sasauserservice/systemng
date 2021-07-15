@@ -1,0 +1,110 @@
+
+
+
+ <!-- USER CREATION FORM -->
+ <div class="uk-margin-small-bottom">
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
+            <div uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <div class="uk-flex uk-flex-middle">
+                        <a (click)="cancelCreation()" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: right"><span uk-icon="icon: close"></span></a>
+                        <p class="uk-margin-remove uk-text-small">EDIT USER</p>
+                    </div>
+                </div>
+                <div class="uk-width-auto uk-margin-auto-vertical">
+                    <a *ngIf="editObjet.status == 0" (click)="editObjet.status = 1" class="uk-icon-button uk-margin-small-left uk-margin-small-right" uk-icon="icon: check" uk-tooltip="ACTIVE"></a>
+                    <a *ngIf="editObjet.status == 1" (click)="editObjet.status = 0" class="uk-icon-button uk-margin-small-left uk-margin-small-right" uk-icon="icon: close" uk-tooltip="INACTIVE"></a>
+                    <a (click)="updateUser()" class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                </div>
+            </div> 
+        </div>
+        <div class="uk-card-body uk-padding-small">
+            <div>
+                <div class="uk-grid-small uk-margin-small" uk-grid>
+                    <div class="uk-width-auto uk-margin-auto-vertical">
+                        <span uk-icon="icon: pencil" uk-tooltip="NAME"></span>    
+                    </div>
+                    <div class="uk-width-expand uk-margin-auto-vertical">
+                        <input [(ngModel)]="editObjet.name" class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text">    
+                    </div>
+                </div>
+                <div class="uk-grid-small uk-margin-small" uk-grid>
+                    <div class="uk-width-auto uk-margin-auto-vertical">
+                        <span uk-icon="icon: mail" uk-tooltip="MAIL"></span>    
+                    </div>
+                    <div class="uk-width-expand uk-margin-auto-vertical">
+                        <input [(ngModel)]="editObjet.email" class="uk-input uk-width-1-1 uk-input-square" placeholder="EMAIL*" type="email">    
+                    </div>
+                </div>
+                <div class="uk-grid-small uk-margin-small" uk-grid>
+                    <div class="uk-width-expand">
+                        <div class="uk-grid-small uk-margin-small" uk-grid>
+                            <div class="uk-width-auto uk-margin-auto-vertical">
+                                <span uk-icon="icon: lock" uk-tooltip="PASS"></span>    
+                            </div>
+                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                <input [(ngModel)]="password" class="uk-input uk-width-1-1 uk-input-square" placeholder="PASSWORD*" type="password">    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-width-auto">
+                        <div class="uk-flex uk-flex-middle">
+                            <!--<a class="uk-icon-button" uk-icon="icon: check" uk-tooltip="ACTIVE"></a>
+                            <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: close" uk-tooltip="INACTIVE"></a> -->   
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- SELECTOR DE GRUPO DE USUARIOS -->
+            <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                <div class="uk-margin-auto-vertical">
+                    
+                    <a class="uk-button uk-button-primary uk-button-small">SELECT USER TYPE:</a>
+                </div>
+ 
+                <div class="uk-margin-auto-vertical">
+                    <label class="check-element ">
+                        <input [checked]="(showInfoBoxes['1'])" (change)="onCheckParameter($event)" [value]="1" type="checkbox">
+                        <p uk-icon="icon: star; ratio: 0.8">ATHLETE</p>
+                    </label> 
+                   <!-- <a class="uk-button uk-button-default uk-button-small" uk-icon="icon: star; ratio: 0.8" uk-tooltip="title: CLICK; pos: top">ATHLETE &nbsp;</a>-->
+                </div>
+
+                <div class="uk-margin-auto-vertical"> 
+                    <label class="check-element ">
+                        <input [checked]="(showInfoBoxes['2'])" (change)="onCheckParameter($event)" [value]="2" type="checkbox">
+                        <p uk-icon="icon: bolt; ratio: 0.8">JUDGE &nbsp;</p>
+                    </label> 
+                    <!-- <a class="uk-button uk-button-default uk-button-small" uk-icon="icon: bolt; ratio: 0.8" uk-tooltip="title: CLICK; pos: top">JUDGE &nbsp;</a>-->
+                </div>
+
+                <div class="uk-margin-auto-vertical">
+                    <label class="check-element ">
+                        <input [checked]="(showInfoBoxes['3'])" (change)="onCheckParameter($event)" [value]="3" type="checkbox">
+                        <p uk-icon="icon: heart; ratio: 0.8">COACH &nbsp;</p>
+                    </label> 
+                    <!--<a class="uk-button uk-button-default uk-button-small" uk-icon="icon: heart; ratio: 0.8" uk-tooltip="title: CLICK; pos: top">COACH &nbsp;</a>-->
+                </div>
+            </div>
+            <!-- SELECTOR DE GRUPO DE USUARIOS END --> 
+            <div *ngIf="showInfoBoxes['1']" class="uk-alert-success uk-margin-small" uk-alert>
+                <p class="uk-text-small uk-margin-remove">ATHLETE: The user will be abble to compete on any match, and create 1 Athlete Profile</p>
+            </div>
+
+            <div *ngIf="showInfoBoxes['2']" class="uk-alert-primary uk-margin-small" uk-alert>
+                <p class="uk-text-small uk-margin-remove">JUDGE: The user will be abble to access participations on assigned events, assign qualifications according to his / her panel and given events, review qualifications and rankings, and create 1 Judge Profile</p>
+            </div>
+ 
+            <div *ngIf="showInfoBoxes['3']" class="uk-alert-warning uk-margin-small" uk-alert>
+                <p class="uk-text-small uk-margin-remove">COACH: The user will be abble to create several TEAMS, submit participations on events, review qualifications and rankings, make claims, and create 1 Coach Profile</p>
+            </div>
+
+            <div *ngIf="showInfoBoxes['4']" class="uk-alert-danger uk-margin-small" uk-alert>
+                <p class="uk-text-small uk-margin-remove">OWNER: User will have control over own events, own user management in all groups, review qualifications and rankings on all the owned events, enable or disable participations, events, and rankings.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- USER CREATION FORM END -->

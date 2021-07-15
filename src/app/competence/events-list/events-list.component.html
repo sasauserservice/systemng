@@ -1,24 +1,186 @@
+ 
 <div>
-    <div class="uk-card uk-card-body uk-placeholder">
-        <table class="uk-table uk-table-small">
-            <thead>
-                <tr>
-                    <th>ALIAS</th>
-                    <th>TITLE</th>
-                    <th>VIEW</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let article of articles">
-                    <td class="uk-text-small">{{article.alias}}</td>
-                    <td class="uk-text-small">{{article.title}}</td>
-                    <td class="uk-text-small">
-                        <button (click)="openArticle(article.alias)" class="uk-icon-button">
-                            <span uk-icon="icon: arrow-right"></span>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
+            <div uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <div class="uk-grid-small" uk-grid>
+                        <div class="uk-width-auto uk-margin-auto-vertical">
+                            <h5 class="uk-margin-remove">MATCH CONTROL CENTER</h5>
+                            <p class="uk-margin-remove uk-text-small">Build, edit and assign competitors.</p>
+                        </div>
+                        <div class="uk-width-expand uk-margin-auto-vertical">
+                            <a href="javascript:void(0)" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: top"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-auto uk-margin-auto-vertical">
+                    <div class="uk-form">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: search"></span>
+                            <input class="uk-input" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
+            <div class="uk-card uk-card-default" *ngFor="let article of articles; let i = index">
+
+                <ul uk-accordion="toggle: *.uk-accordion-match-oppener">
+                    <li>
+                        <div class="uk-padding-small">
+                            <div class="" uk-grid>
+                                <div class="uk-width-1-3">
+                                    <div class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                            <span *ngIf="article.statusA" class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
+                                            <span *ngIf="!article.statusA" class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
+
+                                        </div>
+                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                            <div class="uk-grid-small uk-flex" uk-grid>
+                                                <div class="uk-width-auto uk-margin-auto-vertical">
+                                                    <a href="#" class="uk-button uk-button-text uk-button-small uk-text-truncate uk-margin-remove uk-accordion-match-oppener">{{article.title}}</a>
+                                                    <p class="uk-margin-remove uk-text-smaller">ID: {{article.alias}}</p>
+                                                </div>
+
+                                                <div class="uk-width-expand uk-margin-auto-vertical uk-flex uk-flex-middle">
+                                                    <div [ngSwitch]="article.fulltext.type" class="uk-margin-small-right">
+                                                        <div *ngSwitchCase="'1'">
+                                                            <span class="uk-icon-button" uk-icon="icon: location" uk-tooltip="title: ON SITE; pos: top"></span>
+                                                        </div>
+                                                        <div *ngSwitchCase="'2'">
+                                                            <span class="uk-icon-button" uk-icon="icon: laptop" uk-tooltip="title: VIRTUAL; pos: top"></span>
+                                                        </div>
+                                                        <div *ngSwitchDefault>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="uk-margin-small-right">
+                                                        <app-team-control [landingId]="article.id"></app-team-control>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-default uk-button-small uk-text-nowrap" uk-tooltip="title: CREATED; pos: top">{{article.created}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="uk-width-expand">
+                                    <div class="uk-flex uk-flex-right">
+                                        <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
+
+                                            <div class="uk-text-center">
+                                                <span class="uk-margin-remove" uk-icon="icon: desktop" uk-tooltip="title: USED; pos: top"></span>
+                                                <p class="uk-margin-remove uk-text-smaller">EVENTS: 3</p>
+                                            </div>
+                                            <div class="uk-text-center">
+                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
+                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES:</p>
+                                            </div>
+                                            <div class="uk-text-center">
+                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
+                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY</p>
+                                            </div>
+                                            <div class="uk-text-center">
+                                                <div class="uk-flex uk-flex-middle">
+                                                    <a class="uk-icon-button uk-margin-small-left" (click)="openArticle(article.alias)" target="_blank" uk-icon="icon: pencil" uk-tooltip="title: VIEW; pos: top"></a>
+                                                    <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
+
+
+                            <!-- PANELES DEL EVENTO -->
+                            <div class="uk-card uk-card-default" *ngFor="let panel of article.panels; let i = index;">
+                                <ul uk-accordion="toggle: *.uk-accordion-panel-oppenerrr">
+                                    <li>
+                                        <div class="uk-padding-small">
+                                            <div class="" uk-grid>
+                                                <div class="uk-width-1-3">
+                                                    <div class="uk-grid-small" uk-grid>
+                                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                                            <span *ngIf="panel.statusA" class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
+                                                            <span *ngIf="!panel.statusA" class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
+                                                        </div>
+                                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                                            <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppenerrr"> {{panel.name}}</a>
+                                                            <p class="uk-margin-remove uk-text-smaller">ID: {{panel.serial}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="uk-width-expand">
+                                                    <div class="uk-flex uk-flex-right">
+                                                        <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
+                                                            <div class="uk-text-center">
+                                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
+                                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES: {{panel.judges.general.length}}</p>
+                                                            </div>
+                                                            <div class="uk-text-center">
+                                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
+                                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY {{panel.judges.penalty.length}}</p>
+                                                            </div>
+                                                            <div class="uk-text-center">
+                                                                <div class="uk-flex uk-flex-middle">
+                                                                    <a class="uk-icon-button" uk-tooltip="title: EDIT; pos: top" href="javascript:void(0)" (click)="edit(panel)">
+                                                                        <span uk-icon="icon: pencil"></span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
+                                            <!-- LISTA DE CATEGORIAS Y PENALTYS -->
+                                            <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                                                <div *ngFor="let cat of panel.categories; let j = index">
+                                                    <a class="uk-button uk-button-default uk-button-smaller">{{cat.title}}</a>
+                                                </div>
+                                                <div *ngFor="let pen of panel.penalties; let j = index">
+                                                    <a class="uk-button uk-button-danger uk-button-smaller">{{pen.penaltytitle}}</a>
+                                                </div>
+                                            </div>
+                                            <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
+
+                                            <!-- LISTA DE JUECES -->
+                                            <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                                                <div *ngFor="let mainj of panel.judges.main; let k = index">
+                                                    <a class="uk-button uk-button-primary uk-button-smaller" uk-tooltip="title: MAIN; pos: top">{{mainj.user.email || 'NO JUDGE'}}</a>
+                                                </div>
+                                                <div *ngFor="let genej of panel.judges.general; let l = index">
+                                                    <a class="uk-button uk-button-default uk-button-smaller" uk-tooltip="title: JUDGE; pos: top">{{genej.user.email || 'NO JUDGE'}}</a>
+                                                </div>
+                                                <div *ngFor="let penalj of panel.judges.penalty; let p = index">
+                                                    <a class="uk-button uk-button-danger uk-button-smaller" uk-tooltip="title: PENALTY; pos: top">{{penalj.user.email || 'NO JUDGE'}}</a>
+                                                </div>
+                                            </div>
+                                            <!-- LISTA DE JUECES END -->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- PANELES DEL EVENTO END -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="uk-card-footer">
+            <p>Some content after the overflow auto container.</p>
+        </div>
     </div>
-</div> 
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-panels',
   templateUrl: './panels.component.html',
@@ -11,5 +11,7 @@ export class PanelsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  
 
 }

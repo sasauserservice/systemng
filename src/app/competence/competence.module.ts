@@ -1,7 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ManagerComponent } from './manager/manager.component';
-import { PenaltiesComponent } from './penalties/penalties.component';
 import { ParamsComponent } from './params/params.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -23,12 +22,20 @@ import { PanelsCreateComponent } from './panels/panels-create/panels-create.comp
 import { PanelsListComponent } from './panels/panels-list/panels-list.component';
 import { EventsListComponent } from './events-list/events-list.component';
 import { TeamControlComponent } from './landing/team-control/team-control.component';
+import { PanelsEditComponent } from './panels/panels-edit/panels-edit.component';
+import { UserCreateManagerComponent } from './user/user-create-manager/user-create-manager.component';
+import { UserManagementComponent } from './user/user-management/user-management.component';
+import { UserEditManagerComponent } from './user/user-edit-manager/user-edit-manager.component';
+import { CompetitorCreateManagerComponent } from './competitor/competitor-create-manager/competitor-create-manager.component';
+import { FilterusergroupPipe } from '../pipies/filterusergroup.pipe';
+import { CompetitorListComponent } from './competitor/competitor-list/competitor-list.component';
+import { CompetitorEditManagerComponent } from './competitor/competitor-edit-manager/competitor-edit-manager.component';
+import { EntryListManagerComponent } from './entry/entry-list-manager/entry-list-manager.component';
 
 
 @NgModule({
   declarations: [
     ManagerComponent,
-    PenaltiesComponent,
     ParamsComponent,
     CreatorComponent,
     CategoryCreatorComponent,
@@ -44,7 +51,16 @@ import { TeamControlComponent } from './landing/team-control/team-control.compon
     PanelsCreateComponent,
     PanelsListComponent,
     EventsListComponent,
-    TeamControlComponent
+    TeamControlComponent,
+    PanelsEditComponent,
+    UserCreateManagerComponent, 
+    UserManagementComponent,
+    UserEditManagerComponent,
+    CompetitorCreateManagerComponent,
+    FilterusergroupPipe,
+    CompetitorListComponent,
+    CompetitorEditManagerComponent,
+    EntryListManagerComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +71,6 @@ import { TeamControlComponent } from './landing/team-control/team-control.compon
   ],
   exports: [
     ManagerComponent,
-    PenaltiesComponent,
     ParamsComponent,
     CreatorComponent,
     CategoryCreatorComponent,
@@ -71,7 +86,14 @@ import { TeamControlComponent } from './landing/team-control/team-control.compon
     PanelsCreateComponent,
     PanelsListComponent,
     EventsListComponent,
-    TeamControlComponent
+    TeamControlComponent,
+    PanelsEditComponent,
+    UserCreateManagerComponent,
+    UserManagementComponent,
+    CompetitorCreateManagerComponent,
+    FilterusergroupPipe,
+    CompetitorEditManagerComponent,
+    EntryListManagerComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -1,0 +1,124 @@
+<div style="max-height: 83vh;">
+    <div class="uk-content-card" style="height: 83vh;">
+        <div class="js-wrapper">
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
+                    <div class="uk-grid-small" uk-grid>
+                        <div class="uk-width-auto uk-margin-auto-vertical">
+                            <div class="uk-grid-small uk-child-width-auto" uk-grid>
+                                <div>
+                                    <p class="uk-margin-remove">USER MANAGEMENT</p>
+                                    <p class="uk-margin-remove uk-text-smaller">Create, edit, erase.</p>
+                                </div>
+                                <div class="uk-flex uk-flex-middle">
+                                    <span (click)="openCreateNew()" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW USER; pos: top"></span>
+                                    <span class="uk-icon-button uk-margin-small-left" uk-icon="icon: tag" uk-tooltip="title: NEW PROFILE; pos: top"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-expand uk-margin-auto-vertical uk-flex uk-flex-middle uk-flex-right">
+                            <div class="uk-margin-small-left uk-width-1-1">
+                                <select [(ngModel)]="filterSelect" class="uk-select" style="width: 100%">
+                                    <option value="">SELECT A TYPE</option>
+                                    <option value="1">ATHLETE</option>
+                                    <option value="2">JUDGE</option>
+                                    <option value="3">COACH</option>
+                                </select>
+                            </div>
+
+
+                            <div class="uk-inline uk-margin-small-left">
+                                <span class="uk-form-icon" uk-icon="icon: search"></span>
+                                <input ([ngModel])="filterQuery" class="uk-input" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-card-body" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
+                    <div>
+                        <div *ngFor="let user of (usersShow | filterusergroup: filterSelect)" class="uk-card uk-card-default">
+                            <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
+                                <li >
+                                    <div class="uk-padding-small">
+                                        <div class="" uk-grid>
+                                            <div class="uk-width-1-3">
+                                                <div class="uk-grid-small" uk-grid>
+                                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                                        <span class="" uk-icon="icon: user"></span>
+                                                    </div>
+                                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                                        <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener">{{user.name}}</a>
+                                                        <p class="uk-margin-remove uk-text-smaller">RECENT: Event name last used, connected 2021 April 12</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="uk-width-expand">
+                                                <div class="uk-flex uk-flex-right">
+                                                    <div class="uk-child-width-auto uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                                                        <div class="uk-text-center">
+                                                            <span class="uk-margin-remove" uk-icon="icon: info" uk-tooltip="title: PROFILE YES; pos: top"></span>
+                                                        </div>
+
+                                                        <div *ngFor="let group of user.groups">
+                                                            <div *ngIf="group.icon && group.icon=='star'" class="uk-text-center">
+                                                                <span class="uk-margin-remove" uk-icon="star" [attr.uk-tooltip]="'title: Atleta; pos: top'"></span>
+
+                                                            </div>
+                                                            <div *ngIf="group.icon && group.icon=='bolt'" class="uk-text-center">
+                                                                <span class="uk-margin-remove" uk-icon="bolt" [attr.uk-tooltip]="'title: '+group.title.toUpperCase()+'; pos: top'"></span>
+
+                                                            </div>
+                                                            <div *ngIf="group.icon && group.icon=='heart'" class="uk-text-center">
+                                                                <span class="uk-margin-remove" uk-icon="heart" [attr.uk-tooltip]="'title: '+group.title.toUpperCase()+'; pos: top'"></span>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="uk-text-center">
+                                                            <div class="uk-flex uk-flex-middle">
+                                                                <span (click)="openEdit(user)" class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></span>
+                                                                <span (click)="deleteUser(user.id)" class="uk-margin-small-left uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
+                                        <!-- LISTA DE CATEGORIAS Y PENALTYS -->
+                                        <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                                            <div class="uk-margin-auto-vertical">
+                                                <a class="uk-button uk-button-primary uk-button-small">ACTIVE EVENTS:</a>
+                                            </div>
+
+                                            <div class="uk-margin-auto-vertical">
+                                                <a class="uk-button uk-button-default uk-button-small">EVENT THE SOL: <span uk-icon="icon: star; ratio: 0.75" uk-tooltip="title: ATHLETE; pos: top"></span></a>
+                                            </div>
+
+                                            <div class="uk-margin-auto-vertical">
+                                                <a class="uk-button uk-button-default uk-button-small">EVENT THE LIFE: <span uk-icon="icon: bolt; ratio: 0.75" uk-tooltip="title: JUDGE; pos: top"></span><span uk-icon="icon: heart; ratio: 0.75" uk-tooltip="title: COACH; pos: top"></span></a>
+                                            </div>
+
+                                            <div class="uk-margin-auto-vertical">
+                                                <a class="uk-button uk-button-default uk-button-small">EVENTO MI KIND: <span uk-icon="icon: heart; ratio: 0.75" uk-tooltip="title: COACH; pos: top"></span></a>
+                                            </div>
+                                        </div>
+                                        <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="uk-card-footer">
+                    <p>Some content after the overflow auto container.</p>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import { Select2OptionData } from 'ng-select2';
+import { CompetenceLandingService } from '../competence-landing.service';
 import Swal from 'sweetalert2'
 @Component({
   selector: 'app-team-control',
@@ -8,9 +9,15 @@ import Swal from 'sweetalert2'
 })
 export class TeamControlComponent implements OnInit {
 
-  constructor() { }
+  @Input() landingId : number = 0;
+
+  constructor(private competenceService : CompetenceLandingService) { }
  
   ngOnInit(): void {
+    this.getCategories();
+    this.getProfiles();
+    this.getParticipations();
+    
      
   }
 
@@ -106,7 +113,7 @@ AviableCategories : Array<Select2OptionData> = [
 
 ];
 currentEdit : any = {};
-
+globalEditState : boolean = false;
 
   dataForSend : Array<any> = [
     { 
@@ -119,6 +126,29 @@ currentEdit : any = {};
       ]
     }
   ];
+ 
+  getCategories(){
+    this.competenceService.getAllCategories(this.landingId).subscribe((response:any) => {
+      //console.log(response);
+      this.AllCategories = response;
+    });
+  }
+
+  getProfiles(){
+    this.competenceService.getAllProfiles().subscribe((response:any) => {
+      //console.log(response);
+      // AllTeams and AtleteProfiles
+      this.AllTeams = response;
+    });
+  }
+
+  getParticipations(){
+    this.competenceService.getAllPart(this.landingId).subscribe((response:any) => {
+      //console.log(response);
+      // AllTeams and AtleteProfiles
+      this.TeamsAndCatPrevSel = response;
+    });
+  }
    
   addteamsForSend(){
     this.dataForSend.push(
@@ -131,7 +161,7 @@ currentEdit : any = {};
       });
   }
   changeEvent(event:any){
-    console.log(event);
+    //console.log(event);
   }
 
   // Set Selected From Query
@@ -149,7 +179,7 @@ currentEdit : any = {};
     let selected : Array<any> = this.setSelectedBefore(team);
     //selected;
     this.dataForSend.forEach(function(a:any,i:any){
-      if(parseInt(a.teamId) == parseInt(team)){
+      if(a.teamId == team){
         selected.push(a.categoryId);
       }
 
@@ -175,11 +205,62 @@ currentEdit : any = {};
 
   }
   
-  validateArray() : any{
-    console.log(this.dataForSend);
-    this.dataForSend.forEach(function(a:any,i:any) : any{
+ 
+ 
+  setCurrentEdit(i:number,team:any){
+    if(this.checkIfEditState()){
+       let self = this;
+    this.currentEdit =  this.TeamsAndCatPrevSel[i];
+    this.currentEdit.aviable =  [];
+    this.globalEditState = true;
+    this.TeamsAndCatPrevSel[i].editStatus = true;
+    let aviable  : Array<any>  = []; 
+    let selected : Array<any>  = this.setSelected(team);
+    self.AllCategories.forEach(function(a:any,iss:any){
+      if(self.TeamsAndCatPrevSel[i].category_id == a.id){
+        aviable.push(a);
+      }
+      if(selected.includes(a.id)){
+
+      }else{
+        aviable.push(a);
+      } 
        
       
+    });
+    //console.log(team);
+      self.currentEdit.aviable = aviable;
+    }
+   
+  }
+
+
+  changeEditStatus(i:number,action:boolean){
+    
+      this.TeamsAndCatPrevSel[i].editStatus = action;
+    this.globalEditState = action;
+    
+    
+  }
+  checkIfEditState(): boolean{
+    if(this.globalEditState){
+      Swal.fire({
+      title: 'Info!',
+      text: 'FINISH OR CANCEL THE ACTIVE EDITION',
+      icon: 'info',
+      showCancelButton: false,
+      showConfirmButton: false
+    });
+    return false
+    }
+    return true
+  }
+
+  validateArray() : any{
+    
+    let rett = true;
+    
+    this.dataForSend.forEach(function(a:any,i:any) : any{
       if(a.teamId == 0  || a.teamId == null || a.categoryId == 0 || a.categoryId == null){
         Swal.fire({
           title: 'Info!',
@@ -188,52 +269,185 @@ currentEdit : any = {};
           showCancelButton: false,
           showConfirmButton: false
         });
-        return false;
+        rett =  false;
       }
     });
-     
-
+    return rett;
   }
  
-
-  setCurrentEdit(i:number,team:any){
-    let self = this;
-    this.currentEdit =  this.TeamsAndCatPrevSel[i];
-    this.currentEdit.aviable =  [];
-    this.TeamsAndCatPrevSel[i].editStatus = true;
-    let aviable  : Array<any>  = []; 
-    let selected : Array<any>  = this.setSelected(team);
-    self.AllCategories.forEach(function(a:any,i:any){
-      if(selected.includes(a.id)){
-
-      }else{
-        aviable.push(a);
-      } 
-      self.currentEdit.aviable = aviable;
-    });
-  }
-
-  changeEditStatus(i:number,action:boolean){
-    this.TeamsAndCatPrevSel[i].editStatus = action;
-  }
-
-
   sendPart(){
-    if(this.validateArray()){
+    if(this.checkIfEditState()){
+       if(this.validateArray()){
       // aqui se hace el post
-      Swal.fire({
-        title: 'Info!',
-        text: 'all right',
-        icon: 'success',
-        showCancelButton: false,
-        showConfirmButton: false
-      });
+        let obj = { 
+          event_id : this.landingId,
+          conected_user : 0,
+          data          :this.dataForSend
+        }
+      this.competenceService.sendParts(JSON.stringify(obj)).then( (response: any) => {
+        if(response){
+          Swal.fire({
+            title: 'Success!',
+            text: 'Participations saved',
+            icon: 'success',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+           
+          this.dataForSend = [
+            {
+              teamId: 0,
+              categoryId:0,
+              aviable:[
+      
+              ]
+            }
+          ];
+          this.ngOnInit();
+        }
+      }).catch((error: any) => {
+        console.log(error); 
+        if(error){
+          Swal.fire({
+            title: 'Info!',
+            text: 'Error on server',
+            icon: 'info',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+        }
+      } ); 
+
+        
+    }
+    }
+  }
+
+  editPart(){
+     
+    let obj = 
+    {
+      
+      'event_id' : this.landingId,
+      "conected_user":1,
+      "data":[
+        {
+          "id":this.currentEdit.id,
+          "teamId":this.currentEdit.team_id,
+          "categoryId":this.currentEdit.category_id,
+          "video_url":this.currentEdit.video_url
+        },
+      ],};
+      
+       // let obj = this.currentEdit;
+      this.competenceService.updatePart(obj).then( (response: any) => {
+        if(response){
+          Swal.fire({
+            title: 'Success!',
+            text: 'Participations saved',
+            icon: 'success',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+           
+          this.dataForSend = [
+            {
+              teamId: 0,
+              categoryId:0,
+              aviable:[
+      
+              ]
+            }
+          ];
+          this.ngOnInit();
+        }
+      }).catch((error: any) => {
+        console.log(error); 
+        if(error){
+          Swal.fire({
+            title: 'Info!',
+            text: 'Error on server',
+            icon: 'info',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+        }
+      } ); 
+
+        
+   
+     
+  }
+
+  deleteForsend(i:number){
+    if(this.checkIfEditState()){
+      this.dataForSend.splice(i,1);
     }
     
   }
 
-  deleteForsend(i:number){
-    this.dataForSend.splice(i,1);
+  recalculeAviables(){
+    this.dataForSend.forEach(function(a:any,i:any){
+      console.log(a);
+    })
+  }
+
+  async deleteAnExistantPart(id:number){
+    const { value: deletekey } = await Swal.fire({
+      title: "ARE YOU SURE?",
+      icon: 'warning',
+      html:
+        '<input placeholder="Write DELETE to confirm" type="text" id="swal-input1" class="swal2-input">',
+        
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+           
+          document.getElementById('swal-input1'),
+         // document.querySelector("input[name='radio2']")
+           
+        ]
+      }
+    });  
+
+    if(deletekey){
+      let deletekeyinput : any = deletekey[0];
+       if (deletekeyinput.value == 'DELETE') {
+        this.competenceService.deletePart(id).then((response: any) => {
+          Swal.fire({ 
+            title: 'Success!',
+            text: 'Participation deleted',
+            icon: 'success',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+          this.ngOnInit();
+          this.recalculeAviables();
+          //this.getPenalties();
+        }).catch((error: any) => {
+          Swal.fire({
+            title: 'Info!',
+            text: 'Error on server',
+            icon: 'info',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+        });
+
+
+         
+
+
+       }else{
+         Swal.fire(`Invalid Delete key`);
+       }
+      
+      
+
+
+
+
+    }
   }
 
 }

@@ -1,11 +1,12 @@
 <!-- This is a button toggling the modal -->
-<button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-teammanagement">TEAMS CONTROL</button>
+<a class="uk-icon-button" uk-icon="icon: users" uk-toggle="target: #modal-teammanagement" uk-tooltip="title: COMPETITORS; pos: top"></a>
 
 
 <!-- This is the modal -->
 <div id="modal-teammanagement" uk-modal>
     <div class="uk-modal-dialog" style="width: 80vw">
-
+        
+        
         <div class="uk-card">
             <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
                 <div uk-grid>
@@ -30,22 +31,24 @@
                 </div>
             </div>
         </div>
-
+  
 
         <div class="uk-modal-body" uk-overflow-auto>
-            <div class="uk-grid-small" uk-grid *ngFor="let team of dataForSend;let i = index">
+             
+            <div  class="uk-grid-small" uk-grid *ngFor="let team of dataForSend;let i = index">
                 <div class="uk-width-expand uk-margin-auto-vertical">
-                    <ng-select2 (valueChanged)="setAviable(i,$event)" [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="team.teamId" [data]="AllTeams" [placeholder]="'TEAM'"></ng-select2>
+                    <ng-select2 [disabled]="globalEditState" (valueChanged)="setAviable(i,$event)" [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="team.teamId" [data]="AllTeams" [placeholder]="'TEAM'"></ng-select2>
                 </div>
                 <div class="uk-width-expand uk-margin-auto-vertical">
-                    <ng-select2 (valueChanged)="setAviable(i,team.teamId)" [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="team.categoryId" [data]="team.aviable" [placeholder]="'CATEGORY'"></ng-select2> 
+                    <ng-select2 (click)="setAviable(i,team.teamId)" [disabled]="globalEditState || (team.teamId == 0)|| (team.teamId == null)"  [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="team.categoryId" [data]="team.aviable" [placeholder]="'CATEGORY'"></ng-select2> 
+                    
                 </div>
                 <div class="uk-width-expand uk-margin-auto-vertical">
-                    <input class="uk-input" type="text" name="" placeholder="VIDEO URL"/>
+                    <input [(ngModel)]="team.video_url" class="uk-input" type="text" name="" placeholder="VIDEO URL"/>
                 </div>
                 <div class="uk-width-auto uk-flex uk-flex-middle">
                     <a uk-tooltip="ADD" (click)="addteamsForSend()" class="uk-margin-small-right uk-icon-button" uk-icon="plus"></a>
-                    <a uk-tooltip="ERASE" (click)="deleteForsend(i)" class="uk-icon-button" uk-icon="trash"></a>
+                    <a  [attr.disabled]="(i == 0)"  uk-tooltip="ERASE" (click)="deleteForsend(i)" class="uk-icon-button" uk-icon="trash"></a>
                 </div>
             </div>
 
@@ -62,14 +65,14 @@
                 </div>
 
                 <div class="uk-card-body">
-                     
+                      
                     <div *ngFor="let part of TeamsAndCatPrevSel;let i = index" class="">
-                        <div *ngIf="!part.editStatus" class="uk-grid-small uk-animation-slide-bottom" uk-grid>
+                        <div  *ngIf="!part.editStatus" class="uk-grid-small uk-animation-slide-bottom" uk-grid>
                             <div class="uk-width-expand uk-margin-auto-vertical">
-                                <p class="uk-margin-remove">{{part.team_title}} || {{part.team_id}}</p>
+                                <p class="uk-margin-remove">{{part.team_name}}</p>
                             </div>
                             <div class="uk-width-expand uk-margin-auto-vertical">
-                                <p class="uk-margin-remove">{{part.category_title}} || {{part.category_id}}</p> 
+                                <p class="uk-margin-remove">{{part.category_title}}</p> 
                             </div>
                             <div class="uk-width-expand uk-margin-auto-vertical">
                                 <a class="uk-button uk-button-text" target="_BLANK" *ngIf="part.video_url" [href]="part.video_url">
@@ -79,23 +82,23 @@
                                 <p *ngIf="!part.video_url" class="uk-margin-remove">{{'N/A'}}</p>
                             </div>
                             <div class="uk-width-auto uk-flex uk-flex-middle">
-                                <a (click)="setCurrentEdit(i,part.team_title)" uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
-                                <a uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
+                                <a (click)="setCurrentEdit(i,part.team_id)" uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
+                                <a (click)="deleteAnExistantPart(part.id)" uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
                             </div> 
-                        </div>
-                        <div *ngIf="part.editStatus" class="uk-grid-small uk-animation-slide-top" uk-grid >
+                        </div> 
+                        <div *ngIf="part.editStatus" class="uk-grid-small uk-animation-slide-top" uk-grid > 
                             <div class="uk-width-expand uk-margin-auto-vertical">
                                 <ng-select2 [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="currentEdit.team_id" [data]="AllTeams" [placeholder]="'CATEGORY'"></ng-select2> 
                             </div>
                             <div class="uk-width-expand uk-margin-auto-vertical">
-                                <ng-select2  [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="currentEdit.category_id" [data]="AllCategories" [placeholder]="'TEAM'"></ng-select2>
+                                <ng-select2  [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="currentEdit.category_id" [data]="currentEdit.aviable" [placeholder]="'TEAM'"></ng-select2>
                             </div>
                             <div class="uk-width-expand uk-margin-auto-vertical">
                                 <input [(ngModel)]="currentEdit.video_url" class="uk-input" type="text" name="" placeholder="VIDEO URL"/>
                             </div>
                             <div class="uk-width-auto uk-flex uk-flex-middle">
                                 <a uk-tooltip="CANCEL" (click)="changeEditStatus(i,false)" class="uk-margin-small-right uk-icon-button" uk-icon="close"></a>
-                                <a uk-tooltip="SAVE" (click)="addteamsForSend()" class="uk-margin-small-right uk-icon-button" uk-icon="cloud-upload"></a>
+                                <a uk-tooltip="SAVE" (click)="editPart()" class="uk-margin-small-right uk-icon-button" uk-icon="cloud-upload"></a>
                                  
                             </div> 
                         </div>

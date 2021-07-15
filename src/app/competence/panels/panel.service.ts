@@ -11,6 +11,18 @@ export class PanelService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getPanels(){
+    return new Promise( (resolve, reject) => {
+      this.httpClient
+      .get<any>(BASEURI + 'matchpanel/list')
+      .subscribe( (response:any) => {
+        resolve(response);
+      }, (error:any) => {
+        reject(error);
+      } );
+    } );
+  }
+
   getMatchToSelect2(){
     return new Promise( (resolve, reject) => {
       this.httpClient
@@ -26,7 +38,7 @@ export class PanelService {
   getJudgesToSelect2(){
     return new Promise( (resolve, reject) => {
       this.httpClient
-      .get<any>(BASEURI + 'matchpanel/judges')
+      .get<any>(BASEURI + 'extdb/community/group/judge')
       .subscribe( (response:any) => {
         resolve(response);
       }, (error:any) => {
@@ -71,6 +83,11 @@ export class PanelService {
       } );
     } );
   }
+  
+  async getPenaltiesOnSelection(){
+    let data = await this.httpClient.get<any>(BASEURI + 'matchpanel/penalties').toPromise();
+    return data;
+  }
 
   postPanel($data: any) {
     let form = new FormData();
@@ -78,6 +95,34 @@ export class PanelService {
     return new Promise( (resolve, reject) => {
       this.httpClient
       .post<any>(BASEURI + 'matchpanel/create', form)
+      .subscribe( (response:any) => {
+        resolve(response);
+      }, (error:any) => {
+        reject(error);
+      } );
+    } );
+  }
+
+  updatePanel($data: any){
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    const form = new FormData();
+    form.append('form', JSON.stringify($data));
+    return new Promise( (resolve, reject) => {
+      this.httpClient
+      .post<any>(BASEURI + 'matchpanel/update', form)
+      .subscribe( (response:any) => {
+        resolve(response);
+      }, (error:any) => {
+        reject(error);
+      } );
+    } );
+  }
+
+  delpanel($id:any){
+    const form = new FormData();
+    return new Promise( (resolve, reject) => {
+      this.httpClient
+      .post<any>(BASEURI + 'matchpanel/delete/'+$id, form)
       .subscribe( (response:any) => {
         resolve(response);
       }, (error:any) => {

@@ -53,7 +53,7 @@ export class ParameterCreatorComponent implements OnInit, OnChanges {
               if(response){
                 Swal.fire({
                   title: 'Success!',
-                  text: 'You must write a term to search',
+                  text: '',
                   icon: 'success',
                   showCancelButton: false,
                   showConfirmButton: false

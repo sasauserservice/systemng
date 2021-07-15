@@ -25,7 +25,7 @@
     </div>
 
     <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
-        <div class="uk-card uk-card-default">
+        <div class="uk-card uk-card-default" *ngFor="let panel of panels; let i = index;">
             <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
                 <li>
                     <div class="uk-padding-small">
@@ -33,12 +33,12 @@
                             <div class="uk-width-1-3">
                                 <div class="uk-grid-small" uk-grid>
                                     <div class="uk-width-auto uk-margin-auto-vertical">
-                                        <span class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
-                                        <span class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
+                                        <span *ngIf="panel.statusA" class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
+                                        <span *ngIf="!panel.statusA" class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
                                     </div>
                                     <div class="uk-width-expand uk-margin-auto-vertical">
-                                        <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener">ID: XXXXXXXXX</a>
-                                        <p class="uk-margin-remove uk-text-smaller">LAST USED: Event name last used, 2021 April 12</p>
+                                        <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener"> {{panel.name}}</a>
+                                        <p class="uk-margin-remove uk-text-smaller">ID: {{panel.serial}}</p>
                                     </div>
                                 </div>
 
@@ -48,7 +48,7 @@
                                     <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
                                         <div class="uk-text-center">
                                             <span class="uk-margin-remove" uk-icon="icon: calendar" uk-tooltip="title: CREATED; pos: top"></span>
-                                            <p class="uk-margin-remove uk-text-smaller">15/02/2021</p>
+                                            <p class="uk-margin-remove uk-text-smaller">{{panel.created}}</p>
                                         </div>
                                         <div class="uk-text-center">
                                             <span class="uk-margin-remove" uk-icon="icon: desktop" uk-tooltip="title: USED; pos: top"></span>
@@ -56,16 +56,20 @@
                                         </div>
                                         <div class="uk-text-center">
                                             <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
-                                            <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES: 3</p>
+                                            <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES: {{panel.judges.general.length}}</p>
                                         </div>
                                         <div class="uk-text-center">
                                             <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
-                                            <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY 2</p>
+                                            <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY {{panel.judges.penalty.length}}</p>
                                         </div>
                                         <div class="uk-text-center">
                                             <div class="uk-flex uk-flex-middle">
-                                                <span class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></span>
-                                                <span class="uk-margin-small-left uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></span>
+                                                <a class="uk-icon-button" uk-tooltip="title: EDIT; pos: top" href="javascript:void(0)" (click)="edit(panel)">
+                                                    <span uk-icon="icon: pencil"></span>
+                                                </a>
+                                                <a (click)="delPanel(panel.id)">
+                                                    <span class="uk-margin-small-left uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></span>
+                                                </a>
                                                 <span class="uk-margin-small-left uk-icon-button" uk-icon="icon: bookmark" uk-tooltip="title: ASSIGN; pos: top"></span>
                                             </div>
                                         </div>
@@ -79,82 +83,47 @@
                         <!-- LISTA DE CATEGORIAS Y PENALTYS -->
                         <div class="uk-child-width-auto uk-grid-small" uk-grid>
                             <div>
-                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
+                                <a class="uk-button uk-button-default uk-button-smaller">CATEGORIES:</a>
+                            </div>
+                            <div *ngFor="let cat of panel.categories; let j = index">
+                                <a class="uk-button uk-button-default uk-button-smaller">{{cat.title}}</a>
                             </div>
                             <div>
-                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
+                                <a class="uk-button uk-button-danger uk-button-smaller">PENALTIES:</a>
                             </div>
-                            <div>
-                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
+                            <div *ngFor="let pen of panel.penalties; let j = index">
+                                <a class="uk-button uk-button-danger uk-button-smaller">{{pen.penaltytitle}}</a>
                             </div>
                         </div>
                         <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
 
                         <!-- LISTA DE JUECES -->
                         <div class="uk-child-width-auto uk-grid-small" uk-grid>
-                            <div>
-                                <a class="uk-button uk-button-primary uk-button-small">
-                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                    <p class="uk-margin-remove uk-text-smaller">MAIN JUDGE</p>
-                                </a>
+                            <div *ngFor="let mainj of panel.judges.main; let k = index">
+                                <a class="uk-button uk-button-primary uk-button-smaller" uk-tooltip="title: MAIN; pos: top">{{mainj.user.email || 'NO JUDGE SELECTED'}}</a>
                             </div>
-                            <div>
-                                <a class="uk-button uk-button-default uk-button-small">
-                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                    <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
-                                </a>
+                            <div *ngFor="let genej of panel.judges.general; let l = index">
+                                <a class="uk-button uk-button-default uk-button-smaller" uk-tooltip="title: JUDGE; pos: top" [attr.uk-toggle]="'target: #toggle-judge-param'+l+'; animation: uk-animation-slide-top-small'">{{genej.user.email || 'NO JUDGE SELECTED'}}</a>
                             </div>
-                            <div>
-                                <a class="uk-button uk-button-default uk-button-small">
-                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                    <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
-                                </a>
+                            <div *ngFor="let penalj of panel.judges.penalty; let p = index">
+                                <a class="uk-button uk-button-danger uk-button-smaller" uk-tooltip="title: PENALTY; pos: top" [attr.uk-toggle]="'target: #toggle-judge-penalty'+p+'; animation: uk-animation-slide-top-small'">{{penalj.user.email || 'NO JUDGE SELECTED'}}</a>
                             </div>
-                            <div>
-                                <a class="uk-button uk-button-default uk-button-small">
-                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                    <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-default uk-button-small">
-                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                    <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-danger uk-button-small">
-                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                    <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-danger uk-button-small">
-                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                    <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="uk-button uk-button-danger uk-button-small">
-                                    <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                    <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
-                                </a>
-                            </div>
+                        </div>
+
+                        <div *ngFor="let genej of panel.judges.general; let l = index" [attr.id]="'toggle-judge-param'+l" class="uk-margin-small" hidden>
+                            <p class="uk-text-small">
+                                <span *ngFor="let param of genej.user.params;let i = index">
+                                    {{param.title}} <span *ngIf="i+1 != genej.user.params.length">||</span>
+                                </span>
+                            </p>
+                        </div>
+
+                         <div *ngFor="let penalj of panel.judges.penalty; let p = index" [attr.id]="'toggle-judge-penalty'+p" class="uk-margin-small" hidden>
+                            <p class="uk-text-small">
+                                <span *ngFor="let param of penalj.user.params;let i = index">
+                                    {{param.text}} <span *ngIf="i+1 != penalj.user.params.length">||</span>
+                                </span>
+                            </p>
                         </div>
                         <!-- LISTA DE JUECES END -->
                     </div>
