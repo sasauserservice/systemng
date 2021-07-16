@@ -14,7 +14,9 @@ export class CompetitorCreateManagerComponent implements OnInit {
   constructor(private service: CompetitorService) { }
 
   coachList: Array<any> = [];
-  coachforSend: Array<any> = [0,];
+  coachforSend: Array<any> = ['0',];
+
+  coachforSend2 : Array<any> = [{user: '0'},];
 
   dataforsend:any = {
     "type": '1', 
@@ -34,17 +36,25 @@ export class CompetitorCreateManagerComponent implements OnInit {
     });
   }
   addCoachForsend(){
-    this.coachforSend.push(0);
+    this.coachforSend.push({user: '0'});
+  }
+  
+  removeCoachForsend(index:number){
+    this.coachforSend.splice(index, 1);
   }
 
   sendParticipant(){
+    let coachforsend = this.coachforSend2.map((value:any)=>{
+      return parseInt(value.user);
+    });
+    
     let obj:any = {
-      "managers": this.coachforSend,
+      "managers": coachforsend,
       "type": this.dataforsend.type, //este es 1 atleta y 2 team
       "data": this.dataforsend.data
     };
 
-    if(this.coachforSend.includes(0) || this.dataforsend.data.name == '' ){
+    if(coachforsend.includes(0) || this.dataforsend.data.name == '' ){
       Swal.fire({
         title: 'Info!',
         text: 'Not empty values',

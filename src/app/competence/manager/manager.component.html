@@ -511,9 +511,9 @@
                                     <!-- FOURT CARD EVENTS -->
                                     <!-- FOURT CARD EVENTS -->
                                     <div>
-                                        
+
                                         <app-events-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadEvents = $event" [changes]="statusReloadEvents"></app-events-list>
-                                    </div> 
+                                    </div>
                                     <!-- FOURT CARD EVENTS END -->
                                     <!-- FOURT CARD EVENTS END -->
                                     <!-- FOURT CARD EVENTS END -->
@@ -525,18 +525,41 @@
                                     <!-- FIFTH CARD USERS -->
                                     <!-- FIFTH CARD USERS -->
                                     <div>
-                                        <app-user-management (stateChange)="statusReloadUsers = $event" [changes]="statusReloadUsers" (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-user-management>
-                                        <hr>
-                                        <app-competitor-list (stateChange)="statusReloadCompetitors = $event" [changes]="statusReloadCompetitors" (stateChangeBar)="statuschange($event, 'nada')" (currentEdit)="currentEdition = $event"></app-competitor-list>
+                                        <div class="uk-child-width-1-2@l uk-grid-small uk-margin-small-bottom" uk-grid uk-switcher="connect: *.user-competitors-selector">
+                                            <div class="uk-active">
+                                                <a href="#" class="uk-button uk-button-default uk-width-1-1 uk-button-small">BY USER</a>
+                                            </div>
+                                            <div>
+                                                <a href="#" class="uk-button uk-button-default uk-width-1-1 uk-button-small">BY COMPETITOR</a>
+                                            </div>
+                                        </div>
+                                        <div class="user-competitors-selector uk-switcher">
+                                            <div>
+                                                <app-user-management (stateChange)="statusReloadUsers = $event" [changes]="statusReloadUsers" (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-user-management>
+                                            </div>
+                                            <div>
+                                                <app-competitor-list (stateChange)="statusReloadCompetitors = $event" [changes]="statusReloadCompetitors" (stateChangeBar)="statuschange($event, 'nada')" (currentEdit)="currentEdition = $event"></app-competitor-list>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- FIFTH CARD USERS END -->
+                                    <!-- FIFTH CARD USERS END -->
+                                    <!-- FIFTH CARD USERS END -->
+                                    <!-- FIFTH CARD USERS END -->
+
+                                    <!-- SIX CARD ENTRYS -->
+                                    <!-- SIX CARD ENTRYS -->
+                                    <!-- SIX CARD ENTRYS -->
+                                    <!-- SIX CARD ENTRYS -->
                                     <div>
                                         <app-entry-list-manager></app-entry-list-manager>
-                                    </div> 
+                                    </div>
+                                    <!-- SIX CARD ENTRYS END -->
+                                    <!-- SIX CARD ENTRYS END -->
+                                    <!-- SIX CARD ENTRYS END -->
+                                    <!-- SIX CARD ENTRYS END -->
 
-                                    <!-- FIFTH CARD USERS END -->
-                                    <!-- FIFTH CARD USERS END -->
-                                    <!-- FIFTH CARD USERS END -->
-                                    <!-- FIFTH CARD USERS END -->
+
                                 </div>
 
                             </div>
@@ -552,7 +575,7 @@
                                     <!-- EDITING AREA -->
                                     <!-- EDITING AREA -->
                                     <div id="createandedit" class="uk-hiddenXXXXXXXXXXXXX">
-                                        
+
                                         <div [ngSwitch]="statusRightBar">
                                             <div class="" *ngSwitchCase="0">
                                             </div>
@@ -599,10 +622,15 @@
                                                 <!-- USER CREATION FORM -->
                                                 <app-competitor-edit-manager (eventFinishEdit)="statuschange(0,'reloadCompetitors')" [editObjet]="currentEdition"></app-competitor-edit-manager>
                                                 <!-- USER CREATION FORM END -->
-                                            </div> 
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="13">
+                                                <!-- USER CREATION FORM -->
+                                                <app-events-to-panels (eventFinishEdit)="statuschange(0,'reloadPanels')"></app-events-to-panels>
+                                                <!-- USER CREATION FORM END -->
+                                            </div>
                                         </div>
-                                         
-                                          
+
+
 
                                         <!-- PARAMETER CREATION FORM -->
                                         <div class="uk-margin-small-bottom uk-hidden">
@@ -915,11 +943,11 @@
                                                             </div>
                                                             <div class="uk-width-expand uk-margin-auto-vertical">
                                                                 <select class="uk-select" style="width: 100%">
-                                                                <option>BUSCADOR</option>
-                                                                <option>USER 1</option>
-                                                                <option>USER 2</option>
-                                                                <option>USER 3</option>
-                                                            </select>
+                                                                    <option>BUSCADOR</option>
+                                                                    <option>USER 1</option>
+                                                                    <option>USER 2</option>
+                                                                    <option>USER 3</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>

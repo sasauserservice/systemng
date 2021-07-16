@@ -31,7 +31,8 @@ import { FilterusergroupPipe } from '../pipies/filterusergroup.pipe';
 import { CompetitorListComponent } from './competitor/competitor-list/competitor-list.component';
 import { CompetitorEditManagerComponent } from './competitor/competitor-edit-manager/competitor-edit-manager.component';
 import { EntryListManagerComponent } from './entry/entry-list-manager/entry-list-manager.component';
-
+import { EventsToPanelsComponent } from './panels/panelsAsignator/events-to-panels/events-to-panels.component';
+import { EntrybyeventPipe } from './pipes/entrybyevent.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,9 @@ import { EntryListManagerComponent } from './entry/entry-list-manager/entry-list
     FilterusergroupPipe,
     CompetitorListComponent,
     CompetitorEditManagerComponent,
-    EntryListManagerComponent
+    EntryListManagerComponent,
+    EventsToPanelsComponent,
+    EntrybyeventPipe
   ],
   imports: [
     CommonModule,
@@ -93,7 +96,8 @@ import { EntryListManagerComponent } from './entry/entry-list-manager/entry-list
     CompetitorCreateManagerComponent,
     FilterusergroupPipe,
     CompetitorEditManagerComponent,
-    EntryListManagerComponent
+    EntryListManagerComponent,
+    EventsToPanelsComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

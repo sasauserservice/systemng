@@ -9,7 +9,9 @@
                     </div>
                     <div class="uk-width-expand uk-margin-auto-vertical">
                         <a href="javascript:void(0)" (click)="new()" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: top"></a>
-                        <span class="uk-icon-button uk-margin-small-left" uk-icon="icon: bookmark" uk-tooltip="title: ASSIGN; pos: top"></span>
+                        <a (click)="openAssignatorFromEvents()">
+                            <span class="uk-icon-button uk-margin-small-left" uk-icon="icon: bookmark" uk-tooltip="title: ASSIGN; pos: top"></span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -100,31 +102,40 @@
                         <!-- LISTA DE JUECES -->
                         <div class="uk-child-width-auto uk-grid-small" uk-grid>
                             <div *ngFor="let mainj of panel.judges.main; let k = index">
-                                <a class="uk-button uk-button-primary uk-button-smaller" uk-tooltip="title: MAIN; pos: top">{{mainj.user.email || 'NO JUDGE SELECTED'}}</a>
+                                <a class="uk-button uk-button-primary uk-button-smaller" uk-tooltip="title: MAIN; pos: top">{{mainj.user.email || 'NO JUDGE'}}</a>
                             </div>
                             <div *ngFor="let genej of panel.judges.general; let l = index">
-                                <a class="uk-button uk-button-default uk-button-smaller" uk-tooltip="title: JUDGE; pos: top" [attr.uk-toggle]="'target: #toggle-judge-param'+l+'; animation: uk-animation-slide-top-small'">{{genej.user.email || 'NO JUDGE SELECTED'}}</a>
+                                <a class="uk-button uk-button-default uk-button-smaller" uk-tooltip="title: JUDGE; pos: top" [attr.uk-toggle]="'target: #toggle-judge-param'+l+'; animation: uk-animation-slide-top-small'">{{genej.user.email || 'NO JUDGE'}}</a>
                             </div>
                             <div *ngFor="let penalj of panel.judges.penalty; let p = index">
-                                <a class="uk-button uk-button-danger uk-button-smaller" uk-tooltip="title: PENALTY; pos: top" [attr.uk-toggle]="'target: #toggle-judge-penalty'+p+'; animation: uk-animation-slide-top-small'">{{penalj.user.email || 'NO JUDGE SELECTED'}}</a>
+                                <a class="uk-button uk-button-danger uk-button-smaller" uk-tooltip="title: PENALTY; pos: top" [attr.uk-toggle]="'target: #toggle-judge-penalty'+p+'; animation: uk-animation-slide-top-small'">{{penalj.user.email || 'NO JUDGE'}}</a>
                             </div>
                         </div>
 
-                        <div *ngFor="let genej of panel.judges.general; let l = index" [attr.id]="'toggle-judge-param'+l" class="uk-margin-small" hidden>
-                            <p class="uk-text-small">
-                                <span *ngFor="let param of genej.user.params;let i = index">
-                                    {{param.title}} <span *ngIf="i+1 != genej.user.params.length">||</span>
-                                </span>
-                            </p>
+                        <div class="">
+                            <div *ngFor="let genej of panel.judges.general; let l = index" [attr.id]="'toggle-judge-param'+l" class="uk-padding-small" hidden>
+                                <div class="uk-alert-success uk-margin-remove" uk-alert>
+                                    <p class="uk-text-smaller uk-text-uppercase">
+                                        <span *ngFor="let param of genej.user.params;let i = index">
+                                            {{param.title}} <span *ngIf="i+1 != genej.user.params.length">||</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
-                         <div *ngFor="let penalj of panel.judges.penalty; let p = index" [attr.id]="'toggle-judge-penalty'+p" class="uk-margin-small" hidden>
-                            <p class="uk-text-small">
-                                <span *ngFor="let param of penalj.user.params;let i = index">
-                                    {{param.text}} <span *ngIf="i+1 != penalj.user.params.length">||</span>
-                                </span>
-                            </p>
+                        <div class="">
+                            <div *ngFor="let penalj of panel.judges.penalty; let p = index" [attr.id]="'toggle-judge-penalty'+p" class="uk-padding-small" hidden>
+                                <div class="uk-alert-danger uk-margin-remove" uk-alert>
+                                    <p class="uk-text-smaller uk-text-uppercase">
+                                        <span *ngFor="let param of penalj.user.params;let i = index">
+                                            {{param.text}} <span *ngIf="i+1 != penalj.user.params.length">||</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
+
                         <!-- LISTA DE JUECES END -->
                     </div>
                 </li>

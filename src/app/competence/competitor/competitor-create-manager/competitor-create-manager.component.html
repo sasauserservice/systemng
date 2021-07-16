@@ -16,7 +16,7 @@
         <div class="uk-card-body uk-padding-small">
             <div>
                 <input [(ngModel)]="dataforsend.data.name" type="text" class="uk-input" placeholder="NAME">
-                <hr> 
+                <hr>
                 <!-- SELECTOR DE TIPO -->
                 <div class="uk-child-width-1-2 uk-grid-small" uk-grid>
                     <div class="uk-margin-auto-vertical">
@@ -24,23 +24,25 @@
                     </div>
 
                     <div class="uk-margin-auto-vertical">
-                        <a [ngClass]="{'uk-active': (dataforsend.type == 2)}" (click)="dataforsend.type = 0" class="uk-button uk-button-default uk-button-small uk-width-1-1" uk-icon="icon: users; ratio: 0.8" uk-tooltip="title: CLICK; pos: top">TEAM</a>
+                        <a [ngClass]="{'uk-active': (dataforsend.type == 2)}" (click)="dataforsend.type = 2" class="uk-button uk-button-default uk-button-small uk-width-1-1" uk-icon="icon: users; ratio: 0.8" uk-tooltip="title: CLICK; pos: top">TEAM</a>
                     </div>
                 </div>
                 <!-- SELECTOR DE TIPO END -->
-
-                <div *ngFor="let item of coachforSend;let i = index" class="uk-grid-small uk-margin-small" uk-grid>
-                    <div class="uk-width-auto uk-margin-auto-vertical">
-                        <span uk-icon="icon: user" uk-tooltip="USER"></span>    
-                    </div>
-                    {{item}}
-                    <div class="uk-width-expand uk-margin-auto-vertical">
-                        
-                        <ng-select2 [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="coachforSend[i]" [data]="coachList" [placeholder]="'COACH'">
-                        </ng-select2>
-                    </div>
-                    <div class="uk-width-auto uk-margin-auto-vertical">
-                        <a (click)="addCoachForsend()" class="uk-icon-button" uk-icon="icon: plus" uk-tooltip="ADD"></a>    
+                <div *ngIf="coachforSend2.length > 0">
+                    <div *ngFor="let item of coachforSend2; let i = index" class="uk-grid-small uk-margin-small" uk-grid>
+                        <div class="uk-width-auto uk-margin-auto-vertical">
+                            <span uk-icon="icon: user" uk-tooltip="USER"></span>
+                        </div>
+                        <div class="uk-width-expand uk-margin-auto-vertical">
+                            <ng-select2 [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="item.user" [name]="'coach'+i" [data]="coachList" [placeholder]="'COACH'">
+                            </ng-select2>
+                        </div>
+                        <div class="uk-width-auto uk-margin-auto-vertical">
+                            <a (click)="addCoachForsend()" class="uk-icon-button" uk-icon="icon: plus" uk-tooltip="ADD"></a>
+                        </div>
+                        <div *ngIf="coachforSend.length > 1" class="uk-width-auto uk-margin-auto-vertical">
+                            <a (click)="removeCoachForsend(i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="REMOVE"></a>
+                        </div>
                     </div>
                 </div>
             </div>

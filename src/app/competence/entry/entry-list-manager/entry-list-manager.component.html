@@ -1,6 +1,3 @@
-
-{{eventselected | json}}
-<hr>
 <div class="uk-content-card" style="height: 83vh;">
     <div class="js-wrapper">
         <div class="uk-card uk-card-default">
@@ -15,7 +12,7 @@
                             <div class="uk-flex uk-flex-middle">
                                 <span  class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW USER; pos: top"></span>
                                 <span class="uk-icon-button uk-margin-small-left" uk-icon="icon: tag" uk-tooltip="title: NEW PROFILE; pos: top"></span>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                     <div class="uk-width-expand uk-margin-auto-vertical uk-flex uk-flex-middle uk-flex-right">
@@ -39,36 +36,48 @@
                 </div>
             </div>
 
-            <div class="uk-card-body" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper"> 
-                <div> 
-                    <!--<div *ngFor="let user of (usersShow | filterusergroup: filterSelect)" class="uk-card uk-card-default">-->
-                    <div *ngFor="let entry of allEntrys" class="uk-card uk-card-default">
+            <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper"> 
+                <div class="">
+
+                    <div *ngFor="let part of (allEntrys | entrybyevent: eventselected);let i = index"  class="uk-card uk-card-default">
                         <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
-                            <li >
+                            <li > 
                                 <div class="uk-padding-small">
                                     <div class="" uk-grid>
                                         <div class="uk-width-1-3">
                                             <div class="uk-grid-small" uk-grid>
                                                 <div class="uk-width-auto uk-margin-auto-vertical">
-                                                    <span class="" uk-icon="icon: user"></span>
+                                                    <span uk-tooltip="ATLETE" *ngIf="part.type == 1" class="" uk-icon="icon: user"></span>
+                                                    <span uk-tooltip="TEAM" *ngIf="part.type == 2 || part.type == 0 " class="" uk-icon="icon: users"></span>
+                                                    
                                                 </div>
                                                 <div class="uk-width-expand uk-margin-auto-vertical">
-                                                    <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener">{{entry.category_title | json}}</a>
-                                                    <p class="uk-margin-remove uk-text-smaller">RECENT: Event name last used, connected 2021 April 12</p>
+                                                    <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener"><p class="uk-margin-remove uk-text-bold">{{part.event_title}} || {{part.team_name}}</p></a>
+                                                    <p class="uk-margin-remove uk-text-smaller">{{part.category_title}}</p>
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </div> 
                                         <div class="uk-width-expand">
                                             <div class="uk-flex uk-flex-right">
                                                 <div class="uk-child-width-auto uk-grid-small uk-flex uk-flex-middle" uk-grid>
                                                     <div class="uk-text-center">
                                                         <span class="uk-margin-remove" uk-icon="icon: info" uk-tooltip="title: PROFILE YES; pos: top"></span>
+                                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                                            <a class="uk-button uk-button-text" target="_BLANK" *ngIf="part.video" [href]="part.video">
+                                                                <p  class="uk-margin-remove uk-text-smaller">{{part.video}}</p>
+                                                            </a>
+                                                             
+                                                            <p *ngIf="!part.video" class="uk-margin-remove">{{'N/A'}}</p>
+                                                        </div>
                                                     </div>
+
+                                                     
+
                                                     <div class="uk-text-center">
                                                         <div class="uk-flex uk-flex-middle">
-                                                            <span class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></span>
-                                                            <span class="uk-margin-small-left uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></span>
+                                                            <a [hidden]="true" uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
+                                                            <a (click)="deleteAnExistantPart(part.id)" uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -80,14 +89,78 @@
                                 <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
                                     <!-- LISTA DE CATEGORIAS Y PENALTYS -->
                                     <div class="uk-child-width-auto uk-grid-small" uk-grid>
-                                        {{entry | json}}
+                                        <div class="uk-margin-auto-vertical">
+                                            
+                                        </div>
+
+                                        <div class="uk-margin-auto-vertical">
+                                             
+                                        </div>
+
+                                        <div class="uk-margin-auto-vertical">
+                                            
+                                        </div>
+
+                                        <div class="uk-margin-auto-vertical">
+                                            
+                                        </div>
                                     </div>
                                     <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
                                 </div>
                             </li>
                         </ul>
                     </div>
+                     
+                    <div [hidden]="true" *ngFor="let part of (allEntrys | entrybyevent: eventselected);let i = index" class="">
+                        
+                        <div  *ngIf="!part.editStatus" class="uk-card uk-card-default" uk-grid>
+                            
 
+
+
+
+
+
+                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                <p class="uk-margin-remove uk-text-bold">{{part.event_title}}</p>
+                            </div>
+                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                <p class="uk-margin-remove">{{part.team_name}}</p>
+                            </div>
+                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                <p class="uk-margin-remove">{{part.category_title}}</p> 
+                            </div>
+                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                <a class="uk-button uk-button-text" target="_BLANK" *ngIf="part.video" [href]="part.video">
+                                    <p  class="uk-margin-remove uk-text-smaller">{{part.video}}</p>
+                                </a>
+                                 
+                                <p *ngIf="!part.video" class="uk-margin-remove">{{'N/A'}}</p>
+                            </div>
+                            <div class="uk-width-auto uk-flex uk-flex-middle">
+                                <a  uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
+                                <a (click)="deleteAnExistantPart(part.id)" uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
+                            </div> 
+                        </div> 
+                        <div *ngIf="part.editStatus" class="uk-grid-small uk-animation-slide-top" uk-grid > 
+                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                <ng-select2 [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="currentEdit.team_id" [data]="AllTeams" [placeholder]="'CATEGORY'"></ng-select2> 
+                            </div>
+                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                <ng-select2  [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="currentEdit.category_id" [data]="currentEdit.aviable" [placeholder]="'TEAM'"></ng-select2>
+                            </div>
+                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                <input [(ngModel)]="currentEdit.video" class="uk-input" type="text" name="" placeholder="VIDEO URL"/>
+                            </div>
+                            <div class="uk-width-auto uk-flex uk-flex-middle">
+                                <a uk-tooltip="CANCEL" class="uk-margin-small-right uk-icon-button" uk-icon="close"></a>
+                                <a uk-tooltip="SAVE"  class="uk-margin-small-right uk-icon-button" uk-icon="cloud-upload"></a>
+                                 
+                            </div> 
+                        </div>
+                        <hr>
+                        
+                    </div>
                 </div>
             </div>
 

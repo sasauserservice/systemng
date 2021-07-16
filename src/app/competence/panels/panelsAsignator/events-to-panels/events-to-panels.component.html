@@ -1,0 +1,107 @@
+<!-- CATEGORY CREATION FORM -->
+<div class="uk-margin-small-bottom">
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-padding-small uk-card-primary uk-card uk-padding-small">
+            <div uk-grid>
+                <div class="uk-width-expand uk-margin-auto-vertical">
+                    <div class="uk-flex uk-flex-middle">
+                        <a class="uk-icon-button uk-margin-small-right" (click)="eventFinishEdit.emit()" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                        <p class="uk-margin-remove uk-text-small">ASIGN EVENT - PANEL</p>
+                    </div>
+                </div>
+                <div class="uk-width-auto uk-margin-auto-vertical">
+                    <a (click)="send()" class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="stateloading" class="uk-card-body uk-padding-small">
+            <div>
+                <div class="uk-inline uk-width-1-1">
+                    <ng-select2 (valueChanged)="whenChangeEvent($event)" [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="false" [(ngModel)]="eventSelected" [data]="eventsAll" name="eventSelected" [placeholder]="'SELECT EVENT'">
+                    </ng-select2>
+                </div>
+            </div>
+
+            <div class="uk-margin-small" *ngIf="eventSelected !='0'">
+                <div>
+                    <form>
+                        <div class="uk-grid-small" uk-grid>
+                            <div class="uk-width-1-4">
+                                <p class="uk-margin-remove uk-text-small">EXISTING</p>
+                            </div>
+                            <div class="uk-width-expand">
+                                <div class="uk-inline uk-width-1-1">
+                                    <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: search"></a>
+                                    <input class="uk-input uk-form-small" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="uk-margin-small">
+                    <div *ngIf="paramentersToSend.length > 0" class="uk-child-width-auto uk-grid-small" uk-grid>
+                        <div *ngFor="let panel of paramentersToSend">
+                            <label class="check-element">
+                                <input checked="checked" (change)="onChangeSelectsParams($event)" [attr.data-label]="panel.text" type="checkbox" [value]="panel.id" />
+                                <p class="uk-margin-remove">{{panel.text}}</p>
+                            </label>
+                        </div>
+                    </div>
+                    <div *ngIf="paramentersToSend.length == 0" class="uk-child-width-auto uk-grid-small" uk-grid>
+                        <p class="uk-text-smaller uk-text-center uk-label uk-label-default uk-align-center uk-margin-remove-bottom">NO PANEL SELECTED</p>
+                    </div>
+                </div>
+
+                <div>
+                    <form>
+                        <div class="uk-grid-small" uk-grid>
+                            <div class="uk-width-1-4">
+                                <p class="uk-margin-remove uk-text-small">AVAILABLE</p>
+                            </div>
+                            <div class="uk-width-expand">
+                                <div class="uk-inline uk-width-1-1">
+                                    <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: search"></a>
+                                    <input [(ngModel)]="searchAviable" name="searchAviable" class="uk-input uk-form-small" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="uk-margin-small">
+                    <div *ngIf="paramentersAviable.length > 0" class="uk-child-width-auto uk-grid-small" uk-grid>
+                        <div *ngFor="let panel of paramentersAviable | filter: searchAviable">
+                            <label class="check-element">
+                                <input (change)="onChangeSelectsParams($event)" [attr.data-label]="panel.text" type="checkbox" [value]="panel.id" />
+                                <p class="uk-margin-remove">{{panel.text}}</p>
+                            </label>
+                        </div>
+                    </div>
+                    <div *ngIf="paramentersAviable.length == 0" class="uk-child-width-auto uk-grid-small" uk-grid>
+                        <p class="uk-text-smaller uk-text-center uk-label uk-label-default uk-align-center uk-margin-remove-bottom">NO PANEL AVIABLE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!stateloading" class="uk-card-body uk-padding-small">
+            <div class="uk-flex uk-flex-center uk-flex-middle uk-flex-column">
+                <span uk-spinner="ratio: 4;"></span>
+                <span class="uk-text-smaller">LOADING</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CATEGORY CREATION FORM END -->
+
+
+<div hidden="hidden">
+    <p>TODOS</p>
+    <pre>{{panelsAll | json}}</pre>
+    <p>SELECTED</p>
+    <pre>{{paramentersSelected | json}}</pre>
+    <p>TO SEND</p>
+    <pre>{{paramentersToSend | json}}</pre>
+    <p>AVIABLE</p>
+    <pre>{{paramentersAviable | json}}</pre>
+</div>

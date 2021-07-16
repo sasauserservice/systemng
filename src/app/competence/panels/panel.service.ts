@@ -130,4 +130,34 @@ export class PanelService {
       } );
     } );
   }
+
+
+  /***ASSIGNATOR***/
+  async getEvents(){
+    let events = await this.httpClient.get<any>(BASEURI + 'matchpanel/eventslist').toPromise();
+    return events;
+  }
+
+  async getPanelsNotAssiged(event:any){
+    let panels = await this.httpClient.get<any>(BASEURI + 'matchpanel/panels/not/assigned/'+event).toPromise();
+    return panels;
+  }
+
+  setpanelsToEvent(panel:any, event:any){
+    let form = new FormData();
+    form.append('form', JSON.stringify({
+      event: event,
+      panels: panel
+    }));
+    return new Promise((resolve, reject) => {
+      return this.httpClient.post<any>(BASEURI + 'matchpanel/panels/settoevent', form)
+      .subscribe((response: any)=>{
+        resolve(response);
+      }, (error: any) => {
+        reject(error)
+      });
+    });
+  }
+
+  /***ASSIGNATOR***/
 }

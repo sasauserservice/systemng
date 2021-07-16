@@ -5,7 +5,7 @@
                 <div class="uk-width-expand uk-margin-auto-vertical">
                     <div class="uk-flex uk-flex-middle">
                         <a class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: BOTTOM"><span uk-icon="icon: close"></span></a>
-                        <p class="uk-margin-remove uk-text-small">NEW COMPETITOR</p>
+                        <p class="uk-margin-remove uk-text-small">EDIT COMPETITOR</p>
                     </div>
                 </div>
                 <div class="uk-width-auto uk-margin-auto-vertical">
@@ -16,7 +16,7 @@
         <div class="uk-card-body uk-padding-small">
             <div>
                 <input [(ngModel)]="editObjet.data.name" type="text" class="uk-input" placeholder="NAME">
-                <hr> 
+                <hr>
                 <!-- SELECTOR DE TIPO -->
                 <div class="uk-child-width-1-2 uk-grid-small" uk-grid>
                     <div class="uk-margin-auto-vertical">
@@ -31,16 +31,15 @@
 
                 <div *ngFor="let item of coachforSend;let i = index" class="uk-grid-small uk-margin-small" uk-grid>
                     <div class="uk-width-auto uk-margin-auto-vertical">
-                        <span uk-icon="icon: user" uk-tooltip="USER"></span>    
+                        <span uk-icon="icon: user" uk-tooltip="USER"></span>
                     </div>
-                    {{item}}
                     <div class="uk-width-expand uk-margin-auto-vertical">
-                        
+
                         <ng-select2 [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="coachforSend[i]" [data]="coachList" [placeholder]="'COACH'">
                         </ng-select2>
                     </div>
                     <div class="uk-width-auto uk-margin-auto-vertical">
-                        <a (click)="addCoachForsend()" class="uk-icon-button" uk-icon="icon: plus" uk-tooltip="ADD"></a>    
+                        <a (click)="addCoachForsend()" class="uk-icon-button" uk-icon="icon: plus" uk-tooltip="ADD"></a>
                     </div>
                 </div>
             </div>

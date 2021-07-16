@@ -54,6 +54,18 @@ export class ContentService {
     });
   }
 
+  deleteArticle(id: any){
+    let data = new FormData();
+    return new Promise<any>((resolve, reject) =>{
+      this.httpClient.post(BASEURI+'delete-event/'+id, data)
+      .subscribe((result: any) => {
+        resolve(result);
+      }, (error: any) => {
+        reject(error);
+      });
+    });
+  }
+
   createpost(title: string){
     return new Promise( (resolve, reject) => {
       let user = this.storage.loadSessionData();

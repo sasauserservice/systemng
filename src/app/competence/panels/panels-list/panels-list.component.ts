@@ -34,6 +34,16 @@ export class PanelsListComponent implements OnInit {
     
   }
 
+  // Event asignacoion Panel-Evento
+  openAssignatorFromPanels(item: any){
+    this.stateChangeBar.emit(14);
+    this.currentEdit.emit(item);
+  }
+
+  openAssignatorFromEvents(){
+    this.stateChangeBar.emit(13);
+  }
+
   new(){
     this.stateChangeBar.emit(7);
   } 
