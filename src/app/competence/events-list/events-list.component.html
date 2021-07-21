@@ -25,8 +25,8 @@
         </div>
 
         <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
-            <div class="uk-card uk-card-default" *ngFor="let article of articles; let i = index">
 
+            <div class="uk-card uk-card-default" *ngFor="let article of articles; let i = index">
                 <ul uk-accordion="toggle: *.uk-accordion-match-oppener">
                     <li>
                         <div class="uk-padding-small">
@@ -61,7 +61,7 @@
                                                         <app-team-control [landingId]="article.id"></app-team-control>
                                                     </div>
                                                     <div>
-                                                        <a class="uk-button uk-button-default uk-button-small uk-text-nowrap" uk-tooltip="title: CREATED; pos: top">{{article.created}}</a>
+                                                        <a class="uk-button uk-button-default uk-button-smaller uk-text-nowrap" uk-tooltip="title: CREATED; pos: top">{{article.created}}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,16 +74,8 @@
                                         <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
 
                                             <div class="uk-text-center">
-                                                <span class="uk-margin-remove" uk-icon="icon: desktop" uk-tooltip="title: USED; pos: top"></span>
-                                                <p class="uk-margin-remove uk-text-smaller">EVENTS: 3</p>
-                                            </div>
-                                            <div class="uk-text-center">
-                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
-                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES:</p>
-                                            </div>
-                                            <div class="uk-text-center">
-                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
-                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY</p>
+                                                {{article.cantEntries || 0}}
+                                                <p class="uk-margin-remove uk-text-smaller">ENTRYS</p>
                                             </div>
                                             <div class="uk-text-center">
                                                 <div class="uk-flex uk-flex-middle">
@@ -101,86 +93,130 @@
                         <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
 
 
-                            <!-- PANELES DEL EVENTO -->
-                            <div class="uk-card uk-card-default" *ngFor="let panel of article.panels; let i = index;">
-                                <ul uk-accordion="toggle: *.uk-accordion-panel-oppenerrr">
-                                    <li>
-                                        <div class="uk-padding-small">
-                                            <div class="" uk-grid>
-                                                <div class="uk-width-1-3">
-                                                    <div class="uk-grid-small" uk-grid>
-                                                        <div class="uk-width-auto uk-margin-auto-vertical">
-                                                            <span *ngIf="panel.statusA" class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
-                                                            <span *ngIf="!panel.statusA" class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
-                                                        </div>
-                                                        <div class="uk-width-expand uk-margin-auto-vertical">
-                                                            <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppenerrr"> {{panel.name}}</a>
-                                                            <p class="uk-margin-remove uk-text-smaller">ID: {{panel.serial}}</p>
-                                                        </div>
-                                                    </div>
+                            <!-- AREA DE METRICAS Y STATUS -->
+                            <div class="uk-card uk-card-default uk-padding-small uk-margin-small">
+                                <div class="uk-child-width-1-3@l uk-grid-small" uk-grid>
+                                    <div class="uk-margin-auto-vertical">
+                                        <h3>STATUS BUTTONS</h3>
+                                    </div>
 
-                                                </div>
-                                                <div class="uk-width-expand">
-                                                    <div class="uk-flex uk-flex-right">
-                                                        <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
-                                                            <div class="uk-text-center">
-                                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
-                                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES: {{panel.judges.general.length}}</p>
-                                                            </div>
-                                                            <div class="uk-text-center">
-                                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
-                                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY {{panel.judges.penalty.length}}</p>
-                                                            </div>
-                                                            <div class="uk-text-center">
-                                                                <div class="uk-flex uk-flex-middle">
-                                                                    <a class="uk-icon-button" uk-tooltip="title: EDIT; pos: top" href="javascript:void(0)" (click)="edit(panel)">
-                                                                        <span uk-icon="icon: pencil"></span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                        <div class="uk-grid-small uk-margin-remove" uk-grid>
+                                            <div class="uk-text-small uk-width-expand" uk-leader>90</div>
+                                            <div class="uk-text-small">120</div>
                                         </div>
-
-                                        <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
-                                            <!-- LISTA DE CATEGORIAS Y PENALTYS -->
-                                            <div class="uk-child-width-auto uk-grid-small" uk-grid>
-                                                <div *ngFor="let cat of panel.categories; let j = index">
-                                                    <a class="uk-button uk-button-default uk-button-smaller">{{cat.title}}</a>
-                                                </div>
-                                                <div *ngFor="let pen of panel.penalties; let j = index">
-                                                    <a class="uk-button uk-button-danger uk-button-smaller">{{pen.penaltytitle}}</a>
-                                                </div>
-                                            </div>
-                                            <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
-
-                                            <!-- LISTA DE JUECES -->
-                                            <div class="uk-child-width-auto uk-grid-small" uk-grid>
-                                                <div *ngFor="let mainj of panel.judges.main; let k = index">
-                                                    <a class="uk-button uk-button-primary uk-button-smaller" uk-tooltip="title: MAIN; pos: top">{{mainj.user.email || 'NO JUDGE'}}</a>
-                                                </div>
-                                                <div *ngFor="let genej of panel.judges.general; let l = index">
-                                                    <a class="uk-button uk-button-default uk-button-smaller" uk-tooltip="title: JUDGE; pos: top">{{genej.user.email || 'NO JUDGE'}}</a>
-                                                </div>
-                                                <div *ngFor="let penalj of panel.judges.penalty; let p = index">
-                                                    <a class="uk-button uk-button-danger uk-button-smaller" uk-tooltip="title: PENALTY; pos: top">{{penalj.user.email || 'NO JUDGE'}}</a>
-                                                </div>
-                                            </div>
-                                            <!-- LISTA DE JUECES END -->
+                                        <progress id="js-progressbar" class="uk-progress uk-margin-remove" value="10" max="100"></progress>
+                                        <script>
+                                            UIkit.util.ready(function () {
+                                                var bar = document.getElementById('js-progressbar');
+                                                var animate = setInterval(function () {
+                                                    bar.value += 10;
+                                                    if (bar.value >= bar.max) {
+                                                        clearInterval(animate);
+                                                    }
+                                                }, 1000);
+                                            });
+                                        </script>    
+                                    </div>
+                                    
+                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                        <div class="uk-grid-small" uk-grid>
+                                            <div class="uk-width-expand uk-margin-auto-vertical">
+                                              <a (click)="realaseScores(article.id)" class="uk-button uk-button-primary" uk-tooltip="title: CREATE RANK; pos: top">RELEASE SCORES</a>          
+                                          </div>
+                                          <div class="uk-width-auto uk-margin-auto-vertical" uk-tooltip="title: PREVIEW; pos: top">
+                                            <a target="_BLANK" [attr.href]="'/ranking/preview/'+article.id" class="uk-icon-button" uk-icon="search"></a>
                                         </div>
-                                    </li>
-                                </ul>
+                                        <div class="uk-width-auto uk-margin-auto-vertical" uk-tooltip="title: PUBLISH; pos: top">
+                                            <a href="#" class="uk-icon-button" uk-icon="world"></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- PANELES DEL EVENTO END -->
                         </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="uk-card-footer">
-            <p>Some content after the overflow auto container.</p>
+                        <!-- AREA DE METRICAS Y STATUS -->
+
+
+                        <!-- PANELES DEL EVENTO -->
+                        <div class="uk-card uk-card-default" *ngFor="let panel of article.panels; let i = index;">
+                            <ul uk-accordion="toggle: *.uk-accordion-panel-oppenerrr">
+                                <li>
+                                    <div class="uk-padding-small">
+                                        <div class="" uk-grid>
+                                            <div class="uk-width-1-3">
+                                                <div class="uk-grid-small" uk-grid>
+                                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                                        <span *ngIf="panel.statusA" class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
+                                                        <span *ngIf="!panel.statusA" class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
+                                                    </div>
+                                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                                        <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppenerrr"> {{panel.name}}</a>
+                                                        <p class="uk-margin-remove uk-text-smaller">ID: {{panel.serial}}</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="uk-width-expand">
+                                                <div class="uk-flex uk-flex-right">
+                                                    <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
+                                                        <div class="uk-text-center">
+                                                            {{panel.judges.general.length}}
+                                                            <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES</p>
+                                                        </div>
+                                                        <div class="uk-text-center">
+                                                            {{panel.judges.penalty.length}}
+                                                            <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY</p>
+                                                        </div>
+                                                        <div class="uk-text-center">
+                                                            <div class="uk-flex uk-flex-middle">
+                                                                <a class="uk-icon-button" uk-tooltip="title: EDIT; pos: top" href="javascript:void(0)" (click)="edit(panel)">
+                                                                    <span uk-icon="icon: pencil"></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
+                                        <!-- LISTA DE CATEGORIAS Y PENALTYS -->
+                                        <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                                            <div *ngFor="let cat of panel.categories; let j = index">
+                                                <a class="uk-button uk-button-default uk-button-smaller">{{cat.title}}</a>
+                                            </div>
+                                            <div *ngFor="let pen of panel.penalties; let j = index">
+                                                <a class="uk-button uk-button-danger uk-button-smaller">{{pen.penaltytitle}}</a>
+                                            </div>
+                                        </div>
+                                        <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
+
+                                        <!-- LISTA DE JUECES -->
+                                        <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                                            <div *ngFor="let mainj of panel.judges.main; let k = index">
+                                                <a class="uk-button uk-button-primary uk-button-smaller" uk-tooltip="title: MAIN; pos: top">{{mainj.user.email || 'NO JUDGE'}}</a>
+                                            </div>
+                                            <div *ngFor="let genej of panel.judges.general; let l = index">
+                                                <a class="uk-button uk-button-default uk-button-smaller" uk-tooltip="title: JUDGE; pos: top">{{genej.user.email || 'NO JUDGE'}}</a>
+                                            </div>
+                                            <div *ngFor="let penalj of panel.judges.penalty; let p = index">
+                                                <a class="uk-button uk-button-danger uk-button-smaller" uk-tooltip="title: PENALTY; pos: top">{{penalj.user.email || 'NO JUDGE'}}</a>
+                                            </div>
+                                        </div>
+                                        <!-- LISTA DE JUECES END -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- PANELES DEL EVENTO END -->
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
+    <div class="uk-card-footer">
+        <p>Some content after the overflow auto container.</p>
+    </div>
+</div>
 </div>

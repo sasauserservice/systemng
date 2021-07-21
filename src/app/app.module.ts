@@ -18,6 +18,7 @@ import { MicrodashboardComponent } from './microdashboard/microdashboard.compone
 import { FiltersearchPipe } from './pipes/filtersearch.pipe';
 import { TeamControlComponent } from './competence/landing/team-control/team-control.component';
 import { FilterusergroupPipe } from './pipies/filterusergroup.pipe';
+import { SanitizeruriPipe } from './pipes/sanitizeruri.pipe';
 
 
 

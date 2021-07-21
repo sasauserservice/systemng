@@ -72,11 +72,8 @@
                                                     </div>
 
                                                     <div class="uk-card-body" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
-                                                        <div>
-                                                            <ng-select2 [options]="{multiple: true}" width="100%" [allowClear]="true" [(ngModel)]="fruit" [data]="data" [placeholder]="'Please select a fruit...'">
-                                                            </ng-select2>
-                                                            <p>Main area</p>
-                                                        </div>
+                                                        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis perferendis fugiat ipsa incidunt, repellendus cum, hic ad expedita aut reprehenderit saepe odit omnis error, modi voluptate consequuntur
+                                                            inventore suscipit ex!</div>
                                                     </div>
 
                                                     <div class="uk-card-footer">
@@ -552,7 +549,7 @@
                                     <!-- SIX CARD ENTRYS -->
                                     <!-- SIX CARD ENTRYS -->
                                     <div>
-                                        <app-entry-list-manager></app-entry-list-manager>
+                                        <app-entry-list-manager (previewEntry)="OpenEntryPreviewer($event)" (claimParams)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-entry-list-manager>
                                     </div>
                                     <!-- SIX CARD ENTRYS END -->
                                     <!-- SIX CARD ENTRYS END -->
@@ -575,7 +572,11 @@
                                     <!-- EDITING AREA -->
                                     <!-- EDITING AREA -->
                                     <div id="createandedit" class="uk-hiddenXXXXXXXXXXXXX">
-
+                                        <div *ngIf="statusPreviewEntry">
+                                             
+                                            
+                                            <app-entrypreview (cancelViewing)="statusPreviewEntry = false" [videoObj]="previewEntryData"></app-entrypreview>
+                                        </div> 
                                         <div [ngSwitch]="statusRightBar">
                                             <div class="" *ngSwitchCase="0">
                                             </div>
@@ -626,6 +627,11 @@
                                             <div class="uk-card uk-padding-small" *ngSwitchCase="13">
                                                 <!-- USER CREATION FORM -->
                                                 <app-events-to-panels (eventFinishEdit)="statuschange(0,'reloadPanels')"></app-events-to-panels>
+                                                <!-- USER CREATION FORM END -->
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="14">
+                                                <!-- USER CREATION FORM -->
+                                                <app-claims-generator [currentClaim]="currentEdition" (eventFinishEdit)="statuschange(0,'reloadParticipations')"></app-claims-generator>
                                                 <!-- USER CREATION FORM END -->
                                             </div>
                                         </div>

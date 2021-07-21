@@ -1,0 +1,84 @@
+
+<div uk-alert="" class="uk-alert-danger">
+    <div>
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand uk-margin-auto-vertical">
+                <p class="uk-text-small uk-margin-remove">PENALTY JUDGE</p>
+            </div>
+            <div class="uk-width-auto uk-margin-auto-vertical uk-flex uk-flex-middle">
+                <div class="uk-margin-small-right">
+                    <p class="uk-margin-remove uk-text-small uk-text-center">{{params.penaltyTotal}}</p>
+                    <p class="uk-margin-remove uk-text-smaller uk-text-center">TOTAL</p>
+                </div>
+                <a class="uk-margin-small-left" (click)="sendPenaltyQuals()"  class="" uk-icon="play-circle" uk-tooltip="title: SEND ALL; pos: top"></a>
+            </div>
+        </div>
+    </div>
+
+    <!---- TABLE ----->
+    <div class="uk-card uk-padding-small">
+        <div class="">
+            <table class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
+                <thead>
+                    <tr class="uk-background-secondary uk-light">
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th class="uk-table-large uk-text-smaller">PENALTY</th>
+                        <th class="uk-text-smaller">DESCRIPTION</th>
+                        <th class="uk-table-shrink uk-text-smaller">VALUE</th>
+                        <th class="uk-table-shrink uk-text-smaller">TOTAL</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">ADD</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">SEND</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let penalty of params.penalty;let penaltyindex = index">
+                    <tr>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                        <td class="uk-text-smaller uk-text-nowrap">{{penalty.name}}</td>
+                        <td class="uk-text-smaller uk-text-nowrap">{{penalty.desc || 'N/A'}}</td>
+                        <td class="uk-text-small uk-text-center">{{penalty.points}}</td>
+                        <td *ngIf="!penalty.judgements"  class="uk-text-small uk-text-center"></td>
+                        <td *ngIf="penalty.judgements"  class="uk-text-small uk-text-center">{{penalty.points * penalty.judgements.length}}</td>
+                        <td class="uk-text-smaller uk-text-center"><a (click)="addPenal(penaltyindex)" uk-icon="icon: plus-circle; ratio: 0.75;" uk-tooltip="title: ADD; pos: top"></a></td>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: play-circle; ratio: 0.75;" uk-tooltip="title: SEND; pos: top"></a></td>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                    </tr>
+                    <tr  class="uk-width-1-1">
+                        <td colspan="8">
+                            <table class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
+                                <thead>
+                                    <tr>
+                                        <th class="uk-table-shrink uk-text-smaller">VALUE</th>
+                                        <th class="uk-table-shrink uk-text-smaller">MIN</th>
+                                        <th class="uk-table-shrink uk-text-smaller">SEC</th>
+                                        <th class="uk-table-large uk-text-smaller">COMMENT</th>
+                                        <th class="uk-table-shrink uk-text-smaller">DEL</th>
+                                    </tr>
+                                </thead>
+                               
+                                <tbody *ngIf="penalty.judgements">
+                                    <tr *ngFor="let judgment of penalty.judgements;let judgmentindex = index">
+                                        <td class="uk-text-smaller uk-text-center">{{penalty.points}}</td>
+                                        <td class="uk-text-smaller uk-text-center uk-text-nowrap">
+                                            <input [(ngModel)]="judgment.time.min" style="width:30px;" min="0" type="number">
+                                        </td>
+                                        <td class="uk-text-smaller uk-text-center uk-text-nowrap">
+                                            <input [(ngModel)]="judgment.time.sec" style="width:30px;" min="0" type="number">
+                                        </td>
+                                        <td class="uk-text-smaller uk-text-nowrap">
+                                            <input [(ngModel)]="judgment.coment" class="uk-input uk-form-small" type="text" name="" placeholder="COMMENT"></td>
+                                        <td class="uk-text-smaller uk-text-center"><a (click)="deletePenal(penaltyindex,judgmentindex)" uk-icon="icon: trash; ratio: 0.75;" uk-tooltip="title: ERASE; pos: top"></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="uk-width-1-1">
+                        <td class="uk-background-muted" colspan="8"><hr class="uk-hr-divider"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!---- TABLE ----->
+</div> 

@@ -105,15 +105,15 @@
                                 <a class="uk-button uk-button-primary uk-button-smaller" uk-tooltip="title: MAIN; pos: top">{{mainj.user.email || 'NO JUDGE'}}</a>
                             </div>
                             <div *ngFor="let genej of panel.judges.general; let l = index">
-                                <a class="uk-button uk-button-default uk-button-smaller" uk-tooltip="title: JUDGE; pos: top" [attr.uk-toggle]="'target: #toggle-judge-param'+l+'; animation: uk-animation-slide-top-small'">{{genej.user.email || 'NO JUDGE'}}</a>
+                                <a class="uk-button uk-button-default uk-button-smaller" uk-tooltip="title: JUDGE; pos: top" [attr.uk-toggle]="'target: #toggle-judge-param'+l+'_'+i+'; animation: uk-animation-slide-top-small'">{{genej.user.email || 'NO JUDGE'}}</a>
                             </div>
                             <div *ngFor="let penalj of panel.judges.penalty; let p = index">
-                                <a class="uk-button uk-button-danger uk-button-smaller" uk-tooltip="title: PENALTY; pos: top" [attr.uk-toggle]="'target: #toggle-judge-penalty'+p+'; animation: uk-animation-slide-top-small'">{{penalj.user.email || 'NO JUDGE'}}</a>
+                                <a class="uk-button uk-button-danger uk-button-smaller" uk-tooltip="title: PENALTY; pos: top" [attr.uk-toggle]="'target: #toggle-judge-penalty'+p+'_'+i+'; animation: uk-animation-slide-top-small'">{{penalj.user.email || 'NO JUDGE'}}</a>
                             </div>
                         </div>
 
                         <div class="">
-                            <div *ngFor="let genej of panel.judges.general; let l = index" [attr.id]="'toggle-judge-param'+l" class="uk-padding-small" hidden>
+                            <div *ngFor="let genej of panel.judges.general; let l = index" [attr.id]="'toggle-judge-param'+l+'_'+i" class="uk-padding-small" hidden>
                                 <div class="uk-alert-success uk-margin-remove" uk-alert>
                                     <p class="uk-text-smaller uk-text-uppercase">
                                         <span *ngFor="let param of genej.user.params;let i = index">
@@ -125,7 +125,7 @@
                         </div>
 
                         <div class="">
-                            <div *ngFor="let penalj of panel.judges.penalty; let p = index" [attr.id]="'toggle-judge-penalty'+p" class="uk-padding-small" hidden>
+                            <div *ngFor="let penalj of panel.judges.penalty; let p = index" [attr.id]="'toggle-judge-penalty'+p+'_'+i" class="uk-padding-small" hidden>
                                 <div class="uk-alert-danger uk-margin-remove" uk-alert>
                                     <p class="uk-text-smaller uk-text-uppercase">
                                         <span *ngFor="let param of penalj.user.params;let i = index">

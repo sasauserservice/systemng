@@ -33,6 +33,15 @@ import { CompetitorEditManagerComponent } from './competitor/competitor-edit-man
 import { EntryListManagerComponent } from './entry/entry-list-manager/entry-list-manager.component';
 import { EventsToPanelsComponent } from './panels/panelsAsignator/events-to-panels/events-to-panels.component';
 import { EntrybyeventPipe } from './pipes/entrybyevent.pipe';
+import { EntryGeneralJudgeComponent } from './judgement/entry-general-judge/entry-general-judge.component';
+import { EntrypreviewComponent } from './entry/entrypreview/entrypreview.component';
+import { EntryPenaltyJudgeComponent } from './judgement/entry-penalty-judge/entry-penalty-judge.component';
+import { EntryMainJudgeComponent } from './judgement/entry-main-judge/entry-main-judge.component';
+import { PreviewComponent } from './ranking/preview/preview.component';
+import { ClaimsGeneratorComponent } from './claims/claims-generator/claims-generator.component';
+import { StatusVisualizerComponent } from '../helpers/status-visualizer/status-visualizer.component';
+import { SanitizeruriPipe } from '../pipes/sanitizeruri.pipe';
+import { UrldecoPipe } from './pipes/urldeco.pipe';
 
 @NgModule({
   declarations: [
@@ -63,7 +72,15 @@ import { EntrybyeventPipe } from './pipes/entrybyevent.pipe';
     CompetitorEditManagerComponent,
     EntryListManagerComponent,
     EventsToPanelsComponent,
-    EntrybyeventPipe
+    EntrybyeventPipe,
+    EntryGeneralJudgeComponent,
+    EntrypreviewComponent,
+    EntryPenaltyJudgeComponent,
+    EntryMainJudgeComponent,
+    PreviewComponent,
+    ClaimsGeneratorComponent,
+    StatusVisualizerComponent,
+    UrldecoPipe,
   ],
   imports: [
     CommonModule,
@@ -97,7 +114,12 @@ import { EntrybyeventPipe } from './pipes/entrybyevent.pipe';
     FilterusergroupPipe,
     CompetitorEditManagerComponent,
     EntryListManagerComponent,
-    EventsToPanelsComponent
+    EventsToPanelsComponent,
+    EntryGeneralJudgeComponent,
+    EntryPenaltyJudgeComponent,
+    PreviewComponent,
+    StatusVisualizerComponent,
+    UrldecoPipe
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

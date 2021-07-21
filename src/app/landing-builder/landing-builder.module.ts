@@ -70,7 +70,7 @@ import { CompetenceModule } from '../competence/competence.module';
     ParrafosComponent,
     BackendelementsComponent,
     ContentheadComponent,
-    ImageParrafoComponent
+    ImageParrafoComponent,
   ],
   imports: [
     CommonModule,

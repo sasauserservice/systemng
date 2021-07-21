@@ -86,4 +86,32 @@ export class EventsListComponent implements OnInit {
     window.open(url, '_blank');
   }
 
-}
+  realaseScores(id:any){
+    this.Content.eventReleaseScores(id).then( (response: any) => {
+      if(response){
+        Swal.fire({
+          title: 'Success!',
+          text: '', 
+          icon: 'success',
+          showCancelButton: false,
+          showConfirmButton: false
+        });
+      }
+      }).catch((error: any) => {
+        if(error){
+          Swal.fire({
+            title: 'Info!',
+            text: 'Error on server',
+            icon: 'info',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+        }
+      } ); 
+    
+     
+
+    }
+
+  }
+

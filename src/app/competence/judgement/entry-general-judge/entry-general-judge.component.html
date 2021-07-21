@@ -1,0 +1,78 @@
+<div uk-alert="" class="uk-alert-success">
+    <div class="uk-margin-remove">
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand uk-margin-auto-vertical">
+                <p class="uk-text-small">GENERAL JUDGE</p>
+            </div>
+            <div class="uk-width-auto uk-margin-auto-vertical uk-flex uk-flex-middle">
+                <div *ngIf="params.judging" class="">
+                    <p class="uk-margin-remove uk-text-small uk-text-center">{{params.generalTotal}}</p>
+                    <p class="uk-margin-remove uk-text-smaller uk-text-center">TOTAL</p>
+                </div>
+                <a class="uk-margin-small-left" (click)="sendGeneralQuals()" uk-icon="icon: play-circle" uk-tooltip="title: SEND ALL; pos: top"></a>
+            </div>
+        </div>
+    </div>
+    <div class="uk-card uk-padding-small">
+        <div class="">
+            <table data-contenedor="ID CONTENEDOR" data-typejudge="TYPE JUDGE" id="jueces_main" class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
+                <thead>
+                    <tr class="uk-background-secondary uk-light">
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th class="uk-table-large uk-text-smaller">PARAMETER</th>
+                        <th class="uk-table-small uk-text-smaller">DESCRIPTION</th>
+                        <th class="uk-text-smaller">COMMENT</th>
+                        <th class="uk-table-shrink uk-text-smaller">VALUE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">SCORE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">SEND</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
+                    </tr>
+                </thead>
+
+                <tbody *ngFor="let param of params.judging;let paramindex = index">
+                    <tr>
+                        <td class="uk-text-smaller uk-text-center">
+                            <a href="#" uk-icon="icon: warning; ratio: 0.75;"></a>
+                        </td>
+                        <td class="uk-text-smaller uk-text-nowrap">{{param.name}}</td>
+                        <td class="uk-text-smaller uk-text-truncate">{{param.desc}}</td>
+                        <td class="uk-text-smaller uk-text-nowrap"><input [(ngModel)]="param.comment" class="uk-input uk-form-small" type="text" placeholder="COMMENT"></td>
+                        <td class="uk-text-small uk-text-center">{{param.total}}</td>
+                        <td *ngIf="param.qualtotal" class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal}}</td>
+                        <td *ngIf="!param.qualtotal" class="uk-text-small uk-text-center uk-text-center"><i uk-icon="info" uk-tooltip="MISSING CRITERIAS"></i></td>
+                        <td class="uk-text-smaller uk-text-center">
+                            <a [attr.disable]="!aviableSend" (click)="sendGeneralQuals()" uk-icon="icon: play-circle; ratio: 0.75;" uk-tooltip="title: SEND; pos: top"></a>
+                        </td>
+                        <td class="uk-text-smaller uk-text-center">
+                            <div>
+                                <app-status-visualizer [mode]="false" [statusData]="param.flag"></app-status-visualizer>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="uk-width-1-1">
+                        <td class="uk-text-smaller" colspan="8">
+                            <div class="uk-child-width-1-2@l uk-child-width-1-3@xl uk-grid-small uk-grid-divider" uk-grid>
+                                <div *ngFor="let criteria of param.criteria">
+                                    <div class="uk-grid-small" uk-grid>
+                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                            <p class="uk-text-smaller uk-text-nowrap">{{criteria.title}}</p>
+                                        </div>
+                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                            <input (change)="calculateTotal(paramindex)" [(ngModel)]="criteria.qualpoints" (keydown)="viewRightValue($event,criteria.points);calculateTotal(paramindex)" [attr.placeholder]="'Max '+criteria.points" min="0" [attr.max]="criteria.points" class="uk-input uk-form-small uk-input-square uk-margin-small-left"
+                                                type="number" name="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="uk-width-1-1">
+                        <td class="uk-background-muted" colspan="8">
+                            <hr class="uk-hr-divider">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

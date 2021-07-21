@@ -19,8 +19,10 @@ export class ManagerComponent implements OnInit {
   public statusReloadEvents : number = 0;
   public statusReloadUsers : number = 0;
   public statusReloadCompetitors : number = 0;
+  public statusReloadJudgements : number = 0;
   public currentEdition         : any    = {};
-
+         statusPreviewEntry     : boolean    = false
+         previewEntryData       : any    = {}
   @Output() reloadParameters = new EventEmitter<any>();
 
   fruit : string = '';
@@ -35,6 +37,18 @@ export class ManagerComponent implements OnInit {
     }).catch(function(error: any){
       console.log(error);
     });
+  }
+
+  OpenEntryPreviewer(obj:any){
+    if(this.statusPreviewEntry){
+      this.statusPreviewEntry = false;
+    }
+     
+    let self = this;
+    setTimeout(function(){
+      self.previewEntryData = obj;
+      self.statusPreviewEntry = true
+      },500)
   }
 
   async createPost(){

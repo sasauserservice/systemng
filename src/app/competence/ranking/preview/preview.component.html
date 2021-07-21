@@ -1,0 +1,194 @@
+<div class="sasa-body-content uikit-modern">
+
+
+    <p>{{eventId}}</p>
+    <hr>
+    <h1>{{event.title}}</h1>
+    
+
+    <div class="">
+        <div class="uk-child-width-1-3 uk-grid-match uk-grid-small" uk-grid>
+            <div *ngFor="let winner of top3">
+                <div class="uk-card uk-card-body uk-card-primary uk-padding-small">
+                    <div class="uk-width-1-2 uk-align-center">
+                        <div class="field-contentsol">
+                            <img class="uk-border-circle" src="/assets/default_photocover.jpg" alt="">    
+                        </div>
+                    </div>
+
+                    <div class="uk-text-center" uk-lightbox>
+                        <a class="uk-button uk-button-link uk-button-large" href="{{winner.video}}" data-caption="ENTRY VIDEO" data-attrs="width: 720; height: 480;">{{winner.competitor_name}}</a>
+                        <p class="uk-text-small uk-margin-remove uk-text-uppercase">{{winner.category_data.title}}</p>
+                    </div>
+
+                    <div class="uk-grid-small uk-child-width-1-3 uk-margin" uk-grid>
+                        <div class="uk-margin-auto-vertical">
+                            <div class="uk-text-center">
+                                <h4 class="uk-margin-remove uk-text-small">{{winner.porcentMe}}%</h4> 
+                                <p class="uk-margin-remove uk-text-smaller">PERCENTAGE</p> 
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-text-center">
+                                <h4 class="uk-margin-remove uk-text-small">{{winner.pointsMe}}</h4> 
+                                <p class="uk-margin-remove uk-text-smaller">OF {{winner.category_data.totalCat}}</p> 
+                            </div>    
+                        </div>
+                        
+                        <div>
+                            <div class="uk-text-center">
+                                <h4 class="uk-margin-remove uk-text-small">{{winner.penalsMe}}</h4> 
+                                <p class="uk-margin-remove uk-text-smaller">PENALTY</p> 
+                            </div>    
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    
+    <div class="uk-margin-large-top uk-card-header uk-card-primary uk-padding-small">
+        <div class="uk-text-center">
+            <h3 class="uk-margin-remove">WINNERS BY CATEGORY</h3>
+        </div>
+    </div>
+    
+    <div class="">
+        <div class="uk-card uk-card-default uk-card-body uk-margin-small-bottom" *ngFor="let cat of categories">
+            <div class="uk-card-header uk-card-primary">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-width-expand uk-margin-auto-vertical">
+                        <h5 class="uk-margin-remove uk-text-uppercase">{{cat.title}}</h5>
+                        <p class="uk-margin-remove uk-text-uppercase uk-text-smaller">{{cat.description}}</p>            
+                    </div>
+                    <div class="uk-width-auto uk-margin-auto-vertical uk-text-center">
+                        <h5 class="uk-margin-remove">{{cat.totalCat}}</h5>
+                        <p class="uk-margin-remove uk-text-uppercase uk-text-smaller">VALUE</p>            
+                    </div>
+                </div>
+            </div>
+            
+            <div class="uk-card-body uk-padding-small">
+                <div uk-grid class="uk-child-width-1-3">
+                    <div *ngFor="let part of cat.top3">
+                        <div class="uk-card uk-card-default uk-card-body" >
+                            <div class="uk-width-1-2 uk-align-center">
+                                <div class="field-contentsol">
+                                    <img class="uk-border-circle" src="/assets/default_photocover.jpg" alt="">    
+                                </div>
+                            </div>
+
+                            <div class="uk-text-center" uk-lightbox>
+                                <a class="uk-button uk-button-link uk-button-large" href="{{part.video}}" data-caption="ENTRY VIDEO" data-attrs="width: 720; height: 480;">{{part.competitor_name}}</a>
+                            </div>
+
+                            <div class="uk-grid-small uk-child-width-1-3 uk-margin" uk-grid>
+                                <div class="uk-margin-auto-vertical">
+                                    <div class="uk-text-center">
+                                        <h4 class="uk-margin-remove uk-text-small">{{part.porcentMe}}%</h4> 
+                                        <p class="uk-margin-remove uk-text-smaller">PERCENTAGE</p> 
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-text-center">
+                                        <h4 class="uk-margin-remove uk-text-small">{{part.pointsMe}}</h4> 
+                                        <p class="uk-margin-remove uk-text-smaller">OF </p> 
+                                    </div>    
+                                </div>
+
+                                <div>
+                                    <div class="uk-text-center">
+                                        <h4 class="uk-margin-remove uk-text-small">{{part.penalsMe}}</h4> 
+                                        <p class="uk-margin-remove uk-text-smaller">PENALTY</p> 
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="uk-card uk-card-default">
+                <ul uk-accordion="toggle: *.all-entry-oppener">
+                    <li>
+                        <div class="uk-card-header">
+                            <div class="uk-grid-small" uk-grid>
+                                <div class="uk-width-expand uk-margin-auto-vertical">
+                                    <a class="uk-button uk-button-link all-entry-oppener" href="#">ALL ENTRYS {{cat.title}}</a>
+                                </div>
+                                <div class="uk-width-auto uk-margin-auto-vertical uk-flex uk-flex-middle">
+                                    <div class="uk-text-center uk-margin-small-right">
+                                        <h5 class="uk-margin-remove uk-text-small">{{cat.totalCat}}</h5>
+                                        <p class="uk-margin-remove uk-text-uppercase uk-text-smaller">VALUE</p>                
+                                    </div>
+                                    <div class="uk-text-center uk-margin-small-right">
+                                        <h5 class="uk-margin-remove uk-text-small">60</h5>
+                                        <p class="uk-margin-remove uk-text-uppercase uk-text-smaller">ENTRYS</p>                
+                                    </div>
+                                    <a href="" class="uk-icon-button" uk-icon="icon: cloud-download" uk-tooltip="title: PDF; pos: top"></a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-card-body uk-accordion-content">
+                            <div class="">
+                                <table class="uk-table uk-table-small uk-table-divider uk-table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td class="uk-text-smaller uk-text-bold">COMPETITOR</td>
+                                            <td class="uk-text-smaller uk-text-bold">VIDEO</td>
+                                            <td class="uk-table-shrink uk-text-smaller uk-text-bold uk-text-center">%</td>
+                                            <td class="uk-table-shrink uk-text-smaller uk-text-bold">POINTS</td>
+                                            <td class="uk-table-shrink uk-text-smaller uk-text-bold">PENALTY</td>
+                                            <td class="uk-table-shrink uk-text-smaller uk-text-bold">TOTAL</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let gpart of cat.participations">
+                                            <td class="uk-text-smaller">{{gpart.competitor_name }}</td>
+                                            <td class="uk-text-smaller">{{gpart.video }}</td>
+                                            <td class="uk-text-smaller uk-text-right">{{gpart.porcentMe}}%</td>
+                                            <td class="uk-text-smaller uk-text-right">??</td>
+                                            <td class="uk-text-smaller uk-text-right">{{gpart.penalsMe}}</td>
+                                            <td class="uk-text-smaller uk-text-right">{{gpart.pointsMe}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+    <h1>ALL ENTRYS</h1>
+    <table class="uk-table">
+        <thead>
+            <tr>
+                <td class="uk-text-bold">COMPETITOR</td>
+                <td class="uk-text-bold">VIDEO</td>
+                <td class="uk-text-bold">POINTS</td>
+                <td class="uk-text-bold">PENALTY</td>
+                <td class="uk-text-bold">PENRCENT</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ALLpart of all">
+                <td>{{ALLpart.competitor_name }}</td>
+                <td>{{ALLpart.video }}</td>
+                <td>{{ALLpart.pointsMe}}</td>
+                <td>{{ALLpart.penalsMe}}</td>
+                <td>{{ALLpart.porcentMe}}%</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    
+    <hr>
+    
+</div>

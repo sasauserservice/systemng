@@ -1,0 +1,12 @@
+
+<button (click)="cancelPreview()">CANCEL BUTTON</button>
+
+
+<div *ngIf="videodata.id != null">
+    <div class="video-responsive uk-margin" *ngIf="videodata.type=='youtube'">
+        <iframe width="100%" [src]="'https://www.youtube.com/embed/'+videodata.id+'?controls=1&rel=0' | urldeco" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+    </div>
+    <div class="video-responsive uk-margin" *ngIf="videodata.type=='vimeo'">
+        <iframe width="100%" [src]="'https://player.vimeo.com/video/'+videodata.id | urldeco" height="auto" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+</div>  

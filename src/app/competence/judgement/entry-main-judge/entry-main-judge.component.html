@@ -1,0 +1,106 @@
+ <pre [hidden]="true">
+     params:{{params | json}} <hr>
+     paramsforsend:{{paramsforsend | json}}
+ </pre>
+ 
+<div uk-alert="" class="uk-alert-primary">
+    <div>
+        <div class="uk-grid-small" uk-grid>
+            <div class="uk-width-expand uk-margin-auto-vertical">
+                <p class="uk-text-small uk-margin-remove">MAIN JUDGE</p>
+            </div>
+            <div class="uk-width-auto uk-margin-auto-vertical uk-flex uk-flex-middle">
+                <div class="">
+                    <p class="uk-margin-remove uk-text-small uk-text-center">{{paramsforsend.generalTotal}}</p>
+                    <p class="uk-margin-remove uk-text-smaller uk-text-center">SCORE</p>
+                </div>
+                <div class="uk-margin-small-left">
+                    <p class="uk-margin-remove uk-text-small uk-text-center">{{paramsforsend.penaltyTotal}}</p>
+                    <p class="uk-margin-remove uk-text-smaller uk-text-center">PENAL</p>
+                </div>
+                <div class="uk-margin-small-left uk-margin-small-right">
+                    <p class="uk-margin-remove uk-text-small uk-text-center">{{paramsforsend.generalTotal - paramsforsend.penaltyTotal}}</p>
+                    <p class="uk-margin-remove uk-text-smaller uk-text-center">TOTAL</p>
+                </div>
+                <a class="uk-margin-small-left" (click)="getParamsAndCriteriasforSend()" class="" uk-icon="play-circle" uk-tooltip="title: APPROVE; pos: top"></a>
+            </div>
+        </div>
+    </div>
+
+    <!---- TABLE ----->
+    <div class="uk-card uk-padding-small">
+        <div class="">
+            <table class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
+                <caption class="uk-text-small uk-background-muted">JUDGING PARAMETERS</caption>
+                <thead>
+                    <tr class="uk-background-secondary uk-light">
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th class="uk-table-large uk-text-smaller">PARAMETER</th>
+                        <th class="uk-text-smaller">JUDGE</th>
+                        <th class="uk-table-shrink uk-text-smaller">VALUE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">SCORE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">NOTE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
+                    </tr>
+                </thead> 
+ 
+                <tbody *ngFor="let param of params.parameters;let i = index">
+                    <tr>
+                        <td class="uk-text-smaller uk-text-center"><a (click)="openClaimGenerator(1,param.id)" uk-icon="icon: warning; ratio: 0.75;"></a>{{param.id}}</td> 
+                        <td class="uk-text-smaller uk-text-nowrap">{{param.name}}</td>
+                        <td class="uk-text-smaller uk-text-nowrap">Judge Name</td>
+                        <td class="uk-text-small uk-text-center">{{param.total}}</td>
+                        <td class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal}}</td>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: comment; ratio: 0.75;" [attr.uk-toggle]="'target: #parameter-toogle-oppener'+i"></a></td>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                    </tr>
+                    <tr [attr.id]="'parameter-toogle-oppener'+i" hidden>
+                        <td class="uk-text-smaller" colspan="7">COMENTARIO DE LA NOTA O CALIFICACION ADJUNTA</td>
+                    </tr>
+                </tbody>
+            </table>
+ 
+
+            <table class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
+                <caption class="uk-text-small uk-background-muted">PENALTYS</caption>
+                <thead>
+                    <tr class="uk-background-secondary uk-light">
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th class="uk-table-large uk-text-smaller">PENALTY</th>
+                        <th class="uk-text-smaller">JUDGE</th>
+                        <th class="uk-table-shrink uk-text-smaller">VALUE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">AMMOUNT</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">COMMENT</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
+                    </tr>
+                </thead>
+
+                <tbody *ngFor="let penalty of params.penalties">
+                    <tr>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                        <td class="uk-text-smaller uk-text-nowrap">{{penalty.name}}</td>
+                        <td class="uk-text-smaller uk-text-nowrap">Judge Name</td>
+                        <td class="uk-text-small uk-text-center">{{penalty.points}}</td>
+                        <td class="uk-text-small uk-text-center uk-text-center">{{penalty.ammount}}</td>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: comment; ratio: 0.75;"></a></td>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                    </tr>
+                    <tr class="uk-width-1-1">
+                        <td class="uk-text-smaller" colspan="7">
+                            <div class="uk-child-width-auto uk-grid-small uk-grid-divider" uk-grid>
+                                <div *ngFor="let item of penalty.judgements">
+
+                                    <a class="uk-margin-remove" uk-tooltip="title: MIN:SEG; pos: top">0{{item.time.min}}:0{{item.time.sec}}</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="uk-width-1-1">
+                        <td class="uk-background-muted" colspan="8"><hr class="uk-hr-divider"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!---- TABLE ----->
+</div> 

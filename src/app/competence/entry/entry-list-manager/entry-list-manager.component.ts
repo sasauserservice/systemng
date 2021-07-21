@@ -14,12 +14,22 @@ import Swal from 'sweetalert2'
 })
 export class EntryListManagerComponent implements OnInit {
 
+  @Input()  changes : any  = 0;
+  @Output() stateChangeBar = new EventEmitter<any>();
+  @Output() claimParams = new EventEmitter<any>();
+  @Output() previewEntry = new EventEmitter<any>();
+
   constructor(private service:EntryService,private competenceService : CompetenceLandingService) { }
+
+  
+  public statusReloadJudgements : number = 0;
 
   ngOnInit(): void {  
     this.getEvents();
     this.getEntrys();
   }
+
+
 
 
   eventsSelect  :   Array<any> = [];
@@ -33,95 +43,25 @@ export class EntryListManagerComponent implements OnInit {
   currentEdit : any = {};
 
   // Teams and Categories previusly selected (1st RESULT FROM QUERY)
-  TeamsAndCatPrevSel : Array<any> = [
-    {
-      id:1,
-      team_id:'4',
-      team_title: 'Jaguars',
-      category_id:'8',
-      category_title: 'Dancing 2X120',
-      video_url:'https://www.youtube.com/watch?v=iJxbkN4hvqU'
-    },
-    {
-      id:2, 
-      team_id:'4',
-      team_title: 'Jaguars',
-      category_id:'9',
-      category_title: 'Scholastic Cheerleaders',
-      video_url:''
-    },
-    {
-      id:3, 
-      team_id:'12',
-      team_title: 'Gorilas',
-      category_id:'1',
-      category_title: 'Recreation Cheerleaders',
-      video_url:'https://www.youtube.com/watch?v=BlQ2mP2EE4A'
-    },
-  ];
+  TeamsAndCatPrevSel : Array<any> = [];
 
-  AllTeams : Array<Select2OptionData> = [
-    {
-    id:'4',
-    text: 'Jaguars'
-  }, 
-  {
-    id:'5',
-    text: 'Lions'
-  },
-  {
-    id:'8',
-    text: 'Angry Birds'
-  },
-  {
-    id:'9',
-    text: 'Zeebras'
-  },
-  {
-    id:'1',
-    text: 'Monkeys'
-  },
-  {
-    id:'12',
-    text: 'Gorilas'
-  }
-
-
-];
+  AllTeams : Array<Select2OptionData> = [];
   // Todas las categorias registradas en los paneles de este evento
-  AllCategories : Array<Select2OptionData> = [
-    {
-    id:'4',
-    text: 'Jumping 1X20'
-  },
-  {
-    id:'5',
-    text: 'Jumping 2X120'
-  },
-  {
-    id:'8',
-    text: 'Dancing 2X120'
-  },
-  {
-    id:'9',
-    text: 'Scholastic Cheerleaders'
-  },
-  {
-    id:'1',
-    text: 'Recreation Cheerleaders'
-  },
-  {
-    id:'12',
-    text: 'Pro Cheerleaders'
+  AllCategories : Array<Select2OptionData> = [];
+
+  openEntryPreview(videoObj:any){
+    console.log(videoObj);
+    this.previewEntry.emit(videoObj)
   }
 
+  recibeChangebar(stat:any){
+    this.stateChangeBar.emit(stat);
+  }
 
-];
-
-
-
-
-
+  openClaim(val:any){
+    console.log(val)
+    this.claimParams.emit(val);
+  }
 
 
   getEvents(){
@@ -197,6 +137,17 @@ export class EntryListManagerComponent implements OnInit {
 
 
 
+    }
+  }
+
+  statuschange(status:number,action:string){
+    //this.statusRightBar = status;
+   // console.log(this.statusReloadUsers);
+    if(action){
+      // emit de accion
+      if(action == 'reloadJudgements'){
+        this.statusReloadJudgements = 1;
+      }
     }
   }
 

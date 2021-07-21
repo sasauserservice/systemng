@@ -9,6 +9,7 @@ import { ManagerComponent } from './competence/manager/manager.component';
 import { ParamsComponent } from './competence/params/params.component';
 import { PenaltiesComponent } from './competence/penalties/penalties.component';
 import { MicrodashboardComponent } from './microdashboard/microdashboard.component';
+import { PreviewComponent } from './competence/ranking/preview/preview.component';
 
 const routes: Routes = [
     {path: '', component: HomepageComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
       canActivate: [AuthorizatedGuard]
     },
     {path: 'development', component: MicrodashboardComponent, canActivate: [AuthorizatedGuard]},
+    {path: 'ranking/preview/:event', component: PreviewComponent, canActivate: [AuthorizatedGuard]},
 ];
 
 @NgModule({
