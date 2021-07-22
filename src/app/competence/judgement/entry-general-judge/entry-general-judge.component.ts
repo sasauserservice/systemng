@@ -13,6 +13,8 @@ export class EntryGeneralJudgeComponent implements OnInit {
   @Input() changes : any = 0;
   @Output() stateChange = new EventEmitter<any>();
   @Output() eventFinishCreate = new EventEmitter<any>();  
+  @Output() launchGeneralJudgeStatus = new EventEmitter<any>();  
+  @Output() launchMainJudgeStatus = new EventEmitter<any>();  
   constructor(private service: JudgementService) { }
 
   params :any = {};
@@ -26,17 +28,22 @@ export class EntryGeneralJudgeComponent implements OnInit {
     
   }
 
+
+
   calglobalFlag(){
     let flag = 1;
     this.params.judging.forEach((element:any) => {
       
-    //  element.criteria.forEach((criteria:any)=>{
+    
         if(flag != 0){
           flag = element.flag;
         }
-    //  })
+    
     })
     this.params.globalFlag = flag;
+    if(flag == 1){
+      this.launchGeneralJudgeStatus.emit(flag);
+    }
   }
 
  
@@ -74,7 +81,7 @@ export class EntryGeneralJudgeComponent implements OnInit {
       }
 
       self.aviabSending();
-    },500);
+    },1000);
 
 
      
@@ -104,6 +111,7 @@ export class EntryGeneralJudgeComponent implements OnInit {
 
   calculateTotal(index:number){
     this.params.judging[index].flag = 0;
+    this.launchGeneralJudgeStatus.emit(0);
     let all = 0;
     this.params.judging[index].criteria.forEach((element:any) => {
       
@@ -119,6 +127,8 @@ export class EntryGeneralJudgeComponent implements OnInit {
       });
       this.params.generalTotal = total;
     }
+
+    this.params.globalFlag = 0 
       
 
 
@@ -166,6 +176,7 @@ export class EntryGeneralJudgeComponent implements OnInit {
       });
       this.getParamsAndCriterias();
       this.eventFinishCreate.emit();
+      this.launchMainJudgeStatus.emit(0);
       }
       }).catch((error: any) => {
       if(error){

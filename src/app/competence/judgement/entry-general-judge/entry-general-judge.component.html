@@ -1,3 +1,4 @@
+ 
 <div uk-alert="" class="uk-alert-success">
     <div class="uk-margin-remove">
         <div class="uk-grid-small" uk-grid>
@@ -9,8 +10,8 @@
                     <p class="uk-margin-remove uk-text-small uk-text-center">{{params.generalTotal}}</p>
                     <p class="uk-margin-remove uk-text-smaller uk-text-center">TOTAL</p>
                 </div>
-                <a class="uk-margin-small-left" (click)="sendGeneralQuals()" uk-icon="icon: play-circle" uk-tooltip="title: SEND ALL; pos: top"></a>
-            </div>
+                <button [disabled]="params.globalFlag == 1" class="uk-margin-small-left" (click)="sendGeneralQuals()" uk-icon="icon: play-circle" uk-tooltip="title: SEND ALL; pos: top"></button>
+            </div> 
         </div>
     </div>
     <div class="uk-card uk-padding-small">
@@ -27,7 +28,7 @@
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">SEND</th>
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
                     </tr>
-                </thead>
+                </thead> 
 
                 <tbody *ngFor="let param of params.judging;let paramindex = index">
                     <tr>
@@ -41,11 +42,11 @@
                         <td *ngIf="param.qualtotal" class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal}}</td>
                         <td *ngIf="!param.qualtotal" class="uk-text-small uk-text-center uk-text-center"><i uk-icon="info" uk-tooltip="MISSING CRITERIAS"></i></td>
                         <td class="uk-text-smaller uk-text-center">
-                            <a [attr.disable]="!aviableSend" (click)="sendGeneralQuals()" uk-icon="icon: play-circle; ratio: 0.75;" uk-tooltip="title: SEND; pos: top"></a>
+                            <a [attr.disabled]="!aviableSend" (click)="sendGeneralQuals()" uk-icon="icon: play-circle; ratio: 0.75;" uk-tooltip="title: SEND; pos: top"></a>
                         </td>
                         <td class="uk-text-smaller uk-text-center">
                             <div>
-                                <app-status-visualizer [mode]="false" [statusData]="param.flag"></app-status-visualizer>
+                                <app-status-visualizer [showGeneralStatus]="true" [mode]="false" [statusData]="param.flag"></app-status-visualizer>
                             </div>
                         </td>
                     </tr>
@@ -58,7 +59,7 @@
                                             <p class="uk-text-smaller uk-text-nowrap">{{criteria.title}}</p>
                                         </div>
                                         <div class="uk-width-auto uk-margin-auto-vertical">
-                                            <input (change)="calculateTotal(paramindex)" [(ngModel)]="criteria.qualpoints" (keydown)="viewRightValue($event,criteria.points);calculateTotal(paramindex)" [attr.placeholder]="'Max '+criteria.points" min="0" [attr.max]="criteria.points" class="uk-input uk-form-small uk-input-square uk-margin-small-left"
+                                            <input (change)="calculateTotal(paramindex);viewRightValue($event,criteria.points)" [(ngModel)]="criteria.qualpoints" (keydown)="viewRightValue($event,criteria.points);calculateTotal(paramindex)" [attr.placeholder]="'Max '+criteria.points" min="0" [attr.max]="criteria.points" class="uk-input uk-form-small uk-input-square uk-margin-small-left"
                                                 type="number" name="">
                                         </div>
                                     </div>

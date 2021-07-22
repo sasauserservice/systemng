@@ -19,7 +19,7 @@
                     <p class="uk-margin-remove uk-text-smaller uk-text-center">PENAL</p>
                 </div>
                 <div class="uk-margin-small-left uk-margin-small-right">
-                    <p class="uk-margin-remove uk-text-small uk-text-center">{{paramsforsend.generalTotal - paramsforsend.penaltyTotal}}</p>
+                    <p class="uk-margin-remove uk-text-small uk-text-center">{{total}}</p>
                     <p class="uk-margin-remove uk-text-smaller uk-text-center">TOTAL</p>
                 </div>
                 <a class="uk-margin-small-left" (click)="getParamsAndCriteriasforSend()" class="" uk-icon="play-circle" uk-tooltip="title: APPROVE; pos: top"></a>
@@ -43,7 +43,12 @@
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
                     </tr>
                 </thead> 
- 
+                <tr>
+                    <td colspan="5">
+                        
+                    </td>
+                </tr>
+                
                 <tbody *ngFor="let param of params.parameters;let i = index">
                     <tr>
                         <td class="uk-text-smaller uk-text-center"><a (click)="openClaimGenerator(1,param.id)" uk-icon="icon: warning; ratio: 0.75;"></a>{{param.id}}</td> 
@@ -52,7 +57,7 @@
                         <td class="uk-text-small uk-text-center">{{param.total}}</td>
                         <td class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal}}</td>
                         <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: comment; ratio: 0.75;" [attr.uk-toggle]="'target: #parameter-toogle-oppener'+i"></a></td>
-                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                        <app-status-visualizer [showMainStatus]="true" [statusMainData]="param.flag" ></app-status-visualizer>
                     </tr>
                     <tr [attr.id]="'parameter-toogle-oppener'+i" hidden>
                         <td class="uk-text-smaller" colspan="7">COMENTARIO DE LA NOTA O CALIFICACION ADJUNTA</td>
@@ -75,7 +80,7 @@
                     </tr>
                 </thead>
 
-                <tbody *ngFor="let penalty of params.penalties">
+                <tbody [hidden]="penalty.judgements.length == 0" *ngFor="let penalty of params.penalties">
                     <tr>
                         <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
                         <td class="uk-text-smaller uk-text-nowrap">{{penalty.name}}</td>
@@ -83,7 +88,7 @@
                         <td class="uk-text-small uk-text-center">{{penalty.points}}</td>
                         <td class="uk-text-small uk-text-center uk-text-center">{{penalty.ammount}}</td>
                         <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: comment; ratio: 0.75;"></a></td>
-                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                        <app-status-visualizer [showMainStatus]="true" [statusMainData]="penalty.flag" ></app-status-visualizer>
                     </tr>
                     <tr class="uk-width-1-1">
                         <td class="uk-text-smaller" colspan="7">

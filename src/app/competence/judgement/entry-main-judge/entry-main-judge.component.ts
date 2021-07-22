@@ -15,6 +15,7 @@ export class EntryMainJudgeComponent implements OnInit {
   @Output() stateChangeBar = new EventEmitter<any>();
   @Output() claimObjet = new EventEmitter<any>();
   @Output() eventFinishCreate = new EventEmitter<any>();
+  @Output() launchMainJudgeStatus = new EventEmitter<any>();
   constructor(private service: JudgementService) { }
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class EntryMainJudgeComponent implements OnInit {
   params :any = {};
   paramsforsend :any = {};
   aviableSend : any = false;
+  total : any = 0;
   getParamsAndCriterias(){
     this.service.getMainjudge(this.entryid).subscribe((response:any) => {
       
@@ -95,6 +97,10 @@ export class EntryMainJudgeComponent implements OnInit {
     this.service.getGeneralJudgmentParams(this.entryid).subscribe((response:any) => {
       
      this.paramsforsend = response;
+
+     let total = this.paramsforsend.generalTotal - this.paramsforsend.penaltyTotal
+
+     this.total = (total > 0 )? total : 0;
      this.aviabSending()
      let self = this;
      setTimeout(function(){
@@ -105,39 +111,41 @@ export class EntryMainJudgeComponent implements OnInit {
   }
 
   sendGeneralQuals(){
+    this.paramsforsend.judge = 0;
+    console.log(this.paramsforsend);
+    this.service.sendMain(this.paramsforsend).then( (response: any) => {
+    if(response){
+    Swal.fire({
+    title: 'Success!',
+    text: '', 
+    icon: 'success',
+    showCancelButton: false,
+    showConfirmButton: false
+    });
+    this.launchMainJudgeStatus.emit(1);
+    this.getParamsAndCriterias();
+   // this.eventFinishCreate.emit();
+    }
+    }).catch((error: any) => {
+    if(error){
+    Swal.fire({
+    title: 'Info!',
+    text: 'Error on server',
+    icon: 'info',
+    showCancelButton: false,
+    showConfirmButton: false
+    });
+    }
+    } ); 
     if(this.aviableSend){
-      this.paramsforsend.judge = 0;
-      this.service.sendMain(this.paramsforsend).then( (response: any) => {
-      if(response){
-      Swal.fire({
-      title: 'Success!',
-      text: '', 
-      icon: 'success',
-      showCancelButton: false,
-      showConfirmButton: false
-      });
-      this.getParamsAndCriterias();
-     // this.eventFinishCreate.emit();
-      }
-      }).catch((error: any) => {
-      if(error){
-      Swal.fire({
-      title: 'Info!',
-      text: 'Error on server',
-      icon: 'info',
-      showCancelButton: false,
-      showConfirmButton: false
-      });
-      }
-      } ); 
     }else{
-      Swal.fire({
+     /* Swal.fire({
         title: 'Info!',
         text: 'Evaluate all Params',
         icon: 'info',
         showCancelButton: false,
         showConfirmButton: false
-      });
+      });*/
 
     }
    

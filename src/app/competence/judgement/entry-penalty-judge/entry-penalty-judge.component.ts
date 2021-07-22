@@ -11,6 +11,8 @@ export class EntryPenaltyJudgeComponent implements OnInit {
 
   @Input() entryid : any = 0;
   @Output() eventFinishCreate = new EventEmitter<any>();
+  @Output() launchPenaltyJudgeStatus = new EventEmitter<any>();  
+  @Output() launchMainJudgeStatus = new EventEmitter<any>();  
   constructor(private service: JudgementService) { }
 
   params :any = {};
@@ -44,7 +46,16 @@ export class EntryPenaltyJudgeComponent implements OnInit {
     this.params.judging[index].qualtotal = all;
   }
 
+  changeFlagStatus(index:number,flagState:number){
+     
+    this.params.penalty[index].flag = flagState;
+    this.launchPenaltyJudgeStatus.emit(flagState)
+  } 
+
+
+
   addPenal(index:number){
+    this.changeFlagStatus(index,0)
     let obj = {time:{ min:0, sec:0 },coment:''};
 
     if(this.params.penalty[index].judgements){
@@ -81,6 +92,7 @@ export class EntryPenaltyJudgeComponent implements OnInit {
         });
         this.getParamsAndCriterias();
         this.eventFinishCreate.emit();
+        this.launchPenaltyJudgeStatus.emit(1)
       }
     }).catch((error: any) => {
       if(error){

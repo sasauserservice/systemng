@@ -94,7 +94,14 @@ export class ManagerComponent implements OnInit {
         });
 
         setTimeout( () => {
-          this.route.navigate(['/u/'+done.Data.alias]);
+          const url = this.route.serializeUrl(
+            this.route.createUrlTree([`/u/${done.Data.alias}`])
+          );
+          window.open(url, '_blank');
+
+
+
+         // this.route.navigate(['/u/'+done.Data.alias]);
         }, 3000);
 
       }).catch((error:any) => {

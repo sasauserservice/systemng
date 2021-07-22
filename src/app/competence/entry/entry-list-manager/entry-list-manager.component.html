@@ -31,7 +31,7 @@
             <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
                 <div class="">
 
-                    <div *ngFor="let part of (allEntrys | entrybyevent: eventselected);let i = index" class="uk-card uk-card-default">
+                    <div [attr.data-entry]="part.entryid" *ngFor="let part of (allEntrys | entrybyevent: eventselected);let i = index" class="uk-card uk-card-default">
                         <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
                             <li>
 
@@ -41,7 +41,7 @@
                                             <div class="uk-grid-small" uk-grid>
                                                 <div class="uk-width-auto uk-margin-auto-vertical uk-flex uk-flex-middle">
                                                     <div class="uk-margin-small-right">
-                                                        <app-status-visualizer [mode]="true" [statusData]="part.status.status"></app-status-visualizer>
+                                                        <app-status-visualizer [showMainStatus]="true" [statusMainData]="part.status.statusmain" [showGeneralStatus]="true" [showPenaltyStatus]="true" [statusPenaltyData]="part.status.statuspenal" [mode]="true" [statusData]="part.status.status"></app-status-visualizer>
                                                     </div>
                                                     <span uk-tooltip="ATLETE" *ngIf="part.type == 1" class="" uk-icon="icon: user"></span>
                                                     <span uk-tooltip="TEAM" *ngIf="part.type == 2 || part.type == 0 " class="" uk-icon="icon: users"></span>
@@ -96,16 +96,17 @@
                                     <!--TABLAS DE JUZGAMIENTO INICIO-->
                                     <div>
                                         <!--GENERAL JUDGE-->
-                                        <app-entry-general-judge (eventFinishCreate)="statuschange(0,'reloadJudgements')" [entryid]="part.id"></app-entry-general-judge>
+                                     
+                                        <app-entry-general-judge (launchMainJudgeStatus)="part.status.statusmain = $event" (launchGeneralJudgeStatus)="part.status.status = $event" (eventFinishCreate)="statuschange(0,'reloadJudgements')" [entryid]="part.id"></app-entry-general-judge>
                                         <!--GENERAL JUDGE-->
 
 
                                         <!--PENALTY JUDGE-->
-                                        <app-entry-penalty-judge (eventFinishCreate)="statuschange(0,'reloadJudgements')" [entryid]="part.id"></app-entry-penalty-judge>
+                                        <app-entry-penalty-judge (launchMainJudgeStatus)="part.status.statusmain = $event" (launchPenaltyJudgeStatus)="part.status.statuspenal = $event" (eventFinishCreate)="statuschange(0,'reloadJudgements')" [entryid]="part.id"></app-entry-penalty-judge>
                                         <!--PENALTY JUDGE-->
 
                                         <!--MAIN JUDGE-->
-                                        <app-entry-main-judge (claimObjet)="openClaim($event)" (stateChangeBar)="recibeChangebar($event)" (stateChange)="statusReloadJudgements = $event" [changes]="statusReloadJudgements" [entryid]="part.id"></app-entry-main-judge>
+                                        <app-entry-main-judge (launchMainJudgeStatus)="part.status.statusmain = $event" (claimObjet)="openClaim($event)" (stateChangeBar)="recibeChangebar($event)" (stateChange)="statusReloadJudgements = $event" [changes]="statusReloadJudgements" [entryid]="part.id"></app-entry-main-judge>
                                         <!--MAIN JUDGE-->
 
 

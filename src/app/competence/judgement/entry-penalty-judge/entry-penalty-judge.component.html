@@ -16,6 +16,7 @@
     </div>
 
     <!---- TABLE ----->
+     
     <div class="uk-card uk-padding-small">
         <div class="">
             <table class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
@@ -35,13 +36,17 @@
                     <tr>
                         <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
                         <td class="uk-text-smaller uk-text-nowrap">{{penalty.name}}</td>
-                        <td class="uk-text-smaller uk-text-nowrap">{{penalty.desc || 'N/A'}}</td>
+                        <td class="uk-text-smaller uk-text-nowrap uk-text-truncate">{{penalty.desc || 'N/A'}}</td>
                         <td class="uk-text-small uk-text-center">{{penalty.points}}</td>
                         <td *ngIf="!penalty.judgements"  class="uk-text-small uk-text-center"></td>
                         <td *ngIf="penalty.judgements"  class="uk-text-small uk-text-center">{{penalty.points * penalty.judgements.length}}</td>
                         <td class="uk-text-smaller uk-text-center"><a (click)="addPenal(penaltyindex)" uk-icon="icon: plus-circle; ratio: 0.75;" uk-tooltip="title: ADD; pos: top"></a></td>
-                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: play-circle; ratio: 0.75;" uk-tooltip="title: SEND; pos: top"></a></td>
-                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                        <td class="uk-text-smaller uk-text-center"><a  (click)="sendPenaltyQuals()" uk-icon="icon: play-circle; ratio: 0.75;" uk-tooltip="title: SEND; pos: top"></a></td>
+                        <td  class="uk-text-smaller uk-text-center">
+                            
+                            <app-status-visualizer [showPenaltyStatus]="true" [statusPenaltyData]="penalty.flag"></app-status-visualizer>
+                            
+                        </td>
                     </tr>
                     <tr  class="uk-width-1-1">
                         <td colspan="8">
@@ -60,13 +65,13 @@
                                     <tr *ngFor="let judgment of penalty.judgements;let judgmentindex = index">
                                         <td class="uk-text-smaller uk-text-center">{{penalty.points}}</td>
                                         <td class="uk-text-smaller uk-text-center uk-text-nowrap">
-                                            <input [(ngModel)]="judgment.time.min" style="width:30px;" min="0" type="number">
+                                            <input (change)="changeFlagStatus(penaltyindex,0)" [(ngModel)]="judgment.time.min" style="width:30px;" min="0" type="number">
                                         </td>
                                         <td class="uk-text-smaller uk-text-center uk-text-nowrap">
-                                            <input [(ngModel)]="judgment.time.sec" style="width:30px;" min="0" type="number">
+                                            <input (change)="changeFlagStatus(penaltyindex,0)" [(ngModel)]="judgment.time.sec" style="width:30px;" min="0" type="number">
                                         </td>
                                         <td class="uk-text-smaller uk-text-nowrap">
-                                            <input [(ngModel)]="judgment.coment" class="uk-input uk-form-small" type="text" name="" placeholder="COMMENT"></td>
+                                            <input (keydown)="changeFlagStatus(penaltyindex,0)" [(ngModel)]="judgment.coment" class="uk-input uk-form-small" type="text" name="" placeholder="COMMENT"></td>
                                         <td class="uk-text-smaller uk-text-center"><a (click)="deletePenal(penaltyindex,judgmentindex)" uk-icon="icon: trash; ratio: 0.75;" uk-tooltip="title: ERASE; pos: top"></a></td>
                                     </tr>
                                 </tbody>

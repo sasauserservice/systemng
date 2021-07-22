@@ -34,8 +34,8 @@
                                 <div class="uk-width-1-3">
                                     <div class="uk-grid-small" uk-grid>
                                         <div class="uk-width-auto uk-margin-auto-vertical">
-                                            <span *ngIf="article.statusA" class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
-                                            <span *ngIf="!article.statusA" class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
+                                            <span *ngIf="article.statusEvent.status == 1" class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
+                                            <span *ngIf="article.statusEvent.status == 0" class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
 
                                         </div>
                                         <div class="uk-width-expand uk-margin-auto-vertical">
