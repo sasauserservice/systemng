@@ -1,20 +1,48 @@
- 
-<div uk-alert="" class="uk-alert-success">
-    <div class="uk-margin-remove">
-        <div class="uk-grid-small" uk-grid>
-            <div class="uk-width-expand uk-margin-auto-vertical">
-                <p class="uk-text-small">GENERAL JUDGE</p>
-            </div>
-            <div class="uk-width-auto uk-margin-auto-vertical uk-flex uk-flex-middle">
-                <div *ngIf="params.judging" class="">
-                    <p class="uk-margin-remove uk-text-small uk-text-center">{{params.generalTotal}}</p>
-                    <p class="uk-margin-remove uk-text-smaller uk-text-center">TOTAL</p>
+<div uk-alert="" class="uk-alert-success uikit-modern-micro">
+    <div>
+        <div class="uk-grid-small" uk-grid uk-height-match=".uk-card">
+            <div class="uk-width-2-5">
+                <div class="uk-card uk-card-default uk-flex uk-flex-middle uk-flex-center uk-flex-column">
+                    <p class="uk-margin-remove uk-text-small">JUDGE</p>
+                    <p class="uk-text-smaller uk-margin-remove">LAST: 2021.JUL.07:17.52</p>
                 </div>
-                <button [disabled]="params.globalFlag == 1" class="uk-margin-small-left" (click)="sendGeneralQuals()" uk-icon="icon: play-circle" uk-tooltip="title: SEND ALL; pos: top"></button>
-            </div> 
+            </div>
+
+            <div class="uk-width-3-5">
+                <div class="uk-child-width-1-3 uk-grid-small" uk-grid>
+                    <div>
+                        <div class="uk-card uk-card-default square">
+                            <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column">
+                                <p class="uk-margin-remove uk-text-small">{{globalPoints}}</p>
+                                <p class="uk-margin-remove uk-text-smaller">TOTAL</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-card uk-card-default square">
+                            <div *ngIf="params.judging" class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
+                                <p class="uk-margin-remove-bottom">{{params.generalTotal}}</p>
+                                <p class="uk-margin-remove-top uk-margin-remove-bottom uk-text-smaller">SCORE</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a (click)="sendGeneralQuals()" uk-tooltip="title: SEND ALL; pos: top">
+                            <div class="uk-card uk-card-default uk-card-hover square">
+                                <div *ngIf="params.judging" class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
+                                    <span uk-icon="icon: cloud-upload"></span>
+                                    <p class="uk-margin-remove-top uk-margin-remove-bottom uk-text-smaller">SEND SCORE</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="uk-card uk-padding-small">
+
+
+    <div class="uk-card uk-card-default uk-padding-small uk-margin-small">
         <div class="">
             <table data-contenedor="ID CONTENEDOR" data-typejudge="TYPE JUDGE" id="jueces_main" class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
                 <thead>
@@ -28,7 +56,7 @@
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">SEND</th>
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
                     </tr>
-                </thead> 
+                </thead>
 
                 <tbody *ngFor="let param of params.judging;let paramindex = index">
                     <tr>
@@ -59,8 +87,8 @@
                                             <p class="uk-text-smaller uk-text-nowrap">{{criteria.title}}</p>
                                         </div>
                                         <div class="uk-width-auto uk-margin-auto-vertical">
-                                            <input (change)="calculateTotal(paramindex);viewRightValue($event,criteria.points)" [(ngModel)]="criteria.qualpoints" (keydown)="viewRightValue($event,criteria.points);calculateTotal(paramindex)" [attr.placeholder]="'Max '+criteria.points" min="0" [attr.max]="criteria.points" class="uk-input uk-form-small uk-input-square uk-margin-small-left"
-                                                type="number" name="">
+                                            <input (change)="calculateTotal(paramindex);viewRightValue($event,criteria.points)" [(ngModel)]="criteria.qualpoints" (keydown)="viewRightValue($event,criteria.points);calculateTotal(paramindex)" [attr.placeholder]="'Max '+criteria.points" min="0" [attr.max]="criteria.points"
+                                                class="uk-input uk-form-small uk-input-square uk-margin-small-left" type="number" name="">
                                         </div>
                                     </div>
                                 </div>

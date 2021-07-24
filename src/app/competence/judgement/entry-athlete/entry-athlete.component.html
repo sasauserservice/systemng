@@ -1,0 +1,163 @@
+<div class="uikit-modern-micro">
+    <div>
+        <div class="uk-grid-small" uk-grid uk-height-match=".uk-card">
+
+            <div class="uk-width-3-5@l uk-margin-auto-vertical">
+                <div class="uk-grid-small" uk-grid>
+                    <div class="uk-width-2-5">
+                        <div ng-if="showAceptButton" class="uk-card uk-card-default uk-flex uk-flex-middle uk-flex-center uk-flex-column">
+                            <p class="uk-margin-remove uk-text-small">SCORES</p>
+                            <p class="uk-text-smaller uk-margin-remove">LAST: 2021.JUL.07:17.52</p>  
+                        </div>
+                    </div>
+
+                    <div class="uk-width-3-5">
+                        <div class="uk-child-width-1-3 uk-grid-small" uk-grid>
+                            <div>
+                                <div class="uk-card uk-card-default square">
+                                    <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column">
+                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{paramsforsend.generalTotal}}</p>
+                                        <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove uk-text-small"><i uk-icon="clock"></i></p>
+                                        <p class="uk-margin-remove uk-text-smaller">SCORE</p> 
+                                    </div>
+                                </div> 
+                            </div>
+
+                            <div>
+                                <div class="uk-card uk-card-default square">
+                                    <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column">
+                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{paramsforsend.penaltyTotal}}</p>
+                                        <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove uk-text-small"><i uk-icon="clock"></i></p>
+                                        <p class="uk-margin-remove uk-text-smaller">PENAL</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="uk-card uk-card-default square">
+                                    <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
+                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove-bottom">{{total}}</p>
+                                        <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove-bottom"><i uk-icon="clock"></i></p>
+                                        <p class="uk-margin-remove-top uk-margin-remove-bottom uk-text-smaller">TOTAL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="params.times && params.parameters.length != 0" class="uk-width-2-5@l uk-margin-auto-vertical">
+                <div class="uk-grid-small uk-child-width-auto uk-flex uk-flex-center uk-margin-small-bottom" uk-grid [attr.uk-countdown]="'date: '+params.times.dateWithPlus">
+                    <div>
+                        <div class="uk-countdown-number uk-countdown-hours uk-text-center"></div>
+                        <div class="uk-countdown-label uk-text-center uk-text-uppercase">Hrs</div>
+                    </div>
+                    <div class="uk-countdown-separator">:</div>
+                    <div>
+                        <div class="uk-countdown-number uk-countdown-minutes uk-text-center"></div>
+                        <div class="uk-countdown-label uk-text-center uk-text-uppercase">Min</div>
+                    </div>
+                    <div class="uk-countdown-separator">:</div>
+                    <div>
+                        <div class="uk-countdown-number uk-countdown-seconds uk-text-center"></div>
+                        <div class="uk-countdown-label uk-text-center uk-text-uppercase">Sec</div>
+                    </div>
+                    <div>
+                        <p class="uk-margin-remove uk-text-smaller uk-text-uppercase"><span uk-icon="icon: clock"></span> LEFT</p>
+                    </div>
+                </div>
+                <a *ngIf="showAceptButton" class="uk-button uk-button-default uk-width-1-1" (click)="updateStateToAcceptNotes()" uk-tooltip="title: APPROVE; pos: top"><span uk-icon="cloud-upload; ratio: 0.75"></span>ACCEPT SCORES</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!---- TABLE ----->
+    <div class="uk-card uk-card-default uk-padding-small uk-margin-small">
+        <div class="">
+            <table class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
+                <caption class="uk-text-small uk-padding-small">JUDGING PARAMETERS</caption>
+                <thead>
+                    <tr class="uk-background-secondary uk-light">
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th class="uk-table-large uk-text-smaller">PARAMETER</th>
+                        <th class="uk-text-smaller">JUDGE</th>
+                        <th class="uk-table-shrink uk-text-smaller">VALUE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">SCORE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">NOTE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
+                    </tr>
+                </thead> 
+                <tr> 
+                    <td colspan="5">
+
+                    </td>
+                </tr>
+
+                <tbody *ngFor="let param of params.parameters;let i = index">
+                    <tr>
+                        <td class="uk-text-smaller uk-text-center"><a (click)="openClaimGenerator(1,param.id)" uk-icon="icon: warning; ratio: 0.75;"></a></td> 
+                        <td class="uk-text-smaller uk-text-nowrap">{{param.name}}</td>
+                        <td class="uk-text-smaller uk-text-nowrap">Judge Name</td>
+                        <td class="uk-text-small uk-text-center">{{param.total}}</td>
+                        <td class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal}}</td>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: comment; ratio: 0.75;" [attr.uk-toggle]="'target: #parameter-toogle-athlete-oppener'+i"></a></td>
+                        <td class="uk-text-center"></td>
+                    </tr>
+                    <tr [attr.id]="'parameter-toogle-athlete-oppener'+i" hidden>
+                        <td class="uk-text-smaller" colspan="7">{{param.comment || 'No comment '}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <table class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
+                <caption class="uk-text-small uk-padding-small">PENALTYS</caption>
+                <thead>
+                    <tr class="uk-background-secondary uk-light">
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th class="uk-table-large uk-text-smaller">PENALTY</th>
+                        <th class="uk-text-smaller">JUDGE</th>
+                        <th class="uk-table-shrink uk-text-smaller">VALUE</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">AMMOUNT</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">COMMENT</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
+                    </tr>
+                </thead>
+                <tr *ngIf="hitzero">
+                    <td colspan="6"><p class="uk-text-center uk-text-smaller">HIT 0 | NO PENALTY</p></td>
+                    <td class="uk-text-center"></td>
+                </tr>
+                <tbody [hidden]="penalty.judgements.length == 0" *ngFor="let penalty of params.penalties;let penalindex = index">
+                    <tr>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: warning; ratio: 0.75;"></a></td>
+                        <td class="uk-text-smaller uk-text-nowrap">{{penalty.name}}</td>
+                        <td class="uk-text-smaller uk-text-nowrap">Judge Name</td>
+                        <td class="uk-text-small uk-text-center">{{penalty.points}}</td>
+                        <td class="uk-text-small uk-text-center uk-text-center">{{penalty.ammount}}</td>
+                        <td class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: comment; ratio: 0.75;"></a></td>
+                        <td class="uk-text-center"><app-status-visualizer [showMainStatus]="true" [statusMainData]="penalty.flag" ></app-status-visualizer></td>
+                    </tr>
+                    <tr class="uk-width-1-1">
+                        <td class="uk-text-smaller" colspan="7">
+                            <div class="uk-child-width-auto uk-grid-small uk-grid-divider" uk-grid>
+                                <div *ngFor="let item of penalty.judgements;let i = index">
+
+                                    <a [attr.uk-toggle]="'target: #penalty-athlete-toogle-oppener'+i+'_'+penalindex" class="uk-margin-remove" uk-tooltip="title: MIN:SEG; pos: top">0{{item.time.min}}:0{{item.time.sec}}</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngFor="let item of penalty.judgements;let i = index" [attr.id]="'penalty-athlete-toogle-oppener'+i+'_'+penalindex" hidden>
+                        <td class="uk-text-smaller" colspan="7">{{item.coment || 'No comment '}}</td>
+                    </tr>
+                    <tr class="uk-width-1-1">
+                        <td class="uk-background-muted" colspan="8"><hr class="uk-hr-divider"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!---- TABLE ----->
+</div> 

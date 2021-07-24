@@ -93,6 +93,7 @@ export class EntryPenaltyJudgeComponent implements OnInit {
         this.getParamsAndCriterias();
         this.eventFinishCreate.emit();
         this.launchPenaltyJudgeStatus.emit(1)
+        this.launchMainJudgeStatus.emit(0)
       }
     }).catch((error: any) => {
       if(error){

@@ -104,10 +104,15 @@
                                         <!--PENALTY JUDGE-->
                                         <app-entry-penalty-judge (launchMainJudgeStatus)="part.status.statusmain = $event" (launchPenaltyJudgeStatus)="part.status.statuspenal = $event" (eventFinishCreate)="statuschange(0,'reloadJudgements')" [entryid]="part.id"></app-entry-penalty-judge>
                                         <!--PENALTY JUDGE-->
+                                        
+                                            <!--MAIN JUDGE-->
+                                            <app-entry-main-judge [firstMainStatus]="part.status.statusmain" (launchMainJudgeStatus)="part.status.statusmain = $event" (claimObjet)="openClaim($event)" (stateChangeBar)="recibeChangebar($event)" (stateChange)="statusReloadJudgements = $event" [changes]="statusReloadJudgements" [entryid]="part.id"></app-entry-main-judge>
+                                            <!--MAIN JUDGE-->
 
-                                        <!--MAIN JUDGE-->
-                                        <app-entry-main-judge (launchMainJudgeStatus)="part.status.statusmain = $event" (claimObjet)="openClaim($event)" (stateChangeBar)="recibeChangebar($event)" (stateChange)="statusReloadJudgements = $event" [changes]="statusReloadJudgements" [entryid]="part.id"></app-entry-main-judge>
-                                        <!--MAIN JUDGE-->
+                                            <!-- ATHLETE-->
+                                            <app-entry-athlete [firstMainStatus]="part.status.statusmain" (launchMainJudgeStatus)="part.status.statusmain = $event" (claimObjet)="openClaim($event)" (stateChangeBar)="recibeChangebar($event)" (stateChange)="statusReloadJudgements = $event" [changes]="statusReloadJudgements" [entryid]="part.id"></app-entry-athlete>
+                                            <!-- ATHLETE-->
+                                         
 
 
                                         <!--COMPETITOR REPORT -->

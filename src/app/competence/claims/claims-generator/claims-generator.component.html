@@ -1,63 +1,72 @@
- 
-<div class="uk-card uk-card-default">
-	<div class="uk-card-header uk-padding-small">
-		<div class="uk-grid-small" uk-grid>
-
-			<div class="uk-width-3-5 uk-margin-auto-vertical">
-				<ng-select2 (valueChanged)="getCaseById($event)" [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="selectedCase" [data]="cases" [placeholder]="'EVENT'">
-				</ng-select2>
-			</div>
-			<div class="uk-width-expand uk-margin-auto-vertical">
-				<div class="uk-grid-small" uk-grid>
-					<div class="uk-width-expand uk-margin-auto-vertical">
-						<input class="uk-input uk-form-small" type="text">
-					</div>			
-					<div class="uk-width-auto uk-margin-auto-vertical">
-						<a href="#" class="uk-icon-button" uk-icon="triangle-right" uk-tooltip="title: SEND; pos: top"></a>
-					</div>
-				</div>
-			</div>			
-		</div>
-	</div>
-
-	<div class="uk-card uk-card-body uk-padding-small">
-		<div id="other-message uk-margin-small">
-			<div class="uk-grid-collapse" uk-grid>
-				<div class="uk-width-expand">
-					<div class="uk-card uk-card-hover uk-padding-small">
-						<div class="uk-grid-small" uk-grid>
-							<div class="uk-width-expand">
-								<p class="uk-margin-remove uk-text-smaller uk-text-left uk-text-uppercase uk-text-nowrap">CASE: 1254485 | OTHER: 2021/07/14 04.50.pm</p>				
-								<p class="uk-margin-remove uk-text-small uk-text-left">Lorem ipsum dolor sit amet consectetur adipiscing elit gravida, quis ultrices aptent hendrerit per quam. Litora facilisis quis volutpat eleifend himenaeos porta tincidunt sed venenatis rutrum sodales conubia, a semper libero enim vulputate commodo sem primis suspendisse fermentum.</p>
-								<a class="uk-button uk-button-text uk-margin-remove uk-text-smaller uk-text-right uk-text-uppercase uk-text-nowrap">EVENT: 254852 | ENTRY ID: 725458 | COMPETITOR: MANUELITO</a>
-							</div>
-							<div class="uk-width-auto">
-								<a href="#" class="uk-icon-button" uk-icon="reply" uk-tooltip="title: REPLY; pos: left"></a>
-							</div>
-						</div>
-					</div>			
-				</div>
-				<div class="uk-width-1-5">
-
-				</div>
-			</div>			
-		</div>
-
-		<div id="my-message uk-margin-small">
-			<div class="uk-grid-collapse" uk-grid>
-				<div class="uk-width-1-5">
-
-				</div>
-				<div class="uk-width-expand">
-					<div class="uk-card uk-card-hover uk-padding-small uk-text-right">
-						<p class="uk-margin-remove uk-text-smaller uk-text-right uk-text-uppercase uk-text-nowrap">CASE: 1254485 | ME: 2021/07/14 04.35.pm</p>				
-						<p class="uk-margin-remove uk-text-small uk-text-right">claims-generator works!</p>		
-						<a class="uk-button uk-button-text uk-margin-remove uk-text-smaller uk-text-right uk-text-uppercase uk-text-nowrap">EVENT: 254852 | ENTRY ID: 725458 | COMPETITOR: MANUELITO</a>
-					</div>
-				</div>
-			</div>			
+<div class="uk-card uk-card-default uk-padding-small uikit-modern-micro">
+	<div class="uk-margin-small-bottom">
+		<div *ngIf="false" class="uk-margin-small-bottom">
+			<ng-select2 (valueChanged)="getCaseById($event)" [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="selectedCase" [data]="cases" [placeholder]="'EVENT'">
+			</ng-select2>
 		</div>
 		
+		<div class="uk-grid-small" uk-grid uk-height-match=".uk-card">
+			<div class="uk-width-expand">
+				<div class="">
+					<textarea [(ngModel)]="messageString" class="uk-input uk-form-small uk-input-square uk-card" type="text" rows="8" style="line-height: 25px !important"></textarea>	
+				</div>
+			</div>
+			<div class="uk-width-1-5">
+				<a *ngIf="firstTime" (click)="sendFirstMessage()" uk-tooltip="title: SEND; pos: top">
+					<div class="uk-card uk-card-default uk-card-hover square">
+						<div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
+							<span uk-icon="icon: cloud-upload"></span>
+						</div>
+					</div>
+				</a>
+				<a *ngIf="!firstTime" (click)="sendNewMessageMessage()" uk-tooltip="title: SEND; pos: top">
+					<div class="uk-card uk-card-default uk-card-hover square">
+						<div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
+							<span uk-icon="icon: cloud-upload"></span>
+						</div>
+					</div>
+				</a>
+			</div>			
+		</div>
+
+	</div>
+
+	<div class="uk-card">
+		<div *ngFor="let messaje of claims.claim.messages" id="other-message" class="uk-margin-small-bottom">
+			<div class="uk-card uk-card-hover">
+				<div class="uk-grid-small uk-padding-small" uk-grid uk-height-match="*.uk-card">
+					<div class="uk-width-expand">
+						<div class="uk-card">
+							<p class="uk-margin-remove uk-text-smaller uk-text-uppercase uk-text-nowrap">CASE: 1254485 | 2021/07/14 04.50.pm | EVENT | NAME PARAMETER | MANUELITO</p>				
+							<p class="uk-margin-remove uk-text-smaller">{{messaje.text}}</p>
+						</div>			
+					</div>
+					<div class="uk-width-1-5">
+						<div class="" uk-height-match="*.uk-card">
+							<div class="uk-margin-small-bottom">
+								<a uk-tooltip="title: OK; pos: top">
+									<div class="uk-card uk-card-default uk-card-hover square">
+										<div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
+											<span uk-icon="icon: check; ratio: 0.75"></span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div>
+								<a uk-tooltip="title: KO; pos: top">
+									<div class="uk-card uk-card-default uk-card-hover square">
+										<div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
+											<span uk-icon="icon: close; ratio: 0.75"></span>
+										</div>
+									</div>
+								</a>
+							</div>	
+						</div>
+					</div>
+				</div>				
+			</div>
+			
+		</div>		
 	</div>
 </div>
 

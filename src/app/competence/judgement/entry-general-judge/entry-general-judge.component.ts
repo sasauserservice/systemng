@@ -17,6 +17,7 @@ export class EntryGeneralJudgeComponent implements OnInit {
   @Output() launchMainJudgeStatus = new EventEmitter<any>();  
   constructor(private service: JudgementService) { }
 
+  globalPoints : number = 0
   params :any = {};
   aviableSend : any = false;
 
@@ -62,6 +63,12 @@ export class EntryGeneralJudgeComponent implements OnInit {
       
      this.params = response;
      let self = this;
+     this.params.judging.forEach((element:any) => {
+       
+       element.criteria.forEach((criteria:any) => {
+        this.globalPoints += criteria.points
+       })
+     })
      
       //self.aviabSending()
       self.calculateTotalInit()

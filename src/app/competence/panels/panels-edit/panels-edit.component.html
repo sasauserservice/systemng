@@ -67,12 +67,12 @@
                 </h5>
                 <div class="uk-margin-small-bottom">
                     <!--JUECES Y PARAMETROS-->
-                     
+
                     <div class="uk-card uk-card-default" *ngFor="let judge of slotsToGeneral; let i = index;">
                         <ul uk-accordion="toggle: *.uk-accordion-judge-oppener">
                             <li [id]="'slot_general_'+i">
                                 <div class="uk-padding-small">
-                                     
+
                                     <div class="uk-grid-small" uk-grid>
                                         <div class="uk-width-expand uk-margin-auto-vertical">
                                             <ng-select2 [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judge.user" [data]="judges" [placeholder]="'SELECT A JUDGE'">
@@ -91,7 +91,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                        <div *ngIf="slotsToGeneral.length > 1" class="uk-width-auto uk-margin-auto-vertical">
                                             <div class="uk-flex uk-flex-middle">
                                                 <a (click)="eraseSlot(0, i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
                                             </div>
@@ -155,7 +155,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="uk-width-auto uk-margin-auto-vertical">
+                                            <div *ngIf="slotsToPenalty.length > 1" class="uk-width-auto uk-margin-auto-vertical">
                                                 <div class="uk-flex uk-flex-middle">
                                                     <a href="javascript:void(0)" (click)="eraseSlot(1, i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
                                                 </div>
@@ -199,4 +199,4 @@
             <hr>allparameters:{{editObjet.toedit.allparameters | json}}
             <hr>selectedParameters:{{editObjet.toedit.selectedParameters | json}}
             <hr>selectedJudgeGeneral:{{editObjet.toedit.selectedJudgeGeneral | json}}
-        </pre> 
+        </pre>

@@ -13,7 +13,7 @@ export class ClaimsGeneratorComponent implements OnInit {
   constructor(private service: ClaimsService) { }
 
   ngOnInit(): void {
-    this.postOnInit();
+    this.postOnInit()
     
   }
 
@@ -26,15 +26,25 @@ export class ClaimsGeneratorComponent implements OnInit {
   claims       : any        = {} 
   cases        : Array<any> = []
   selectedCase : Array<any> = []
+  currentUser  : any        = 0
+  messageString: string = ''
+
+  firstTime : any        = false
+  loading   : any        = false
 
   postOnInit(){
     this.service.postOninitNewCase(this.currentClaim).then( (response: any) => {
       if(response){
          
-        this.claims = response;
-        this.getAllCases()
+        
+        if(response.claim.firsttime){
+          this.firstTime = true
+        }else{
+          this.claims = response
+          this.getAllCases()
+        }
       }
-    }).catch((error: any) => {
+    }).catch((error: any) => { 
       if(error){
         Swal.fire({
           title: 'Info!',
@@ -46,6 +56,70 @@ export class ClaimsGeneratorComponent implements OnInit {
       }
     }) 
   }
+
+  sendFirstMessage(){
+    if(this.messageString != ''){
+      this.service.postFirstTimeNewCase(this.currentClaim).then((response: any) => {
+            if(response){
+              alert('ya se creo');
+              this.claims = response
+              this.getAllCases()
+              this.firstTime = false
+              this.sendNewMessageMessage()
+
+            }
+          }).catch((error: any)=>{
+            if(error){
+              Swal.fire({
+                title: 'Info!',
+                text: 'Error on server',
+                icon: 'info',
+                showCancelButton: false,
+                showConfirmButton: false
+              })
+            }
+          })
+    }else{
+      Swal.fire({
+        title: 'Info!',
+        text: 'Message Empty',
+        icon: 'info',
+        showCancelButton: false,
+        showConfirmButton: false
+      })
+    }
+    
+  }
+
+  sendNewMessageMessage(){
+    if(this.messageString != ''){
+      let objMsge = {}
+    objMsge = {
+      "sender": this.currentUser, 
+      "date": new Date().toISOString(),
+      "text": this.messageString
+    }
+    const objReply = this.claims;
+    objReply.claim.messages.push(objMsge)
+    this.service.postNewMessage(objReply.claim).then((response: any)=>{ 
+      if(response){
+        this.messageString = ''
+        this.claims = response
+      }
+    }).catch((error: any) =>{
+
+    })
+    }else{
+      Swal.fire({
+        title: 'Info!',
+        text: 'Message Empty',
+        icon: 'info',
+        showCancelButton: false,
+        showConfirmButton: false
+      })
+    }
+    
+  }
  
   getAllCases(){
     this.service.getAllCases().subscribe((response:any) => {
@@ -56,6 +130,7 @@ export class ClaimsGeneratorComponent implements OnInit {
     }); 
   }
   getCaseById(id:any){
+    alert(id)
     this.service.getCasebyId(id).subscribe((response:any) => {
       
       this.claims = response;

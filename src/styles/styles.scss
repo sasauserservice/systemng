@@ -304,6 +304,10 @@
  .uikit-modern-inner .uk-card {
      border-radius: 25px !important;
  }
+
+ .uikit-modern-micro .uk-card {
+     border-radius: 10px !important;
+ }
  
  .uk-accordion-content {
      padding-top: 0px !important;
@@ -402,4 +406,16 @@
 
  .uk-hr-divider {
     border-top: 2px dotted #e5e5e5 !important;
+}
+
+.uikit-modern-micro .uk-countdown-number {
+    font-size: 1rem !important;
+}
+
+.uikit-modern-micro .uk-countdown-separator {
+    font-size: 0.7rem;
+}
+
+.uikit-modern-micro .uk-countdown-label {
+    font-size: 0.5rem;
 }

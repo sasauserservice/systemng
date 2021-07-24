@@ -9,6 +9,8 @@ import { HttpErrorResponse, HttpClient, HttpHeaders, HttpParams } from '@angular
 export class ClaimsService {
  
   constructor(private Http: HttpClient) { }
+
+
   postOninitNewCase(data: any){
     let form = new FormData();
     form.append('form', JSON.stringify(data));
@@ -21,6 +23,21 @@ export class ClaimsService {
       });
     });
   } 
+
+  postFirstTimeNewCase(data: any){
+    let form = new FormData();
+    form.append('form', JSON.stringify(data));
+    return new Promise<any>((resolve, reject) =>{
+      this.Http.post(BASEURI+'extdb/juzging/claims/newcasefirsttime', form)
+      .subscribe((result: any) => {
+        resolve(result);
+      }, (error: any) => {
+        reject(error);
+      });
+    });
+  } 
+
+
   postNewMessage(data: any){
     let form = new FormData();
     form.append('form', JSON.stringify(data));

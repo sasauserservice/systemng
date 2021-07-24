@@ -1,24 +1,30 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit, AfterViewInit ,Input, ViewChild} from '@angular/core';
 import { Select2OptionData } from 'ng-select2';
 import { CompetenceLandingService } from '../competence-landing.service';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+declare var UIkit: any;
+
 @Component({
   selector: 'app-team-control',
   templateUrl: './team-control.component.html',
   styleUrls: ['./team-control.component.scss']
 })
-export class TeamControlComponent implements OnInit {
+export class TeamControlComponent implements OnInit,AfterViewInit {
 
   @Input() landingId : number = 0;
+  @ViewChild('modalparticipations') modaledition : any;
 
   constructor(private competenceService : CompetenceLandingService) { }
  
   ngOnInit(): void {
+   
+    
+     
+  }
+  ngAfterViewInit(): void {
     this.getCategories();
     this.getProfiles();
     this.getParticipations();
-    
-     
   }
 
   // Teams and Categories previusly selected (1st RESULT FROM QUERY)
@@ -303,7 +309,7 @@ globalEditState : boolean = false;
               ]
             }
           ];
-          this.ngOnInit();
+          this.ngAfterViewInit();
         }
       }).catch((error: any) => {
         console.log(error); 
@@ -359,7 +365,7 @@ globalEditState : boolean = false;
               ]
             }
           ];
-          this.ngOnInit();
+          this.ngAfterViewInit();
         }
       }).catch((error: any) => {
         console.log(error); 
@@ -421,9 +427,10 @@ globalEditState : boolean = false;
             showCancelButton: false,
             showConfirmButton: false
           });
-          this.ngOnInit();
+          this.ngAfterViewInit();
           this.recalculeAviables();
-          //this.getPenalties();
+          
+         
         }).catch((error: any) => {
           Swal.fire({
             title: 'Info!',
@@ -449,5 +456,14 @@ globalEditState : boolean = false;
 
     }
   }
+
+
+
+  /****LO TOCO CHUCHO***/
+  openModalCute(){
+    let modalElement = this.modaledition.nativeElement;
+    UIkit.modal(modalElement).show();
+  }
+  /****LO TOCO CHUCHO***/
 
 }

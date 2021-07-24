@@ -42,6 +42,7 @@ import { ClaimsGeneratorComponent } from './claims/claims-generator/claims-gener
 import { StatusVisualizerComponent } from '../helpers/status-visualizer/status-visualizer.component';
 import { SanitizeruriPipe } from '../pipes/sanitizeruri.pipe';
 import { UrldecoPipe } from './pipes/urldeco.pipe';
+import { EntryAthleteComponent } from './judgement/entry-athlete/entry-athlete.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { UrldecoPipe } from './pipes/urldeco.pipe';
     ClaimsGeneratorComponent,
     StatusVisualizerComponent,
     UrldecoPipe,
+    EntryAthleteComponent,
   ],
   imports: [
     CommonModule,

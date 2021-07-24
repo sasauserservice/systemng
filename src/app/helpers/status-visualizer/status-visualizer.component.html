@@ -1,4 +1,13 @@
 <div class="uk-flex">
+    <div *ngIf="showMatchStatus">
+         
+        <div *ngIf="statusMatchData == 0">
+            <span uk-tooltip="title: MATCH; pos: top" uk-icon="icon: warning; ratio: 0.75" style="background-color: orange !important; border-radius: 500px; padding: 2px; color: white;"></span>
+        </div> 
+        <div *ngIf="statusMatchData == 1">
+            <span uk-tooltip="title: MATCH; pos: top" uk-icon="icon: check; ratio: 0.75" style="background-color: rgb(0, 255, 136) !important; border-radius: 500px; padding: 2px; color: rgb(75, 75, 75);"></span>
+        </div>
+     </div>
     <div *ngIf="showMainStatus">
         <div *ngIf="statusMainData == 0">
             <span uk-tooltip="title: MAIN; pos: top" uk-icon="icon: warning; ratio: 0.75" style="background-color: orange !important; border-radius: 500px; padding: 2px; color: white;"></span>

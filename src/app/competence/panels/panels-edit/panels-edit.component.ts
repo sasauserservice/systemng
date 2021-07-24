@@ -325,7 +325,7 @@ export class PanelsEditComponent implements OnInit, OnChanges {
       });
       this.paramentersSelected.push(element.target.value);
     }else{
-      let index = target.findIndex((rank:any) => rank === element.target.value);
+      let index = target.findIndex((rank:any) => rank.id === element.target.value);
       let index2 = this.paramentersSelected.findIndex((rank:any) => rank === element.target.value);
       target.splice(index, 1);       
       this.paramentersSelected.splice(index2, 1);       
@@ -406,7 +406,7 @@ export class PanelsEditComponent implements OnInit, OnChanges {
       });
       this.penaltiesSelected.push(element.target.value);
     }else{
-      let index = target.findIndex((rank:any) => rank === element.target.value);
+      let index = target.findIndex((rank:any) => rank.id === element.target.value);
       let index2 = this.penaltiesSelected.findIndex((rank:any) => rank === element.target.value);
       target.splice(index, 1);       
       this.penaltiesSelected.splice(index2, 1);       

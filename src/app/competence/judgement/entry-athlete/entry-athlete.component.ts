@@ -3,11 +3,11 @@ import { JudgementService} from '../judgement.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-entry-main-judge',
-  templateUrl: './entry-main-judge.component.html',
-  styleUrls: ['./entry-main-judge.component.scss']
+  selector: 'app-entry-athlete',
+  templateUrl: './entry-athlete.component.html',
+  styleUrls: ['./entry-athlete.component.scss']
 })
-export class EntryMainJudgeComponent implements OnInit {
+export class EntryAthleteComponent implements OnInit {
 
   @Input() entryid : any = 0;
   @Input() changes : any = 0;
@@ -18,8 +18,6 @@ export class EntryMainJudgeComponent implements OnInit {
   @Output() eventFinishCreate = new EventEmitter<any>();
   @Output() launchMainJudgeStatus = new EventEmitter<any>();
   constructor(private service: JudgementService) { }
-
-  globalPoints:number = 0;
 
   ngOnInit(): void {
     this.getParamsAndCriterias();
@@ -32,36 +30,51 @@ export class EntryMainJudgeComponent implements OnInit {
       
       
      });
-
   }
 
-   
+  
 
   ngOnChanges(){
       
     if(this.changes == 1){
-      setTimeout(()=>{
-        this.getParamsAndCriterias();
-        this.stateChange.emit(0);
-      },500)
-      
+      this.getParamsAndCriterias();
+      this.stateChange.emit(0);
     }
     
   }
 
-  params :any = {};
-  paramsforsend :any = {};
-  aviableSend : any = false;
-  total : any = 0;
-  hitzero : any = false;
+  params          : any = {};
+  paramsforsend   : any = {};
+  aviableSend     : any = false;
+  total           : any = 0;
+  hitzero         : any = false;
+  showAceptButton : any = true;
   getParamsAndCriterias(){
-    this.service.getMainjudge(this.entryid).subscribe((response:any) => {
+    this.service.getAtlete(this.entryid).subscribe((response:any) => {
      this.params = response;
-     this.params.parameters.forEach((element:any) => {
-       this.globalPoints += element.total
-     })
+     if(this.params.times.dateWithPlusMS){
+       this.verifyDate(this.params.times.dateWithPlusMS)
+     }
+     
      this.setHitZero()
     });
+  }
+
+
+  verifyDate(date:Number){
+    let now ; 
+    let dateComp = date;
+    setInterval(()=>{
+       now = new Date().getTime() / 1000;
+      //console.log(now+'_'+dateComp)
+      //console.log(( now >= dateComp))
+      if(now >= dateComp){
+        this.showAceptButton = false;
+      }else{
+  
+      }
+    },1000);
+    
   }
 
   openClaimGenerator(type:any,paramId:any){
@@ -70,7 +83,7 @@ export class EntryMainJudgeComponent implements OnInit {
       "eventid":this.paramsforsend.participation.event_id,
       "entryid":this.paramsforsend.participation.id,
       "competitor":this.paramsforsend.participation.participant_id,
-      "judge":0,
+      "judge":0, 
       "parametro":paramId, 
       "typecase":type
     }
@@ -177,6 +190,43 @@ export class EntryMainJudgeComponent implements OnInit {
    
   }
 
-  
 
+
+  /******************************************************************************************/
+  /******************************LO TOCO CHUCHO**********************************************/
+  /******************************************************************************************/
+
+  updateStateToAcceptNotes(){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.service.athleteUpdateStateAcceptation(this.entryid)
+        .then((response:any)=>{
+          Swal.fire({
+            title: 'Info!',
+            text: 'UPDATE SUCCESS',
+            icon: 'success',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+        })
+        .catch((error:any) => {
+          Swal.fire({
+            title: 'Info!',
+            text: 'ERROR ON SERVER',
+            icon: 'info',
+            showCancelButton: false,
+            showConfirmButton: false
+          });
+        });
+      }
+    });
+  }
 }

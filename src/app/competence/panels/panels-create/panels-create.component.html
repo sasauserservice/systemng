@@ -94,7 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                        <div *ngIf="slotsToGeneral.length > 1" class="uk-width-auto uk-margin-auto-vertical">
                                             <div class="uk-flex uk-flex-middle">
                                                 <a href="javascript:void(0)" (click)="eraseSlot(0, i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
                                             </div>
@@ -158,7 +158,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="uk-width-auto uk-margin-auto-vertical">
+                                            <div *ngIf="slotsToPenalty.length > 1" class="uk-width-auto uk-margin-auto-vertical">
                                                 <div class="uk-flex uk-flex-middle">
                                                     <a href="javascript:void(0)" (click)="eraseSlot(0, i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
                                                 </div>
