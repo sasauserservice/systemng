@@ -28,14 +28,14 @@ export class AuthService {
   authenticateUser(email:string, pass:string){
     let credentials : object = {
       email: email,
-      pass: pass
+      password: pass
     };
 
     return new Promise( (resolve, reject) => {
 
-      var data   = JSON.stringify(credentials);   
-
-      this.httpClient.post(BASEURI+'login', data).subscribe((done:any) => {
+      let data = new FormData();   
+      data.append('form', JSON.stringify(credentials));
+      this.httpClient.post(BASEURI+'auth/initapp', data).subscribe((done:any) => {
         resolve(done);
       }, (err:any) => {
         reject(err);

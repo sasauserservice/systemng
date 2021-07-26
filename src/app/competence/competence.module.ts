@@ -43,6 +43,8 @@ import { StatusVisualizerComponent } from '../helpers/status-visualizer/status-v
 import { SanitizeruriPipe } from '../pipes/sanitizeruri.pipe';
 import { UrldecoPipe } from './pipes/urldeco.pipe';
 import { EntryAthleteComponent } from './judgement/entry-athlete/entry-athlete.component';
+import { GrandCategoryCreatorComponent } from './grandCategory/grand-category-creator/grand-category-creator.component';
+import { GrandCategoryListComponent } from './grandCategory/grand-category-list/grand-category-list.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { EntryAthleteComponent } from './judgement/entry-athlete/entry-athlete.c
     StatusVisualizerComponent,
     UrldecoPipe,
     EntryAthleteComponent,
+    GrandCategoryCreatorComponent,
+    GrandCategoryListComponent,
   ],
   imports: [
     CommonModule,
@@ -121,7 +125,8 @@ import { EntryAthleteComponent } from './judgement/entry-athlete/entry-athlete.c
     EntryPenaltyJudgeComponent,
     PreviewComponent,
     StatusVisualizerComponent,
-    UrldecoPipe
+    UrldecoPipe,
+    GrandCategoryCreatorComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

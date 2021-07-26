@@ -1,10 +1,11 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,10 @@ import { FiltersearchPipe } from './pipes/filtersearch.pipe';
 import { TeamControlComponent } from './competence/landing/team-control/team-control.component';
 import { FilterusergroupPipe } from './pipies/filterusergroup.pipe';
 import { SanitizeruriPipe } from './pipes/sanitizeruri.pipe';
+import { CardprofileComponent } from './helpers/cardprofile/cardprofile.component';
+
+import { JwtInterceptorInterceptor } from './jwt-interceptor.interceptor';
+import { ConditionalContentDirective } from './directives/conditional-content.directive';
 
 
 
@@ -31,6 +36,8 @@ import { SanitizeruriPipe } from './pipes/sanitizeruri.pipe';
     DashboardComponent,
     MicrodashboardComponent,
     FiltersearchPipe,
+    CardprofileComponent,
+    ConditionalContentDirective,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,14 @@ import { SanitizeruriPipe } from './pipes/sanitizeruri.pipe';
   exports: [
     ArticlesComponent,
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

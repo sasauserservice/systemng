@@ -1,4 +1,4 @@
-export const BASEURI = "http://apipostgresjoomla.tk/api/";
+export const BASEURI = "https://apipostgresjoomla.tk/api/";
 export const PEXELSURI = "https://api.pexels.com/v1/search/";
 export const MEMORYTRANSLATE = "https://api.mymemory.translated.net/get";
 export const GOOGLESEARCH = "https://www.googleapis.com/customsearch/v1";

@@ -1,0 +1,8 @@
+<div *ngIf="dataconected.data" class="uk-card uk-card-default uk-card-body">
+    <p>{{dataconected.data.name}}</p>
+    <p>{{dataconected.data.email}}</p>
+    <p>{{dataconected.data.groups | json}}</p>
+    <div [appConditionalContent]="['sasa_manager']" [groupsUser]="dataconected.data.groups">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, cum fugiat! Sed ad cum voluptate, voluptas nihil temporibus officiis eum asperiores, autem, voluptatibus enim incidunt natus non eligendi nam et!
+    </div>
+</div>

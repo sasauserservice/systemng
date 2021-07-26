@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { StorageService } from '../shared/storage.service';
 
@@ -8,20 +9,22 @@ import { StorageService } from '../shared/storage.service';
 })
 export class AuthorizatedGuard implements CanActivate {
 
-  constructor(private router: Router, private storage: StorageService){
+  constructor(private router: Router, private storage: StorageService, private cookieService: CookieService){
 
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if( this.storage.isAuthenticate() ){
+      
+      const cookieAuth = this.cookieService.get('platformauth');
+      
+      if(cookieAuth){
         return true;
-      }
-
-
-      this.router.navigate(['/']);
-      return false;
+      } else {
+        this.router.navigate(['/']);
+        return false;
+      }      
   }
   
 }

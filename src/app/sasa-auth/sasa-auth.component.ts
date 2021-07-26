@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import {StorageService } from '../shared/storage.service';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sasa-auth',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SasaAuthComponent implements OnInit {
 
-  constructor(private authserv: AuthService, private storageServ: StorageService, private router: Router) { }
+  constructor(private authserv: AuthService, private storageServ: StorageService, private router: Router, private cookieService: CookieService) { }
 
   form : object = {
     email: '',
@@ -26,22 +27,24 @@ export class SasaAuthComponent implements OnInit {
 
   doLogin() : void {
     this.authserv.authenticateUser(this.email, this.password).then( (resp: any) => {
-      console.log(resp);
-      this.storageServ.setCurrentSession(resp);
-      let texto : string = resp.Message;
+
       Swal.fire({
         title: 'Info!',
-        text: texto,
+        text: 'OK',
         icon: 'success',
         showCancelButton: false,
         showConfirmButton: false,
-        timer: 3000,
+        timer: 1500,
         timerProgressBar: true,
       });
 
+      console.log(resp);
+
+      this.cookieService.set('platformauth', resp.authorization);
+
       setTimeout(()=>{
         this.router.navigate(['/dasboard']);
-      }, 3000);
+      }, 1500);
 
 
     } ).catch( (error: any) => {

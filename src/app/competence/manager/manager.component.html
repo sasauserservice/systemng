@@ -306,6 +306,12 @@
                                         </div>
                                         <!-- PENALTY CONTROL TABLE END -->
 
+                                         <!-- GRAND CATEGORY CONTROL TABLE   -->
+                                        <div>
+                                            <app-grand-category-list (currentEdit)="currentEdition = $event" (stateChange)="statusReloadCategories = $event" (stateChangeBar)="statuschange($event, 'nada')" [changes]="statusReloadCategories"></app-grand-category-list>  
+                                        </div>
+                                        <!-- GRAND CATEGORY CONTROL TABLE END -->
+                                        
 
 
                                     </div>
@@ -633,6 +639,11 @@
                                                 <!-- USER CREATION FORM -->
                                                 <app-claims-generator [currentClaim]="currentEdition" (eventFinishEdit)="statuschange(0,'reloadParticipations')"></app-claims-generator>
                                                 <!-- USER CREATION FORM END -->
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="15">
+                                                <!-- GRAND-CATEGORY CREATOR FORM -->
+                                                <app-grand-category-creator></app-grand-category-creator>
+                                                <!-- GRAND-CATEGORY CREATOR FORM END -->
                                             </div>
                                         </div>
 
