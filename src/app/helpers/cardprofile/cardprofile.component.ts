@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as action from '../../store/application.actions';
 import { CardprofileServiceService } from './cardprofile-service.service';
-
 @Component({
   selector: 'app-cardprofile',
   templateUrl: './cardprofile.component.html',
@@ -10,14 +12,37 @@ export class CardprofileComponent implements OnInit {
 
   dataconected : any = {};
 
-  constructor(private cardprofileService: CardprofileServiceService) { }
+  apprd : Observable<any> | undefined; 
+
+  constructor(
+    private cardprofileService: CardprofileServiceService, 
+    private store: Store<{ user: any }>
+    ) {
+
+    }
 
   ngOnInit(): void {
+    
     this.fetchData();
   }
 
   async fetchData(){
-    this.dataconected = await this.cardprofileService.getDataConnected();
+    //this.store.dispatch(action.userConected({user: this.dataconected}));
+    if(!localStorage.getItem('logueduser')){
+      let data = await this.cardprofileService.getDataConnected();
+      localStorage.setItem('logueduser', JSON.stringify({
+        id: data.data.id,
+        name: data.data.name,
+        email: data.data.email,
+        groups: data.data.groups,
+      }));
+
+      let localdata = localStorage.getItem('logueduser') || '{}';
+      this.dataconected = JSON.parse(localdata);
+    } else {
+      let localdata = localStorage.getItem('logueduser') || '{}';
+      this.dataconected = JSON.parse(localdata);
+    }
   }
 
 }

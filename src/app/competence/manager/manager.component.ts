@@ -20,6 +20,7 @@ export class ManagerComponent implements OnInit {
   public statusReloadUsers : number = 0;
   public statusReloadCompetitors : number = 0;
   public statusReloadJudgements : number = 0;
+  public statusReloadGrandCategories : number = 0;
   public currentEdition         : any    = {};
          statusPreviewEntry     : boolean    = false
          previewEntryData       : any    = {}
@@ -143,6 +144,9 @@ export class ManagerComponent implements OnInit {
       } else if(action == 'reloadCompetitors'){
         console.log(this.statusReloadCompetitors);
         this.statusReloadCompetitors = 1; 
+      } else if(action == 'reloadGrandCategories'){
+       
+        this.statusReloadGrandCategories = 1; 
       }
     }
   }

@@ -26,7 +26,7 @@
                     <thead>
                         <tr>
                             <th class="uk-table-shrink">NAME</th>
-                            <th class="uk-width-expand">PARAMETERS</th>
+                            <th class="uk-width-expand">CATEGORIES</th>
                             <th class="uk-table-shrink">&nbsp;</th>
                         </tr>
                     </thead>
@@ -35,7 +35,7 @@
                             <td class="uk-text-nowrap uk-text-small">{{category.title}}</td>
                             <td class="uk-text-small">
                                 <p class="uk-text-smaller uk-margin-remove">{{category.description}}</p>
-                                <p class="uk-text-smaller uk-text-uppercase uk-margin-remove"><span *ngFor="let parameter of category.parameters">{{parameter.title}} || </span></p>
+                                <p class="uk-text-smaller uk-text-uppercase uk-margin-remove"><span *ngFor="let cat of category.categories">{{cat.title}} || </span></p>
                             </td>
                             <td class="uk-text-nowrap uk-text-small">
                                 <a (click)="openEdit(category)" class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>

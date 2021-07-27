@@ -45,6 +45,7 @@ import { UrldecoPipe } from './pipes/urldeco.pipe';
 import { EntryAthleteComponent } from './judgement/entry-athlete/entry-athlete.component';
 import { GrandCategoryCreatorComponent } from './grandCategory/grand-category-creator/grand-category-creator.component';
 import { GrandCategoryListComponent } from './grandCategory/grand-category-list/grand-category-list.component';
+import { GrandCategoryEditComponent } from './grandCategory/grand-category-edit/grand-category-edit.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { GrandCategoryListComponent } from './grandCategory/grand-category-list/
     EntryAthleteComponent,
     GrandCategoryCreatorComponent,
     GrandCategoryListComponent,
+    GrandCategoryEditComponent,
   ],
   imports: [
     CommonModule,
@@ -126,7 +128,8 @@ import { GrandCategoryListComponent } from './grandCategory/grand-category-list/
     PreviewComponent,
     StatusVisualizerComponent,
     UrldecoPipe,
-    GrandCategoryCreatorComponent
+    GrandCategoryCreatorComponent,
+    GrandCategoryEditComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

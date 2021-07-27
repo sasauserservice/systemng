@@ -34,7 +34,7 @@ export class GrandCategoryListComponent implements OnInit {
     
   }
   openEdit(edit:any){
-    this.stateChangeBar.emit(15); 
+    this.stateChangeBar.emit(16); 
     this.currentEdit.emit(edit);
   }
 
@@ -44,7 +44,7 @@ export class GrandCategoryListComponent implements OnInit {
   
   getCategories(){
     this.servicecat
-    .getCategory()
+    .getGrandCategory()
     .subscribe( (response: any)=>{
       if(response){
         this.categoryList = response.Data;

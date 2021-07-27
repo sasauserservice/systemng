@@ -24,6 +24,9 @@ import { CardprofileComponent } from './helpers/cardprofile/cardprofile.componen
 
 import { JwtInterceptorInterceptor } from './jwt-interceptor.interceptor';
 import { ConditionalContentDirective } from './directives/conditional-content.directive';
+import { StoreModule } from '@ngrx/store';
+import { applicationReducer } from './store/application.reducer';
+import { GrandCategoryEditComponent } from './competente/grandCategory/grand-category-edit/grand-category-edit.component';
 
 
 
@@ -38,6 +41,7 @@ import { ConditionalContentDirective } from './directives/conditional-content.di
     FiltersearchPipe,
     CardprofileComponent,
     ConditionalContentDirective,
+    GrandCategoryEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ import { ConditionalContentDirective } from './directives/conditional-content.di
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    StoreModule.forRoot({user: applicationReducer}),
     
     SasaAuthModule,
     LandingBuilderModule,

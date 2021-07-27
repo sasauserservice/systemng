@@ -308,7 +308,7 @@
 
                                          <!-- GRAND CATEGORY CONTROL TABLE   -->
                                         <div>
-                                            <app-grand-category-list (currentEdit)="currentEdition = $event" (stateChange)="statusReloadCategories = $event" (stateChangeBar)="statuschange($event, 'nada')" [changes]="statusReloadCategories"></app-grand-category-list>  
+                                            <app-grand-category-list (currentEdit)="currentEdition = $event" (stateChange)="statusReloadGrandCategories = $event" (stateChangeBar)="statuschange($event, 'nada')" [changes]="statusReloadGrandCategories"></app-grand-category-list>  
                                         </div>
                                         <!-- GRAND CATEGORY CONTROL TABLE END -->
                                         
@@ -642,8 +642,13 @@
                                             </div>
                                             <div class="uk-card uk-padding-small" *ngSwitchCase="15">
                                                 <!-- GRAND-CATEGORY CREATOR FORM -->
-                                                <app-grand-category-creator></app-grand-category-creator>
+                                                <app-grand-category-creator (eventFinishCreate)="statuschange(0,'reloadGrandCategories')"></app-grand-category-creator>
                                                 <!-- GRAND-CATEGORY CREATOR FORM END -->
+                                            </div>
+                                            <div class="uk-card uk-padding-small" *ngSwitchCase="16">
+                                                <!-- GRAND-CATEGORY EDITOR FORM -->
+                                                <app-grand-category-edit (eventFinishEdit)="statuschange(0,'reloadGrandCategories')" [editObjet]="currentEdition"></app-grand-category-edit>
+                                                <!-- GRAND-CATEGORY EDITOR FORM END -->
                                             </div>
                                         </div>
 

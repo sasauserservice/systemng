@@ -11,6 +11,7 @@ declare var UIkit: any;
 })
 export class GrandCategoryCreatorComponent implements OnInit {
 
+  @Output() eventFinishCreate = new EventEmitter<any>();
   constructor(private servicecat: GrandCategoryService) { }
 
   ngOnInit(): void {
@@ -58,7 +59,7 @@ export class GrandCategoryCreatorComponent implements OnInit {
           showCancelButton: false,
           showConfirmButton: false
         });
-        //this.eventFinishCreate.emit();
+        this.eventFinishCreate.emit();
       }
     }).catch((error: any) => {
       if(error){

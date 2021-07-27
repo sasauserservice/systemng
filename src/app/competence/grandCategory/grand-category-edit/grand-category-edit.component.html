@@ -1,3 +1,4 @@
+
 <div class="uk-margin-small-bottom">
     <div class="uk-card uk-card-default">
         <div class="uk-card-header uk-padding-small uk-card-primary uk-card uk-padding-small">
@@ -5,24 +6,24 @@
                 <div class="uk-width-expand uk-margin-auto-vertical">
                     <div class="uk-flex uk-flex-middle">
                         <a  class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
-                        <p class="uk-margin-remove uk-text-small">NEW GRAND CATEGORY</p>
+                        <p class="uk-margin-remove uk-text-small">GRAND CATEGORY EDITION</p>
                     </div>
                 </div>
                 <div class="uk-width-auto uk-margin-auto-vertical">
-                    <a (click)="categoryCreator()"  class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                    <a (click)="editCategory()"  class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
                 </div>
-            </div>
+            </div> 
         </div>
         <div class="uk-card-body uk-padding-small">
             <!---- ---->
             <div>
                 <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon" uk-icon="icon: pencil"></span>
-                    <input [(ngModel)]="newGrandCategory.title" class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
+                    <input [(ngModel)]="editObjet.title" class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
                 </div>
             </div>
             <div>
-                <textarea [(ngModel)]="newGrandCategory.desc" class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+                <textarea [(ngModel)]="editObjet.data.description" class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
             </div>
 
             <div>
@@ -30,7 +31,7 @@
                     
                     <div *ngFor="let category of categoriesAll">
                         <label class="check-element">
-                            <input (change)="onCheckParameter($event)" [value]="category.id" type="checkbox">
+                            <input [checked]="editObjet.categoriesIds.includes(category.id)" (change)="onCheckParameter($event)" [value]="category.id" type="checkbox">
                             <p class="uk-margin-remove">{{category.title}}</p>
                         </label>
                     </div>
@@ -40,4 +41,3 @@
         </div>
     </div>
 </div>
-<!-- CATEGORY CREATION FORM END -->
