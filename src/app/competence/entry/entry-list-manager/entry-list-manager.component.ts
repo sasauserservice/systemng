@@ -27,6 +27,7 @@ export class EntryListManagerComponent implements OnInit {
   ngOnInit(): void {  
     this.getEvents();
     this.getEntrys();
+    this.getAsignedEvents()
   }
 
 
@@ -48,6 +49,7 @@ export class EntryListManagerComponent implements OnInit {
   AllTeams : Array<Select2OptionData> = [];
   // Todas las categorias registradas en los paneles de este evento
   AllCategories : Array<Select2OptionData> = [];
+  asignedEvents : any = []
 
   openEntryPreview(videoObj:any){
     console.log(videoObj);
@@ -63,6 +65,11 @@ export class EntryListManagerComponent implements OnInit {
     this.claimParams.emit(val);
   }
 
+  getAsignedEvents(){
+    this.service.getAsignedEvents().then((response:any) =>{
+      this.asignedEvents = response
+    })
+  }
 
   getEvents(){
     this.service.getEvents().then((response:any) => {

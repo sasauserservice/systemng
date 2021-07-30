@@ -57,6 +57,12 @@ export class GrandCategoryService {
   getGrandCategory() : Observable<any> {
     return this.Http.get<any>(BASEURI+'match/grandcategory/list').pipe( catchError(this.handelError) );
   }
+
+    /***ASSIGNATOR***/
+    async getEvents(){
+      let events = await this.Http.get<any>(BASEURI + 'matchpanel/eventslist').toPromise();
+      return events;
+    }
   
   handelError(error: any){  
     return throwError(error.message || "Server Error");  

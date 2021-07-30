@@ -11,11 +11,18 @@ export class JudgementService {
   constructor(private Http: HttpClient) { }
 
   getGeneralJudgmentParams(part:any) : Observable<any> {
-    return this.Http.get<any>(BASEURI+'extdb/juzging/tools/'+part).pipe( catchError(this.handelError) );
+    return this.Http.get<any>(BASEURI+'extdb/juzging/asigmentsToJudge/general/'+part).pipe( catchError(this.handelError) );
   }
 
+  getPenaltyJudgmentParams(part:any) : Observable<any> {
+    return this.Http.get<any>(BASEURI+'extdb/juzging/asigmentsToJudge/penalty/'+part).pipe( catchError(this.handelError) );
+  }
 
-
+  //TRAER DATA ESPECIFICA QUE LE CORRESPONDE AL JUEZZ 1.0 MARTES 27/07
+  getJudgeSpec(entryid:any){
+    return this.Http.get<any>(BASEURI+'extdb/juzging/judgeasigmentsbyentry/'+entryid).pipe( catchError(this.handelError) );
+  }
+ 
   
   getMainjudge(part:any) : Observable<any> {
     return this.Http.get<any>(BASEURI+'extdb/juzging/toolsmain/'+part).pipe( catchError(this.handelError) );
@@ -24,7 +31,7 @@ export class JudgementService {
   getAtlete(part:any) : Observable<any> {
     return this.Http.get<any>(BASEURI+'extdb/juzging/toolsathlete/'+part).pipe( catchError(this.handelError) );
   }
-
+  
   sendGenerals(formd: any){
     let form = new FormData();
     form.append('form', JSON.stringify(formd));

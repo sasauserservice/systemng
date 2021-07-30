@@ -21,15 +21,16 @@ export class EntryAthleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.getParamsAndCriterias();
-    this.service.getGeneralJudgmentParams(this.entryid).subscribe((response:any) => {
-      
+    this.service.getGeneralJudgmentParams(this.entryid).subscribe((response:any) => {      
       this.paramsforsend = response;
-      let total = this.paramsforsend.generalTotal - this.paramsforsend.penaltyTotal
-      
-     this.total = (total > 0 )? total : 0;
-      
-      
+        
+      this.service.getPenaltyJudgmentParams(this.entryid).subscribe((response:any) => {      
+        this.paramsforsend.penaltyTotal = response.penaltyTotal;
+        let total = this.paramsforsend.generalTotal - this.paramsforsend.penaltyTotal;
+        this.total = (total > 0 )? total : 0;             
+      });           
      });
+
   }
 
   
@@ -101,7 +102,7 @@ export class EntryAthleteComponent implements OnInit {
   aviabSending(){
     let ret = true;
     this.paramsforsend.judging.forEach((element:any) => {
-     console.log(element);
+     //console.log(element);
       if(ret){
          
         if(!element.qualtotal){
@@ -135,7 +136,7 @@ export class EntryAthleteComponent implements OnInit {
   setHitZero(){
     let hit = true;
     this.params.penalties.forEach((element:any)=>{
-      console.log(element.judgements.length);
+     // console.log(element.judgements.length);
       if(hit == true){
         if(element.judgements.length == 0){
         hit = true

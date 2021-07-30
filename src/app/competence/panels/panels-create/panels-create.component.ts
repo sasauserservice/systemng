@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Select2OptionData } from 'ng-select2';
 import { PanelService } from '../panel.service';
+import { generateRandomString } from 'src/app/shared/enviroment';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-panels-create',
@@ -82,12 +83,14 @@ export class PanelsCreateComponent implements OnInit {
         user: '',
         email: '',
         params: [],
+        id:generateRandomString(15)
       });
     } else {
       this.slotsToPenalty.push({
         user: 0,
         email: '',
         penalties: [],
+        id:generateRandomString(15)
       });
     }
   }
@@ -135,22 +138,22 @@ export class PanelsCreateComponent implements OnInit {
       this.eventFinishCreate.emit();
     }).catch((error) => {
       if(error){
-        if(error.status == 402){
+        if(error.status == 403){
           Swal.fire({
-            title: 'Info!',
-            text: 'This event already has these categories',
-            icon: 'info',
+            title: 'CATEGORY',
+            text: 'Categories cant be duplicated on the event, please remove duplicated category from this panel, or edit the container panel on the target event.',
+            icon: 'error',
             showCancelButton: false,
             showConfirmButton: false
           });
-        } else {
+        }else{
           Swal.fire({
-            title: 'Info!',
-            text: 'Error on server',
-            icon: 'info',
-            showCancelButton: false,
-            showConfirmButton: false
-          });
+          title: 'Info!',
+          text: 'Error on server',
+          icon: 'info',
+          showCancelButton: false,
+          showConfirmButton: false
+        });
         }
       }
       
@@ -172,7 +175,6 @@ export class PanelsCreateComponent implements OnInit {
 
     setTimeout(()=>{
       this.generateAvaliable();
-      console.log('Hello 1');
     }, 500);
   }
 
@@ -189,7 +191,6 @@ export class PanelsCreateComponent implements OnInit {
     }
     setTimeout(()=>{
       this.generateAvaliable();
-      console.log('Hello 1');
     }, 500);
   }
 
@@ -271,8 +272,6 @@ export class PanelsCreateComponent implements OnInit {
   }
 
   onChangeSelectsPenalties(element : any, target: any){
-    console.log(element);
-    console.log(target);
     if(element.target.checked){
       target.push({
         id: element.target.value,

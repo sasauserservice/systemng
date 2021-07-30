@@ -30,9 +30,9 @@ export class CategoryListComponent implements OnInit {
     }
     
   }
-
+ 
   ngOnInit(): void {
-    this.getCategories();
+    //this.getCategories();
     
   }
   openEdit(edit:any){

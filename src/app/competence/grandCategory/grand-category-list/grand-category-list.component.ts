@@ -29,8 +29,8 @@ export class GrandCategoryListComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
-    this.getCategories();
+  ngOnInit(): void { 
+    //this.getCategories();
     
   }
   openEdit(edit:any){
@@ -71,7 +71,7 @@ export class GrandCategoryListComponent implements OnInit {
         this.servicecat.deleteCategory(id).then((response: any) => {
           Swal.fire({
             title: 'Success!',
-            text: 'Category deleted',
+            text: 'GrandCategory deleted',
             icon: 'success',
             showCancelButton: false,
             showConfirmButton: false

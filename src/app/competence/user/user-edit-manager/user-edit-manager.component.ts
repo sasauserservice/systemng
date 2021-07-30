@@ -46,9 +46,9 @@ export class UserEditManagerComponent implements OnInit {
     }
   setshowInfoBoxes(){
     this.showInfoBoxes = {
-      '1': this.selectedTypes.includes('1'),
-      '2': this.selectedTypes.includes('2'),
-      '3': this.selectedTypes.includes('3')
+      '1': this.selectedTypes.includes('101'),
+      '2': this.selectedTypes.includes('102'),
+      '3': this.selectedTypes.includes('103')
     }
   }
 

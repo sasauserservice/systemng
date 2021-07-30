@@ -4,7 +4,7 @@
             <div uk-grid>
                 <div class="uk-width-expand uk-margin-auto-vertical">
                     <div class="uk-flex uk-flex-middle">
-                        <a  class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
+                        <a (click)="cancel()" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: top"><span uk-icon="icon: close"></span></a>
                         <p class="uk-margin-remove uk-text-small">NEW GRAND CATEGORY</p>
                     </div>
                 </div>
@@ -24,6 +24,9 @@
             <div>
                 <textarea [(ngModel)]="newGrandCategory.desc" class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
             </div>
+            <ng-select2  [options]="{multiple: true, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="false" [(ngModel)]="eventSelected" [data]="eventsAll" name="eventSelected" [placeholder]="'SELECT EVENT'">
+            </ng-select2>
+
 
             <div>
                 <div class="uk-grid-small panel-check uk-child-width-auto@l" uk-grid>

@@ -19,7 +19,7 @@ export class ParameterListComponent implements OnInit, OnChanges {
   @Output() currentEdit = new EventEmitter<any>();
 
   ngOnInit(): void {
-    this.get();
+    
   }
 
   ngOnChanges(){
@@ -41,7 +41,7 @@ export class ParameterListComponent implements OnInit, OnChanges {
   }
 
   get(){
-    console.log("Hello change", this.changes);
+    
     this
     .service
     .getParams()

@@ -12,6 +12,7 @@ import { ContentService } from '../../services/content.service';
 export class ManagerComponent implements OnInit {
 
   public statusRightBar        : number = 0;
+  public statusBodyMain            : number = 0;
   public statusReloadParams    : number = 0;
   public statusReloadPenalties : number = 0;
   public statusReloadCategories : number = 0;

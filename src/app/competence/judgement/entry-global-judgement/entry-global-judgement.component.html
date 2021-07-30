@@ -1,0 +1,20 @@
+<div *ngIf="preloader">
+    <div uk-spinner></div>
+</div>
+<div *ngIf="!preloader">
+    <!--GENERAL JUDGE-->
+    <app-entry-general-judge (eventFinishCreate)="statusReloadJudgements = 1" *ngIf="specByJudge.general.show"  [entryid]="entryId"></app-entry-general-judge>
+    <!--GENERAL JUDGE-->
+    <!--PENALTY JUDGE-->
+    <app-entry-penalty-judge (eventFinishCreate)="statusReloadJudgements = 1" *ngIf="specByJudge.penalty.show"  [entryid]="entryId"></app-entry-penalty-judge>
+    <!--PENALTY JUDGE-->
+    <!--MAIN JUDGE-->
+    <app-entry-main-judge [changes]="statusReloadJudgements" (stateChange)="statusReloadJudgements = $event" *ngIf="specByJudge.main.show" 
+    [entryid]="entryId"></app-entry-main-judge>
+    <!--MAIN JUDGE-->
+    <!-- ATHLETE-->
+    <app-entry-athlete *ngIf="specByJudge.athlete.show"
+    [entryid]="entryId"></app-entry-athlete>
+    <!-- ATHLETE-->
+    <!--COMPETITOR REPORT -->
+</div>

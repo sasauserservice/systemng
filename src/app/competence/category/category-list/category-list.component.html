@@ -6,10 +6,10 @@
                 <div uk-grid>
                     <div class="uk-width-expand uk-margin-auto-vertical">
                         <div class="uk-flex uk-flex-middle">
-                            <a href="#" class="uk-button uk-button-text category_list_oppener uk-margin-remove">CATEGORY CONTROL</a>
+                            <a (click)="getCategories()" href="#" class="uk-button uk-button-text category_list_oppener uk-margin-remove">CATEGORY CONTROL</a>
                             <a class="uk-accordion-creator-parameter uk-margin-small-left" href="javascript:void(0)" (click)="add()" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
                         </div>
-                    </div>
+                    </div> 
                     <div class="uk-width-auto uk-margin-auto-vertical">
                         <div class="uk-form">
                             <div class="uk-inline">

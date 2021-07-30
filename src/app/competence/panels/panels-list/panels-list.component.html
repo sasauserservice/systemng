@@ -28,6 +28,7 @@
 
     <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
         <div class="uk-card uk-card-default" *ngFor="let panel of panels; let i = index;">
+           
             <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
                 <li>
                     <div class="uk-padding-small">
@@ -41,6 +42,7 @@
                                     <div class="uk-width-expand uk-margin-auto-vertical">
                                         <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener"> {{panel.name}}</a>
                                         <p class="uk-margin-remove uk-text-smaller">ID: {{panel.serial}}</p>
+                                        
                                     </div>
                                 </div>
 
@@ -82,8 +84,20 @@
                     </div>
 
                     <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
+                        <!-- LISTA DE EVENTOS -->
+                        <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                          
+                        </div>
+                        <!-- LISTA DE EVENTOS END -->
+
                         <!-- LISTA DE CATEGORIAS Y PENALTYS -->
                         <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                            <div>
+                                <a class="uk-button uk-button-default uk-button-smaller">EVENTS:</a>
+                            </div>
+                            <div *ngFor="let ev of panel.events;let iev = index; let j = index">
+                                <a class="uk-button uk-button-default uk-button-smaller">{{ev.title}} </a>
+                            </div>
                             <div>
                                 <a class="uk-button uk-button-default uk-button-smaller">CATEGORIES:</a>
                             </div>

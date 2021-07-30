@@ -19,15 +19,26 @@ export class GrandCategoryEditComponent implements OnInit {
   selectedParameters : Array<any> = [];
   currentEdition     : any = {};
 
-  public categoriesAll : any = [];
+  categoriesAll : any = [];
   newGrandCategory : any = [];
   categoriesSelected : any = [];
 
+  eventsAll           : any     = []
+  eventSelected       : any     = []
+
+
   ngOnInit(): void {
     this.getAllCategories()
+    this.getevents()
     this.categoriesSelected = this.editObjet.categoriesIds
+    //this.eventSelected = this.editObjet.eventsIds
 
     this.editObjet.data = JSON.parse(this.editObjet.data)
+  }
+
+  async getevents(){
+    this.eventsAll = await this.servicecat.getEvents();
+    //this.stateloading = true;
   }
 
 
@@ -49,12 +60,17 @@ export class GrandCategoryEditComponent implements OnInit {
     } 
     this.newGrandCategory.categories = this.categoriesSelected
   }
+
+  cancel(){
+    this.eventFinishEdit.emit();
+  }
   editCategory(){
     let obj = {
       id: this.editObjet.id,
       title: this.editObjet.title,
       data: JSON.stringify(this.editObjet.data),
       cats: this.categoriesSelected,
+      events: this.editObjet.eventsIds
     };
     console.log(obj)
 

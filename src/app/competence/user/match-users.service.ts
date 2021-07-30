@@ -10,6 +10,10 @@ export class MatchUsersService {
 
   constructor(private Http: HttpClient) { }
 
+  getConectedProfile() : Observable<any> {
+    return this.Http.get<any>(BASEURI+'auth/getinfouser').pipe( catchError(this.handelError) );
+  } 
+
   getUsers() : Observable<any> {
     return this.Http.get<any>(BASEURI+'extdb/community/list').pipe( catchError(this.handelError) );
   } 

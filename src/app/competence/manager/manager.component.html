@@ -1,3 +1,8 @@
+
+<div>
+    <app-user-profile></app-user-profile>
+</div>
+
 <div class="uk-position-right uk-flex uk-flex-middle uk-padding-small" style="z-index: 9;">
     <a id="" class="uk-icon-button uk-icon-button-small" uk-icon="icon: chevron-double-right" uk-toggle="target: #drawer_one; animation: uk-animation-slide-right-small" uk-tooltip="title: EXPAND; pos: left"></a>
 </div>
@@ -18,22 +23,22 @@
                     <div class="uk-margin-top">
                         <div class="uk-tab-left" uk-tab="swiping: true; animation: uk-animation-slide-left-small, uk-animation-slide-right-small; connect: *.contentcard">
                             <div class="uk-active">
-                                <a href="#"><span uk-icon="icon: home" uk-tooltip="title: HOME; pos: right"></span></a>
+                                <a (click)="statusBodyMain = 0" href="#"><span uk-icon="icon: home" uk-tooltip="title: HOME; pos: right"></span></a>
                             </div>
                             <div class="uk-margin-top">
-                                <a href="#"><span uk-icon="icon: settings" uk-tooltip="title: SETTINGS; pos: right"></span></a>
+                                <a (click)="statusBodyMain = 1" href="#"><span uk-icon="icon: settings" uk-tooltip="title: SETTINGS; pos: right"></span></a>
                             </div>
                             <div class="uk-margin-top">
-                                <a href="#"><span uk-icon="icon: album" uk-tooltip="title: PANELS; pos: right"></span></a>
+                                <a (click)="statusBodyMain = 2" href="#"><span uk-icon="icon: album" uk-tooltip="title: PANELS; pos: right"></span></a>
                             </div>
                             <div class="uk-margin-top">
-                                <a href="#"><span uk-icon="icon: desktop" uk-tooltip="title: MATCHES; pos: right"></span></a>
+                                <a (click)="statusBodyMain = 3" href="#"><span uk-icon="icon: desktop" uk-tooltip="title: MATCHES; pos: right"></span></a>
                             </div>
                             <div class="uk-margin-top">
-                                <a href="#"><span uk-icon="icon: user" uk-tooltip="title: USERS; pos: right"></span></a>
+                                <a (click)="statusBodyMain = 4" href="#"><span uk-icon="icon: user" uk-tooltip="title: USERS; pos: right"></span></a>
                             </div>
                             <div class="uk-margin-top">
-                                <a href="#"><span uk-icon="icon: tag" uk-tooltip="title: ENTRY; pos: right"></span></a>
+                                <a (click)="statusBodyMain = 5" href="#"><span uk-icon="icon: tag" uk-tooltip="title: ENTRY; pos: right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -95,219 +100,31 @@
                                     <!-- SECOND CARD TABS SETTINGS -->
                                     <div class="uk-card uk-padding-small" style="overflow-y: auto; max-height: 83vh;">
                                         <!-- PARAMETER CONTROL TABLE -->
-                                        <div>
+                                        <div *ngIf="statusBodyMain == 1">
                                             <app-parameter-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadParams = $event" [changes]="statusReloadParams"></app-parameter-list>
                                         </div>
 
-                                        <div class="uk-card uk-card-default uk-hidden">
-                                            <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
-                                                <div uk-grid>
-                                                    <div class="uk-width-expand uk-margin-auto-vertical">
-                                                        <div class="uk-flex uk-flex-middle">
-                                                            <h5 class="uk-margin-remove">PARAMETERS CONTROL</h5>
-                                                            <a class="uk-accordion-creator-parameter uk-margin-small-left" href="#" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="uk-width-auto uk-margin-auto-vertical">
-                                                        <div class="uk-form">
-                                                            <div class="uk-inline">
-                                                                <span class="uk-form-icon" uk-icon="icon: search"></span>
-                                                                <input class="uk-input" type="text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="uk-card-body uk-padding-small">
-                                                <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="uk-table-shrink">NAME</th>
-                                                            <th class="uk-width-expand">CRITERIA</th>
-                                                            <th class="uk-table-shrink">&nbsp;</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PARAMETER</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-smaller uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                                <p class="uk-text-small uk-margin-remove">Criteria 1 Name (Val: 15) | Criteria 2 Name (Val: 15) | Criteria 3 Name (Val: 15)</p>
-                                                            </td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PARAMETER</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-smaller uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                                <p class="uk-text-small uk-margin-remove">Criteria 1 Name (Val: 15) | Criteria 2 Name (Val: 15) | Criteria 3 Name (Val: 15)</p>
-                                                            </td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PARAMETER</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-smaller uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                                <p class="uk-text-small uk-margin-remove">Criteria 1 Name (Val: 15) | Criteria 2 Name (Val: 15) | Criteria 3 Name (Val: 15)</p>
-                                                            </td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PARAMETER</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-smaller uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                                <p class="uk-text-small uk-margin-remove">Criteria 1 Name (Val: 15) | Criteria 2 Name (Val: 15) | Criteria 3 Name (Val: 15)</p>
-                                                            </td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PARAMETER</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-smaller uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                                <p class="uk-text-small uk-margin-remove">Criteria 1 Name (Val: 15) | Criteria 2 Name (Val: 15) | Criteria 3 Name (Val: 15)</p>
-                                                            </td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                        
                                         <!-- PARAMETER CONTROL TABLE END -->
 
                                         <!-- CATEGORY CONTROL TABLE -->
-                                        <div class="">
+                                        <div *ngIf="statusBodyMain == 1" class="">
                                             <app-category-list (currentEdit)="currentEdition = $event" (stateChange)="statusReloadCategories = $event" (stateChangeBar)="statuschange($event, 'nada')" [changes]="statusReloadCategories"></app-category-list>
                                         </div>
 
-                                        <div class="uk-card uk-card-default uk-margin-top uk-hidden">
-                                            <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
-                                                <div uk-grid>
-                                                    <div class="uk-width-expand uk-margin-auto-vertical">
-                                                        <div class="uk-flex uk-flex-middle">
-                                                            <h5 class="uk-margin-remove">CATEGORY CONTROL</h5>
-                                                            <a class="uk-accordion-creator-parameter uk-margin-small-left" href="#" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="uk-width-auto uk-margin-auto-vertical">
-                                                        <div class="uk-form">
-                                                            <div class="uk-inline">
-                                                                <span class="uk-form-icon" uk-icon="icon: search"></span>
-                                                                <input class="uk-input" type="text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="uk-card-body uk-padding-small">
-                                                <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="uk-table-shrink">NAME</th>
-                                                            <th class="uk-width-expand">PARAMETERS</th>
-                                                            <th class="uk-table-shrink">&nbsp;</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PARAMETER</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-smaller uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                                <p class="uk-text-small uk-margin-remove">Parameter 1 | Parameter 2 | Parameter 3 </p>
-                                                            </td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PARAMETER</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-smaller uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                                <p class="uk-text-small uk-margin-remove">Parameter 1 | Parameter 2 | Parameter 3 </p>
-                                                            </td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                        
                                         <!-- CATEGORY CONTROL TABLE END -->
 
                                         <!-- PENALTY CONTROL TABLE -->
-                                        <div>
+                                        <div *ngIf="statusBodyMain == 1">
                                             <app-penalty-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadPenalties = $event" [changes]="statusReloadPenalties"></app-penalty-list>
                                         </div>
 
-                                        <div class="uk-card uk-card-default uk-margin-top uk-hidden">
-                                            <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
-                                                <div uk-grid>
-                                                    <div class="uk-width-expand uk-margin-auto-vertical">
-                                                        <div class="uk-flex uk-flex-middle">
-                                                            <h5 class="uk-margin-remove">PENALTY CONTROL</h5>
-                                                            <a class="uk-accordion-creator-parameter uk-margin-small-left" href="#" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="uk-width-auto uk-margin-auto-vertical">
-                                                        <div class="uk-form">
-                                                            <div class="uk-inline">
-                                                                <span class="uk-form-icon" uk-icon="icon: search"></span>
-                                                                <input class="uk-input" type="text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="uk-card-body uk-padding-small">
-                                                <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="uk-table-shrink">NAME</th>
-                                                            <th class="uk-table-expand">DESCRIPTION</th>
-                                                            <th class="uk-table-shrink">VALUE</th>
-                                                            <th class="uk-table-shrink">&nbsp;</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="uk-text-nowrap uk-text-small">NAME OF THE PENALTY</td>
-                                                            <td class="uk-text-small">
-                                                                <p class="uk-text-small uk-margin-remove">Parameter description Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor lorem ipsum dolor sit amet consectetur adipiscing elit porttitor</p>
-                                                            </td>
-                                                            <td class="uk-text-small uk-text-right">15</td>
-                                                            <td class="uk-text-nowrap uk-text-small">
-                                                                <a class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>
-                                                                <a class="uk-icon-button uk-margin-small-left" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                        
                                         <!-- PENALTY CONTROL TABLE END -->
 
                                          <!-- GRAND CATEGORY CONTROL TABLE   -->
-                                        <div>
+                                        <div *ngIf="statusBodyMain == 1">
                                             <app-grand-category-list (currentEdit)="currentEdition = $event" (stateChange)="statusReloadGrandCategories = $event" (stateChangeBar)="statuschange($event, 'nada')" [changes]="statusReloadGrandCategories"></app-grand-category-list>  
                                         </div>
                                         <!-- GRAND CATEGORY CONTROL TABLE END -->
@@ -328,176 +145,8 @@
                                         <div style="max-height: 83vh;">
                                             <div class="uk-content-card" style="height: 83vh;">
                                                 <div class="js-wrapper">
-                                                    <div>
+                                                    <div *ngIf="statusBodyMain == 2">
                                                         <app-panels-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadPanels = $event" [changes]="statusReloadPanels"></app-panels-list>
-                                                    </div>
-                                                    <div class="uk-card uk-card-default uk-hidden">
-                                                        <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
-                                                            <div uk-grid>
-                                                                <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                    <div class="uk-grid-small" uk-grid>
-                                                                        <div class="uk-width-auto uk-margin-auto-vertical">
-                                                                            <h5 class="uk-margin-remove">PANEL CONTROL CENTER</h5>
-                                                                            <p class="uk-margin-remove uk-text-small">Build, edit and assign panels.</p>
-                                                                        </div>
-                                                                        <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                            <span class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: top"></span>
-                                                                            <span class="uk-icon-button uk-margin-small-left" uk-icon="icon: bookmark" uk-tooltip="title: ASSIGN; pos: top"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="uk-width-auto uk-margin-auto-vertical">
-                                                                    <div class="uk-form">
-                                                                        <div class="uk-inline">
-                                                                            <span class="uk-form-icon" uk-icon="icon: search"></span>
-                                                                            <input class="uk-input" type="text">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
-                                                            <div class="uk-card uk-card-default">
-                                                                <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
-                                                                    <li>
-                                                                        <div class="uk-padding-small">
-                                                                            <div class="" uk-grid>
-                                                                                <div class="uk-width-1-3">
-                                                                                    <div class="uk-grid-small" uk-grid>
-                                                                                        <div class="uk-width-auto uk-margin-auto-vertical">
-                                                                                            <span class="" uk-icon="icon: check" uk-tooltip="title: OK; pos: top"></span>
-                                                                                            <span class="uk-margin-small-left" uk-icon="icon: warning" uk-tooltip="title: KO; pos: top"></span>
-                                                                                        </div>
-                                                                                        <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                                            <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener">ID: XXXXXXXXX</a>
-                                                                                            <p class="uk-margin-remove uk-text-smaller">LAST USED: Event name last used, 2021 April 12</p>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                </div>
-                                                                                <div class="uk-width-expand">
-                                                                                    <div class="uk-flex uk-flex-right">
-                                                                                        <div class="uk-child-width-auto uk-grid-small uk-flex" uk-grid>
-                                                                                            <div class="uk-text-center">
-                                                                                                <span class="uk-margin-remove" uk-icon="icon: calendar" uk-tooltip="title: CREATED; pos: top"></span>
-                                                                                                <p class="uk-margin-remove uk-text-smaller">15/02/2021</p>
-                                                                                            </div>
-                                                                                            <div class="uk-text-center">
-                                                                                                <span class="uk-margin-remove" uk-icon="icon: desktop" uk-tooltip="title: USED; pos: top"></span>
-                                                                                                <p class="uk-margin-remove uk-text-smaller">EVENTS: 3</p>
-                                                                                            </div>
-                                                                                            <div class="uk-text-center">
-                                                                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
-                                                                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">JUDGES: 3</p>
-                                                                                            </div>
-                                                                                            <div class="uk-text-center">
-                                                                                                <span class="uk-margin-remove" uk-icon="icon: user" uk-tooltip="title: SLOTS; pos: top"></span>
-                                                                                                <p class="uk-margin-remove uk-text-smaller uk-text-nowrap">PENALTY 2</p>
-                                                                                            </div>
-                                                                                            <div class="uk-text-center">
-                                                                                                <div class="uk-flex uk-flex-middle">
-                                                                                                    <span class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></span>
-                                                                                                    <span class="uk-margin-small-left uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></span>
-                                                                                                    <span class="uk-margin-small-left uk-icon-button" uk-icon="icon: bookmark" uk-tooltip="title: ASSIGN; pos: top"></span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
-                                                                            <!-- LISTA DE CATEGORIAS Y PENALTYS -->
-                                                                            <div class="uk-child-width-auto uk-grid-small" uk-grid>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">CATEGORY</a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-danger uk-button-small">PENALTY</a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
-
-                                                                            <!-- LISTA DE JUECES -->
-                                                                            <div class="uk-child-width-auto uk-grid-small" uk-grid>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-primary uk-button-small">
-                                                                                        <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                                                                        <p class="uk-margin-remove uk-text-smaller">MAIN JUDGE</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">
-                                                                                        <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                                                                        <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">
-                                                                                        <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                                                                        <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">
-                                                                                        <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                                                                        <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-default uk-button-small">
-                                                                                        <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                                                                        <p class="uk-margin-remove uk-text-smaller">JUDGE</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-danger uk-button-small">
-                                                                                        <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                                                                        <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-danger uk-button-small">
-                                                                                        <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                                                                        <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a class="uk-button uk-button-danger uk-button-small">
-                                                                                        <p class="uk-margin-remove uk-text-small">NAME LASTNAME</p>
-                                                                                        <p class="uk-margin-remove uk-text-smaller">PENALTY JUDGE</p>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- LISTA DE JUECES END -->
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="uk-card-footer">
-                                                            <p>Some content after the overflow auto container.</p>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -515,7 +164,10 @@
                                     <!-- FOURT CARD EVENTS -->
                                     <div>
 
-                                        <app-events-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadEvents = $event" [changes]="statusReloadEvents"></app-events-list>
+                                        <div *ngIf="statusBodyMain == 3">
+                                           <app-events-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadEvents = $event" [changes]="statusReloadEvents"></app-events-list> 
+                                        </div>
+                                        
                                     </div>
                                     <!-- FOURT CARD EVENTS END -->
                                     <!-- FOURT CARD EVENTS END -->
@@ -537,11 +189,11 @@
                                             </div>
                                         </div>
                                         <div class="user-competitors-selector uk-switcher">
-                                            <div>
-                                                <app-user-management (stateChange)="statusReloadUsers = $event" [changes]="statusReloadUsers" (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-user-management>
+                                            <div >
+                                                <app-user-management *ngIf="statusBodyMain == 4" (stateChange)="statusReloadUsers = $event" [changes]="statusReloadUsers" (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-user-management>
                                             </div>
-                                            <div>
-                                                <app-competitor-list (stateChange)="statusReloadCompetitors = $event" [changes]="statusReloadCompetitors" (stateChangeBar)="statuschange($event, 'nada')" (currentEdit)="currentEdition = $event"></app-competitor-list>
+                                            <div >
+                                                <app-competitor-list *ngIf="statusBodyMain == 4" (stateChange)="statusReloadCompetitors = $event" [changes]="statusReloadCompetitors" (stateChangeBar)="statuschange($event, 'nada')" (currentEdit)="currentEdition = $event"></app-competitor-list>
                                             </div>
                                         </div>
                                     </div>
@@ -555,7 +207,7 @@
                                     <!-- SIX CARD ENTRYS -->
                                     <!-- SIX CARD ENTRYS -->
                                     <div>
-                                        <app-entry-list-manager (previewEntry)="OpenEntryPreviewer($event)" (claimParams)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-entry-list-manager>
+                                        <app-entry-list-manager *ngIf="statusBodyMain == 5" (previewEntry)="OpenEntryPreviewer($event)" (claimParams)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-entry-list-manager>
                                     </div>
                                     <!-- SIX CARD ENTRYS END -->
                                     <!-- SIX CARD ENTRYS END -->

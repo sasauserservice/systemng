@@ -6,7 +6,7 @@
                 <div uk-grid>
                     <div class="uk-width-expand uk-margin-auto-vertical">
                         <div class="uk-flex uk-flex-middle">
-                            <a href="#" class="uk-button uk-button-text category_list_oppener uk-margin-remove">GRAND-CATEGORY CONTROL</a>
+                            <a (click)="getCategories()" href="#" class="uk-button uk-button-text category_list_oppener uk-margin-remove">GRAND-CATEGORY CONTROL</a>
                             <a class="uk-accordion-creator-parameter uk-margin-small-left" href="javascript:void(0)" (click)="add()" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                     <thead>
                         <tr>
                             <th class="uk-table-shrink">NAME</th>
-                            <th class="uk-width-expand">CATEGORIES</th>
+                            <th class="uk-width-expand">CATEGORIES / EVENTS</th>
                             <th class="uk-table-shrink">&nbsp;</th>
                         </tr>
                     </thead>
@@ -35,7 +35,8 @@
                             <td class="uk-text-nowrap uk-text-small">{{category.title}}</td>
                             <td class="uk-text-small">
                                 <p class="uk-text-smaller uk-margin-remove">{{category.description}}</p>
-                                <p class="uk-text-smaller uk-text-uppercase uk-margin-remove"><span *ngFor="let cat of category.categories">{{cat.title}} || </span></p>
+                                <p class="uk-text-smaller uk-text-uppercase uk-margin-remove"><b>CAT:</b> <span *ngFor="let cat of category.categories;let cati = index">{{cat.title}} <span > || </span> </span></p>
+                                <p class="uk-text-smaller uk-text-uppercase uk-margin-remove"><b>EV:</b> <span *ngFor="let ev of category.events;let evi = index">{{ev.title}} <span > || </span> </span></p>
                             </td>
                             <td class="uk-text-nowrap uk-text-small">
                                 <a (click)="openEdit(category)" class="uk-icon-button" uk-icon="icon: pencil" uk-tooltip="title: EDIT; pos: top"></a>

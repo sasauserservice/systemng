@@ -22,14 +22,26 @@ export class GrandCategoryCreatorComponent implements OnInit {
   categoriesAviable : Array<any> = []
   categoriesSelected : Array<any> = []
 
+  eventsAll           : any     = []
+  eventSelected       : any     = []
+
   newGrandCategory : any = {}
 
   getAllCategories(){
     this.servicecat.getCategory().subscribe((response:any)=>{
       this.categoriesAll = response.Data
+      this.getevents()
     },(error:any)=>{
 
     })
+  }
+
+  async getevents(){
+    this.eventsAll = await this.servicecat.getEvents();
+    //this.stateloading = true;
+  }
+  cancel(){
+    this.eventFinishCreate.emit()
   }
 
   onCheckParameter(element:any){
@@ -46,6 +58,9 @@ export class GrandCategoryCreatorComponent implements OnInit {
   }
 
   categoryCreator(){
+
+    this.newGrandCategory.events = this.eventSelected
+    this.newGrandCategory.categories = (this.newGrandCategory.categories)?this.newGrandCategory.categories : []
 
     if(this.newGrandCategory.title != ''){
       this.servicecat

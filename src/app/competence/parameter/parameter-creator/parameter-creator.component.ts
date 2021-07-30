@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, ViewChild, Input, Output, EventEmitter  } from '@angular/core';
 import { ParamsService } from '../params.service';
+import { generateRandomString } from 'src/app/shared/enviroment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,7 +20,8 @@ export class ParameterCreatorComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.criterias.push(
-      {title: '', points: ''}
+      {title: '', points: '',
+      serial:generateRandomString(15)}
     );
   }
 
@@ -36,7 +38,8 @@ export class ParameterCreatorComponent implements OnInit, OnChanges {
   addCriteria(){
     let a = {
       title:'',
-      points: 0
+      points: 0,
+      serial:generateRandomString(15)
     };
     this.criterias.push(a);
   }

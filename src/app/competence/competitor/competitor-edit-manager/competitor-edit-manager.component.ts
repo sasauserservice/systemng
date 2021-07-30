@@ -29,6 +29,15 @@ export class CompetitorEditManagerComponent implements OnInit {
       this.coachList = response;
     });
   }
+  
+
+  deleteCoach(index:number){
+    this.coachforSend.splice(index,1)
+  }
+
+  ngOnChanges(){
+    this.coachforSend = this.editObjet.manager;
+  }
 
   addCoachForsend(){
     this.coachforSend.push(0);

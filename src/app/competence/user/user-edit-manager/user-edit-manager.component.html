@@ -1,7 +1,4 @@
-
-
-
- <!-- USER CREATION FORM -->
+<!-- USER CREATION FORM -->
  <div class="uk-margin-small-bottom">
     <div class="uk-card uk-card-default">
         <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
@@ -66,7 +63,7 @@
  
                 <div class="uk-margin-auto-vertical">
                     <label class="check-element ">
-                        <input [checked]="(showInfoBoxes['1'])" (change)="onCheckParameter($event)" [value]="1" type="checkbox">
+                        <input [checked]="editObjet.groups_ids.includes(101)" (change)="onCheckParameter($event)" [value]="101" type="checkbox">
                         <p uk-icon="icon: star; ratio: 0.8">ATHLETE</p>
                     </label> 
                    <!-- <a class="uk-button uk-button-default uk-button-small" uk-icon="icon: star; ratio: 0.8" uk-tooltip="title: CLICK; pos: top">ATHLETE &nbsp;</a>-->
@@ -74,7 +71,7 @@
 
                 <div class="uk-margin-auto-vertical"> 
                     <label class="check-element ">
-                        <input [checked]="(showInfoBoxes['2'])" (change)="onCheckParameter($event)" [value]="2" type="checkbox">
+                        <input [checked]="editObjet.groups_ids.includes(102)" (change)="onCheckParameter($event)" [value]="102" type="checkbox">
                         <p uk-icon="icon: bolt; ratio: 0.8">JUDGE &nbsp;</p>
                     </label> 
                     <!-- <a class="uk-button uk-button-default uk-button-small" uk-icon="icon: bolt; ratio: 0.8" uk-tooltip="title: CLICK; pos: top">JUDGE &nbsp;</a>-->
@@ -82,7 +79,7 @@
 
                 <div class="uk-margin-auto-vertical">
                     <label class="check-element ">
-                        <input [checked]="(showInfoBoxes['3'])" (change)="onCheckParameter($event)" [value]="3" type="checkbox">
+                        <input [checked]="editObjet.groups_ids.includes(103)" (change)="onCheckParameter($event)" [value]="103" type="checkbox">
                         <p uk-icon="icon: heart; ratio: 0.8">COACH &nbsp;</p>
                     </label> 
                     <!--<a class="uk-button uk-button-default uk-button-small" uk-icon="icon: heart; ratio: 0.8" uk-tooltip="title: CLICK; pos: top">COACH &nbsp;</a>-->

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ParamsService } from '../params.service';
+import { generateRandomString } from 'src/app/shared/enviroment';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-parameter-edit',
@@ -19,7 +20,8 @@ export class ParameterEditComponent implements OnInit {
   pushParaEdit(){
     this.editObjet.criteria.push({
       title: '',
-      points: 0
+      points: 0,
+      serial:generateRandomString(15)
     });
   }
   

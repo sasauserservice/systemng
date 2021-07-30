@@ -46,6 +46,9 @@ import { EntryAthleteComponent } from './judgement/entry-athlete/entry-athlete.c
 import { GrandCategoryCreatorComponent } from './grandCategory/grand-category-creator/grand-category-creator.component';
 import { GrandCategoryListComponent } from './grandCategory/grand-category-list/grand-category-list.component';
 import { GrandCategoryEditComponent } from './grandCategory/grand-category-edit/grand-category-edit.component';
+import { ConditionalJudgmentDirective } from '../directives/conditional-judgment.directive';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { EntryGlobalJudgementComponent } from './judgement/entry-global-judgement/entry-global-judgement.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +92,10 @@ import { GrandCategoryEditComponent } from './grandCategory/grand-category-edit/
     GrandCategoryCreatorComponent,
     GrandCategoryListComponent,
     GrandCategoryEditComponent,
+
+    ConditionalJudgmentDirective,
+     UserProfileComponent,
+     EntryGlobalJudgementComponent
   ],
   imports: [
     CommonModule,
@@ -129,7 +136,11 @@ import { GrandCategoryEditComponent } from './grandCategory/grand-category-edit/
     StatusVisualizerComponent,
     UrldecoPipe,
     GrandCategoryCreatorComponent,
-    GrandCategoryEditComponent
+    GrandCategoryEditComponent,
+
+    ConditionalJudgmentDirective,
+    UserProfileComponent,
+    EntryGlobalJudgementComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

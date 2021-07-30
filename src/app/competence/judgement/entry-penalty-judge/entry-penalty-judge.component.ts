@@ -15,15 +15,17 @@ export class EntryPenaltyJudgeComponent implements OnInit {
   @Output() launchMainJudgeStatus = new EventEmitter<any>();  
   constructor(private service: JudgementService) { }
 
-  params :any = {};
+  params :any = {}
+  allCount : any = 0
 
   ngOnInit(): void {
     this.getParamsAndCriterias()
   }
 
   getParamsAndCriterias(){
-    this.service.getGeneralJudgmentParams(this.entryid).subscribe((response:any) => {
-      this.params = response;
+    this.service.getPenaltyJudgmentParams(this.entryid).subscribe((response:any) => {
+      this.params = response
+      this.calPenaltyesCount()
     });
   }
 
@@ -52,6 +54,21 @@ export class EntryPenaltyJudgeComponent implements OnInit {
     this.launchPenaltyJudgeStatus.emit(flagState)
   } 
 
+  calPenaltyesCount(){
+    let cuenta = 0
+    this.params.penalty.forEach((element:any) => {
+      if(element.judgements){
+        cuenta += element.judgements.length
+        console.log(element.judgements)
+      
+      }
+
+      
+    })
+    
+      this.allCount = cuenta
+  }
+
 
 
   addPenal(index:number){
@@ -65,6 +82,7 @@ export class EntryPenaltyJudgeComponent implements OnInit {
       this.params.penalty[index].judgements.push(obj);
     }
     this.setTotal()
+    this.calPenaltyesCount()
   }
   setTotal(){
 
@@ -111,6 +129,8 @@ export class EntryPenaltyJudgeComponent implements OnInit {
   deletePenal(parentindex:number,index:number){
     this.params.penalty[parentindex].judgements.splice(index,1);
     this.setTotal()
+    this.calPenaltyesCount()
+
   }
 
 

@@ -31,7 +31,7 @@
                                         </div>
                                         <div class="uk-width-expand uk-margin-auto-vertical">
                                             <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener">{{user.data.name}}</a>
-                                            <p class="uk-margin-remove uk-text-smaller">{{user.data.category}}</p>
+                                            <p class="uk-margin-remove uk-text-smaller">{{user.id}}</p>
                                         </div>
                                     </div>
 
@@ -58,6 +58,7 @@
                         <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
                             <!-- LISTA DE CATEGORIAS Y PENALTYS -->
                             <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                               
                                 <div *ngFor="let group of user.real_manager">
                                     <span class="uk-label uk-label-success">{{group.email}}</span>
                                 </div>

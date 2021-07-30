@@ -18,12 +18,21 @@ export class EntryGeneralJudgeComponent implements OnInit {
   constructor(private service: JudgementService) { }
 
   globalPoints : number = 0
-  params :any = {};
-  aviableSend : any = false;
+  params :any = {}
+  aviableSend : any = false
+
+  specByJudge: any = {}
+   
+  getSpecInfo(){
+    this.service.getJudgeSpec(this.entryid).subscribe((response:any)=>{
+      this.specByJudge = response
+    });
+  }
 
   ngOnInit(): void {
     
     this.getParamsAndCriterias()
+    this.getSpecInfo()
     
     
     
@@ -58,7 +67,7 @@ export class EntryGeneralJudgeComponent implements OnInit {
     } 
 
   getParamsAndCriterias(){
-    
+    this.globalPoints = 0
     this.service.getGeneralJudgmentParams(this.entryid).subscribe((response:any) => {
       
      this.params = response;
@@ -181,9 +190,11 @@ export class EntryGeneralJudgeComponent implements OnInit {
       showCancelButton: false,
       showConfirmButton: false
       });
-      this.getParamsAndCriterias();
-      this.eventFinishCreate.emit();
-      this.launchMainJudgeStatus.emit(0);
+      this.ngOnInit();
+      
+      this.eventFinishCreate.emit()
+      this.launchMainJudgeStatus.emit(0)
+      this.launchGeneralJudgeStatus.emit(1)
       }
       }).catch((error: any) => {
       if(error){

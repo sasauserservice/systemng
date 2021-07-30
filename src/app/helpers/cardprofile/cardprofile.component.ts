@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import * as action from '../../store/application.actions';
 import { CardprofileServiceService } from './cardprofile-service.service';
@@ -16,7 +17,8 @@ export class CardprofileComponent implements OnInit {
 
   constructor(
     private cardprofileService: CardprofileServiceService, 
-    private store: Store<{ user: any }>
+    private store: Store<{ user: any }>,
+    private cookieService: CookieService
     ) {
 
     }
@@ -24,6 +26,12 @@ export class CardprofileComponent implements OnInit {
   ngOnInit(): void {
     
     this.fetchData();
+  }
+
+  logout(){
+    localStorage.removeItem('logueduser');
+    this.cookieService.deleteAll();
+    window.location.href = '/';
   }
 
   async fetchData(){

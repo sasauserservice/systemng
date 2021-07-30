@@ -36,16 +36,16 @@ export class CompetitorCreateManagerComponent implements OnInit {
     });
   }
   addCoachForsend(){
-    this.coachforSend.push({user: '0'});
+    this.coachforSend2.push({user: '0'});
   }
   
   removeCoachForsend(index:number){
-    this.coachforSend.splice(index, 1);
+    this.coachforSend2.splice(index, 1);
   }
 
   sendParticipant(){
     let coachforsend = this.coachforSend2.map((value:any)=>{
-      return parseInt(value.user);
+      return value.user;
     });
     
     let obj:any = {

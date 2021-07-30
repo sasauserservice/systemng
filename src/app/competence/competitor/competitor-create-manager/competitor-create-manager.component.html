@@ -28,12 +28,14 @@
                     </div>
                 </div>
                 <!-- SELECTOR DE TIPO END -->
+                {{coachforSend2 | json}}
                 <div *ngIf="coachforSend2.length > 0">
                     <div *ngFor="let item of coachforSend2; let i = index" class="uk-grid-small uk-margin-small" uk-grid>
                         <div class="uk-width-auto uk-margin-auto-vertical">
                             <span uk-icon="icon: user" uk-tooltip="USER"></span>
                         </div>
                         <div class="uk-width-expand uk-margin-auto-vertical">
+                            {{item.user | json}}
                             <ng-select2 [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="item.user" [name]="'coach'+i" [data]="coachList" [placeholder]="'COACH'">
                             </ng-select2>
                         </div>

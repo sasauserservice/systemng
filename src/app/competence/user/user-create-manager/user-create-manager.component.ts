@@ -29,9 +29,9 @@ export class UserCreateManagerComponent implements OnInit {
   }
   setshowInfoBoxes(){
     this.showInfoBoxes = {
-      '1': this.forSendInfo.types.includes("1"),
-      '2': this.forSendInfo.types.includes("2"),
-      '3': this.forSendInfo.types.includes("3")
+      '1': this.forSendInfo.types.includes("101"),
+      '2': this.forSendInfo.types.includes("102"),
+      '3': this.forSendInfo.types.includes("103")
     }
   }
 

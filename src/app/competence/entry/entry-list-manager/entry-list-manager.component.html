@@ -27,198 +27,70 @@
                     </div>
                 </div>
             </div>
+           
+            <div *ngIf="asignedEvents.events" class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
+                <div  class="">
 
-            <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
-                <div class="">
-
-                    <div [attr.data-entry]="part.entryid" *ngFor="let part of (allEntrys | entrybyevent: eventselected);let i = index" class="uk-card uk-card-default">
-                        <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
-                            <li>
-
-                                <div class="uk-padding-small">
-                                    <div class="" uk-grid>
-                                        <div class="uk-width-1-3">
-                                            <div class="uk-grid-small" uk-grid>
-                                                <div class="uk-width-auto uk-margin-auto-vertical uk-flex uk-flex-middle">
-                                                    <div class="uk-margin-small-right">
-                                                        <app-status-visualizer [showMainStatus]="true" [statusMainData]="part.status.statusmain" [showGeneralStatus]="true" [showPenaltyStatus]="true" [statusPenaltyData]="part.status.statuspenal" [mode]="true" [statusData]="part.status.status"></app-status-visualizer>
-                                                    </div>
-                                                    <span uk-tooltip="ATLETE" *ngIf="part.type == 1" class="" uk-icon="icon: user"></span>
-                                                    <span uk-tooltip="TEAM" *ngIf="part.type == 2 || part.type == 0 " class="" uk-icon="icon: users"></span>
-                                                </div>
-                                                <div class="uk-width-expand uk-margin-auto-vertical">
-                                                    <a href="#" class="uk-margin-remove uk-accordion-panel-oppener">
-                                                        <p class="uk-margin-remove uk-text-nowrap uk-text-small"> {{part.team_name}}</p>
-                                                    </a>
-                                                    <p class="uk-margin-remove uk-text-smaller uk-text-nowrap uk-text-uppercase">{{part.event_title}} || {{part.category_title}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="uk-width-expand">
-                                            <div class="uk-flex uk-flex-right">
-                                                <a uk-tooltip="SEND" class="uk-margin-small-right uk-icon-button" uk-icon="cloud-upload"></a>
-
-                                                <a *ngIf="part.video" (click)="openEntryPreview({'url':part.video})" class="uk-icon-button uk-margin-small-right" uk-icon="icon: play" uk-tooltip="title: PLAY; pos: top"></a>
-
-                                                <!--<a  target="_BLANK" *ngIf="part.video" [href]="part.video" class="uk-icon-button uk-margin-small-right" uk-icon="icon: play" uk-tooltip="title: PLAY; pos: top"></a>-->
-
-                                                <span *ngIf="!part.video" uk-icon="warning" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: NO VIDEO; pos: top"></span>
-
-                                                <a uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
-
-                                                <a (click)="deleteAnExistantPart(part.id)" uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
-                                    <!-- LISTA DE CATEGORIAS Y PENALTYS -->
-                                    <div class="uk-child-width-auto uk-grid-small" uk-grid>
-                                        <div class="uk-margin-auto-vertical">
-
-                                        </div>
-
-                                        <div class="uk-margin-auto-vertical">
-
-                                        </div>
-
-                                        <div class="uk-margin-auto-vertical">
-
-                                        </div>
-
-                                        <div class="uk-margin-auto-vertical">
-
-                                        </div>
-                                    </div>
-                                    <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
-
-                                    <!--TABLAS DE JUZGAMIENTO INICIO-->
-                                    <div>
-                                        <!--GENERAL JUDGE-->
-                                     
-                                        <app-entry-general-judge (launchMainJudgeStatus)="part.status.statusmain = $event" (launchGeneralJudgeStatus)="part.status.status = $event" (eventFinishCreate)="statuschange(0,'reloadJudgements')" [entryid]="part.id"></app-entry-general-judge>
-                                        <!--GENERAL JUDGE-->
-
-
-                                        <!--PENALTY JUDGE-->
-                                        <app-entry-penalty-judge (launchMainJudgeStatus)="part.status.statusmain = $event" (launchPenaltyJudgeStatus)="part.status.statuspenal = $event" (eventFinishCreate)="statuschange(0,'reloadJudgements')" [entryid]="part.id"></app-entry-penalty-judge>
-                                        <!--PENALTY JUDGE-->
-                                        
-                                            <!--MAIN JUDGE-->
-                                            <app-entry-main-judge [firstMainStatus]="part.status.statusmain" (launchMainJudgeStatus)="part.status.statusmain = $event" (claimObjet)="openClaim($event)" (stateChangeBar)="recibeChangebar($event)" (stateChange)="statusReloadJudgements = $event" [changes]="statusReloadJudgements" [entryid]="part.id"></app-entry-main-judge>
-                                            <!--MAIN JUDGE-->
-
-                                            <!-- ATHLETE-->
-                                            <app-entry-athlete [firstMainStatus]="part.status.statusmain" (launchMainJudgeStatus)="part.status.statusmain = $event" (claimObjet)="openClaim($event)" (stateChangeBar)="recibeChangebar($event)" (stateChange)="statusReloadJudgements = $event" [changes]="statusReloadJudgements" [entryid]="part.id"></app-entry-athlete>
-                                            <!-- ATHLETE-->
-                                         
-
-
-                                        <!--COMPETITOR REPORT -->
-                                        <div class="uk-hidden">
-                                            <div uk-alert="" class="uk-alert-success">
-                                                TO COMPETITOR
-                                            </div>
-                                            <div class="uk-card uk-card-default">
-                                                <div class="uk-card uk-card-primary">
-                                                    <div class="uk-card-body">
-                                                        <div class="uk-child-width-auto" uk-grid>
-                                                            <div class="uk-width-expand@l">
-                                                                <p class="uk-margin-remove-bottom">CATEGORY TOTAL</p>
-                                                            </div>
-                                                            <div class="">
-                                                                <p class="uk-margin-remove-bottom">YOUR POINTS</p>
-                                                                <h2 class="uk-text-right uk-margin-remove-top">500</h2>
-                                                            </div>
+                    <div [attr.data-entry]="part.entryid" *ngFor="let part of (allEntrys | entrybyevent: eventselected);let i = index">
+                        <div class="uk-card uk-card-default">
+                            <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
+                                <li>
+                                    <div class="uk-padding-small">
+                                        <div class="" uk-grid>
+                                            <div class="uk-width-1-3">
+                                                <div class="uk-grid-small" uk-grid>
+                                                    <div class="uk-width-auto uk-margin-auto-vertical uk-flex uk-flex-middle">
+                                                        <div class="uk-margin-small-right">
+                                                            <app-status-visualizer [showMainStatus]="true" [statusMainData]="part.status.statusmain" [showGeneralStatus]="true" [showPenaltyStatus]="true" [statusPenaltyData]="part.status.statuspenal" [mode]="true" [statusData]="part.status.status"></app-status-visualizer>
                                                         </div>
-
-                                                        <hr>
-
-                                                        <table id="table_judge1" class="uk-table uk-table-justify uk-table-divider uk-table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>PARAMETER</th>
-                                                                    <th class="uk-width-small">VALUE</th>
-                                                                    <th class="uk-width-small">DIFFICULTY</th>
-                                                                    <th class="uk-width-small">TECHNIQUE</th>
-                                                                    <th>TOTAL</th>
-                                                                    <th>COMEN</th>
-                                                                    <th>CLAIM</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="uk-text-uppercase">
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td class="uk-text-center">
-                                                                        <button type="button" class="uk-icon-button" uk-icon="icon: comment"></button>
-                                                                    </td>
-                                                                    <td>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                        <span uk-tooltip="ATLETE" *ngIf="part.type == 1" class="" uk-icon="icon: user"></span>
+                                                        <span uk-tooltip="TEAM" *ngIf="part.type == 2 || part.type == 0 " class="" uk-icon="icon: users"></span>
+                                                    </div>
+                                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                                        <a href="#" (click)="part.showjudgemnts = true" class="uk-margin-remove uk-accordion-panel-oppener">
+                                                            <p class="uk-margin-remove uk-text-nowrap uk-text-small"> {{part.team_name}} {{part.showjudgemnts | json}}</p>
+                                                        </a>
+                                                        <p class="uk-margin-remove uk-text-smaller uk-text-nowrap uk-text-uppercase">{{part.event_title}} || {{part.category_title}}</p>
                                                     </div>
                                                 </div>
-
+                                            </div>
+                                            <div class="uk-width-expand">
+                                                <div class="uk-flex uk-flex-right">
+                                                    <a uk-tooltip="SEND" class="uk-margin-small-right uk-icon-button" uk-icon="cloud-upload"></a>
+                                                    <a *ngIf="part.video" (click)="openEntryPreview({'url':part.video})" class="uk-icon-button uk-margin-small-right" uk-icon="icon: play" uk-tooltip="title: PLAY; pos: top"></a>
+                                                    <!--<a  target="_BLANK" *ngIf="part.video" [href]="part.video" class="uk-icon-button uk-margin-small-right" uk-icon="icon: play" uk-tooltip="title: PLAY; pos: top"></a>-->
+                                                    <span *ngIf="!part.video" uk-icon="warning" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: NO VIDEO; pos: top"></span>
+                                                    <a uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
+                                                    <a (click)="deleteAnExistantPart(part.id)" uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <!--COMPETITOR REPORT -->
-
                                     </div>
-                                    <!--TABLAS DE JUZGAMIENTO FIN-->
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                    <div  class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
+                                        <!-- LISTA DE CATEGORIAS Y PENALTYS -->
+                                        <div class="uk-child-width-auto uk-grid-small" uk-grid>
+                                            <div class="uk-margin-auto-vertical">
+                                            </div>
+                                            <div class="uk-margin-auto-vertical">
+                                            </div>
+                                            <div class="uk-margin-auto-vertical">
+                                            </div>
+                                            <div class="uk-margin-auto-vertical">
+                                            </div>
+                                        </div>
+                                        <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
+                                        <!--TABLAS DE JUZGAMIENTO INICIO-->
+                                        <div *ngIf="part.showjudgemnts">
 
-                    <div [hidden]="true" *ngFor="let part of (allEntrys | entrybyevent: eventselected);let i = index" class="">
-
-                        <div *ngIf="!part.editStatus" class="uk-card uk-card-default" uk-grid>
-
-                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                <p class="uk-margin-remove uk-text-bold">{{part.event_title}}</p>
-                            </div>
-                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                <p class="uk-margin-remove">{{part.team_name}}</p>
-                            </div>
-                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                <p class="uk-margin-remove">{{part.category_title}}</p>
-                            </div>
-                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                <a class="uk-button uk-button-text" target="_BLANK" *ngIf="part.video" [href]="part.video">
-                                    <p class="uk-margin-remove uk-text-smaller">{{part.video}}</p>
-                                </a>
-
-                                <p *ngIf="!part.video" class="uk-margin-remove">{{'N/A'}}</p>
-                            </div>
-                            <div class="uk-width-auto uk-flex uk-flex-middle">
-                                <a uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
-                                <a (click)="deleteAnExistantPart(part.id)" uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
-                            </div>
+                                            
+                                            <app-entry-global-judgement [entryId]="part.id"></app-entry-global-judgement>
+                                            
+                                        </div>
+                                        <!--TABLAS DE JUZGAMIENTO FIN-->
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <div *ngIf="part.editStatus" class="uk-grid-small uk-animation-slide-top" uk-grid>
-                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                <ng-select2 [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="currentEdit.team_id" [data]="AllTeams" [placeholder]="'CATEGORY'"></ng-select2>
-                            </div>
-                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                <ng-select2 [options]="{multiple: false}" width="100%" [allowClear]="true" [(ngModel)]="currentEdit.category_id" [data]="currentEdit.aviable" [placeholder]="'TEAM'"></ng-select2>
-                            </div>
-                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                <input [(ngModel)]="currentEdit.video" class="uk-input" type="text" name="" placeholder="VIDEO URL" />
-                            </div>
-                            <div class="uk-width-auto uk-flex uk-flex-middle">
-                                <a uk-tooltip="CANCEL" class="uk-margin-small-right uk-icon-button" uk-icon="close"></a>
-                                <a uk-tooltip="SAVE" class="uk-margin-small-right uk-icon-button" uk-icon="cloud-upload"></a>
-
-                            </div>
-                        </div>
-                        <hr>
-
                     </div>
                 </div>
             </div>

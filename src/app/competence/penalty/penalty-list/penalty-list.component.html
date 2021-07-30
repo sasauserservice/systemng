@@ -6,7 +6,7 @@
                 <div uk-grid>
                     <div class="uk-width-expand uk-margin-auto-vertical">
                         <div class="uk-flex uk-flex-middle">
-                            <a href="#" class="uk-button uk-button-text penalty_list_oppener uk-margin-remove">PENALTY CONTROL</a>
+                            <a (click)="getPenalties()" href="#" class="uk-button uk-button-text penalty_list_oppener uk-margin-remove">PENALTY CONTROL</a>
                             <a (click)="openCreateNew()" class="uk-accordion-creator-parameter uk-margin-small-left"  uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: right"></a>
                         </div>
                     </div>

@@ -20,20 +20,22 @@ export class EntryMainJudgeComponent implements OnInit {
   constructor(private service: JudgementService) { }
 
   globalPoints:number = 0;
-
+  
   ngOnInit(): void {
     this.getParamsAndCriterias();
-    this.service.getGeneralJudgmentParams(this.entryid).subscribe((response:any) => {
-      
+    this.service.getGeneralJudgmentParams(this.entryid).subscribe((response:any) => {      
       this.paramsforsend = response;
-      let total = this.paramsforsend.generalTotal - this.paramsforsend.penaltyTotal
-      
-     this.total = (total > 0 )? total : 0;
-      
-      
+        
+      this.service.getPenaltyJudgmentParams(this.entryid).subscribe((response:any) => {      
+        this.paramsforsend.penaltyTotal = response.penaltyTotal;
+        let total = this.paramsforsend.generalTotal - this.paramsforsend.penaltyTotal;
+        this.total = (total > 0 )? total : 0;             
+      });           
      });
 
   }
+
+
 
    
 
@@ -41,7 +43,7 @@ export class EntryMainJudgeComponent implements OnInit {
       
     if(this.changes == 1){
       setTimeout(()=>{
-        this.getParamsAndCriterias();
+        this.ngOnInit()
         this.stateChange.emit(0);
       },500)
       
@@ -54,6 +56,15 @@ export class EntryMainJudgeComponent implements OnInit {
   aviableSend : any = false;
   total : any = 0;
   hitzero : any = false;
+  peruserData: any = {}
+
+
+  getSpecInfo(){
+    this.service.getJudgeSpec(this.entryid).subscribe((response:any)=>{
+      this.peruserData = response
+    });
+  }
+
   getParamsAndCriterias(){
     this.service.getMainjudge(this.entryid).subscribe((response:any) => {
      this.params = response;

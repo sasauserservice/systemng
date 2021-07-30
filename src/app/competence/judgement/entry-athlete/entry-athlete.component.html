@@ -12,11 +12,11 @@
                     </div>
 
                     <div class="uk-width-3-5">
-                        <div class="uk-child-width-1-3 uk-grid-small" uk-grid>
+                        <div *ngIf="params.parameters" class="uk-child-width-1-3 uk-grid-small" uk-grid>
                             <div>
                                 <div class="uk-card uk-card-default square">
                                     <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column">
-                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{paramsforsend.generalTotal}}</p>
+                                        <p *ngIf="params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{params.totalpuntos}}</p>
                                         <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove uk-text-small"><i uk-icon="clock"></i></p>
                                         <p class="uk-margin-remove uk-text-smaller">SCORE</p> 
                                     </div>
@@ -26,7 +26,7 @@
                             <div>
                                 <div class="uk-card uk-card-default square">
                                     <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column">
-                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{paramsforsend.penaltyTotal}}</p>
+                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{params.totalpenal}}</p>
                                         <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove uk-text-small"><i uk-icon="clock"></i></p>
                                         <p class="uk-margin-remove uk-text-smaller">PENAL</p>
                                     </div>
@@ -36,7 +36,7 @@
                             <div>
                                 <div class="uk-card uk-card-default square">
                                     <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
-                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove-bottom">{{total}}</p>
+                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove-bottom">{{params.totalrest}}</p>
                                         <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove-bottom"><i uk-icon="clock"></i></p>
                                         <p class="uk-margin-remove-top uk-margin-remove-bottom uk-text-smaller">TOTAL</p>
                                     </div>
@@ -120,7 +120,7 @@
                         <th class="uk-table-large uk-text-smaller">PENALTY</th>
                         <th class="uk-text-smaller">JUDGE</th>
                         <th class="uk-table-shrink uk-text-smaller">VALUE</th>
-                        <th class="uk-table-shrink uk-text-smaller uk-text-center">AMMOUNT</th>
+                        <th class="uk-table-shrink uk-text-smaller uk-text-center">TOTAL</th>
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">COMMENT</th>
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
                     </tr>

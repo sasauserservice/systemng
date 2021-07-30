@@ -23,7 +23,7 @@ export class StatusVisualizerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(typeof this.statusData);
+    //console.log(typeof this.statusData);
   }
 
 }

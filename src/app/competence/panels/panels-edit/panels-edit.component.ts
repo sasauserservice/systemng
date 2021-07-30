@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Select2OptionData } from 'ng-select2';
 import { PanelService } from '../panel.service';
+import { generateRandomString } from 'src/app/shared/enviroment';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-panels-edit',
@@ -127,7 +128,7 @@ export class PanelsEditComponent implements OnInit, OnChanges {
     
 
     //Set main judge
-    this.judgeselect = this.editObjet.judges.main[0].user.email;
+    this.judgeselect = this.editObjet.judges.main[0].user.iduser;
     
     
   }
@@ -142,12 +143,14 @@ export class PanelsEditComponent implements OnInit, OnChanges {
         user: '',
         email: '',
         params: [],
+        id:generateRandomString(15)
       });
     } else {
       this.slotsToPenalty.push({
         user: 0,
         email: '',
         penalties: [],
+        id:generateRandomString(15)
       });
     }
   }
@@ -219,13 +222,25 @@ export class PanelsEditComponent implements OnInit, OnChanges {
       this.eventFinishEdit.emit();
     })
     .catch((error: any) => {
-      Swal.fire({
+      //console.log(error)
+      if(error.status == 403){
+        Swal.fire({
+          title: 'CATEGORY',
+          text: 'Categories cant be duplicated on the event, please remove duplicated category from this panel, or edit the container panel on the target event.',
+          icon: 'error',
+          showCancelButton: false,
+          showConfirmButton: false
+        });
+      }else{
+        Swal.fire({
         title: 'Info!',
         text: 'Error on server',
         icon: 'info',
         showCancelButton: false,
         showConfirmButton: false
       });
+      }
+      
     });
   }
 

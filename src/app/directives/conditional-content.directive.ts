@@ -27,7 +27,7 @@ export class ConditionalContentDirective implements OnInit {
       } else {
         this.el.nativeElement.remove();
       }
-    }, 100);
+    }, 1000);
     
     /* */
   }

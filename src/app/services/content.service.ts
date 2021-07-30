@@ -68,7 +68,7 @@ export class ContentService {
 
   eventReleaseScores(id: any){
      let ev = {
-      "event":65
+      "event":id
      }
     let data = new FormData();
     data.append("form",JSON.stringify(ev)) 

@@ -1,3 +1,5 @@
+{{editObjet | json}}
+
 <div class="uk-margin-small-bottom">
     <div class="uk-card uk-card-default">
         <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
@@ -28,7 +30,7 @@
                     </div>
                 </div>
                 <!-- SELECTOR DE TIPO END -->
-
+                {{coachforSend | json}}
                 <div *ngFor="let item of coachforSend;let i = index" class="uk-grid-small uk-margin-small" uk-grid>
                     <div class="uk-width-auto uk-margin-auto-vertical">
                         <span uk-icon="icon: user" uk-tooltip="USER"></span>
@@ -40,9 +42,10 @@
                     </div>
                     <div class="uk-width-auto uk-margin-auto-vertical">
                         <a (click)="addCoachForsend()" class="uk-icon-button" uk-icon="icon: plus" uk-tooltip="ADD"></a>
+                        <a *ngIf="coachforSend.length > 1" (click)="deleteCoach(i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="ADD"></a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>

@@ -12,7 +12,7 @@ export class PenaltyListComponent implements OnInit {
   constructor(private service: PenaltiesService) { }
 
   ngOnInit(): void {
-    this. getPenalties();
+    //this.getPenalties();
   }
   public penalties : Array<any> = [];
   public penaltiesList : Array<any> = [];
