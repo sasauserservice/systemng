@@ -39,7 +39,7 @@
 
                         <ng-select2 [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="coachforSend[i]" [data]="coachList" [placeholder]="'COACH'">
                         </ng-select2>
-                    </div>
+                    </div> 
                     <div class="uk-width-auto uk-margin-auto-vertical">
                         <a (click)="addCoachForsend()" class="uk-icon-button" uk-icon="icon: plus" uk-tooltip="ADD"></a>
                         <a *ngIf="coachforSend.length > 1" (click)="deleteCoach(i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="ADD"></a>

@@ -108,18 +108,7 @@ export class ManagerComponent implements OnInit {
 
       }).catch((error:any) => {
         console.error(error);
-        if(error){
-          let texto : string = error.error.Message;
-          if(error.error.status === 400){
-            Swal.fire({
-              title: 'Info!',
-              text: texto,
-              icon: 'info',
-              showCancelButton: false,
-              showConfirmButton: false
-            });
-          }
-        }
+        
       });
     }
 

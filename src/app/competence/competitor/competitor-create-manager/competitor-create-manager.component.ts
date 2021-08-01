@@ -43,6 +43,10 @@ export class CompetitorCreateManagerComponent implements OnInit {
     this.coachforSend2.splice(index, 1);
   }
 
+  deleteCoach(index:number){
+    this.coachforSend2.splice(index,1)
+  }
+
   sendParticipant(){
     let coachforsend = this.coachforSend2.map((value:any)=>{
       return value.user;
