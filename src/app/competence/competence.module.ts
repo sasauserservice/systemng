@@ -47,6 +47,8 @@ import { GrandCategoryCreatorComponent } from './grandCategory/grand-category-cr
 import { GrandCategoryListComponent } from './grandCategory/grand-category-list/grand-category-list.component';
 import { GrandCategoryEditComponent } from './grandCategory/grand-category-edit/grand-category-edit.component';
 import { ConditionalJudgmentDirective } from '../directives/conditional-judgment.directive';
+
+import { ConditionalContentDirective } from '../directives/conditional-content.directive';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { EntryGlobalJudgementComponent } from './judgement/entry-global-judgement/entry-global-judgement.component';
 
@@ -95,7 +97,8 @@ import { EntryGlobalJudgementComponent } from './judgement/entry-global-judgemen
 
     ConditionalJudgmentDirective,
      UserProfileComponent,
-     EntryGlobalJudgementComponent
+     EntryGlobalJudgementComponent,
+     ConditionalContentDirective
   ],
   imports: [
     CommonModule,
@@ -140,7 +143,8 @@ import { EntryGlobalJudgementComponent } from './judgement/entry-global-judgemen
 
     ConditionalJudgmentDirective,
     UserProfileComponent,
-    EntryGlobalJudgementComponent
+    EntryGlobalJudgementComponent,
+    ConditionalContentDirective
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

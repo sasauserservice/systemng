@@ -7,7 +7,8 @@ import { HttpErrorResponse, HttpClient, HttpHeaders, HttpParams } from '@angular
   providedIn: 'root'
 })
 export class GrandCategoryService {
-
+ 
+  
   constructor(private Http: HttpClient) { }
 
   updateCategory(criterias:any){

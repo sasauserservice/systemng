@@ -23,7 +23,6 @@ import { SanitizeruriPipe } from './pipes/sanitizeruri.pipe';
 import { CardprofileComponent } from './helpers/cardprofile/cardprofile.component';
 
 import { JwtInterceptorInterceptor } from './jwt-interceptor.interceptor';
-import { ConditionalContentDirective } from './directives/conditional-content.directive';
 import { StoreModule } from '@ngrx/store';
 import { applicationReducer } from './store/application.reducer';
 import { GrandCategoryEditComponent } from './competente/grandCategory/grand-category-edit/grand-category-edit.component';
@@ -40,7 +39,6 @@ import { GrandCategoryEditComponent } from './competente/grandCategory/grand-cat
     MicrodashboardComponent,
     FiltersearchPipe,
     CardprofileComponent,
-    ConditionalContentDirective,
     GrandCategoryEditComponent,
   ],
   imports: [

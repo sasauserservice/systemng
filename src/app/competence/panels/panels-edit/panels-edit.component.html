@@ -55,7 +55,6 @@
                 <h5 class="uk-margin-remove uk-margin-small-top">MAIN JUDGE</h5>
                 <div class="uk-margin-small-bottom">
                     <div class="uk-form">
-                        {{judgeselect}}
                         <ng-select2 [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judgeselect" [data]="judges" [placeholder]="'MAIN JUDGE'">
                         </ng-select2>
                     </div>
@@ -76,7 +75,6 @@
 
                                     <div class="uk-grid-small" uk-grid>
                                         <div class="uk-width-expand uk-margin-auto-vertical">
-                                            {{judge.user}}
                                             <ng-select2 [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judge.user" [data]="judges" [placeholder]="'SELECT A JUDGE'">
                                             </ng-select2>
                                         </div>
@@ -141,7 +139,6 @@
                                     <div class="uk-padding-small">
                                         <div class="uk-grid-small" uk-grid>
                                             <div class="uk-width-expand uk-margin-auto-vertical">
-                                                {{judge.user}} 
                                                 <ng-select2 [options]="{multiple: false, closeOnSelect: true, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="judge.user" [data]="judges" [placeholder]="'SELECT A JUDGE'">
                                                 </ng-select2>
                                             </div>
@@ -197,7 +194,8 @@
             <!-- PANEL CREATION FORM END -->
         </div>
 
-        <pre class="uk-hidden" style="font-size: 9px;">selectedCategories:{{editObjet.toedit.selectedCategories | json}}
+        <pre class="uk-hidden" style="font-size: 9px;">
+            selectedCategories:{{editObjet.toedit.selectedCategories | json}}
             <hr>allparameters:{{editObjet.toedit.allparameters | json}}
             <hr>allparameters:{{editObjet.toedit.allparameters | json}}
             <hr>selectedParameters:{{editObjet.toedit.selectedParameters | json}}

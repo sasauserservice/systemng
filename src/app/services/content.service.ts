@@ -43,7 +43,7 @@ export class ContentService {
     return new Promise( (resolve, reject) => {
       let user = this.storage.loadSessionData();
 
-      var data   = JSON.stringify({title: title, createdBy: user.Data.id, type:type});   
+      var data   = JSON.stringify({title: title, createdBy: 1, type:type});   
 
       this.httpClient.post(BASEURI+'create-match', data).subscribe((done:any) => {
         resolve(done);

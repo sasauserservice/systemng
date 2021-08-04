@@ -25,13 +25,13 @@
                             <div class="uk-active">
                                 <a (click)="statusBodyMain = 0" href="#"><span uk-icon="icon: home" uk-tooltip="title: HOME; pos: right"></span></a>
                             </div>
-                            <div class="uk-margin-top">
+                            <div [appConditionalContent]="['sasa_manager']" class="uk-margin-top">
                                 <a (click)="statusBodyMain = 1" href="#"><span uk-icon="icon: settings" uk-tooltip="title: SETTINGS; pos: right"></span></a>
                             </div>
-                            <div class="uk-margin-top">
+                            <div [appConditionalContent]="['sasa_manager']" class="uk-margin-top">
                                 <a (click)="statusBodyMain = 2" href="#"><span uk-icon="icon: album" uk-tooltip="title: PANELS; pos: right"></span></a>
                             </div>
-                            <div class="uk-margin-top">
+                            <div [appConditionalContent]="['sasa_manager']" class="uk-margin-top">
                                 <a (click)="statusBodyMain = 3" href="#"><span uk-icon="icon: desktop" uk-tooltip="title: MATCHES; pos: right"></span></a>
                             </div>
                             <div class="uk-margin-top">
@@ -98,7 +98,7 @@
                                     <!-- SECOND CARD TABS SETTINGS -->
                                     <!-- SECOND CARD TABS SETTINGS -->
                                     <!-- SECOND CARD TABS SETTINGS -->
-                                    <div class="uk-card uk-padding-small" style="overflow-y: auto; max-height: 83vh;">
+                                    <div [appConditionalContent]="['sasa_manager']"  class="uk-card uk-padding-small" style="overflow-y: auto; max-height: 83vh;">
                                         <!-- PARAMETER CONTROL TABLE -->
                                         <div *ngIf="statusBodyMain == 1">
                                             <app-parameter-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadParams = $event" [changes]="statusReloadParams"></app-parameter-list>
@@ -141,7 +141,7 @@
                                     <!-- THIRD CARD PANELS -->
                                     <!-- THIRD CARD PANELS -->
                                     <!-- THIRD CARD PANELS -->
-                                    <div>
+                                    <div [appConditionalContent]="['sasa_manager']" >
                                         <div style="max-height: 83vh;">
                                             <div class="uk-content-card" style="height: 83vh;">
                                                 <div class="js-wrapper">
@@ -162,7 +162,7 @@
                                     <!-- FOURT CARD EVENTS -->
                                     <!-- FOURT CARD EVENTS -->
                                     <!-- FOURT CARD EVENTS -->
-                                    <div>
+                                    <div [appConditionalContent]="['sasa_manager']" >
 
                                         <div *ngIf="statusBodyMain == 3">
                                            <app-events-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadEvents = $event" [changes]="statusReloadEvents"></app-events-list> 
