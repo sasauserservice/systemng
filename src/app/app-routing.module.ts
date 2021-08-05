@@ -10,9 +10,10 @@ import { ParamsComponent } from './competence/params/params.component';
 import { PenaltiesComponent } from './competence/penalties/penalties.component';
 import { MicrodashboardComponent } from './microdashboard/microdashboard.component';
 import { PreviewComponent } from './competence/ranking/preview/preview.component';
-
+import { SyncComponent } from './competence/sync/sync/sync.component'  
 const routes: Routes = [
     {path: '', component: HomepageComponent},
+    {path: 'sync', component: SyncComponent, canActivate: [AuthorizatedGuard]},
     {path: 'dasboard', component: DashboardComponent, canActivate: [AuthorizatedGuard]},
     {path: 'u/:alias', component: ComposerComponent, canActivate: [AuthorizatedGuard]},
     {

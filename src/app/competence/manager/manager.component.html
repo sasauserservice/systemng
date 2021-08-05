@@ -14,10 +14,10 @@
 <div class="uikit-modern">
     <div class="uk-padding" uk-height-viewport>
         <div class="uk-card uk-card-default" uk-height-viewport="offset-top: true; offset-bottom: 7.5">
-            <div class="uk-card uk-grid-collapse uk-background-primary" uk-grid uk-height-viewport="offset-top: true; offset-bottom: 7.5">
+            <div class="uk-card uk-grid-collapse uk-background-secondary" uk-grid uk-height-viewport="offset-top: true; offset-bottom: 7.5">
                 <div id="drawer_left" class="uk-width-auto uk-padding uk-text-center uk-light ">
                     <div>
-                        <img src="/assets/sasa_systems_icon_white.png" alt="" style="max-width: 30px;">
+                        <img src="/assets/tumbleusa_eventsb_250px.png" alt="" style="max-width: 50px;">
                     </div>
 
                     <div class="uk-margin-top">
@@ -31,7 +31,7 @@
                             <div [appConditionalContent]="['sasa_manager']" class="uk-margin-top">
                                 <a (click)="statusBodyMain = 2" href="#"><span uk-icon="icon: album" uk-tooltip="title: PANELS; pos: right"></span></a>
                             </div>
-                            <div [appConditionalContent]="['sasa_manager']" class="uk-margin-top">
+                            <div class="uk-margin-top">
                                 <a (click)="statusBodyMain = 3" href="#"><span uk-icon="icon: desktop" uk-tooltip="title: MATCHES; pos: right"></span></a>
                             </div>
                             <div class="uk-margin-top">
@@ -39,6 +39,9 @@
                             </div>
                             <div class="uk-margin-top">
                                 <a (click)="statusBodyMain = 5" href="#"><span uk-icon="icon: tag" uk-tooltip="title: ENTRY; pos: right"></span></a>
+                            </div>
+                            <div [appConditionalContent]="['sasa_manager']" class="uk-margin-top">
+                                <a (click)="statusBodyMain = 6" href="#"><span uk-icon="icon: cloud-upload" uk-tooltip="title: SYNC; pos: right"></span></a>
                             </div>
                         </div>
                     </div>
@@ -62,8 +65,9 @@
                                                     <div class="uk-card-header uk-padding-small uk-card-secondary uk-card">
                                                         <div uk-grid>
                                                             <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                <p class="uk-margin-remove uk-text-small">HI USERNAME</p>
-                                                                <p class="uk-margin-remove uk-text-smaller">Welcome back, you have XX alerts</p>
+                                                                <p class="uk-margin-remove uk-text-small">HI <span class="uk-text-bold">{{userInfo[0].data.name}}</span></p>
+                                                                
+                                                                <p class="uk-margin-remove uk-text-smaller">USER ID AND USER EMAIL HERE</p>
                                                             </div>
                                                             <div class="uk-width-auto uk-margin-auto-vertical">
                                                                 <div class="uk-form">
@@ -78,7 +82,7 @@
 
                                                     <div class="uk-card-body" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
                                                         <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis perferendis fugiat ipsa incidunt, repellendus cum, hic ad expedita aut reprehenderit saepe odit omnis error, modi voluptate consequuntur
-                                                            inventore suscipit ex!</div>
+                                                        inventore suscipit ex!</div>
                                                     </div>
 
                                                     <div class="uk-card-footer">
@@ -123,7 +127,7 @@
                                         
                                         <!-- PENALTY CONTROL TABLE END -->
 
-                                         <!-- GRAND CATEGORY CONTROL TABLE   -->
+                                        <!-- GRAND CATEGORY CONTROL TABLE   -->
                                         <div *ngIf="statusBodyMain == 1">
                                             <app-grand-category-list (currentEdit)="currentEdition = $event" (stateChange)="statusReloadGrandCategories = $event" (stateChangeBar)="statuschange($event, 'nada')" [changes]="statusReloadGrandCategories"></app-grand-category-list>  
                                         </div>
@@ -162,503 +166,490 @@
                                     <!-- FOURT CARD EVENTS -->
                                     <!-- FOURT CARD EVENTS -->
                                     <!-- FOURT CARD EVENTS -->
-                                    <div [appConditionalContent]="['sasa_manager']" >
+                                    <div >
 
                                         <div *ngIf="statusBodyMain == 3">
                                            <app-events-list (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')" (stateChange)="statusReloadEvents = $event" [changes]="statusReloadEvents"></app-events-list> 
-                                        </div>
-                                        
-                                    </div>
-                                    <!-- FOURT CARD EVENTS END -->
-                                    <!-- FOURT CARD EVENTS END -->
-                                    <!-- FOURT CARD EVENTS END -->
-                                    <!-- FOURT CARD EVENTS END -->
+                                       </div>
+
+                                   </div>
+                                   <!-- FOURT CARD EVENTS END -->
+                                   <!-- FOURT CARD EVENTS END -->
+                                   <!-- FOURT CARD EVENTS END -->
+                                   <!-- FOURT CARD EVENTS END -->
 
 
-                                    <!-- FIFTH CARD USERS -->
-                                    <!-- FIFTH CARD USERS -->
-                                    <!-- FIFTH CARD USERS -->
-                                    <!-- FIFTH CARD USERS -->
-                                    <div>
-                                        <div class="uk-child-width-1-2@l uk-grid-small uk-margin-small-bottom" uk-grid uk-switcher="connect: *.user-competitors-selector">
-                                            <div class="uk-active">
-                                                <a href="#" class="uk-button uk-button-default uk-width-1-1 uk-button-small">BY USER</a>
-                                            </div>
-                                            <div>
-                                                <a href="#" class="uk-button uk-button-default uk-width-1-1 uk-button-small">BY COMPETITOR</a>
-                                            </div>
+                                   <!-- FIFTH CARD USERS -->
+                                   <!-- FIFTH CARD USERS -->
+                                   <!-- FIFTH CARD USERS -->
+                                   <!-- FIFTH CARD USERS -->
+                                   <div>
+                                    <div class="uk-child-width-1-2@l uk-grid-small uk-margin-small-bottom" uk-grid uk-switcher="connect: *.user-competitors-selector">
+                                        <div class="uk-active">
+                                            <a href="#" class="uk-button uk-button-default uk-width-1-1 uk-button-small">BY USER</a>
                                         </div>
-                                        <div class="user-competitors-selector uk-switcher">
-                                            <div >
-                                                <app-user-management *ngIf="statusBodyMain == 4" (stateChange)="statusReloadUsers = $event" [changes]="statusReloadUsers" (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-user-management>
-                                            </div>
-                                            <div >
-                                                <app-competitor-list *ngIf="statusBodyMain == 4" (stateChange)="statusReloadCompetitors = $event" [changes]="statusReloadCompetitors" (stateChangeBar)="statuschange($event, 'nada')" (currentEdit)="currentEdition = $event"></app-competitor-list>
-                                            </div>
+                                        <div>
+                                            <a href="#" class="uk-button uk-button-default uk-width-1-1 uk-button-small">BY COMPETITOR</a>
                                         </div>
                                     </div>
-                                    <!-- FIFTH CARD USERS END -->
-                                    <!-- FIFTH CARD USERS END -->
-                                    <!-- FIFTH CARD USERS END -->
-                                    <!-- FIFTH CARD USERS END -->
-
-                                    <!-- SIX CARD ENTRYS -->
-                                    <!-- SIX CARD ENTRYS -->
-                                    <!-- SIX CARD ENTRYS -->
-                                    <!-- SIX CARD ENTRYS -->
-                                    <div>
-                                        <app-entry-list-manager *ngIf="statusBodyMain == 5" (previewEntry)="OpenEntryPreviewer($event)" (claimParams)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-entry-list-manager>
+                                    <div class="user-competitors-selector uk-switcher">
+                                        <div >
+                                            <app-user-management *ngIf="statusBodyMain == 4" (stateChange)="statusReloadUsers = $event" [changes]="statusReloadUsers" (currentEdit)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-user-management>
+                                        </div>
+                                        <div >
+                                            <app-competitor-list *ngIf="statusBodyMain == 4" (stateChange)="statusReloadCompetitors = $event" [changes]="statusReloadCompetitors" (stateChangeBar)="statuschange($event, 'nada')" (currentEdit)="currentEdition = $event"></app-competitor-list>
+                                        </div>
                                     </div>
-                                    <!-- SIX CARD ENTRYS END -->
-                                    <!-- SIX CARD ENTRYS END -->
-                                    <!-- SIX CARD ENTRYS END -->
-                                    <!-- SIX CARD ENTRYS END -->
-
-
                                 </div>
+                                <!-- FIFTH CARD USERS END -->
+                                <!-- FIFTH CARD USERS END -->
+                                <!-- FIFTH CARD USERS END -->
+                                <!-- FIFTH CARD USERS END -->
+
+                                <!-- SIX CARD ENTRYS -->
+                                <!-- SIX CARD ENTRYS -->
+                                <!-- SIX CARD ENTRYS -->
+                                <!-- SIX CARD ENTRYS -->
+                                <div>
+                                    <app-entry-list-manager *ngIf="statusBodyMain == 5" (previewEntry)="OpenEntryPreviewer($event)" (claimParams)="currentEdition = $event" (stateChangeBar)="statuschange($event, 'nada')"></app-entry-list-manager>
+                                </div>
+                                <!-- SIX CARD ENTRYS END -->
+                                <!-- SIX CARD ENTRYS END -->
+                                <!-- SIX CARD ENTRYS END -->
+                                <!-- SIX CARD ENTRYS END -->
+
+                                <!-- SEVEN CARD PANELS -->
+                                <!-- SEVEN CARD PANELS -->
+                                <!-- SEVEN CARD PANELS -->
+                                <!-- SEVEN CARD PANELS -->
+                                <div [appConditionalContent]="['sasa_manager']" >
+                                    <div style="max-height: 83vh;">
+                                        <div class="uk-content-card" style="height: 83vh;">
+                                            <div class="js-wrapper">
+                                                <div *ngIf="statusBodyMain == 6">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- SEVEN CARD PANELS END -->
+                                <!-- SEVEN CARD PANELS END -->
+                                <!-- SEVEN CARD PANELS END -->
+                                <!-- SEVEN CARD PANELS END -->
+
 
                             </div>
 
-                            <!-- EDITIING AND REPORT CENTER -->
-                            <!-- EDITIING AND REPORT CENTER -->
-                            <!-- EDITIING AND REPORT CENTER -->
-                            <!-- EDITIING AND REPORT CENTER -->
-                            <div id="drawer_one" class="uk-width-2-5 uk-width-1-3@xl">
-                                <div style="overflow-y: auto; max-height: 83vh;">
-                                    <!-- EDITING AREA -->
-                                    <!-- EDITING AREA -->
-                                    <!-- EDITING AREA -->
-                                    <!-- EDITING AREA -->
-                                    <div id="createandedit" class="uk-hiddenXXXXXXXXXXXXX">
-                                        <div *ngIf="statusPreviewEntry">
-                                             
-                                            
-                                            <app-entrypreview (cancelViewing)="statusPreviewEntry = false" [videoObj]="previewEntryData"></app-entrypreview>
-                                        </div> 
-                                        <div [ngSwitch]="statusRightBar">
-                                            <div class="" *ngSwitchCase="0">
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="1">
-                                                <app-parameter-creator (eventFinishCreate)="statuschange(0,'reloadParameters')"></app-parameter-creator>
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="2">
-                                                <app-parameter-edit (eventFinishEdit)="statuschange(0,'reloadParameters')" [editObjet]="currentEdition"></app-parameter-edit>
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="3">
-                                                <app-penalty-creator (eventFinishCreate)="statuschange(0,'reloadPenalties')"></app-penalty-creator>
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="4">
-                                                <app-penalty-edit (eventFinishEdit)="statuschange(0,'reloadPenalties')" [editObjet]="currentEdition"></app-penalty-edit>
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="5">
-                                                <app-category-creator (eventFinishCreate)="statuschange(0,'reloadCategory')"></app-category-creator>
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="6">
-                                                <app-category-edit (eventFinishEdit)="statuschange(0,'reloadCategory')" [editObjet]="currentEdition"></app-category-edit>
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="7">
-                                                <app-panels-create (eventFinishCreate)="statuschange(0,'reloadPanels')"></app-panels-create>
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="8">
-                                                <app-panels-edit (eventFinishEdit)="statuschange(0,'reloadPanels')" [editObjet]="currentEdition"></app-panels-edit>
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="9">
-                                                <!-- USER CREATION FORM -->
-                                                <app-user-create-manager (eventFinishCreate)="statuschange(0,'reloadUsers')"></app-user-create-manager>
-                                                <!-- USER CREATION FORM END -->
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="10">
-                                                <!-- USER CREATION FORM -->
-                                                <app-user-edit-manager (eventFinishEdit)="statuschange(0,'reloadUsers')" [editObjet]="currentEdition"></app-user-edit-manager>
-                                                <!-- USER CREATION FORM END -->
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="11">
-                                                <!-- USER CREATION FORM -->
-                                                <app-competitor-create-manager (eventFinishCreate)="statuschange(0,'reloadCompetitors')"></app-competitor-create-manager>
-                                                <!-- USER CREATION FORM END -->
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="12">
-                                                <!-- USER CREATION FORM -->
-                                                <app-competitor-edit-manager (eventFinishEdit)="statuschange(0,'reloadCompetitors')" [editObjet]="currentEdition"></app-competitor-edit-manager>
-                                                <!-- USER CREATION FORM END -->
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="13">
-                                                <!-- USER CREATION FORM -->
-                                                <app-events-to-panels (eventFinishEdit)="statuschange(0,'reloadPanels')"></app-events-to-panels>
-                                                <!-- USER CREATION FORM END -->
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="14">
-                                                <!-- USER CREATION FORM -->
-                                                <app-claims-generator [currentClaim]="currentEdition" (eventFinishEdit)="statuschange(0,'reloadParticipations')"></app-claims-generator>
-                                                <!-- USER CREATION FORM END -->
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="15">
-                                                <!-- GRAND-CATEGORY CREATOR FORM -->
-                                                <app-grand-category-creator (eventFinishCreate)="statuschange(0,'reloadGrandCategories')"></app-grand-category-creator>
-                                                <!-- GRAND-CATEGORY CREATOR FORM END -->
-                                            </div>
-                                            <div class="uk-card uk-padding-small" *ngSwitchCase="16">
-                                                <!-- GRAND-CATEGORY EDITOR FORM -->
-                                                <app-grand-category-edit (eventFinishEdit)="statuschange(0,'reloadGrandCategories')" [editObjet]="currentEdition"></app-grand-category-edit>
-                                                <!-- GRAND-CATEGORY EDITOR FORM END -->
-                                            </div>
+                        </div>
+
+                        <!-- EDITIING AND REPORT CENTER -->
+                        <!-- EDITIING AND REPORT CENTER -->
+                        <!-- EDITIING AND REPORT CENTER -->
+                        <!-- EDITIING AND REPORT CENTER -->
+                        <div id="drawer_one" class="uk-width-2-5 uk-width-1-3@xl">
+                            <div style="overflow-y: auto; max-height: 83vh;">
+                                <!-- EDITING AREA -->
+                                <!-- EDITING AREA -->
+                                <!-- EDITING AREA -->
+                                <!-- EDITING AREA -->
+                                <div id="createandedit" class="uk-hiddenXXXXXXXXXXXXX">
+                                    <div *ngIf="statusPreviewEntry">
+
+
+                                        <app-entrypreview (cancelViewing)="statusPreviewEntry = false" [videoObj]="previewEntryData"></app-entrypreview>
+                                    </div> 
+                                    <div [ngSwitch]="statusRightBar">
+                                        <div class="" *ngSwitchCase="0">
                                         </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="1">
+                                            <app-parameter-creator (eventFinishCreate)="statuschange(0,'reloadParameters')"></app-parameter-creator>
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="2">
+                                            <app-parameter-edit (eventFinishEdit)="statuschange(0,'reloadParameters')" [editObjet]="currentEdition"></app-parameter-edit>
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="3">
+                                            <app-penalty-creator (eventFinishCreate)="statuschange(0,'reloadPenalties')"></app-penalty-creator>
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="4">
+                                            <app-penalty-edit (eventFinishEdit)="statuschange(0,'reloadPenalties')" [editObjet]="currentEdition"></app-penalty-edit>
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="5">
+                                            <app-category-creator (eventFinishCreate)="statuschange(0,'reloadCategory')"></app-category-creator>
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="6">
+                                            <app-category-edit (eventFinishEdit)="statuschange(0,'reloadCategory')" [editObjet]="currentEdition"></app-category-edit>
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="7">
+                                            <app-panels-create (eventFinishCreate)="statuschange(0,'reloadPanels')"></app-panels-create>
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="8">
+                                            <app-panels-edit (eventFinishEdit)="statuschange(0,'reloadPanels')" [editObjet]="currentEdition"></app-panels-edit>
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="9">
+                                            <!-- USER CREATION FORM -->
+                                            <app-user-create-manager (eventFinishCreate)="statuschange(0,'reloadUsers')"></app-user-create-manager>
+                                            <!-- USER CREATION FORM END -->
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="10">
+                                            <!-- USER CREATION FORM -->
+                                            <app-user-edit-manager (eventFinishEdit)="statuschange(0,'reloadUsers')" [editObjet]="currentEdition"></app-user-edit-manager>
+                                            <!-- USER CREATION FORM END -->
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="11">
+                                            <!-- USER CREATION FORM -->
+                                            <app-competitor-create-manager (eventFinishCreate)="statuschange(0,'reloadCompetitors')"></app-competitor-create-manager>
+                                            <!-- USER CREATION FORM END -->
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="12">
+                                            <!-- USER CREATION FORM -->
+                                            <app-competitor-edit-manager (eventFinishEdit)="statuschange(0,'reloadCompetitors')" [editObjet]="currentEdition"></app-competitor-edit-manager>
+                                            <!-- USER CREATION FORM END -->
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="13">
+                                            <!-- USER CREATION FORM -->
+                                            <app-events-to-panels (eventFinishEdit)="statuschange(0,'reloadPanels')"></app-events-to-panels>
+                                            <!-- USER CREATION FORM END -->
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="14">
+                                            <!-- USER CREATION FORM -->
+                                            <app-claims-generator [currentClaim]="currentEdition" (eventFinishEdit)="statuschange(0,'reloadParticipations')"></app-claims-generator>
+                                            <!-- USER CREATION FORM END -->
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="15">
+                                            <!-- GRAND-CATEGORY CREATOR FORM -->
+                                            <app-grand-category-creator (eventFinishCreate)="statuschange(0,'reloadGrandCategories')"></app-grand-category-creator>
+                                            <!-- GRAND-CATEGORY CREATOR FORM END -->
+                                        </div>
+                                        <div class="uk-card uk-padding-small" *ngSwitchCase="16">
+                                            <!-- GRAND-CATEGORY EDITOR FORM -->
+                                            <app-grand-category-edit (eventFinishEdit)="statuschange(0,'reloadGrandCategories')" [editObjet]="currentEdition"></app-grand-category-edit>
+                                            <!-- GRAND-CATEGORY EDITOR FORM END -->
+                                        </div>
+                                    </div>
 
 
 
-                                        <!-- PARAMETER CREATION FORM -->
-                                        <div class="uk-margin-small-bottom uk-hidden">
-                                            <div class="uk-card uk-card-default">
-                                                <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
-                                                    <div uk-grid>
-                                                        <div class="uk-width-expand uk-margin-auto-vertical">
-                                                            <div class="uk-flex uk-flex-middle">
-                                                                <p class="uk-margin-remove uk-text-small">NEW PARAMETER</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="uk-width-auto uk-margin-auto-vertical">
-                                                            <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                                    <!-- PARAMETER CREATION FORM -->
+                                    <div class="uk-margin-small-bottom uk-hidden">
+                                        <div class="uk-card uk-card-default">
+                                            <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
+                                                <div uk-grid>
+                                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                                        <div class="uk-flex uk-flex-middle">
+                                                            <p class="uk-margin-remove uk-text-small">NEW PARAMETER</p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="uk-card-body">
-                                                    <!---- ---->
-                                                    <div>
-                                                        <div class="uk-inline uk-width-1-1">
-                                                            <span class="uk-form-icon" uk-icon="icon: pencil"></span>
-                                                            <input class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
-                                                        </div>
+                                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                                        <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
                                                     </div>
-                                                    <div>
-                                                        <textarea class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
-                                                    </div>
-
-                                                    <div>
-                                                        <div class="uk-grid-small" uk-grid>
-                                                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                <div class="uk-form">
-                                                                    <div class="uk-inline uk-width-1-1">
-                                                                        <span class="uk-form-icon" uk-icon="icon: pencil"></span>
-                                                                        <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="CRITERIA*" type="text" style="width: 100%">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="uk-width-1-4 uk-margin-auto-vertical">
-                                                                <div class="uk-form">
-                                                                    <div class="uk-inline uk-width-1-1">
-                                                                        <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-                                                                        <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="VAL*" type="number" style="width: 100%">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="uk-width-auto uk-margin-auto-vertical">
-                                                                <div class="uk-flex uk-flex-middle">
-                                                                    <a href="" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                                    <a href="" class="uk-icon-button uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!---- ---->
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- PARAMETER CREATION FORM END -->
-
-                                        <!-- PENALTY CREATION FORM -->
-                                        <div class="uk-margin-small-bottom uk-hidden">
-                                            <div class="uk-card uk-card-default">
-                                                <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
-                                                    <div uk-grid>
-                                                        <div class="uk-width-expand uk-margin-auto-vertical">
-                                                            <div class="uk-flex uk-flex-middle">
-                                                                <p class="uk-margin-remove uk-text-small">NEW PENALTY</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="uk-width-auto uk-margin-auto-vertical">
-                                                            <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
-                                                        </div>
+                                            <div class="uk-card-body">
+                                                <!---- ---->
+                                                <div>
+                                                    <div class="uk-inline uk-width-1-1">
+                                                        <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                                                        <input class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
                                                     </div>
                                                 </div>
-                                                <div class="uk-card-body">
-                                                    <!---- ---->
-                                                    <div>
-                                                        <div class="uk-grid-small" uk-grid>
-                                                            <div class="uk-width-expand">
+                                                <div>
+                                                    <textarea class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+                                                </div>
+
+                                                <div>
+                                                    <div class="uk-grid-small" uk-grid>
+                                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                                            <div class="uk-form">
                                                                 <div class="uk-inline uk-width-1-1">
                                                                     <span class="uk-form-icon" uk-icon="icon: pencil"></span>
-                                                                    <input class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
-                                                                </div>
-                                                            </div>
-                                                            <div class="uk-width-1-4">
-                                                                <div class="uk-form">
-                                                                    <div class="uk-inline uk-width-1-1">
-                                                                        <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-                                                                        <input class="uk-input uk-input-square uk-width-1-1" placeholder="VAL*" type="number" style="width: 100%">
-                                                                    </div>
+                                                                    <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="CRITERIA*" type="text" style="width: 100%">
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                    </div>
-                                                    <div>
-                                                        <textarea class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
-                                                    </div>
-                                                    <!---- ---->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- PENALTY CREATION FORM END -->
-
-                                        <!-- CATEGORY CREATION FORM -->
-                                        <div class="uk-margin-small-bottom uk-hidden">
-                                            <div class="uk-card uk-card-default">
-                                                <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
-                                                    <div uk-grid>
-                                                        <div class="uk-width-expand uk-margin-auto-vertical">
-                                                            <div class="uk-flex uk-flex-middle">
-                                                                <p class="uk-margin-remove uk-text-small">NEW CATEGORY</p>
+                                                        <div class="uk-width-1-4 uk-margin-auto-vertical">
+                                                            <div class="uk-form">
+                                                                <div class="uk-inline uk-width-1-1">
+                                                                    <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
+                                                                    <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="VAL*" type="number" style="width: 100%">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="uk-width-auto uk-margin-auto-vertical">
-                                                            <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="uk-card-body">
-                                                    <!---- ---->
-                                                    <div>
-                                                        <div class="uk-inline uk-width-1-1">
-                                                            <span class="uk-form-icon" uk-icon="icon: pencil"></span>
-                                                            <input class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <textarea class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
-                                                    </div>
-
-                                                    <div>
-                                                        <div class="uk-grid-small uk-child-width-auto@l" uk-grid>
-                                                            <div>
-                                                                <button class="uk-button uk-button-default uk-button-small">PARAMETRO 1</button>
-                                                            </div>
-                                                            <div>
-                                                                <button class="uk-button uk-button-default uk-button-small">15</button>
-                                                            </div>
-                                                            <div>
-                                                                <button class="uk-button uk-button-default uk-button-small">PARAMETRO NUMERO DOS</button>
-                                                            </div>
-                                                            <div>
-                                                                <button class="uk-button uk-button-primary uk-button-small">PARAMETRO OTRO</button>
-                                                            </div>
-                                                            <div>
-                                                                <button class="uk-button uk-button-default uk-button-small">PARAMETRO UNO MAS</button>
-                                                            </div>
-                                                            <div>
-                                                                <button class="uk-button uk-button-default uk-button-small">PARAM X</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!---- ---->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- CATEGORY CREATION FORM END -->
-
-                                        <!-- PANEL CREATION FORM -->
-                                        <div class="uk-margin-small-bottom uk-hidden">
-                                            <div class="uk-card uk-card-default">
-                                                <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
-                                                    <div uk-grid>
-                                                        <div class="uk-width-expand uk-margin-auto-vertical">
                                                             <div class="uk-flex uk-flex-middle">
-                                                                <p class="uk-margin-remove uk-text-small">NEW PANEL</p>
+                                                                <a href="" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                                                                <a href="" class="uk-icon-button uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
                                                             </div>
-                                                        </div>
-                                                        <div class="uk-width-auto uk-margin-auto-vertical">
-                                                            <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="uk-card-body uk-padding-small">
-                                                    <!---- EVENT SELECTOR ---->
-                                                    <div class="uk-margin-small-bottom">
-                                                        <div class="uk-form">
-                                                            <div class="uk-inline uk-width-1-1">
-                                                                <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
-                                                                <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="EVENT" type="text" style="width: 100%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!---- EVENT SELECTOR END ---->
-
-                                                    <!---- MAIN JUDGE ---->
-                                                    <div class="uk-margin-small-bottom">
-                                                        <div class="uk-form">
-                                                            <div class="uk-inline uk-width-1-1">
-                                                                <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                                                <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="MAIN JUDGE*" type="text" style="width: 100%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!---- MAIN JUDGE END ---->
-
-                                                    <!---- GENERAL JUDGES ---->
-                                                    <div class="uk-margin-small-bottom">
-                                                        <div class="uk-grid-small" uk-grid>
-                                                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                <div class="uk-form">
-                                                                    <div class="uk-inline uk-width-1-1">
-                                                                        <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                                                        <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="GENERAL JUDGE*" type="text" style="width: 100%">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="uk-width-auto uk-margin-auto-vertical">
-                                                                <div class="uk-flex uk-flex-middle">
-                                                                    <a href="" class="" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                                    <a href="" class=" uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!---- GENERAL JUDGES  END ---->
-
-                                                    <!---- PENALTY JUDGES ---->
-                                                    <div class="uk-margin-small-bottom">
-                                                        <div class="uk-grid-small" uk-grid>
-                                                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                <div class="uk-form">
-                                                                    <div class="uk-inline uk-width-1-1">
-                                                                        <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                                                        <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="PENALTY JUDGE*" type="text" style="width: 100%">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="uk-width-auto uk-margin-auto-vertical">
-                                                                <div class="uk-flex uk-flex-middle">
-                                                                    <a href="" class="" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
-                                                                    <a href="" class="uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!---- PENALTY END ---->
-
-                                                    <!-- CATEGORY AND PENALTY BUTTONS -->
-                                                    <div class="uk-grid-small uk-child-width-1-2@l" uk-grid>
-                                                        <div>
-                                                            <a class="uk-button uk-button-small uk-button-primary uk-width-1-1">+ CATEGORY</a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="uk-button uk-button-small uk-button-danger uk-width-1-1">+ PENALTY</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- CATEGORY AND PENALTY BUTTONS END -->
-
-                                                    <!-- LISTA DE CATEGORIAS Y PENALTYS -->
-                                                    <div class="uk-child-width-auto uk-grid-small uk-grid-row-small" uk-grid>
-                                                        <div>
-                                                            <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="uk-button uk-button-danger uk-button-small uk-text-smaller">PENALTY</a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="uk-button uk-button-danger uk-button-small uk-text-smaller">PENALTY</a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="uk-button uk-button-danger uk-button-small uk-text-smaller">PENALTY</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
-                                                </div>
+                                                <!---- ---->
                                             </div>
                                         </div>
-                                        <!-- PANEL CREATION FORM END -->
-
-
-
-
-
-                                        <!-- PROFILE CREATION FORM -->
-                                        <div class="uk-margin-small-bottom uk-hidden">
-                                            <div class="uk-card uk-card-default">
-                                                <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
-                                                    <div uk-grid>
-                                                        <div class="uk-width-expand uk-margin-auto-vertical">
-                                                            <div class="uk-flex uk-flex-middle">
-                                                                <a class="uk-icon-button uk-margin-small-right" uk-tooltip="title: CANCEL; pos: BOTTOM"><span uk-icon="icon: close"></span></a>
-                                                                <p class="uk-margin-remove uk-text-small">NEW PROFILE</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="uk-width-auto uk-margin-auto-vertical">
-                                                            <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="uk-card-body uk-padding-small">
-                                                    <div>
-                                                        <div class="uk-grid-small uk-margin-small" uk-grid>
-                                                            <div class="uk-width-auto uk-margin-auto-vertical">
-                                                                <span uk-icon="icon: user" uk-tooltip="USER"></span>
-                                                            </div>
-                                                            <div class="uk-width-expand uk-margin-auto-vertical">
-                                                                <select class="uk-select" style="width: 100%">
-                                                                    <option>BUSCADOR</option>
-                                                                    <option>USER 1</option>
-                                                                    <option>USER 2</option>
-                                                                    <option>USER 3</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- PROFILE CREATION FORM END -->
                                     </div>
-                                    <!-- EDITING AREA END-->
-                                    <!-- EDITING AREA END-->
-                                    <!-- EDITING AREA END-->
-                                    <!-- EDITING AREA END-->
+                                    <!-- PARAMETER CREATION FORM END -->
+
+                                    <!-- PENALTY CREATION FORM -->
+                                    <div class="uk-margin-small-bottom uk-hidden">
+                                        <div class="uk-card uk-card-default">
+                                            <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
+                                                <div uk-grid>
+                                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                                        <div class="uk-flex uk-flex-middle">
+                                                            <p class="uk-margin-remove uk-text-small">NEW PENALTY</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                                        <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="uk-card-body">
+                                                <!---- ---->
+                                                <div>
+                                                    <div class="uk-grid-small" uk-grid>
+                                                        <div class="uk-width-expand">
+                                                            <div class="uk-inline uk-width-1-1">
+                                                                <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                                                                <input class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-1-4">
+                                                            <div class="uk-form">
+                                                                <div class="uk-inline uk-width-1-1">
+                                                                    <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
+                                                                    <input class="uk-input uk-input-square uk-width-1-1" placeholder="VAL*" type="number" style="width: 100%">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div>
+                                                    <textarea class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+                                                </div>
+                                                <!---- ---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- PENALTY CREATION FORM END -->
+
+                                    <!-- CATEGORY CREATION FORM -->
+                                    <div class="uk-margin-small-bottom uk-hidden">
+                                        <div class="uk-card uk-card-default">
+                                            <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
+                                                <div uk-grid>
+                                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                                        <div class="uk-flex uk-flex-middle">
+                                                            <p class="uk-margin-remove uk-text-small">NEW CATEGORY</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                                        <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="uk-card-body">
+                                                <!---- ---->
+                                                <div>
+                                                    <div class="uk-inline uk-width-1-1">
+                                                        <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                                                        <input class="uk-input uk-width-1-1 uk-input-square" placeholder="NAME*" type="text" style="width: 100%">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <textarea class="uk-textarea uk-width-1-1 uk-input-square uk-margin-small-top uk-margin-small-bottom" rows="3" placeholder="DESCRIPTION*" type="textarea" style="width: 100%"></textarea>
+                                                </div>
+
+                                                <div>
+                                                    <div class="uk-grid-small uk-child-width-auto@l" uk-grid>
+                                                        <div>
+                                                            <button class="uk-button uk-button-default uk-button-small">PARAMETRO 1</button>
+                                                        </div>
+                                                        <div>
+                                                            <button class="uk-button uk-button-default uk-button-small">15</button>
+                                                        </div>
+                                                        <div>
+                                                            <button class="uk-button uk-button-default uk-button-small">PARAMETRO NUMERO DOS</button>
+                                                        </div>
+                                                        <div>
+                                                            <button class="uk-button uk-button-primary uk-button-small">PARAMETRO OTRO</button>
+                                                        </div>
+                                                        <div>
+                                                            <button class="uk-button uk-button-default uk-button-small">PARAMETRO UNO MAS</button>
+                                                        </div>
+                                                        <div>
+                                                            <button class="uk-button uk-button-default uk-button-small">PARAM X</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---- ---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CATEGORY CREATION FORM END -->
+
+                                    <!-- PANEL CREATION FORM -->
+                                    <div class="uk-margin-small-bottom uk-hidden">
+                                        <div class="uk-card uk-card-default">
+                                            <div class="uk-card-header uk-padding-small uk-card-primary uk-card">
+                                                <div uk-grid>
+                                                    <div class="uk-width-expand uk-margin-auto-vertical">
+                                                        <div class="uk-flex uk-flex-middle">
+                                                            <p class="uk-margin-remove uk-text-small">NEW PANEL</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="uk-width-auto uk-margin-auto-vertical">
+                                                        <a class="uk-icon-button" uk-tooltip="title: SAVE; pos: left"><span uk-icon="icon: cloud-upload"></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="uk-card-body uk-padding-small">
+                                                <!---- EVENT SELECTOR ---->
+                                                <div class="uk-margin-small-bottom">
+                                                    <div class="uk-form">
+                                                        <div class="uk-inline uk-width-1-1">
+                                                            <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
+                                                            <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="EVENT" type="text" style="width: 100%">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---- EVENT SELECTOR END ---->
+
+                                                <!---- MAIN JUDGE ---->
+                                                <div class="uk-margin-small-bottom">
+                                                    <div class="uk-form">
+                                                        <div class="uk-inline uk-width-1-1">
+                                                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                                            <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="MAIN JUDGE*" type="text" style="width: 100%">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---- MAIN JUDGE END ---->
+
+                                                <!---- GENERAL JUDGES ---->
+                                                <div class="uk-margin-small-bottom">
+                                                    <div class="uk-grid-small" uk-grid>
+                                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                                            <div class="uk-form">
+                                                                <div class="uk-inline uk-width-1-1">
+                                                                    <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                                                    <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="GENERAL JUDGE*" type="text" style="width: 100%">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                                            <div class="uk-flex uk-flex-middle">
+                                                                <a href="" class="" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                                                                <a href="" class=" uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---- GENERAL JUDGES  END ---->
+
+                                                <!---- PENALTY JUDGES ---->
+                                                <div class="uk-margin-small-bottom">
+                                                    <div class="uk-grid-small" uk-grid>
+                                                        <div class="uk-width-expand uk-margin-auto-vertical">
+                                                            <div class="uk-form">
+                                                                <div class="uk-inline uk-width-1-1">
+                                                                    <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                                                    <input class="uk-input uk-form-small uk-input-square uk-width-1-1" placeholder="PENALTY JUDGE*" type="text" style="width: 100%">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-auto uk-margin-auto-vertical">
+                                                            <div class="uk-flex uk-flex-middle">
+                                                                <a href="" class="" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                                                                <a href="" class="uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---- PENALTY END ---->
+
+                                                <!-- CATEGORY AND PENALTY BUTTONS -->
+                                                <div class="uk-grid-small uk-child-width-1-2@l" uk-grid>
+                                                    <div>
+                                                        <a class="uk-button uk-button-small uk-button-primary uk-width-1-1">+ CATEGORY</a>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-small uk-button-danger uk-width-1-1">+ PENALTY</a>
+                                                    </div>
+                                                </div>
+                                                <!-- CATEGORY AND PENALTY BUTTONS END -->
+
+                                                <!-- LISTA DE CATEGORIAS Y PENALTYS -->
+                                                <div class="uk-child-width-auto uk-grid-small uk-grid-row-small" uk-grid>
+                                                    <div>
+                                                        <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-default uk-button-small uk-text-smaller">CATEGORY</a>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-danger uk-button-small uk-text-smaller">PENALTY</a>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-danger uk-button-small uk-text-smaller">PENALTY</a>
+                                                    </div>
+                                                    <div>
+                                                        <a class="uk-button uk-button-danger uk-button-small uk-text-smaller">PENALTY</a>
+                                                    </div>
+                                                </div>
+                                                <!-- LISTA DE CATEGORIAS Y PENALTYS END -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- PANEL CREATION FORM END -->
 
 
-                                    <!-- REPORTING AREA -->
-                                    <!-- REPORTING AREA -->
-                                    <!-- REPORTING AREA -->
-                                    <!-- REPORTING AREA -->
-                                    <a (click)="createPost()" class="uk-button uk-button-primary uk-button-large uk-width-1-1 uk-margin-small-bottom">CREATE MATCH</a>
-                                    <!-- REPORTING AREA END -->
-                                    <!-- REPORTING AREA END -->
-                                    <!-- REPORTING AREA END -->
-                                    <!-- REPORTING AREA END -->
 
+
+
+                                    <!-- PROFILE CREATION FORM -->
+                                    
+                                    <!-- PROFILE CREATION FORM END -->
                                 </div>
+                                <!-- EDITING AREA END-->
+                                <!-- EDITING AREA END-->
+                                <!-- EDITING AREA END-->
+                                <!-- EDITING AREA END-->
+
+
+                                <!-- REPORTING AREA -->
+                                <!-- REPORTING AREA -->
+                                <!-- REPORTING AREA -->
+                                <!-- REPORTING AREA -->
+                                <a [appConditionalContent]="['sasa_manager']" (click)="createPost()" class="uk-button uk-button-primary uk-button-large uk-width-1-1 uk-margin-small-bottom">CREATE MATCH</a>
+                                <!-- REPORTING AREA END -->
+                                <!-- REPORTING AREA END -->
+                                <!-- REPORTING AREA END -->
+                                <!-- REPORTING AREA END -->
 
                             </div>
-                            <!-- EDITIING AND REPORT CENTER END-->
-                            <!-- EDITIING AND REPORT CENTER END-->
-                            <!-- EDITIING AND REPORT CENTER END-->
-                            <!-- EDITIING AND REPORT CENTER END-->
+
                         </div>
+                        <!-- EDITIING AND REPORT CENTER END-->
+                        <!-- EDITIING AND REPORT CENTER END-->
+                        <!-- EDITIING AND REPORT CENTER END-->
+                        <!-- EDITIING AND REPORT CENTER END-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 

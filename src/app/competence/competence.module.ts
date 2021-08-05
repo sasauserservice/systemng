@@ -51,6 +51,7 @@ import { ConditionalJudgmentDirective } from '../directives/conditional-judgment
 import { ConditionalContentDirective } from '../directives/conditional-content.directive';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { EntryGlobalJudgementComponent } from './judgement/entry-global-judgement/entry-global-judgement.component';
+import { SyncComponent } from './sync/sync/sync.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { EntryGlobalJudgementComponent } from './judgement/entry-global-judgemen
     ConditionalJudgmentDirective,
      UserProfileComponent,
      EntryGlobalJudgementComponent,
-     ConditionalContentDirective
+     ConditionalContentDirective,
+     SyncComponent
   ],
   imports: [
     CommonModule,

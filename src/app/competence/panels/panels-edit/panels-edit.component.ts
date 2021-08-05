@@ -98,6 +98,9 @@ export class PanelsEditComponent implements OnInit, OnChanges {
     this.generateAvaliablePenalties();
 
 
+
+
+
     
     /*this.panelService.getPenaltiesToselect().then((response: any) => {
       this.penaltiesAll = response; 
@@ -135,6 +138,31 @@ export class PanelsEditComponent implements OnInit, OnChanges {
 
   ngOnChanges(){
     this.ngOnInit();
+  }
+
+  comprobeSlotsNotEmpty():boolean{
+    let a = 1;
+    let returno = true;
+    this.slotsToGeneral.forEach((a:any)=>{
+      if(a.params.length == 0){
+        returno = false;
+      }
+    });
+    this.slotsToPenalty.forEach((a:any)=>{
+      if(a.penalties.length == 0){
+        returno = false;
+      }
+    });
+    return returno;
+  }
+
+  comprobeCategoryNotEmpty():boolean{
+    let a = 1;
+    let returno = true;
+    if(this.judgesCategoriesselect.length == 0){
+      returno = false
+    }
+    return returno;
   }
 
   addNewSlot(type: number){
@@ -187,6 +215,28 @@ export class PanelsEditComponent implements OnInit, OnChanges {
   }
 
   sendCreate() : any {
+    let catValidation = this.comprobeCategoryNotEmpty()
+    let slotsVAlidation = this.comprobeSlotsNotEmpty()
+    if(!catValidation){
+      Swal.fire({
+        title: 'Info!',
+        text: 'Categories are mandatory',
+        icon: 'info',
+        showCancelButton: false,
+        showConfirmButton: false
+      })
+      return false
+    }
+    if(!slotsVAlidation){
+      Swal.fire({
+        title: 'Info!',
+        text: 'Slots cant be empty',
+        icon: 'info',
+        showCancelButton: false,
+        showConfirmButton: false
+      })
+      return false
+    }
     if(this.editObjet.name.trim() == ''){
       Swal.fire({
         title: 'Info!',

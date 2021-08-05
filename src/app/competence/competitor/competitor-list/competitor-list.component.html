@@ -8,8 +8,8 @@
                         <p class="uk-margin-remove uk-text-smaller">Create, edit, erase.</p>
                     </div>
                     <div class="uk-flex uk-flex-middle">
-                        <span (click)="openCreateNew()" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW USER; pos: top"></span>
-                        <span class="uk-icon-button uk-margin-small-left" uk-icon="icon: tag" uk-tooltip="title: NEW PROFILE; pos: top"></span>
+                        <span [appConditionalContent]="['sasa_manager']" (click)="openCreateNew()" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW USER; pos: top"></span>
+                        <span [appConditionalContent]="['sasa_manager']" class="uk-icon-button uk-margin-small-left" uk-icon="icon: tag" uk-tooltip="title: NEW PROFILE; pos: top"></span>
                     </div>
                 </div>
             </div>

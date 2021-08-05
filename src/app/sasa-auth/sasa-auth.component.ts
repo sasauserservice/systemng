@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import {StorageService } from '../shared/storage.service';
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from '../services/auth.service'
+import {StorageService } from '../shared/storage.service'
 import Swal from 'sweetalert2'
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router'
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'app-sasa-auth',
@@ -17,10 +17,10 @@ export class SasaAuthComponent implements OnInit {
   form : object = {
     email: '',
     pass: '',
-  };
+  }
 
-  email : string = '';
-  password : string = '';
+  email : string = ''
+  password : string = ''
 
   ngOnInit(): void {
   }
@@ -36,21 +36,21 @@ export class SasaAuthComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500,
         timerProgressBar: true,
-      });
+      })
 
-      console.log(resp);
+      console.log(resp)
 
-      this.cookieService.set('platformauth', resp.authorization);
+      this.cookieService.set('platformauth', resp.authorization)
 
       setTimeout(()=>{
-        this.router.navigate(['/dasboard']);
-      }, 1500);
+        this.router.navigate(['/match'])
+      }, 1500)
 
 
     } ).catch( (error: any) => {
       if(error){
-        console.log(error.error);
-        let texto : string = error.error.Message;
+        console.log(error.error)
+        let texto : string = error.error.Message
         if(error.error.Status == 400){
           Swal.fire({
             title: 'Info!',
@@ -58,7 +58,7 @@ export class SasaAuthComponent implements OnInit {
             icon: 'info',
             showCancelButton: false,
             showConfirmButton: false
-          });
+          })
         }
         if(error.error.Status == 404){
           Swal.fire({
@@ -67,12 +67,12 @@ export class SasaAuthComponent implements OnInit {
             icon: 'info',
             showCancelButton: false,
             showConfirmButton: false
-          });
+          })
         }
           
       }
 
-    } );
+    } )
   }
 
 }

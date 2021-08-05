@@ -86,6 +86,11 @@ export class PanelsCreateComponent implements OnInit {
         returno = false;
       }
     });
+    this.slotsToPenalty.forEach((a:any)=>{
+      if(a.penalties.length == 0){
+        returno = false;
+      }
+    });
     return returno;
   }
 
@@ -130,6 +135,16 @@ export class PanelsCreateComponent implements OnInit {
     let catValidation = this.comprobeCategoryNotEmpty()
     let slotsVAlidation = this.comprobeSlotsNotEmpty()
 
+    if(!catValidation){
+      Swal.fire({
+        title: 'Info!',
+        text: 'Categories are mandatory',
+        icon: 'info',
+        showCancelButton: false,
+        showConfirmButton: false
+      })
+      return false
+    }
     if(!slotsVAlidation){
       Swal.fire({
         title: 'Info!',
@@ -141,16 +156,6 @@ export class PanelsCreateComponent implements OnInit {
       return false
     }
 
-    if(!catValidation){
-      Swal.fire({
-        title: 'Info!',
-        text: 'Categories are mandatory',
-        icon: 'info',
-        showCancelButton: false,
-        showConfirmButton: false
-      })
-      return false
-    }
     if(this.panelname.trim() == ''){
       Swal.fire({
         title: 'Info!',

@@ -58,7 +58,7 @@
                 <caption class="uk-text-small">JUDGING PARAMETERS</caption>
                 <thead>
                     <tr class="uk-background-secondary uk-light">
-                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th [hidden]="true" class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
                         <th class="uk-table-large uk-text-smaller">PARAMETER</th>
                         <th class="uk-text-smaller">JUDGE</th>
                         <th class="uk-table-shrink uk-text-smaller">VALUE</th>
@@ -75,7 +75,7 @@
 
                 <tbody *ngFor="let param of params.parameters;let i = index">
                     <tr>
-                        <td class="uk-text-smaller uk-text-center">
+                        <td [hidden]="true" class="uk-text-smaller uk-text-center">
                             <a (click)="openClaimGenerator(1,param.id)" uk-icon="icon: commenting; ratio: 0.75;"></a>
                         </td>
                         <td class="uk-text-smaller uk-text-nowrap">{{param.name}}</td>
@@ -100,12 +100,12 @@
                 <caption class="uk-text-small">PENALTYS</caption>
                 <thead>
                     <tr class="uk-background-secondary uk-light">
-                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th [hidden]="true" class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
                         <th class="uk-table-large uk-text-smaller">PENALTY</th>
                         <th class="uk-text-smaller">JUDGE</th>
                         <th class="uk-table-shrink uk-text-smaller">VALUE</th>
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">TOTAL</th>
-                        <th class="uk-table-shrink uk-text-smaller uk-text-center">COMMENT</th>
+                        <th [hidden]="true" class="uk-table-shrink uk-text-smaller uk-text-center">COMMENT</th>
                         <th class="uk-table-shrink uk-text-smaller uk-text-center">ALERT</th>
                     </tr>
                 </thead>
@@ -119,14 +119,14 @@
                 </tr>
                 <tbody [hidden]="penalty.judgements.length == 0" *ngFor="let penalty of params.penalties;let penalindex = index">
                     <tr>
-                        <td class="uk-text-smaller uk-text-center">
+                        <td [hidden]="true" class="uk-text-smaller uk-text-center">
                             <a href="#" uk-icon="icon: warning; ratio: 0.75;"></a>
                         </td>
                         <td class="uk-text-smaller uk-text-nowrap">{{penalty.name}}</td>
                         <td class="uk-text-smaller uk-text-nowrap">Judge Name</td>
                         <td class="uk-text-small uk-text-center">{{penalty.points}}</td>
                         <td class="uk-text-small uk-text-center uk-text-center">{{penalty.ammount}}</td>
-                        <td class="uk-text-smaller uk-text-center">
+                        <td [hidden]="true" class="uk-text-smaller uk-text-center">
                             <a href="#" uk-icon="icon: comment; ratio: 0.75;"></a>
                         </td>
                         <td class="uk-text-center">

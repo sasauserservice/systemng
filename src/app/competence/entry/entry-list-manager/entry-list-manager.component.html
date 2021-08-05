@@ -7,11 +7,11 @@
                         <div class="uk-grid-small uk-child-width-auto" uk-grid>
                             <div>
                                 <p class="uk-margin-remove">ENTRYS MANAGEMENT</p>
-                                <p class="uk-margin-remove uk-text-smaller">Create, edit, erase.</p>
+                                <p [appConditionalContent]="['sasa_manager']" class="uk-margin-remove uk-text-smaller">Create, edit, erase.</p>
                             </div>
                             <div class="uk-flex uk-flex-middle">
-                                <span class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW USER; pos: top"></span>
-                                <span class="uk-icon-button uk-margin-small-left" uk-icon="icon: tag" uk-tooltip="title: NEW PROFILE; pos: top"></span>
+                                <span [hidden]="true" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW USER; pos: top"></span>
+                                <span [hidden]="true" class="uk-icon-button uk-margin-small-left" uk-icon="icon: tag" uk-tooltip="title: NEW PROFILE; pos: top"></span>
                             </div>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                                 <ng-select2 class="uk-width-1-1" [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="eventselected" [data]="eventsSelect" [placeholder]="'EVENT'"></ng-select2>
                             </div>
                             <div class="uk-width-1-5">
-                                <ng-select2 class="uk-width-1-1" [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="eventselected" [data]="eventsSelect" [placeholder]="'STATUS'"></ng-select2>
+                               
                             </div>
                         </div>
                     </div>
@@ -56,12 +56,12 @@
                                             </div>
                                             <div class="uk-width-expand">
                                                 <div class="uk-flex uk-flex-right">
-                                                    <a uk-tooltip="SEND" class="uk-margin-small-right uk-icon-button" uk-icon="cloud-upload"></a>
+                                                    <a [hidden]="true" uk-tooltip="SEND" class="uk-margin-small-right uk-icon-button" uk-icon="cloud-upload"></a>
                                                     <a *ngIf="part.video" (click)="openEntryPreview({'url':part.video})" class="uk-icon-button uk-margin-small-right" uk-icon="icon: play" uk-tooltip="title: PLAY; pos: top"></a>
                                                     <!--<a  target="_BLANK" *ngIf="part.video" [href]="part.video" class="uk-icon-button uk-margin-small-right" uk-icon="icon: play" uk-tooltip="title: PLAY; pos: top"></a>-->
-                                                    <span *ngIf="!part.video" uk-icon="warning" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: NO VIDEO; pos: top"></span>
-                                                    <a uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
-                                                    <a (click)="deleteAnExistantPart(part.id)" uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
+                                                    <span  *ngIf="!part.video" uk-icon="warning" class="uk-icon-button uk-margin-small-right" uk-tooltip="title: NO VIDEO; pos: top"></span>
+                                                    <a [hidden]="true" uk-tooltip="EDIT" class="uk-margin-small-right uk-icon-button" uk-icon="pencil"></a>
+                                                    <a [appConditionalContent]="['sasa_manager']" (click)="deleteAnExistantPart(part.id)" uk-tooltip="ERASE" class="uk-icon-button" uk-icon="trash"></a>
                                                 </div>
                                             </div>
                                         </div>

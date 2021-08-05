@@ -8,14 +8,14 @@
                             <h5 class="uk-margin-remove">MATCH CONTROL CENTER</h5>
                             <p class="uk-margin-remove uk-text-small">Build, edit and assign competitors.</p>
                         </div>
-                        <div class="uk-width-expand uk-margin-auto-vertical">
-                            <a href="javascript:void(0)" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: top"></a>
+                        <div  class="uk-width-expand uk-margin-auto-vertical">
+                            <a [hidden]="true" href="javascript:void(0)" class="uk-icon-button" uk-icon="icon: plus-circle" uk-tooltip="title: NEW; pos: top"></a>
                         </div>
                     </div>
                 </div>
                 <div class="uk-width-auto uk-margin-auto-vertical">
                     <div class="uk-form">
-                        <div class="uk-inline">
+                        <div [hidden]="true" class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: search"></span>
                             <input class="uk-input" type="text">
                         </div>
@@ -90,7 +90,7 @@
                             </div>
                         </div>
 
-                        <div class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
+                        <div [appConditionalContent]="['sasa_manager']" class="uk-accordion-content uk-margin-remove uk-card-body uk-padding-small">
 
 
                             <!-- AREA DE METRICAS Y STATUS -->

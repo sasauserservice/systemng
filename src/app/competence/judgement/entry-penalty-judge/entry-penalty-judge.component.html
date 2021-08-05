@@ -49,7 +49,7 @@
             <table class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
                 <thead>
                     <tr class="uk-background-secondary uk-light">
-                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th [hidden]="true" class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
                         <th class="uk-table-large uk-text-smaller">PENALTY</th>
                         <th class="uk-text-smaller">DESCRIPTION</th>
                         <th class="uk-table-shrink uk-text-smaller">VALUE</th>
@@ -61,7 +61,7 @@
                 </thead>
                 <tbody *ngFor="let penalty of params.penalty;let penaltyindex = index">
                     <tr>
-                        <td class="uk-text-smaller uk-text-center">
+                        <td [hidden]="true" class="uk-text-smaller uk-text-center">
                             <a href="#" uk-icon="icon: warning; ratio: 0.75;"></a>
                         </td>
                         <td class="uk-text-smaller uk-text-nowrap">{{penalty.name}}</td>

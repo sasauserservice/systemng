@@ -52,7 +52,7 @@
             <table data-contenedor="ID CONTENEDOR" data-typejudge="TYPE JUDGE" id="jueces_main" class="uk-table uk-table-middle uk-table-small uk-table-hover uk-table-divider">
                 <thead>
                     <tr class="uk-background-secondary uk-light">
-                        <th class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
+                        <th [hidden]="true" class="uk-table-shrink uk-text-smaller uk-text-center">CLAIM</th>
                         <th class="uk-table-large uk-text-smaller">PARAMETER</th>
                         <th class="uk-table-small uk-text-smaller">DESCRIPTION</th>
                         <th class="uk-text-smaller">COMMENT</th>
@@ -65,7 +65,7 @@
 
                 <tbody *ngFor="let param of params.judging;let paramindex = index">
                     <tr>
-                        <td class="uk-text-smaller uk-text-center">
+                        <td [hidden]="true" class="uk-text-smaller uk-text-center">
                             <a href="#" uk-icon="icon: warning; ratio: 0.75;"></a>
                         </td>
                         <td class="uk-text-smaller uk-text-nowrap">{{param.name}}</td>
