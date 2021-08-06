@@ -40,6 +40,13 @@ export class SasaAuthComponent implements OnInit {
 
       console.log(resp)
 
+      localStorage.setItem('logueduser', JSON.stringify({
+        id: resp.data.id,
+        name: resp.data.name,
+        email: resp.data.email,
+        groups: resp.data.groups,
+      }));
+
       this.cookieService.set('platformauth', resp.authorization)
 
       setTimeout(()=>{

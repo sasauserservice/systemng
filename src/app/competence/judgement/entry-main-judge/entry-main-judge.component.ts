@@ -67,6 +67,7 @@ export class EntryMainJudgeComponent implements OnInit {
 
   getParamsAndCriterias(){
     this.service.getMainjudge(this.entryid).subscribe((response:any) => {
+      console.log("main    ",response)
      this.params = response;
      this.params.parameters.forEach((element:any) => {
        this.globalPoints += element.total

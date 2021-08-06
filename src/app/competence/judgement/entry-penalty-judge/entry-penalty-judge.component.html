@@ -101,7 +101,7 @@
                                             <input (change)="changeFlagStatus(penaltyindex,0)" [(ngModel)]="judgment.time.min" style="width:30px;" min="0" type="number">
                                         </td>
                                         <td class="uk-text-smaller uk-text-center uk-text-nowrap">
-                                            <input (change)="changeFlagStatus(penaltyindex,0)" [(ngModel)]="judgment.time.sec" style="width:30px;" min="0" type="number">
+                                            <input (change)="changeFlagStatus(penaltyindex,0)" [(ngModel)]="judgment.time.sec" style="width:30px;" min="0" max="60" type="number">
                                         </td>
                                         <td class="uk-text-smaller uk-text-nowrap">
                                             <input (keydown)="changeFlagStatus(penaltyindex,0)" [(ngModel)]="judgment.coment" class="uk-input uk-form-small" type="text" name="" placeholder="COMMENT"></td>

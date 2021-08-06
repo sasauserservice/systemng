@@ -43,7 +43,7 @@
                     </div>
                     <div class="uk-width-auto uk-margin-auto-vertical">
                         <div class="uk-flex uk-flex-middle">
-                            <a href="javascript:void(0)" (click)="spliceParaCrear(i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
+                            <a *ngIf="criterias.length != 1" href="javascript:void(0)" (click)="spliceParaCrear(i)" class="uk-icon-button" uk-icon="icon: trash" uk-tooltip="title: ERASE; pos: top"></a>
                             <a href="javascript:void(0)" (click)="addCriteria()" class="uk-icon-button uk-margin-small-left" uk-icon="icon: plus" uk-tooltip="title: ADD; pos: top"></a>
                         </div>
                     </div>

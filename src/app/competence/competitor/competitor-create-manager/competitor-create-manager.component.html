@@ -34,7 +34,7 @@
                             <span uk-icon="icon: user" uk-tooltip="USER"></span>
                         </div>
                         <div class="uk-width-expand uk-margin-auto-vertical">
-                            {{item.user | json}}
+                             
                             <ng-select2 [options]="{multiple: false, theme: 'classic'}" width="100%" [allowClear]="true" [(ngModel)]="item.user" [name]="'coach'+i" [data]="coachList" [placeholder]="'COACH'">
                             </ng-select2>
                         </div>
