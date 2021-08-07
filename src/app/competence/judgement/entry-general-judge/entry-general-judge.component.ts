@@ -87,20 +87,21 @@ export class EntryGeneralJudgeComponent implements OnInit {
     });
   }
 
-  viewRightValue(input:any,max:number){
-    let self = this;
-    setTimeout(function(){
-      console.log(input.target.value);
-      console.log(max);
+  viewRightValue(input:any,max:number,paramindex:number,criteriaindex:number){
+    let self = this
+
+
+    let eventFrame = new Event("change")
+    
+      
       if(input.target.value > max){
         input.target.value = max
+        input.target.dispatchEvent(eventFrame)
+        this.params.judging[paramindex].criteria[criteriaindex].qualpoints = max
       }
 
       self.aviabSending();
-    },1000);
-
-
-     
+        
   }
 
   aviabSending(){

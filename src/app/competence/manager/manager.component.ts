@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 import { Router } from '@angular/router'
 import { ContentService } from '../../services/content.service'
 import { MatchUsersService } from '../user/match-users.service'
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-manager',
@@ -32,7 +33,7 @@ export class ManagerComponent implements OnInit {
   data : Array<Select2OptionData> = []
   userInfo: any = {}
 
-  constructor(private Contentserv: ContentService, private route: Router,private userService: MatchUsersService) { }
+  constructor(private Contentserv: ContentService, private route: Router,private userService: MatchUsersService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     let self = this
@@ -61,6 +62,12 @@ export class ManagerComponent implements OnInit {
       self.previewEntryData = obj
       self.statusPreviewEntry = true
       },500)
+  }
+
+  closesession(){
+    this.cookieService.deleteAll();
+    window.location.href = '/';
+    console.log('cerrar sesion');
   }
 
   async createPost(){

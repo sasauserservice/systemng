@@ -17,7 +17,7 @@
                     <div>
                         <div class="uk-card uk-card-default square">
                             <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column">
-                                <p class="uk-margin-remove uk-text-small">{{globalPoints}}</p>
+                                <p class="uk-margin-remove uk-text-small">{{globalPoints.toFixed(2)}}</p>
                                 <p class="uk-margin-remove uk-text-smaller">TOTAL</p>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                     <div>
                         <div class="uk-card uk-card-default square">
                             <div *ngIf="params.judging" class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
-                                <p class="uk-margin-remove-bottom">{{params.generalTotal}}</p>
+                                <p class="uk-margin-remove-bottom">{{params.generalTotal.toFixed(2)}}</p>
                                 <p class="uk-margin-remove-top uk-margin-remove-bottom uk-text-smaller">SCORE</p>
                             </div>
                         </div>
@@ -70,7 +70,9 @@
                         </td>
                         <td class="uk-text-smaller uk-text-nowrap">{{param.name}}</td>
                         <td class="uk-text-smaller uk-text-truncate">{{param.desc}}</td>
-                        <td class="uk-text-smaller uk-text-nowrap"><input [(ngModel)]="param.comment" class="uk-input uk-form-small" type="text" placeholder="COMMENT"></td>
+                        <td class="uk-text-smaller uk-text-nowrap">
+                            <input [(ngModel)]="param.comment" class="uk-input uk-form-small" type="text" placeholder="COMMENT">
+                        </td>
                         <td class="uk-text-small uk-text-center">{{param.total}}</td>
                         <td *ngIf="param.qualtotal" class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal}}</td>
                         <td *ngIf="!param.qualtotal" class="uk-text-small uk-text-center uk-text-center"><i uk-icon="info" uk-tooltip="MISSING CRITERIAS"></i></td>
@@ -86,13 +88,13 @@
                     <tr class="uk-width-1-1">
                         <td class="uk-text-smaller" colspan="8">
                             <div class="uk-child-width-1-2@l uk-child-width-1-3@xl uk-grid-small uk-grid-divider" uk-grid>
-                                <div *ngFor="let criteria of param.criteria">
+                                <div *ngFor="let criteria of param.criteria;let criteriaindex = index">
                                     <div class="uk-grid-small" uk-grid>
                                         <div class="uk-width-expand uk-margin-auto-vertical">
                                             <p class="uk-text-smaller uk-text-nowrap">{{criteria.title}}</p>
                                         </div>
                                         <div class="uk-width-auto uk-margin-auto-vertical">
-                                            <input (change)="calculateTotal(paramindex);viewRightValue($event,criteria.points)" [(ngModel)]="criteria.qualpoints" (keydown)="viewRightValue($event,criteria.points);calculateTotal(paramindex)" [attr.placeholder]="'Max '+criteria.points" min="0" [attr.max]="criteria.points"
+                                            <input (change)="calculateTotal(paramindex)" [(ngModel)]="criteria.qualpoints" (keyup)="viewRightValue($event,criteria.points,paramindex,criteriaindex);calculateTotal(paramindex)" [attr.placeholder]="'Max '+criteria.points" min="0" [attr.max]="criteria.points"
                                                 class="uk-input uk-form-small uk-input-square uk-margin-small-left" type="number" name="">
                                         </div>
                                     </div>
