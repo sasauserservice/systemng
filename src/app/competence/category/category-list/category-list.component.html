@@ -31,8 +31,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let category of categoryList  | filter: searchTerm">
-                            <td class="uk-text-nowrap uk-text-small">{{category.title}}</td>
+                        <tr *ngFor="let category of categoryList| filter: searchTerm;let i = index">
+                            <td class="uk-text-nowrap uk-text-small">{{i}} {{category.title}}</td>
                             <td class="uk-text-small">
                                 <p class="uk-text-smaller uk-margin-remove">{{category.description}}</p>
                                 <p class="uk-text-smaller uk-text-uppercase uk-margin-remove"><span *ngFor="let parameter of category.parameters">{{parameter.title}} || </span></p>

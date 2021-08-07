@@ -31,8 +31,8 @@
                         </tr>
                     </thead>
                     <tbody *ngIf="Parameters.length > 0">
-                        <tr [id]="'Parameter_'+Parameter.id" *ngFor="let Parameter of Parameters">
-                            <td class="uk-text-nowrap uk-text-small uk-text-uppercase">{{Parameter.title}}</td>
+                        <tr [id]="'Parameter_'+Parameter.id" *ngFor="let Parameter of Parameters; let i = index">
+                            <td class="uk-text-smaller uk-text-uppercase">{{i}} {{Parameter.title}}</td>
                             <td class="uk-text-small">
                                 <p class="uk-text-smaller uk-text-uppercase uk-margin-remove">{{Parameter.description}}</p>
                                 <p class="uk-text-smaller uk-text-uppercase uk-margin-remove">{{Parameter.strcri}}</p>

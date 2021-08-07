@@ -151,6 +151,8 @@ export class EntryMainJudgeComponent implements OnInit {
 
   sendGeneralQuals(){
     this.paramsforsend.judge = 0;
+    this.paramsforsend.penalties = this.params.penalties;
+    
     this.service.sendMain(this.paramsforsend).then( (response: any) => {
     if(response){
     Swal.fire({
