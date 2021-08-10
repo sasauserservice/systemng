@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -32,6 +35,7 @@
               "src/.htaccess"
             ],
             "styles": [
+              "node_modules/uikit/dist/css/uikit.css",
               "src/styles.scss",
               "src/styles/styles.scss",
               "node_modules/select2/dist/css/select2.min.css",

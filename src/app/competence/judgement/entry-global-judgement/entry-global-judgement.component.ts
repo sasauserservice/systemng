@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 export class EntryGlobalJudgementComponent implements OnInit {
 
   @Input() entryId: number= 0
+  @Input() extraInfo : any = {}
   
   @Output() launchPenaltyJudgeStatus = new EventEmitter<any>()
   @Output() launchGeneralJudgeStatus = new EventEmitter<any>()  

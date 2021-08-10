@@ -27,6 +27,7 @@ export class PreviewComponent implements OnInit {
 
   getGenetalranking(){
     this.service.getRanking(this.eventId).subscribe((response:any) => {
+      console.log(response);
       this.event = response.event;
       this.all = response.all;
       this.top3 = response.top3;

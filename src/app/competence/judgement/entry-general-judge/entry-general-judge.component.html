@@ -74,7 +74,7 @@
                             <input [(ngModel)]="param.comment" class="uk-input uk-form-small" type="text" placeholder="COMMENT">
                         </td>
                         <td class="uk-text-small uk-text-center">{{param.total}}</td>
-                        <td *ngIf="param.qualtotal" class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal}}</td>
+                        <td *ngIf="param.qualtotal" class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal.toFixed(2)}}</td>
                         <td *ngIf="!param.qualtotal" class="uk-text-small uk-text-center uk-text-center"><i uk-icon="info" uk-tooltip="MISSING CRITERIAS"></i></td>
                         <td class="uk-text-smaller uk-text-center">
                             <a [attr.disabled]="!aviableSend" (click)="sendGeneralQuals()" uk-icon="icon: play-circle; ratio: 0.75;" uk-tooltip="title: SEND; pos: top"></a>

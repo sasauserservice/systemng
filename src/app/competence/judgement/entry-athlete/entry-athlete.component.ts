@@ -1,6 +1,7 @@
-import { Component, OnInit ,Input,EventEmitter,Output} from '@angular/core';
+import { Component, OnInit ,Input,EventEmitter,Output, ViewChild} from '@angular/core';
 import { JudgementService} from '../judgement.service';
 import Swal from 'sweetalert2';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-entry-athlete',
@@ -12,11 +13,17 @@ export class EntryAthleteComponent implements OnInit {
   @Input() entryid : any = 0;
   @Input() changes : any = 0;
   @Input() firstMainStatus : any = 0;
+  @Input() dataclaseentry : any = {};
   @Output() stateChange = new EventEmitter<any>();
   @Output() stateChangeBar = new EventEmitter<any>();
   @Output() claimObjet = new EventEmitter<any>();
   @Output() eventFinishCreate = new EventEmitter<any>();
   @Output() launchMainJudgeStatus = new EventEmitter<any>();
+
+
+  @ViewChild("tablaparacaptura") tablaparacaptura : any;
+  @ViewChild("resultPageTable") resultPageTable : any;
+  
   constructor(private service: JudgementService) { }
 
   ngOnInit(): void {
@@ -31,6 +38,14 @@ export class EntryAthleteComponent implements OnInit {
       });           
      });
 
+  }
+
+  generateHtmlCanva(){
+    let container : HTMLElement = this.resultPageTable.nativeElement;
+    let htmlP : HTMLElement = this.tablaparacaptura.nativeElement;
+    html2canvas(htmlP).then((canva:any)=> {
+      container.appendChild(canva);
+    });
   }
 
   

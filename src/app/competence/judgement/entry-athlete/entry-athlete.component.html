@@ -1,5 +1,11 @@
 <div class="uikit-modern-micro">
     <div>
+        <div class="uk-margin-remove">
+            <div class="uk-card uk-card-defaul uk-cardbody">
+                <p class="uk-margin-remove uk-text-bold">{{dataclaseentry.team_name}}</p>
+                <p class="uk-margin-remove uk-text-bold">{{dataclaseentry.event_title}} || {{dataclaseentry.category_title}}</p>
+            </div>
+        </div>
         <div class="uk-grid-small" uk-grid uk-height-match=".uk-card">
 
             <div class="uk-width-3-5@l uk-margin-auto-vertical">
@@ -16,7 +22,7 @@
                             <div>
                                 <div class="uk-card uk-card-default square">
                                     <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column">
-                                        <p *ngIf="params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{params.totalpuntos}}</p>
+                                        <p *ngIf="params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{params.totalpuntos.toFixed(2)}}</p>
                                         <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove uk-text-small"><i uk-icon="clock"></i></p>
                                         <p class="uk-margin-remove uk-text-smaller">SCORE</p> 
                                     </div>
@@ -26,7 +32,7 @@
                             <div>
                                 <div class="uk-card uk-card-default square">
                                     <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column">
-                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{params.totalpenal}}</p>
+                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove uk-text-small">{{params.totalpenal.toFixed(2)}}</p>
                                         <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove uk-text-small"><i uk-icon="clock"></i></p>
                                         <p class="uk-margin-remove uk-text-smaller">PENAL</p>
                                     </div>
@@ -36,7 +42,7 @@
                             <div>
                                 <div class="uk-card uk-card-default square">
                                     <div class="content uk-flex uk-flex-middle uk-flex-center uk-flex-column uk-text-center">
-                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove-bottom">{{params.totalrest}}</p>
+                                        <p *ngIf=" params.parameters.length != 0" class="uk-margin-remove-bottom">{{params.totalrest.toFixed(2)}}</p>
                                         <p *ngIf=" params.parameters.length == 0" class="uk-margin-remove-bottom"><i uk-icon="clock"></i></p>
                                         <p class="uk-margin-remove-top uk-margin-remove-bottom uk-text-smaller">TOTAL</p>
                                     </div>
@@ -101,7 +107,7 @@
                         <td class="uk-text-smaller uk-text-nowrap">{{param.name}}</td>
                         <td class="uk-text-smaller uk-text-nowrap">{{param.desc}} <span *ngFor="let criteria of param.criteria;let y = index">{{criteria.title}} {{criteria.points}}   pts {{criteria.qualpoints}}  <span *ngIf="y+1 != param.criteria.length">|| </span></span></td> 
                         <td class="uk-text-small uk-text-center">{{param.total}}</td>
-                        <td class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal}}</td>
+                        <td class="uk-text-small uk-text-center uk-text-center">{{param.qualtotal.toFixed(2)}}</td>
                         <td  class="uk-text-smaller uk-text-center"><a href="#" uk-icon="icon: comment; ratio: 0.75;" [attr.uk-toggle]="'target: #parameter-toogle-athlete-oppener'+i"></a></td>
                         <td [hidden]="true" class="uk-text-center"></td>
                     </tr>

@@ -13,7 +13,7 @@
     [entryid]="entryId"></app-entry-main-judge>
     <!--MAIN JUDGE-->
     <!-- ATHLETE-->
-    <app-entry-athlete *ngIf="specByJudge.athlete.show"
+    <app-entry-athlete [dataclaseentry]="extraInfo" *ngIf="specByJudge.athlete.show"
     [entryid]="entryId"></app-entry-athlete>
     <!-- ATHLETE-->
     <!--COMPETITOR REPORT -->

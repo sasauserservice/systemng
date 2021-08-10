@@ -18,7 +18,7 @@
 
     <div class="uk-card-body uk-padding-small" uk-overflow-auto="selContainer: .uk-content-card; selContent: .js-wrapper">
         <div>
-            <div *ngFor="let user of competitors" class="uk-card uk-card-default">
+            <div *ngFor="let user of competitors; let i=index;" class="uk-card uk-card-default">
                 <ul uk-accordion="toggle: *.uk-accordion-panel-oppener">
                     <li>
                         <div class="uk-padding-small">
@@ -30,7 +30,7 @@
                                             <span uk-tooltip="TEAM" *ngIf="user.type == 2 || user.type == 0 " class="" uk-icon="icon: users"></span>
                                         </div>
                                         <div class="uk-width-expand uk-margin-auto-vertical">
-                                            <a href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener">{{user.data.name}}</a>
+                                            <a style="text-transform: lowercase !important;" href="#" class="uk-button uk-button-text uk-margin-remove uk-accordion-panel-oppener">{{user.data.name}}</a>
                                             <p class="uk-margin-remove uk-text-smaller">{{user.id}}</p>
                                         </div>
                                     </div>

@@ -28,7 +28,7 @@
                         </div>
                         <div>
                             <div class="uk-text-center">
-                                <h4 class="uk-margin-remove uk-text-small">{{winner.pointsMe}}</h4> 
+                                <h4 class="uk-margin-remove uk-text-small">{{winner.pointsMe.toFixed(2)}}</h4> 
                                 <p class="uk-margin-remove uk-text-smaller">OF {{winner.category_data.totalCat}}</p> 
                             </div>    
                         </div>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div>
                                     <div class="uk-text-center">
-                                        <h4 class="uk-margin-remove uk-text-small">{{part.pointsMe}}</h4> 
+                                        <h4 class="uk-margin-remove uk-text-small">{{part.pointsMe.toFixed(2)}}</h4> 
                                         <p class="uk-margin-remove uk-text-smaller">OF </p> 
                                     </div>    
                                 </div>
@@ -120,16 +120,13 @@
                                         <h5 class="uk-margin-remove uk-text-small">{{cat.totalCat}}</h5>
                                         <p class="uk-margin-remove uk-text-uppercase uk-text-smaller">VALUE</p>                
                                     </div>
-                                    <div class="uk-text-center uk-margin-small-right">
-                                        <h5 class="uk-margin-remove uk-text-small">60</h5>
-                                        <p class="uk-margin-remove uk-text-uppercase uk-text-smaller">ENTRYS</p>                
-                                    </div>
+                                    
                                     <a href="" class="uk-icon-button" uk-icon="icon: cloud-download" uk-tooltip="title: PDF; pos: top"></a>
 
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="uk-card-body uk-accordion-content">
                             <div class="">
                                 <table class="uk-table uk-table-small uk-table-divider uk-table-hover">
@@ -143,14 +140,15 @@
                                             <td class="uk-table-shrink uk-text-smaller uk-text-bold">TOTAL</td>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr *ngFor="let gpart of cat.participations">
-                                            <td class="uk-text-smaller">{{gpart.competitor_name }}</td>
-                                            <td class="uk-text-smaller">{{gpart.video }}</td>
-                                            <td class="uk-text-smaller uk-text-right">{{gpart.porcentMe}}%</td>
-                                            <td class="uk-text-smaller uk-text-right">??</td>
-                                            <td class="uk-text-smaller uk-text-right">{{gpart.penalsMe}}</td>
+                                    <tbody *ngIf="cat.participations.length > 0">
+                                        <tr *ngFor="let gpart of cat.participations; let k = index;">
+                                            <td class="uk-text-smaller">{{gpart.competitor_name}}</td>
+                                            <td class="uk-text-smaller">{{gpart.video  || "N/A"}}</td>
+                                            <td class="uk-text-smaller uk-text-right">{{gpart.porcentMe}} %</td>
                                             <td class="uk-text-smaller uk-text-right">{{gpart.pointsMe}}</td>
+                                            <td class="uk-text-smaller uk-text-right">{{gpart.penalsMe}}</td>
+                                            <td class="uk-text-smaller uk-text-right">{{gpart.pointsReal}}</td>
+                                            
                                         </tr>
                                     </tbody>
                                 </table>
